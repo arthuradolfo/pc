@@ -1,0 +1,8 @@
+/* arranjo with two dimensions */
+int x[10,10];
+
+int main ()
+{
+  x[9,8] = 0;
+  x[6,5] = 3;
+}
