@@ -27,6 +27,8 @@
 %token TK_OC_NE
 %token TK_OC_AND
 %token TK_OC_OR
+%token TK_OC_SL
+%token TK_OC_SR
 %token TK_LIT_INT
 %token TK_LIT_FLOAT
 %token TK_LIT_FALSE
