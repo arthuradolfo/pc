@@ -182,6 +182,8 @@ void gv_declare (const int tipo, const void *pointer, char *name)
   case AST_LOGICO_COMP_NEGACAO:
   case AST_VETOR_INDEXADO:
   case AST_CHAMADA_DE_FUNCAO:
+  case AST_SHIFT_LEFT:
+  case AST_SHIFT_RIGHT:
     if (name){
       fprintf (stderr, "%s: name should be NULL\n", __FUNCTION__);
       abort();
