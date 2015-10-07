@@ -67,6 +67,8 @@ static inline char *__gv_description_from_type (int tipo)
   case AST_LOGICO_COMP_NEGACAO: return "!";
   case AST_VETOR_INDEXADO: return "[]";
   case AST_CHAMADA_DE_FUNCAO: return "call";
+  case AST_SHIFT_LEFT: return "<<";
+  case AST_SHIFT_RIGHT: return ">>";
 
   default:
     fprintf (stderr, "%s: tipo provided is invalid here\n", __FUNCTION__);
