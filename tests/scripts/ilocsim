@@ -101,8 +101,8 @@ class Storage:
       self.value[x] = y
 
 class Sim:
-   def __init__(self, program, trace=False):
-      self.reg = Storage({'rbss':1024**2})
+   def __init__(self, program, bss, fp, trace=False):
+      self.reg = Storage({'rbss':bss, 'rarp':fp})
       self.mem = Storage()
       self.labels = {}
       self.ip = 0
@@ -353,7 +353,7 @@ def main():
          program = f.read()
    else:
       program = sys.stdin.read()
-   sim = Sim(program, trace)
+   sim = Sim(program, args.bss, args.stack, trace)
    while len(sim.code) > sim.ip:
       sim.step()
    sim.show_stats()
