@@ -131,6 +131,13 @@ class Sim:
       for x in l:
          eprint('%.8d %8d'%(x,self.mem.get(x)))
 
+   def show_memory(self):
+      l = [x for x in self.mem]
+      l.sort()
+      for x in l:
+         eprint('%.8d %8d'%(x,self.mem.get(x)))
+
+         
    def map_vars(self, code, varmap=None):
       if type(code) not in (list,set):
          code = [code]
@@ -172,8 +179,8 @@ class Sim:
          if '//' in s:
             s = s[:s.find('//')]
          s = s.replace('\t',' ').replace('\r','').strip(' ')
-         if s:
-            eprint(len(l),s)
+#         if s:
+#            eprint(len(l),s)
          while 1:
             m = re.match(r'^\s*(\w+)\s*:.*',s)
             if not m: break
@@ -183,10 +190,10 @@ class Sim:
          l.append( Operation(s).op )
       self.map_labels(l,self.labels)
       self.map_vars(l)
-      eprint('---')
-      for i in range(len(l)):
-         eprint(i,l[i])
-      eprint('---')
+#      eprint('---')
+#      for i in range(len(l)):
+#         eprint(i,l[i])
+#      eprint('---')
       return l
    def run(self):
       while len(self.code) > self.ip:
@@ -337,24 +344,27 @@ class Sim:
 
 def main():
    parser = argparse.ArgumentParser(description='ILOC Simulator')
-   parser.add_argument('-t', '--trace', type=bool)
+   parser.add_argument('-m', '--memory', type=bool, default=0)
+   parser.add_argument('-s', '--stats', type=bool, default=0)
+   parser.add_argument('-t', '--trace', type=bool, default=0)
    parser.add_argument('--bss', type=int, default=0)
    parser.add_argument('--stack', type=int, default=1024)
    parser.add_argument('ILOCFILE', nargs='?')
    args = parser.parse_args()
 
-#   Sim('').test_all()
-#   return
-   trace = False
-   if args.trace == True:
-      trace = True
    if args.ILOCFILE:
       with open(args.ILOCFILE) as f:
          program = f.read()
    else:
       program = sys.stdin.read()
-   sim = Sim(program, args.bss, args.stack, trace)
+   sim = Sim(program, args.bss, args.stack, args.trace)
    while len(sim.code) > sim.ip:
       sim.step()
-   sim.show_stats()
+
+   if (args.stats): 
+     sim.show_stats()
+
+   if (args.memory):
+     sim.show_memory()
+
 if __name__ == '__main__': main()
