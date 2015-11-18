@@ -131,6 +131,12 @@ class Sim:
       for x in l:
          eprint('%.8d %8d'%(x,self.mem.get(x)))
 
+   def show_instructions_executed_counting(self):
+      l = [x for x in self.stats if x != 'instructions']
+      l.sort(key=lambda x:-self.stats[x])
+      for x in l:
+         eprint('%d %s'%(self.stats[x],x))
+         
    def show_memory(self):
       l = [x for x in self.mem]
       l.sort()
@@ -344,6 +350,7 @@ class Sim:
 
 def main():
    parser = argparse.ArgumentParser(description='ILOC Simulator')
+   parser.add_argument('-i', '--instructions', type=bool, default=0)
    parser.add_argument('-m', '--memory', type=bool, default=0)
    parser.add_argument('-s', '--stats', type=bool, default=0)
    parser.add_argument('-t', '--trace', type=bool, default=0)
@@ -361,6 +368,9 @@ def main():
    while len(sim.code) > sim.ip:
       sim.step()
 
+   if (args.instructions):
+     sim.show_instructions_executed_counting()
+      
    if (args.stats): 
      sim.show_stats()
 
