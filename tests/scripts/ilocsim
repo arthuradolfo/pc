@@ -135,7 +135,7 @@ class Sim:
       l = [x for x in self.mem]
       l.sort()
       for x in l:
-         eprint('%.8d %8d'%(x,self.mem.get(x)))
+         eprint('%.8d %d'%(x,self.mem.get(x)))
 
          
    def map_vars(self, code, varmap=None):
