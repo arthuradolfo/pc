@@ -129,7 +129,7 @@ class Sim:
       l = [x for x in self.mem]
       l.sort()
       for x in l:
-         eprint('0x%.8x %8d'%(x,self.mem.get(x)))
+         eprint('%.8d %8d'%(x,self.mem.get(x)))
 
    def map_vars(self, code, varmap=None):
       if type(code) not in (list,set):
