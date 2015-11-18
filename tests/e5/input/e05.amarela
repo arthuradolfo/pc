@@ -1,6 +1,6 @@
 /* global arranjo with expression */
 int x;
-int y[10];
+int y[21];
 int main()
 {
   x = 2;

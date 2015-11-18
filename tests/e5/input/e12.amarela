@@ -6,6 +6,6 @@ int main()
   x = y;
   while (x < 10) do {
     x = x + 1;
-    y = y + 1;
+    y = (y + 1) * 3;
   }
 }

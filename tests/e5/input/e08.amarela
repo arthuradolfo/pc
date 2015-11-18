@@ -1,5 +1,17 @@
+/* arithm 3 */
 int x;
+int y;
+int z;
 int main()
 {
-  x = 0;
+  x = 1;
+  y = 2;
+  z = 3;
+
+  x << 10;
+  y << 8;
+  z << 4;
+
+  x = x / y * z;
+  z = x + y - z;
 }
