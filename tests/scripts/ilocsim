@@ -336,15 +336,20 @@ class Sim:
 
 
 def main():
+   parser = argparse.ArgumentParser(description='ILOC Simulator')
+   parser.add_argument('-t', '--trace', type=bool)
+   parser.add_argument('--bss', type=int, default=0)
+   parser.add_argument('--stack', type=int, default=1024)
+   parser.add_argument('ILOCFILE', nargs='?')
+   args = parser.parse_args()
+
 #   Sim('').test_all()
 #   return
    trace = False
-   args = sys.argv[1:]
-   if '-t' in args:
-      args.remove('-t')
+   if args.trace == True:
       trace = True
-   if len(args) > 1:
-      with open(sys.argv[1]) as f:
+   if args.ILOCFILE:
+      with open(args.ILOCFILE) as f:
          program = f.read()
    else:
       program = sys.stdin.read()
