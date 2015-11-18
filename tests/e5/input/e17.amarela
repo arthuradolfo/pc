@@ -1,8 +1,13 @@
 /* curto-circuito 2 */
 int x;
+int y;
+int z;
 int main()
 {
-  if (x || x && x) then {
-    x = 0;
+  x = 1;
+  y = 1;
+  z = 0;
+  if (x == 1 || y == 0 && z == 0) then {
+    x = 123;
   }
 }
