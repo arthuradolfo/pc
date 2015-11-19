@@ -4,7 +4,7 @@ import re
 import argparse
 
 def eprint(*s):
-   print(*s,file=sys.stderr)
+   print(*s,file=sys.stdout)
 
 class Operation:
    def __init__(self, s, patterns=[]):
