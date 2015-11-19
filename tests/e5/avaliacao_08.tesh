@@ -1,3 +1,6 @@
 ! timeout 5
-! output display
-$ ./tests/e5/verify-new ./main tests/e5/input/e08.amarela 0
+
+$ ./tests/e5/execute.sh "./main < ./tests/e5/input/e08.amarela | ./tests/scripts/ilocsim --bss 0 --stack 1024 -m 1"
+> 00000000 96
+> 00000004 512
+> 00000008 560
