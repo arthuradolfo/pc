@@ -1,0 +1,17 @@
+/* arithm 3 */
+int x;
+int y;
+int z;
+int main()
+{
+  x = 13;
+  y = 25;
+  z = 38;
+
+  x << 12;
+  y << 7;
+  z << 2;
+
+  x = z / y * x;
+  z = z + x - y;
+}
