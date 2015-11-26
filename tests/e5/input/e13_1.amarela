@@ -3,7 +3,7 @@ int x;
 int y;
 int main()
 {
-  x = 312;
+  x = 299;
   y = 298;
   if (x > 300 && y > 200) then {
     x = 1234;
