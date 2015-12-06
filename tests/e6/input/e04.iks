@@ -1,4 +1,6 @@
-/* endereço de retorno */
+/* 99 in bss address */
+int x;
+
 int f()
 {
   return 99;
@@ -6,8 +8,5 @@ int f()
 
 int main()
 {
-  int x;
   x = f();
-  x = 2;
-  return x;
 }

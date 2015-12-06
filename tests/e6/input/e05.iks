@@ -1,13 +1,14 @@
-/* sequência de ativação */
+/* 98 in bss address */
+int y;
+
 int f()
 {
   int x;
-  x = 4;
+  x = 98;
   return x;
 }
 
 int main()
 {
-  int x;
-  x = f();
+  y = f();
 }
