@@ -250,7 +250,7 @@ class Sim:
    def op_xorI   (self,op): self.reg[op[2]] = self.reg[op[0]]  ^ op[1]
 
    def op_load   (self,op): self.reg[op[1]] = self.mem[self.reg[op[0]]]
-   def op_loadI  (self,op): self.reg[op[1]] = op[0]
+   def op_loadI  (self,op): self.reg[op[1]] = op[0] if (op[1] != "rbss") else self.reg[op[1]]
    def op_loadAI (self,op): self.reg[op[2]] = self.mem[self.reg[op[0]]+op[1]]
    def op_loadAO (self,op): self.reg[op[2]] = self.mem[self.reg[op[0]]+self.reg[op[1]]]
 #   def op_cload
