@@ -1,4 +1,6 @@
-/* passagem de parâmetros */
+/* parameter passing: 49 in the bss address */
+int x;
+
 int mult (int z, int w)
 {
   int x;
@@ -8,8 +10,7 @@ int mult (int z, int w)
 
 int main()
 {
-  int x;
   int y;
-  x = 2;
-  y = mult(x, x);
+  y = 7;
+  x = mult(y, y);
 }
