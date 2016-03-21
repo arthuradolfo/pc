@@ -31,7 +31,10 @@ int main_avaliacao_etapa_1 (int argc, char **argv)
     case '=':
     case '!':
     case '&':
-    case '$': print_nome2 (token); break;
+    case '$':
+    case '%':
+    case '#':
+    case '^': print_nome2 (token); break;
     case TK_PR_INT: print_nome(TK_PR_INT); break;
     case TK_PR_FLOAT: print_nome(TK_PR_FLOAT); break;
     case TK_PR_BOOL: print_nome (TK_PR_BOOL); break;
@@ -45,8 +48,18 @@ int main_avaliacao_etapa_1 (int argc, char **argv)
     case TK_PR_INPUT: print_nome (TK_PR_INPUT); break;
     case TK_PR_OUTPUT: print_nome (TK_PR_OUTPUT); break;
     case TK_PR_RETURN: print_nome (TK_PR_RETURN); break;
-    case TK_PR_STATIC: print_nome (TK_PR_STATIC); break;
     case TK_PR_CONST: print_nome (TK_PR_CONST); break;
+    case TK_PR_STATIC: print_nome (TK_PR_STATIC); break;
+    case TK_PR_FOREACH: print_nome (TK_PR_FOREACH); break;
+    case TK_PR_FOR: print_nome (TK_PR_FOR); break;
+    case TK_PR_SWITCH: print_nome (TK_PR_SWITCH); break;
+    case TK_PR_CASE: print_nome (TK_PR_CASE); break;
+    case TK_PR_BREAK: print_nome (TK_PR_BREAK); break;
+    case TK_PR_CONTINUE: print_nome (TK_PR_CONTINUE); break;
+    case TK_PR_CLASS: print_nome (TK_PR_CLASS); break;
+    case TK_PR_PRIVATE: print_nome (TK_PR_PRIVATE); break;
+    case TK_PR_PUBLIC: print_nome (TK_PR_PUBLIC); break;
+    case TK_PR_PROTECTED: print_nome (TK_PR_PROTECTED); break;
     case TK_OC_LE: print_nome (TK_OC_LE); break;
     case TK_OC_GE: print_nome (TK_OC_GE); break;
     case TK_OC_EQ: print_nome (TK_OC_EQ); break;
