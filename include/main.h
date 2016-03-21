@@ -30,4 +30,6 @@
 #define SIMBOLO_LITERAL_BOOL   5
 #define SIMBOLO_IDENTIFICADOR  6
 
+void cc_dict_etapa_1_print_entrada (char *token, int line);
+
 #endif

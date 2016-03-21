@@ -112,7 +112,4 @@ void *dict_remove(comp_dict_t * dict, char *key);
  */
 void dict_debug_print(comp_dict_t * dict);
 
-//Print the item token and its line
-void dict_print_item_e1(char *token, int line);
-
 #endif                          //CC_DICT_H_

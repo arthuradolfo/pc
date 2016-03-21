@@ -82,6 +82,16 @@ int main_avaliacao_etapa_1 (int argc, char **argv)
   return 0;
 }
 
+void cc_dict_etapa_1_print_entrada (char *token, int line)
+{
+  printf("Etapa 1 Tabela: %s %d\n", token, line);
+}
+
+void main_avaliacao_etapa_1_tabela (void)
+{
+  comp_print_table();
+}
+
 int main_avaliacao_etapa_2 (int argc, char **argv)
 {
   int ret = yyparse();
