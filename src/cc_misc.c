@@ -1,6 +1,6 @@
 #include "cc_misc.h"
 
-int getLineNumber (void)
+int comp_get_line_number (void)
 {
   //implemente esta função
   return -1;
