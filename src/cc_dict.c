@@ -190,10 +190,11 @@ void *dict_put(comp_dict_t * dict, char *key, void *value)
     ++dict->occupation;
   } else {                      // caso 2: entrada existe na tabela, inserir no encadeamento
     comp_dict_item_t *exists = dict_item_get(dict->data[hash], key);
-    if (!exists)
+    if (!exists) {
       dict_item_insert(dict->data[hash], newitem);
-    else
+    } else {
       return exists->value;
+    }
   }
   return newitem->value;
 }
