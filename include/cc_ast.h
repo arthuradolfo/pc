@@ -7,6 +7,7 @@
 #define __CC_AST_H
 #define AST_PROGRAMA             0
 #define AST_FUNCAO               1
+//Comandos
 #define AST_IF_ELSE              2
 #define AST_DO_WHILE             3
 #define AST_WHILE_DO             4
@@ -15,6 +16,7 @@
 #define AST_ATRIBUICAO           7
 #define AST_RETURN               8
 #define AST_BLOCO                9
+//Condição, Saída, Expressão
 #define AST_IDENTIFICADOR       10
 #define AST_LITERAL             11
 #define AST_ARIM_SOMA           12
