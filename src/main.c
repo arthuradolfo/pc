@@ -4,7 +4,7 @@ extern FILE *yyin;
 extern char *yytext;
 extern int getLineNumber();
 #define print_nome(TOKEN) printf("%d " #TOKEN " [%s]\n", comp_get_line_number(), yytext);
-#define print_nome2(TOKEN) printf("%d %c\n", comp_get_line_number(), TOKEN);
+#define print_nome2(TOKEN) printf("%d TK_ESPECIAL [%c]\n", comp_get_line_number(), TOKEN);
 #define USER_INIT main_init (argc, argv);
 #define USER_FINALIZE main_finalize ();
 
