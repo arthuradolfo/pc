@@ -8,10 +8,14 @@ extern int getLineNumber();
 #define USER_INIT main_init (argc, argv);
 #define USER_FINALIZE main_finalize ();
 
+void main_avaliacao_etapa_1_tabela (void);
 int main_avaliacao_etapa_1 (int argc, char **argv)
 {
   int token = 0;
   while (token = yylex()) {
+    if (getenv("INF47_TABLE")){
+      continue;
+    }
     switch (token){
     case ',':
     case ';':
@@ -78,6 +82,9 @@ int main_avaliacao_etapa_1 (int argc, char **argv)
     case TOKEN_ERRO:  print_nome (TOKEN_ERRO); break;
     default: printf ("<Invalid Token with code %d>\n", token); return 1; break;
     }
+  }
+  if (getenv("INF47_TABLE")){
+    main_avaliacao_etapa_1_tabela();
   }
   return 0;
 }
