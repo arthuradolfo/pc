@@ -124,6 +124,7 @@ void gv_close (void)
   __gv_test_valid_fp (__FUNCTION__);
   fprintf (fp, "}\n");
   fclose(fp);
+  fclose(intfp);
 }
 
 /**
