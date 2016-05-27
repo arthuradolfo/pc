@@ -21,7 +21,10 @@
 #include <stdlib.h>
 #include "cc_ast.h"
 
+#define INTERNAL_OUTPUT "e3.dot"
+
 static FILE *fp = NULL;
+FILE *intfp = NULL;
 
 static inline void __gv_test_valid_fp (const char *function_name)
 {
@@ -106,6 +109,8 @@ void gv_init (const char *filename)
     fp = stderr;    
   }
   fprintf (fp, "digraph G {\n");
+
+  intfp = fopen(INTERNAL_OUTPUT, "w");
 }
 
 /**

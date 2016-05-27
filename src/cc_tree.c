@@ -18,6 +18,8 @@
 
 #include "cc_tree.h"
 
+extern FILE *intfp;
+
 #define ERRO(MENSAGEM) { fprintf (stderr, "[cc_tree, %s] %s.\n", __FUNCTION__, MENSAGEM); abort(); }
 
 comp_tree_t* tree_new(void){
@@ -65,6 +67,8 @@ void tree_insert_node(comp_tree_t *tree, comp_tree_t *node){
 		tree->last = node;
 	}
 	++tree->childnodes;
+
+	fprintf (intfp, "%p -> %p;\n", tree, node);
 }
 
 int tree_has_child_nodes(comp_tree_t *tree){
