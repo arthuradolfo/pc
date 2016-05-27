@@ -111,6 +111,7 @@ void gv_init (const char *filename)
   fprintf (fp, "digraph G {\n");
 
   intfp = fopen(INTERNAL_OUTPUT, "w");
+  fprintf(intfp, "digraph G {\n");
 }
 
 /**
@@ -124,6 +125,7 @@ void gv_close (void)
   __gv_test_valid_fp (__FUNCTION__);
   fprintf (fp, "}\n");
   fclose(fp);
+  fprintf(intfp, "}\n");
   fclose(intfp);
 }
 

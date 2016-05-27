@@ -68,7 +68,9 @@ void tree_insert_node(comp_tree_t *tree, comp_tree_t *node){
 	}
 	++tree->childnodes;
 
-	fprintf (intfp, "%p -> %p;\n", tree, node);
+	fprintf (intfp, "node_%p [label=\"\"]\n", tree);
+	fprintf (intfp, "node_%p [label=\"\"]\n", node);
+	fprintf (intfp, "node_%p -> node_%p\n", tree, node);
 }
 
 int tree_has_child_nodes(comp_tree_t *tree){
