@@ -25,6 +25,7 @@
 
 static FILE *fp = NULL;
 FILE *intfp = NULL;
+extern void *comp_tree_last;
 
 static inline void __gv_test_valid_fp (const char *function_name)
 {
@@ -125,6 +126,7 @@ void gv_close (void)
   __gv_test_valid_fp (__FUNCTION__);
   fprintf (fp, "}\n");
   fclose(fp);
+  fprintf(intfp, "root -> node_%p\n", comp_tree_last);
   fprintf(intfp, "}\n");
   fclose(intfp);
 }
