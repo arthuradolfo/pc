@@ -126,7 +126,9 @@ void gv_close (void)
   __gv_test_valid_fp (__FUNCTION__);
   fprintf (fp, "}\n");
   fclose(fp);
-  fprintf(intfp, "root -> node_%p\n", comp_tree_last);
+  if (comp_tree_last){
+    fprintf(intfp, "root -> node_%p\n", comp_tree_last);
+  }
   fprintf(intfp, "}\n");
   fclose(intfp);
 }
