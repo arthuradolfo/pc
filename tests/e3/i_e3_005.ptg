@@ -1,0 +1,4 @@
+int f()
+{
+  if (true) then x = 3;;
+}
