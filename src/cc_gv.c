@@ -128,6 +128,7 @@ void gv_close (void)
   fclose(fp);
   if (comp_tree_last){
     fprintf(intfp, "root -> node_%p\n", comp_tree_last);
+    fprintf(intfp, "root [label=\"root\"]\n");
   }
   fprintf(intfp, "}\n");
   fclose(intfp);
