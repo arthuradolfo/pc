@@ -23,12 +23,12 @@ int  euclidan_division (int  vara, int  varb) {
    {
       cas1 = true;
       a = -a;
-   };
+   };;
    if (b < 0) then 
    {
       cas2 = true;
       b = -b;
-   };
+   };;
 
    r = a;
    q = 0;
@@ -36,9 +36,9 @@ int  euclidan_division (int  vara, int  varb) {
    while (r >= b) do {
       q = q + 1;
       r = r - b;
-   };
-   if (cas1 && !cas2) then q = -q - 1;
-   if (!cas1 && cas2) then q = -q; 
-   if (cas1 && cas2) then q = q + 1;
+   };;
+   if (cas1 && !cas2) then q = -q - 1;;
+   if (!cas1 && cas2) then q = -q;;
+   if (cas1 && cas2) then q = q + 1;;
    return q;
 }

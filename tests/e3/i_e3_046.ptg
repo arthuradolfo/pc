@@ -12,8 +12,8 @@ int  aux3;
 int  fibo (int  in) {
         entry = in;
 
-        if (entry == 0) then return 0;
-        if (entry == 1) then return 1;
+        if (entry == 0) then return 0;;
+        if (entry == 1) then return 1;;
 
         rank = 2;
         aux1 = 0;
@@ -26,7 +26,7 @@ int  fibo (int  in) {
                 aux1 = aux2;
                 aux2 = aux3;
                 aux3 = aux1 + aux2;
-        };
+        };;
 
         return  aux3;
 }

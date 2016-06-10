@@ -12,11 +12,11 @@ int  bubblesort (int  vetor, int  tamanho){
                 j = 0;
                 while (j < k) do
                 {
-                        if (vetor[j] > vetor[j+1]) then {aux = v[j]; v[j] = v[j+1]; v[j+1] = aux;};
+                        if (vetor[j] > vetor[j+1]) then {aux = v[j]; v[j] = v[j+1]; v[j+1] = aux;};;
                         j = j + 1;
-                };
+                };;
                 i = i + 1;
                 k = k - 1;
-        };
+        };;
 
 }
