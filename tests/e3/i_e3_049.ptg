@@ -26,11 +26,11 @@ int matemagica(int num1, int num2, int num3){
         numero = numero + matemagica(indice,2,3);
         indice=indice - 1;
         return numero;
-        }
+        };
         else
         {
         return 1;
-        }
+        };;
 }
 int main(){
         indice = 50;
