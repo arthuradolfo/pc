@@ -17,8 +17,9 @@ def terminate (code):
 
 def root (graph):
    for i in graph.iternodes():
-      if label(i) == "programa":
+      if label(i) == "root":
          return i
+   return None
 
 if len(sys.argv) < 3:
    print('usage: %s DOTFILE DOTFILE'%(sys.argv[0]))
@@ -36,6 +37,12 @@ ref_root = root(ref)
 target_root = root(target)
 
 def compare_tree (r_tree, r_root, t_tree, t_root):
+   if r_root is None:
+      if t_root is None:
+         return True
+      else:
+         return False
+
    if not same_label (r_root, t_root):
       return False
 
