@@ -43,7 +43,10 @@ def compare_tree (r_tree, r_root, t_tree, t_root):
       else:
          return False
 
-   if not same_label (r_root, t_root):
+   #if not same_label (r_root, t_root):
+   #   return False
+
+   if t_root is None:
       return False
 
    if not len(r_tree.out_neighbors(r_root)) == len(t_tree.out_neighbors(t_root)):
