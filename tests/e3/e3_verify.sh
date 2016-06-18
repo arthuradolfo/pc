@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ $# < 3 || $# > 5 ]]; then
+if [ $# -ne 4 ]; then
         echo "Usage: $0 BINARY INPUT_FILE EXPECTED_OUTPUT_FILE [DIRECTORY_FOR_RESULTS]"
         exit 1
 fi
@@ -26,18 +26,16 @@ if [[ 0 != $? ]]; then
 fi
 
 # save .dot file and convert it to an image
-if [[ $# -ge 4 ]]; then
-        NAME=$4/$(basename $INPUTFILE | cut -d. -f1)
-        echo "$OUTPUT" > "${NAME}.dot"
-        dot -Tpng -o "${NAME}.png" <<< $OUTPUT
-        NAME=$(dirname $VALIDOUTPUTFILE)/$(basename $VALIDOUTPUTFILE | cut -d. -f1)
-        if [[ `stat -c %Y "$VALIDOUTPUTFILE"` -ge `stat -c %Y "${NAME}.png"` ]]; then
-                dot $VALIDOUTPUTFILE -Tpng -o "${NAME}.png"
-        fi
+NAME=$4/$(basename $INPUTFILE | cut -d. -f1)
+OUTPUT=e3.dot
+dot ${OUTPUT} -Tpng -o "${NAME}.png"
+NAME=$(dirname $VALIDOUTPUTFILE)/$(basename $VALIDOUTPUTFILE | cut -d. -f1)
+if [[ `stat -c %Y "$VALIDOUTPUTFILE"` -ge `stat -c %Y "${NAME}.png"` ]]; then
+   dot $VALIDOUTPUTFILE -Tpng -o "${NAME}.png"
 fi
 
 REFGRAPH=`dot -Tplain $VALIDOUTPUTFILE`
-GRAPH=`dot -Tplain <<< $OUTPUT`
+GRAPH=`dot -Tplain $OUTPUT`
 
 #count number of nodes
 REF_N_NODES=`grep ^node <<< $REFGRAPH | wc -l`
@@ -54,10 +52,17 @@ GLABELS=$(grep ^node <<< $GRAPH | awk '{print $7}' | sed  -e "s/\"//g" | sort)
 diff -s <(echo "$REFLABELS") <(echo "$GLABELS") >/dev/null
 DIFF=$?
 
-GDIFF=$(./$(dirname $0)/checkdots.py $VALIDOUTPUTFILE - <<< $OUTPUT ; echo $?)
+#GDIFF=$(./$(dirname $0)/checkdots.py $VALIDOUTPUTFILE $OUTPUT ; echo $?)
+GDIFFGVTREE=$(./$(dirname $0)/checkdots.py $VALIDOUTPUTFILE e3.dot ; echo $?)
 
-if [ $DIFF_NODES -eq 0 -a $DIFF_EDGES -eq 0 -a $DIFF -eq 0 -a $GDIFF -eq 0 ]; then
+if [ $GDIFFGVTREE -eq 0 ]; then
         exit 0
 else
         exit 1
 fi
+
+#if [ $DIFF_NODES -eq 0 -a $DIFF_EDGES -eq 0 -a $DIFF -eq 0 -a $GDIFF -eq 0 ]; then
+#       exit 0
+#else
+#       exit 1
+#fi
