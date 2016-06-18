@@ -113,6 +113,7 @@ void gv_init (const char *filename)
 
   intfp = fopen(INTERNAL_OUTPUT, "w");
   fprintf(intfp, "digraph G {\n");
+  fprintf(intfp, "  root [label=\"root\"]\n");
 }
 
 /**
@@ -128,7 +129,6 @@ void gv_close (void)
   fclose(fp);
   if (comp_tree_last){
     fprintf(intfp, "root -> node_%p\n", comp_tree_last);
-    fprintf(intfp, "root [label=\"root\"]\n");
   }
   fprintf(intfp, "}\n");
   fclose(intfp);
