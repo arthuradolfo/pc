@@ -9,4 +9,5 @@ node_0x837d910 -> node_0x837d8f8
 node_0x837d940 [label="programa"]
 node_0x837d940 -> node_0x837d910
 root -> node_0x837d940
+  root [label="root"]
 }

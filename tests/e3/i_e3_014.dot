@@ -21,4 +21,5 @@ node_0x990ca30 -> node_0x990c8e8
 node_0x990ca60 [label="programa"]
 node_0x990ca60 -> node_0x990ca30
 root -> node_0x990ca60
+  root [label="root"]
 }

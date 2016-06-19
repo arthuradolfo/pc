@@ -179,4 +179,5 @@ node_0x9afb290 -> node_0x9afa9e0
 node_0x9afb2c0 [label="programa"]
 node_0x9afb2c0 -> node_0x9afb290
 root -> node_0x9afb2c0
+  root [label="root"]
 }

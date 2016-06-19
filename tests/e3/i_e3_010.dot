@@ -17,4 +17,5 @@ node_0x1d6d640 -> node_0x1d6d980
 node_0x1d6d9c0 [label="programa"]
 node_0x1d6d9c0 -> node_0x1d6d640
 root -> node_0x1d6d9c0
+  root [label="root"]
 }

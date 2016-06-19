@@ -3,4 +3,5 @@ n_a [label="xis"]
 n_b [label="programa"]
 n_b -> n_a
 root -> n_b
+  root [label="root"]
 }

@@ -69,4 +69,5 @@ node_0x9931e28 -> node_0x9931a48
 node_0x9931e58 [label="programa"]
 node_0x9931e58 -> node_0x9931e28
 root -> node_0x9931e58
+  root [label="root"]
 }

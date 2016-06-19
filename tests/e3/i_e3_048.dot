@@ -51,4 +51,5 @@ node_0x8d9cc10 [label="programa"]
 node_0x8d9cc10 -> node_0x8d9ca70
 node_0x8d9ca70 -> node_0x8d9cc28
 root -> node_0x8d9cc10
+  root [label="root"]
 }

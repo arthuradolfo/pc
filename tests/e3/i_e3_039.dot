@@ -25,4 +25,5 @@ node_0x81629f8 -> node_0x8162a10
 node_0x8162a40 [label="programa"]
 node_0x8162a40 -> node_0x81629f8
 root -> node_0x8162a40
+  root [label="root"]
 }

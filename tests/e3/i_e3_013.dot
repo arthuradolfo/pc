@@ -23,4 +23,5 @@ node_0x91e09b8 -> node_0x91e0930
 node_0x91e0a00 [label="programa"]
 node_0x91e0a00 -> node_0x91e09b8
 root -> node_0x91e0a00
+  root [label="root"]
 }

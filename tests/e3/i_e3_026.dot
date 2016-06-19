@@ -13,4 +13,5 @@ node_0x873c958 -> node_0x873c940
 node_0x873c988 [label="programa"]
 node_0x873c988 -> node_0x873c958
 root -> node_0x873c988
+  root [label="root"]
 }

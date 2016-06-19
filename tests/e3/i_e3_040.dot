@@ -59,4 +59,5 @@ node_0x885bd78 -> node_0x885b998
 node_0x885bd90 [label="programa"]
 node_0x885bd90 -> node_0x885bd78
 root -> node_0x885bd90
+  root [label="root"]
 }
