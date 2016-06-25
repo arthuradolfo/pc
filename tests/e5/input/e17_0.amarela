@@ -8,8 +8,8 @@ int main()
   y = 1;
   z = 0;
   if (x == 1 || y == 0 && z == 0) then {
-    x = 123;
-  }
+	x = 123;
+  };;
 }
 
 //check is made through the number of cbr instructions executed
