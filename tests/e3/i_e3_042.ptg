@@ -1,18 +1,17 @@
-int funcao(){
-   int a;
+int f(){
    int x;
+   int a;
    int b;
    int c;
-   int y;
    int d;
    int e;
+   int y;
    int f;
-   int z;
    int g;
    int h;
    int i;
-   int w;
    int j;
+   int z;
    int k;
    int l;
    int m;

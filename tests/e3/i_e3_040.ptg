@@ -1,4 +1,4 @@
-int funcao(){
+int f(){
    int a;
    int x;
    int b;
@@ -17,6 +17,6 @@ int funcao(){
    int l;
    x = a + b * c;
    y = d / e - f;
-   z = g + h * i;
+   z = (g + h) * i;
    w = j / (k - l);
 }

@@ -1,6 +1,5 @@
 int f(){
-        int a;
-        int x;
-        int b;
+    int x;
+    int z;
         x = !z;
 }
