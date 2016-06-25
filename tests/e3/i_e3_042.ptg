@@ -1,5 +1,24 @@
-int f(){
-        x = a + b + c - d - e;
-        y = f * g * h / i / j;
-        z = k * l * m + n + o;
+int funcao(){
+   int a;
+   int x;
+   int b;
+   int c;
+   int y;
+   int d;
+   int e;
+   int f;
+   int z;
+   int g;
+   int h;
+   int i;
+   int w;
+   int j;
+   int k;
+   int l;
+   int m;
+   int n;
+   int o;
+   x = a + b + c - d - e;
+   y = f * g * h / i / j;
+   z = k * l * m + n + o;
 }

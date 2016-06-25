@@ -1,5 +1,7 @@
 /* the bubblesort by ta ga */
-int  bubblesort (int  vetor, int  tamanho){
+int vetor[10];
+int v[10];
+int  bubblesort (int  vetor2, int  tamanho){
         int  i;
         int  j;
         int  aux;

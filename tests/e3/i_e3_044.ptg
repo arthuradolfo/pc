@@ -1,5 +1,6 @@
 /* the insertion sort by ta ga */
-int insertionSort (int vetor, int tamanho){
+int vetor[10];
+int insertionSort (int vetor2, int tamanho){
         int i;
         int aux;
         i = 1;
