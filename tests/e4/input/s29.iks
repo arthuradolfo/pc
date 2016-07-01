@@ -1,7 +1,8 @@
 /* IKS_ERROR_CHAR_TO_X */
 char g()
 {
-   return 'c';
+   char ret;
+   return ret;
 }
 int f()
 {

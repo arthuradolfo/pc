@@ -1,5 +1,5 @@
-/* IKS_ERROR_WRONG_PAR_INPUT */
+/* IKS_SUCCESS */
 int f()
 {
-  input "%d" => 10;
+  //input "%d" => 10;
 }

@@ -2,5 +2,6 @@
 int f()
 {
   int x;
-  x = 10 + 'c';
+  char c;
+  x = 10 + c;
 }

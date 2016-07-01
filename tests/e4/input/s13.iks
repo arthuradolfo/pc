@@ -2,5 +2,6 @@
 int g(int x){}
 int f()
 {
-  g("str");
+  string str;
+  g(str);
 }

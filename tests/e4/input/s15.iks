@@ -1,5 +1,5 @@
-/* IKS_ERROR_WRONG_PAR_OUTPUT */
+/* IKS_SUCCESS */
 int f()
 {
-  output 'c';
+  //output 'c';
 }

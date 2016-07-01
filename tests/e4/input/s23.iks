@@ -2,5 +2,6 @@
 int x[10];
 int f()
 {
-  x["str"] = 3;
+  string str;
+  x[str] = 3;
 }

@@ -1,7 +1,8 @@
 /* IKS_ERROR_STRING_TO_X */
 string g()
 {
-   return "str";
+   string ret;
+   return ret;
 }
 int f()
 {

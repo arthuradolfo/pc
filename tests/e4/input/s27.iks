@@ -2,5 +2,6 @@
 int f()
 {
   int x;
-  x = 10 + 3.4 * "str" + 2.3;
+  string str;
+  x = 10 + 3.4 * str + 2.3;
 }

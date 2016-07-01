@@ -4,6 +4,6 @@ int f()
   int x;
   {
     string x;
-    x = "212";
+    //x = "212";
   };
 }
