@@ -2,7 +2,7 @@
   Coloque aqui o identificador do grupo e dos seus membros
 */
 %{
-#include <stdio.h>
+#include "main.h"
 %}
 
 /* Declaração dos tokens da linguagem */
