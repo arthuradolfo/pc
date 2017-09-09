@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/arthur/Área de Trabalho/pc/src/cc_dict.c
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+cc_dict.h
+/home/arthur/Área de Trabalho/pc/src/cc_dict.h
+
+/home/arthur/Área de Trabalho/pc/src/cc_dict_main_example.c
+stdio.h
+-
+stdlib.h
+-
+cc_dict.h
+/home/arthur/Área de Trabalho/pc/src/cc_dict.h
+
+include/cc_dict.h
+

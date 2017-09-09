@@ -47,6 +47,7 @@
 %token TK_LIT_STRING
 %token TK_IDENTIFICADOR
 %token TOKEN_ERRO
+%token TOKEN_NEWLINE
 
 %%
 /* Regras (e ações) da gramática */

@@ -3,11 +3,13 @@
 extern FILE *yyin;
 extern char *yytext;
 extern int getLineNumber();
+extern int lineNumber;
 #define print_nome(TOKEN) printf("%d " #TOKEN " [%s]\n", comp_get_line_number(), yytext);
 #define print_nome2(TOKEN) printf("%d TK_ESPECIAL [%c]\n", comp_get_line_number(), TOKEN);
 #define USER_INIT main_init (argc, argv);
 #define USER_FINALIZE main_finalize ();
 
+lineNumber = 1;
 void main_avaliacao_etapa_1_tabela (void);
 int main_avaliacao_etapa_1 (int argc, char **argv)
 {
@@ -80,6 +82,7 @@ int main_avaliacao_etapa_1 (int argc, char **argv)
     case TK_LIT_STRING: print_nome (TK_LIT_STRING); break;
     case TK_IDENTIFICADOR: print_nome (TK_IDENTIFICADOR); break;
     case TOKEN_ERRO:  print_nome (TOKEN_ERRO); break;
+    case TOKEN_NEWLINE:  lineNumber++; break;
     default: printf ("<Invalid Token with code %d>\n", token); return 1; break;
     }
   }
