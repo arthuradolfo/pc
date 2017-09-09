@@ -5,8 +5,7 @@
 LTR  [a-z_A-Z]		
 DGT  [0-9]		 		
 BCM	 "//"				
-ESP  [!#-&(-/:->[-^{}] 
-OCP  (<=)|(>=)|(==)|(!=)|(&&)|("||")|(>>)|(<<)
+ESP  [!#-&(-/:->[-^{}]
 INT  (-?){DGT}+
 FLT  {INT}.{DGT}+
 
@@ -46,12 +45,19 @@ FLT  {INT}.{DGT}+
 {FLT}				          return TK_LIT_FLOAT;
 '.'						      return TK_LIT_CHAR;
 ["](.+)["]				      return TK_LIT_STRING;
+"\n"					      return TOKEN_NEWLINE;
+{ESP}						  return (int) yytext[0];
+"<="						  return TK_OC_LE;
+">="						  return TK_OC_GE;
+"=="						  return TK_OC_EQ;
+"!="						  return TK_OC_NE;
+"&&"						  return TK_OC_AND;
+"||"						  return TK_OC_OR;
+"<<"						  return TK_OC_SL;
+">>"						  return TK_OC_SR;
 {LTR}({LTR}|{DGT})*           return TK_IDENTIFICADOR;
 {BCM}(.*)		  			  printf("Achei um comentario\n");//nao faz nada
 "/*"[^*]*|[*]*"*/"		  	  printf("Achei um comentario\n");//nao faz nada
-"\n"					      return TOKEN_NEWLINE;
-{ESP}						  printf("%d\n", (int) yytext[0]);
-{OCP}						  printf("%s\n", yytext);
 [ ]+        				  //nao faz nada com espacos
 .                             return TOKEN_ERRO;
 %%
