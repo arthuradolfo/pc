@@ -2,9 +2,9 @@
   Coloque aqui o identificador do grupo e dos seus membros
 */
 
-LTR  [a-z_A-Z]		
-DGT  [0-9]		 		
-BCM	 "//"				
+LTR  [a-z_A-Z]
+DGT  [0-9]
+BCM	 "//"
 ESP  [!#-&(-/:->[-^{}]
 INT  (-?){DGT}+
 FLT  {INT}\.{DGT}+
@@ -14,7 +14,7 @@ FLT  {INT}\.{DGT}+
 %}
 
 %%
-[\n]					      return TOKEN_NEWLINE;
+[\n]					                return TOKEN_NEWLINE;
 "int"                         return TK_PR_INT;
 "float"                       return TK_PR_FLOAT;
 "bool"                        return TK_PR_BOOL;
@@ -40,24 +40,24 @@ FLT  {INT}\.{DGT}+
 "private"                     return TK_PR_PRIVATE;
 "public"                      return TK_PR_PUBLIC;
 "protected"                   return TK_PR_PROTECTED;
-"false"						  return TK_LIT_FALSE;
-"true"						  return TK_LIT_TRUE;
-{INT}					  	  return TK_LIT_INT;
-{FLT}				          return TK_LIT_FLOAT;
-'.'						      return TK_LIT_CHAR;
-\"(\\.|[^"])*\"				  return TK_LIT_STRING;
-{ESP}						  return yytext[0];
-"<="						  return TK_OC_LE;
-">="						  return TK_OC_GE;
-"=="						  return TK_OC_EQ;
-"!="						  return TK_OC_NE;
-"&&"						  return TK_OC_AND;
-"||"						  return TK_OC_OR;
-"<<"						  return TK_OC_SL;
-">>"						  return TK_OC_SR;
+"false"						            return TK_LIT_FALSE;
+"true"						            return TK_LIT_TRUE;
+{INT}          					  	  return TK_LIT_INT;
+{FLT}				                  return TK_LIT_FLOAT;
+'.'						                return TK_LIT_CHAR;
+\"(\\.|[^"])*\"				        return TK_LIT_STRING;
+{ESP}						              return yytext[0];
+"<="						              return TK_OC_LE;
+">="						              return TK_OC_GE;
+"=="						              return TK_OC_EQ;
+"!="						              return TK_OC_NE;
+"&&"						              return TK_OC_AND;
+"||"						              return TK_OC_OR;
+"<<"						              return TK_OC_SL;
+">>"						              return TK_OC_SR;
 {LTR}({LTR}|{DGT})*           return TK_IDENTIFICADOR;
-{BCM}(.*)		  			  //nao faz nada
-"/*"((.|\n)*)"*/"		  	  return TOKEN_COMMENT;
-[ \t]+        				  //nao faz nada com espacos
+{BCM}(.*)		  			          //nao faz nada
+"/*"((.|\n)*)"*/"		  	      return TOKEN_COMMENT;
+[ \t]+        				        //nao faz nada com espacos
 .                             return TOKEN_ERRO;
 %%
