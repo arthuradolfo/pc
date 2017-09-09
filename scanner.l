@@ -7,13 +7,14 @@ DGT  [0-9]
 BCM	 "//"				
 ESP  [!#-&(-/:->[-^{}]
 INT  (-?){DGT}+
-FLT  {INT}.{DGT}+
+FLT  {INT}\.{DGT}+
 
 %{
 #include "parser.h" //arquivo automaticamente gerado pelo bison
 %}
 
 %%
+[\n]					      return TOKEN_NEWLINE;
 "int"                         return TK_PR_INT;
 "float"                       return TK_PR_FLOAT;
 "bool"                        return TK_PR_BOOL;
@@ -45,7 +46,6 @@ FLT  {INT}.{DGT}+
 {FLT}				          return TK_LIT_FLOAT;
 '.'						      return TK_LIT_CHAR;
 \"(\\.|[^"])*\"				  return TK_LIT_STRING;
-"\n"					      return TOKEN_NEWLINE;
 {ESP}						  return yytext[0];
 "<="						  return TK_OC_LE;
 ">="						  return TK_OC_GE;
@@ -57,7 +57,7 @@ FLT  {INT}.{DGT}+
 ">>"						  return TK_OC_SR;
 {LTR}({LTR}|{DGT})*           return TK_IDENTIFICADOR;
 {BCM}(.*)		  			  //nao faz nada
-"/*"((.|\n)*)"*/"		  	  //nao faz nada
+"/*"((.|\n)*)"*/"		  	  return TOKEN_COMMENT;
 [ \t]+        				  //nao faz nada com espacos
 .                             return TOKEN_ERRO;
 %%

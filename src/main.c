@@ -1,4 +1,5 @@
 #include "main.h"
+#include <string.h>
 
 extern FILE *yyin;
 extern char *yytext;
@@ -17,6 +18,15 @@ int main_avaliacao_etapa_1 (int argc, char **argv)
   while (token = yylex()) {
     if (getenv("INF47_TABLE")){
       continue;
+    }
+    int i = 0;
+    if(token != TOKEN_NEWLINE) {
+      while(i < strlen(yytext)) {
+        if(yytext[i] == '\n') {
+          lineNumber++;
+        }
+        i++;
+      }
     }
     switch (token){
     case ',':
@@ -84,6 +94,7 @@ int main_avaliacao_etapa_1 (int argc, char **argv)
     case TOKEN_ERRO:  print_nome (TOKEN_ERRO); break;
     case '.':  print_nome (TOKEN_ERRO); break;
     case TOKEN_NEWLINE:  lineNumber++; break;
+    case TOKEN_COMMENT:  break;
     default: printf ("<Invalid Token with code %d>\n", token); return 1; break;
     }
   }

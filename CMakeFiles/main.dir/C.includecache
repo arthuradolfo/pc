@@ -77,6 +77,8 @@ cc_tree.h
 /home/arthur/Área de Trabalho/pc/src/main.c
 main.h
 /home/arthur/Área de Trabalho/pc/src/main.h
+string.h
+-
 
 include/cc_ast.h
 

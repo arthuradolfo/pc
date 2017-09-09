@@ -86,7 +86,8 @@ extern int yydebug;
     TK_LIT_STRING = 296,
     TK_IDENTIFICADOR = 297,
     TOKEN_ERRO = 298,
-    TOKEN_NEWLINE = 299
+    TOKEN_NEWLINE = 299,
+    TOKEN_COMMENT = 300
   };
 #endif
 

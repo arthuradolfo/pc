@@ -142,7 +142,8 @@ extern int yydebug;
     TK_LIT_STRING = 296,
     TK_IDENTIFICADOR = 297,
     TOKEN_ERRO = 298,
-    TOKEN_NEWLINE = 299
+    TOKEN_NEWLINE = 299,
+    TOKEN_COMMENT = 300
   };
 #endif
 
@@ -162,7 +163,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 166 "/home/arthur/Área de Trabalho/pc/parser.c" /* yacc.c:358  */
+#line 167 "/home/arthur/Área de Trabalho/pc/parser.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -407,7 +408,7 @@ union yyalloc
 #define YYLAST   0
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  45
+#define YYNTOKENS  46
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  2
 /* YYNRULES -- Number of rules.  */
@@ -418,7 +419,7 @@ union yyalloc
 /* YYTRANSLATE[YYX] -- Symbol number corresponding to YYX as returned
    by yylex, with out-of-bounds checking.  */
 #define YYUNDEFTOK  2
-#define YYMAXUTOK   299
+#define YYMAXUTOK   300
 
 #define YYTRANSLATE(YYX)                                                \
   ((unsigned int) (YYX) <= YYMAXUTOK ? yytranslate[YYX] : YYUNDEFTOK)
@@ -456,14 +457,15 @@ static const yytype_uint8 yytranslate[] =
        5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
       15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
       25,    26,    27,    28,    29,    30,    31,    32,    33,    34,
-      35,    36,    37,    38,    39,    40,    41,    42,    43,    44
+      35,    36,    37,    38,    39,    40,    41,    42,    43,    44,
+      45
 };
 
 #if YYDEBUG
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    55,    55
+       0,    56,    56
 };
 #endif
 
@@ -481,7 +483,7 @@ static const char *const yytname[] =
   "TK_OC_LE", "TK_OC_GE", "TK_OC_EQ", "TK_OC_NE", "TK_OC_AND", "TK_OC_OR",
   "TK_OC_SL", "TK_OC_SR", "TK_LIT_INT", "TK_LIT_FLOAT", "TK_LIT_FALSE",
   "TK_LIT_TRUE", "TK_LIT_CHAR", "TK_LIT_STRING", "TK_IDENTIFICADOR",
-  "TOKEN_ERRO", "TOKEN_NEWLINE", "$accept", "programa", YY_NULLPTR
+  "TOKEN_ERRO", "TOKEN_NEWLINE", "TOKEN_COMMENT", "$accept", "programa", YY_NULLPTR
 };
 #endif
 
@@ -494,7 +496,7 @@ static const yytype_uint16 yytoknum[] =
      265,   266,   267,   268,   269,   270,   271,   272,   273,   274,
      275,   276,   277,   278,   279,   280,   281,   282,   283,   284,
      285,   286,   287,   288,   289,   290,   291,   292,   293,   294,
-     295,   296,   297,   298,   299
+     295,   296,   297,   298,   299,   300
 };
 # endif
 
@@ -552,13 +554,13 @@ static const yytype_uint8 yycheck[] =
      symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,    46,     0
+       0,    47,     0
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_uint8 yyr1[] =
 {
-       0,    45,    46
+       0,    46,    47
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
@@ -1241,7 +1243,7 @@ yyreduce:
   switch (yyn)
     {
       
-#line 1245 "/home/arthur/Área de Trabalho/pc/parser.c" /* yacc.c:1646  */
+#line 1247 "/home/arthur/Área de Trabalho/pc/parser.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1469,5 +1471,5 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 57 "parser.y" /* yacc.c:1906  */
+#line 58 "parser.y" /* yacc.c:1906  */
 
