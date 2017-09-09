@@ -46,7 +46,7 @@ FLT  {INT}.{DGT}+
 '.'						      return TK_LIT_CHAR;
 ["](.+)["]				      return TK_LIT_STRING;
 "\n"					      return TOKEN_NEWLINE;
-{ESP}						  return (int) yytext[0];
+{ESP}						  return yytext[0];
 "<="						  return TK_OC_LE;
 ">="						  return TK_OC_GE;
 "=="						  return TK_OC_EQ;
@@ -57,7 +57,7 @@ FLT  {INT}.{DGT}+
 ">>"						  return TK_OC_SR;
 {LTR}({LTR}|{DGT})*           return TK_IDENTIFICADOR;
 {BCM}(.*)		  			  printf("Achei um comentario\n");//nao faz nada
-"/*"[^*]*|[*]*"*/"		  	  printf("Achei um comentario\n");//nao faz nada
-[ ]+        				  //nao faz nada com espacos
+"/*"((.|\n)*)"*/"		  	  printf("Achei um comentario\n");//nao faz nada
+[ \t]+        				  //nao faz nada com espacos
 .                             return TOKEN_ERRO;
 %%

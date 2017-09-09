@@ -82,6 +82,7 @@ int main_avaliacao_etapa_1 (int argc, char **argv)
     case TK_LIT_STRING: print_nome (TK_LIT_STRING); break;
     case TK_IDENTIFICADOR: print_nome (TK_IDENTIFICADOR); break;
     case TOKEN_ERRO:  print_nome (TOKEN_ERRO); break;
+    case '.':  print_nome (TOKEN_ERRO); break;
     case TOKEN_NEWLINE:  lineNumber++; break;
     default: printf ("<Invalid Token with code %d>\n", token); return 1; break;
     }
