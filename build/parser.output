@@ -1,4 +1,4 @@
-Terminals unused in grammar
+Terminais sem uso na gramática
 
    TK_PR_INT
    TK_PR_FLOAT
@@ -41,18 +41,16 @@ Terminals unused in grammar
    TK_LIT_STRING
    TK_IDENTIFICADOR
    TOKEN_ERRO
-   TOKEN_NEWLINE
-   TOKEN_COMMENT
 
 
-Grammar
+Gramática
 
     0 $accept: programa $end
 
     1 programa: %empty
 
 
-Terminals, with rules where they appear
+Terminais, com as regras onde eles aparecem
 
 $end (0) 0
 error (256)
@@ -97,36 +95,34 @@ TK_LIT_CHAR (295)
 TK_LIT_STRING (296)
 TK_IDENTIFICADOR (297)
 TOKEN_ERRO (298)
-TOKEN_NEWLINE (299)
-TOKEN_COMMENT (300)
 
 
-Nonterminals, with rules where they appear
+Não terminais com as regras onde eles aparecem
 
-$accept (46)
-    on left: 0
-programa (47)
-    on left: 1, on right: 0
+$accept (44)
+    à esquerda: 0
+programa (45)
+    à esquerda: 1, à direita: 0
 
 
-State 0
+Estado 0
 
     0 $accept: . programa $end
 
-    $default  reduce using rule 1 (programa)
+    $padrão  reduzir usando a regra 1 (programa)
 
-    programa  go to state 1
+    programa  ir ao estado 1
 
 
-State 1
+Estado 1
 
     0 $accept: programa . $end
 
-    $end  shift, and go to state 2
+    $end  deslocar, e ir ao estado 2
 
 
-State 2
+Estado 2
 
     0 $accept: programa $end .
 
-    $default  accept
+    $padrão  aceitar

@@ -66,7 +66,7 @@
 
 #include "main.h"
 
-#line 70 "/home/gabriel/Documents/gitrepos/pc/build/parser.c" /* yacc.c:339  */
+#line 70 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -86,8 +86,8 @@
 
 /* In a future release of Bison, this section will be replaced
    by #include "parser.h".  */
-#ifndef YY_YY_HOME_GABRIEL_DOCUMENTS_GITREPOS_PC_BUILD_PARSER_H_INCLUDED
-# define YY_YY_HOME_GABRIEL_DOCUMENTS_GITREPOS_PC_BUILD_PARSER_H_INCLUDED
+#ifndef YY_YY_HOME_ARTHUR_REA_DE_TRABALHO_PC_BUILD_PARSER_H_INCLUDED
+# define YY_YY_HOME_ARTHUR_REA_DE_TRABALHO_PC_BUILD_PARSER_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -141,9 +141,7 @@ extern int yydebug;
     TK_LIT_CHAR = 295,
     TK_LIT_STRING = 296,
     TK_IDENTIFICADOR = 297,
-    TOKEN_ERRO = 298,
-    TOKEN_NEWLINE = 299,
-    TOKEN_COMMENT = 300
+    TOKEN_ERRO = 298
   };
 #endif
 
@@ -159,11 +157,11 @@ extern YYSTYPE yylval;
 
 int yyparse (void);
 
-#endif /* !YY_YY_HOME_GABRIEL_DOCUMENTS_GITREPOS_PC_BUILD_PARSER_H_INCLUDED  */
+#endif /* !YY_YY_HOME_ARTHUR_REA_DE_TRABALHO_PC_BUILD_PARSER_H_INCLUDED  */
 
 /* Copy the second part of user declarations.  */
 
-#line 167 "/home/gabriel/Documents/gitrepos/pc/build/parser.c" /* yacc.c:358  */
+#line 165 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -408,7 +406,7 @@ union yyalloc
 #define YYLAST   0
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  46
+#define YYNTOKENS  44
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  2
 /* YYNRULES -- Number of rules.  */
@@ -419,7 +417,7 @@ union yyalloc
 /* YYTRANSLATE[YYX] -- Symbol number corresponding to YYX as returned
    by yylex, with out-of-bounds checking.  */
 #define YYUNDEFTOK  2
-#define YYMAXUTOK   300
+#define YYMAXUTOK   298
 
 #define YYTRANSLATE(YYX)                                                \
   ((unsigned int) (YYX) <= YYMAXUTOK ? yytranslate[YYX] : YYUNDEFTOK)
@@ -457,15 +455,14 @@ static const yytype_uint8 yytranslate[] =
        5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
       15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
       25,    26,    27,    28,    29,    30,    31,    32,    33,    34,
-      35,    36,    37,    38,    39,    40,    41,    42,    43,    44,
-      45
+      35,    36,    37,    38,    39,    40,    41,    42,    43
 };
 
 #if YYDEBUG
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    56,    56
+       0,    54,    54
 };
 #endif
 
@@ -483,7 +480,7 @@ static const char *const yytname[] =
   "TK_OC_LE", "TK_OC_GE", "TK_OC_EQ", "TK_OC_NE", "TK_OC_AND", "TK_OC_OR",
   "TK_OC_SL", "TK_OC_SR", "TK_LIT_INT", "TK_LIT_FLOAT", "TK_LIT_FALSE",
   "TK_LIT_TRUE", "TK_LIT_CHAR", "TK_LIT_STRING", "TK_IDENTIFICADOR",
-  "TOKEN_ERRO", "TOKEN_NEWLINE", "TOKEN_COMMENT", "$accept", "programa", YY_NULLPTR
+  "TOKEN_ERRO", "$accept", "programa", YY_NULLPTR
 };
 #endif
 
@@ -496,7 +493,7 @@ static const yytype_uint16 yytoknum[] =
      265,   266,   267,   268,   269,   270,   271,   272,   273,   274,
      275,   276,   277,   278,   279,   280,   281,   282,   283,   284,
      285,   286,   287,   288,   289,   290,   291,   292,   293,   294,
-     295,   296,   297,   298,   299,   300
+     295,   296,   297,   298
 };
 # endif
 
@@ -554,13 +551,13 @@ static const yytype_uint8 yycheck[] =
      symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,    47,     0
+       0,    45,     0
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_uint8 yyr1[] =
 {
-       0,    46,    47
+       0,    44,    45
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
@@ -1243,7 +1240,7 @@ yyreduce:
   switch (yyn)
     {
       
-#line 1247 "/home/gabriel/Documents/gitrepos/pc/build/parser.c" /* yacc.c:1646  */
+#line 1244 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1471,5 +1468,5 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 58 "parser.y" /* yacc.c:1906  */
+#line 56 "parser.y" /* yacc.c:1906  */
 

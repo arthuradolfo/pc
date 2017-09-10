@@ -30,8 +30,8 @@
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
-#ifndef YY_YY_HOME_GABRIEL_DOCUMENTS_GITREPOS_PC_BUILD_PARSER_H_INCLUDED
-# define YY_YY_HOME_GABRIEL_DOCUMENTS_GITREPOS_PC_BUILD_PARSER_H_INCLUDED
+#ifndef YY_YY_HOME_ARTHUR_REA_DE_TRABALHO_PC_BUILD_PARSER_H_INCLUDED
+# define YY_YY_HOME_ARTHUR_REA_DE_TRABALHO_PC_BUILD_PARSER_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -85,9 +85,7 @@ extern int yydebug;
     TK_LIT_CHAR = 295,
     TK_LIT_STRING = 296,
     TK_IDENTIFICADOR = 297,
-    TOKEN_ERRO = 298,
-    TOKEN_NEWLINE = 299,
-    TOKEN_COMMENT = 300
+    TOKEN_ERRO = 298
   };
 #endif
 
@@ -103,4 +101,4 @@ extern YYSTYPE yylval;
 
 int yyparse (void);
 
-#endif /* !YY_YY_HOME_GABRIEL_DOCUMENTS_GITREPOS_PC_BUILD_PARSER_H_INCLUDED  */
+#endif /* !YY_YY_HOME_ARTHUR_REA_DE_TRABALHO_PC_BUILD_PARSER_H_INCLUDED  */

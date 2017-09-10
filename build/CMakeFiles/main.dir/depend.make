@@ -10,6 +10,7 @@ CMakeFiles/main.dir/parser.c.o: ../include/main.h
 CMakeFiles/main.dir/parser.c.o: parser.c
 CMakeFiles/main.dir/parser.c.o: parser.h
 
+CMakeFiles/main.dir/scanner.c.o: ../include/cc_misc.h
 CMakeFiles/main.dir/scanner.c.o: parser.h
 CMakeFiles/main.dir/scanner.c.o: scanner.c
 

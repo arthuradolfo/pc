@@ -40,9 +40,9 @@ cc_gv.h
 parser.h
 ../include/parser.h
 
-/home/gabriel/Documents/gitrepos/pc/build/parser.c
+/home/arthur/Área de Trabalho/pc/build/parser.c
 main.h
-/home/gabriel/Documents/gitrepos/pc/build/main.h
+/home/arthur/Área de Trabalho/pc/build/main.h
 stddef.h
 -
 libintl.h
@@ -58,9 +58,9 @@ stdlib.h
 stdio.h
 -
 
-/home/gabriel/Documents/gitrepos/pc/build/parser.h
+/home/arthur/Área de Trabalho/pc/build/parser.h
 
-/home/gabriel/Documents/gitrepos/pc/build/scanner.c
+/home/arthur/Área de Trabalho/pc/build/scanner.c
 stdio.h
 -
 string.h
@@ -72,11 +72,13 @@ stdlib.h
 inttypes.h
 -
 parser.h
-/home/gabriel/Documents/gitrepos/pc/build/parser.h
+/home/arthur/Área de Trabalho/pc/build/parser.h
+cc_misc.h
+/home/arthur/Área de Trabalho/pc/build/cc_misc.h
 unistd.h
 -
 
-/home/gabriel/Documents/gitrepos/pc/src/cc_dict.c
+/home/arthur/Área de Trabalho/pc/src/cc_dict.c
 stdio.h
 -
 stdlib.h
@@ -84,35 +86,35 @@ stdlib.h
 string.h
 -
 cc_dict.h
-/home/gabriel/Documents/gitrepos/pc/src/cc_dict.h
+/home/arthur/Área de Trabalho/pc/src/cc_dict.h
 
-/home/gabriel/Documents/gitrepos/pc/src/cc_gv.c
+/home/arthur/Área de Trabalho/pc/src/cc_gv.c
 stdio.h
 -
 stdlib.h
 -
 cc_ast.h
-/home/gabriel/Documents/gitrepos/pc/src/cc_ast.h
+/home/arthur/Área de Trabalho/pc/src/cc_ast.h
 
-/home/gabriel/Documents/gitrepos/pc/src/cc_list.c
+/home/arthur/Área de Trabalho/pc/src/cc_list.c
 
-/home/gabriel/Documents/gitrepos/pc/src/cc_misc.c
+/home/arthur/Área de Trabalho/pc/src/cc_misc.c
 cc_misc.h
-/home/gabriel/Documents/gitrepos/pc/src/cc_misc.h
+/home/arthur/Área de Trabalho/pc/src/cc_misc.h
 cc_dict.h
-/home/gabriel/Documents/gitrepos/pc/src/cc_dict.h
+/home/arthur/Área de Trabalho/pc/src/cc_dict.h
 
-/home/gabriel/Documents/gitrepos/pc/src/cc_tree.c
+/home/arthur/Área de Trabalho/pc/src/cc_tree.c
 stdio.h
 -
 stdlib.h
 -
 cc_tree.h
-/home/gabriel/Documents/gitrepos/pc/src/cc_tree.h
+/home/arthur/Área de Trabalho/pc/src/cc_tree.h
 
-/home/gabriel/Documents/gitrepos/pc/src/main.c
+/home/arthur/Área de Trabalho/pc/src/main.c
 main.h
-/home/gabriel/Documents/gitrepos/pc/src/main.h
+/home/arthur/Área de Trabalho/pc/src/main.h
 string.h
 -
 

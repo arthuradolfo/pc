@@ -1,5 +1,5 @@
-/home/gabriel/Documents/gitrepos/pc/build/CMakeFiles/test.dir
-/home/gabriel/Documents/gitrepos/pc/build/CMakeFiles/main.dir
-/home/gabriel/Documents/gitrepos/pc/build/CMakeFiles/edit_cache.dir
-/home/gabriel/Documents/gitrepos/pc/build/CMakeFiles/cc_dict_main_example.dir
-/home/gabriel/Documents/gitrepos/pc/build/CMakeFiles/rebuild_cache.dir
+/home/arthur/Área de Trabalho/pc/build/CMakeFiles/test.dir
+/home/arthur/Área de Trabalho/pc/build/CMakeFiles/main.dir
+/home/arthur/Área de Trabalho/pc/build/CMakeFiles/edit_cache.dir
+/home/arthur/Área de Trabalho/pc/build/CMakeFiles/cc_dict_main_example.dir
+/home/arthur/Área de Trabalho/pc/build/CMakeFiles/rebuild_cache.dir
