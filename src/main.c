@@ -10,7 +10,6 @@ extern int lineNumber;
 #define USER_INIT main_init (argc, argv);
 #define USER_FINALIZE main_finalize ();
 
-lineNumber = 1;
 void main_avaliacao_etapa_1_tabela (void);
 int main_avaliacao_etapa_1 (int argc, char **argv)
 {

@@ -1,0 +1,5 @@
+/* IKS_SUCCESS */
+int f()
+{
+  //output 'c';
+}
