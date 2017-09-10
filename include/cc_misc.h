@@ -13,5 +13,6 @@ void yyerror (char const *mensagem);
 void comp_print_table();
 void main_init (int argc, char **argv);
 void main_finalize (void);
+int comp_set_line_number (char *yytext);
 
 #endif

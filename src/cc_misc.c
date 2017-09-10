@@ -4,6 +4,17 @@
 int lineNumber;
 comp_dict_t* symbolsTable;
 
+int comp_set_line_number (char *yytext)
+{
+  int i = 0;
+  while(i < strlen(yytext)) {
+    if(yytext[i] == '\n') {
+      lineNumber++;
+    }
+    i++;
+  }
+}
+
 int comp_get_line_number (void)
 {
   //implemente esta função
