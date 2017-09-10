@@ -8,27 +8,27 @@ CMakeFiles/main.dir/parser.c.o
  ../include/cc_misc.h
  ../include/cc_tree.h
  ../include/main.h
- /home/arthur/Área de Trabalho/pc/build/parser.c
+ /home/gabriel/Documents/gitrepos/pc/build/parser.c
  parser.h
 CMakeFiles/main.dir/scanner.c.o
  ../include/cc_misc.h
- /home/arthur/Área de Trabalho/pc/build/parser.h
- /home/arthur/Área de Trabalho/pc/build/scanner.c
+ /home/gabriel/Documents/gitrepos/pc/build/parser.h
+ /home/gabriel/Documents/gitrepos/pc/build/scanner.c
 CMakeFiles/main.dir/src/cc_dict.c.o
  ../include/cc_dict.h
- /home/arthur/Área de Trabalho/pc/src/cc_dict.c
+ /home/gabriel/Documents/gitrepos/pc/src/cc_dict.c
 CMakeFiles/main.dir/src/cc_gv.c.o
  ../include/cc_ast.h
- /home/arthur/Área de Trabalho/pc/src/cc_gv.c
+ /home/gabriel/Documents/gitrepos/pc/src/cc_gv.c
 CMakeFiles/main.dir/src/cc_list.c.o
- /home/arthur/Área de Trabalho/pc/src/cc_list.c
+ /home/gabriel/Documents/gitrepos/pc/src/cc_list.c
 CMakeFiles/main.dir/src/cc_misc.c.o
  ../include/cc_dict.h
  ../include/cc_misc.h
- /home/arthur/Área de Trabalho/pc/src/cc_misc.c
+ /home/gabriel/Documents/gitrepos/pc/src/cc_misc.c
 CMakeFiles/main.dir/src/cc_tree.c.o
  ../include/cc_tree.h
- /home/arthur/Área de Trabalho/pc/src/cc_tree.c
+ /home/gabriel/Documents/gitrepos/pc/src/cc_tree.c
 CMakeFiles/main.dir/src/main.c.o
  ../include/cc_dict.h
  ../include/cc_gv.h
@@ -36,5 +36,5 @@ CMakeFiles/main.dir/src/main.c.o
  ../include/cc_misc.h
  ../include/cc_tree.h
  ../include/main.h
- /home/arthur/Área de Trabalho/pc/src/main.c
+ /home/gabriel/Documents/gitrepos/pc/src/main.c
  parser.h

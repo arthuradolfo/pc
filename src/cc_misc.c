@@ -27,6 +27,19 @@ void yyerror (char const *mensagem)
   fprintf (stderr, "%s\n", mensagem); //altere para que apareça a linha
 }
 
+void putToSymbolsTable(char* key, int line)
+{
+  if (!symbolsTable) return;
+
+  st_value_t* entryValue = (st_value_t*) malloc(sizeof(st_value_t));
+  entryValue->line = line;
+
+  char* keyCopy = (char*) malloc(sizeof(char)*strlen(key));
+  strcpy(keyCopy, key);
+
+  dict_put(symbolsTable, keyCopy, entryValue);
+}
+
 void getAndPrintSomeEntries()
 {
   printf("\ngetAndPrintSomeEntries: \n");
@@ -106,13 +119,14 @@ void main_init (int argc, char **argv)
   lineNumber = 1;
   symbolsTable = dict_new();
 
-  putSomeEntries();
+  //putToSymbolsTable("Bolo", 87);
 }
 
 void main_finalize (void)
 {
   //implemente esta função com rotinas de finalização, se necessário
 
+  //comp_print_table();
   clearSymbolsTable();
 }
 

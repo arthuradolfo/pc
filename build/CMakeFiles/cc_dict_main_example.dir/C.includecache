@@ -8,7 +8,7 @@
 
 ../include/cc_dict.h
 
-/home/arthur/Área de Trabalho/pc/src/cc_dict.c
+/home/gabriel/Documents/gitrepos/pc/src/cc_dict.c
 stdio.h
 -
 stdlib.h
@@ -16,13 +16,13 @@ stdlib.h
 string.h
 -
 cc_dict.h
-/home/arthur/Área de Trabalho/pc/src/cc_dict.h
+/home/gabriel/Documents/gitrepos/pc/src/cc_dict.h
 
-/home/arthur/Área de Trabalho/pc/src/cc_dict_main_example.c
+/home/gabriel/Documents/gitrepos/pc/src/cc_dict_main_example.c
 stdio.h
 -
 stdlib.h
 -
 cc_dict.h
-/home/arthur/Área de Trabalho/pc/src/cc_dict.h
+/home/gabriel/Documents/gitrepos/pc/src/cc_dict.h
 

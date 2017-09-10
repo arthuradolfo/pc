@@ -1,6 +1,6 @@
-#line 2 "/home/arthur/Área de Trabalho/pc/build/scanner.c"
+#line 2 "/home/gabriel/Documents/gitrepos/pc/build/scanner.c"
 
-#line 4 "/home/arthur/Área de Trabalho/pc/build/scanner.c"
+#line 4 "/home/gabriel/Documents/gitrepos/pc/build/scanner.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -572,7 +572,7 @@ char *yytext;
 #line 13 "scanner.l"
 #include "parser.h" //arquivo automaticamente gerado pelo bison
 #include "cc_misc.h" //arquivo com funcoes de auto incremento
-#line 576 "/home/arthur/Área de Trabalho/pc/build/scanner.c"
+#line 576 "/home/gabriel/Documents/gitrepos/pc/build/scanner.c"
 
 #define INITIAL 0
 
@@ -792,7 +792,7 @@ YY_DECL
 	{
 #line 17 "scanner.l"
 
-#line 796 "/home/arthur/Área de Trabalho/pc/build/scanner.c"
+#line 796 "/home/gabriel/Documents/gitrepos/pc/build/scanner.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -983,33 +983,33 @@ return TK_PR_PROTECTED;
 case 27:
 YY_RULE_SETUP
 #line 44 "scanner.l"
-return TK_LIT_FALSE;
+putToSymbolsTable(yytext, comp_get_line_number()); return TK_LIT_FALSE;
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
 #line 45 "scanner.l"
-return TK_LIT_TRUE;
+putToSymbolsTable(yytext, comp_get_line_number()); return TK_LIT_TRUE;
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
 #line 46 "scanner.l"
-return TK_LIT_INT;
+putToSymbolsTable(yytext, comp_get_line_number()); return TK_LIT_INT;
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
 #line 47 "scanner.l"
-return TK_LIT_FLOAT;
+putToSymbolsTable(yytext, comp_get_line_number()); return TK_LIT_FLOAT;
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
 #line 48 "scanner.l"
-return TK_LIT_CHAR;
+putToSymbolsTable(yytext, comp_get_line_number()); return TK_LIT_CHAR;
 	YY_BREAK
 case 32:
 /* rule 32 can match eol */
 YY_RULE_SETUP
 #line 49 "scanner.l"
-return TK_LIT_STRING;
+putToSymbolsTable(yytext, comp_get_line_number()); return TK_LIT_STRING;
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
@@ -1059,7 +1059,7 @@ return TK_OC_SR;
 case 42:
 YY_RULE_SETUP
 #line 59 "scanner.l"
-return TK_IDENTIFICADOR;
+putToSymbolsTable(yytext, comp_get_line_number()); return TK_IDENTIFICADOR;
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
@@ -1087,7 +1087,7 @@ YY_RULE_SETUP
 #line 64 "scanner.l"
 ECHO;
 	YY_BREAK
-#line 1091 "/home/arthur/Área de Trabalho/pc/build/scanner.c"
+#line 1091 "/home/gabriel/Documents/gitrepos/pc/build/scanner.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
