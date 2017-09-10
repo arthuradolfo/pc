@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/gabriel/Documents/gitrepos/pc
+CMAKE_SOURCE_DIR = "/home/arthur/Área de Trabalho/pc"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/gabriel/Documents/gitrepos/pc/build
+CMAKE_BINARY_DIR = "/home/arthur/Área de Trabalho/pc/build"
 
 # Include any dependencies generated for this target.
 include CMakeFiles/cc_dict_main_example.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/cc_dict_main_example.dir/flags.make
 
 CMakeFiles/cc_dict_main_example.dir/src/cc_dict.c.o: CMakeFiles/cc_dict_main_example.dir/flags.make
 CMakeFiles/cc_dict_main_example.dir/src/cc_dict.c.o: ../src/cc_dict.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gabriel/Documents/gitrepos/pc/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/cc_dict_main_example.dir/src/cc_dict.c.o"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cc_dict_main_example.dir/src/cc_dict.c.o   -c /home/gabriel/Documents/gitrepos/pc/src/cc_dict.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/arthur/Área de Trabalho/pc/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/cc_dict_main_example.dir/src/cc_dict.c.o"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cc_dict_main_example.dir/src/cc_dict.c.o   -c "/home/arthur/Área de Trabalho/pc/src/cc_dict.c"
 
 CMakeFiles/cc_dict_main_example.dir/src/cc_dict.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/cc_dict_main_example.dir/src/cc_dict.c.i"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gabriel/Documents/gitrepos/pc/src/cc_dict.c > CMakeFiles/cc_dict_main_example.dir/src/cc_dict.c.i
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/arthur/Área de Trabalho/pc/src/cc_dict.c" > CMakeFiles/cc_dict_main_example.dir/src/cc_dict.c.i
 
 CMakeFiles/cc_dict_main_example.dir/src/cc_dict.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cc_dict_main_example.dir/src/cc_dict.c.s"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gabriel/Documents/gitrepos/pc/src/cc_dict.c -o CMakeFiles/cc_dict_main_example.dir/src/cc_dict.c.s
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/arthur/Área de Trabalho/pc/src/cc_dict.c" -o CMakeFiles/cc_dict_main_example.dir/src/cc_dict.c.s
 
 CMakeFiles/cc_dict_main_example.dir/src/cc_dict.c.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/cc_dict_main_example.dir/src/cc_dict.c.o.provides.build: CMakeFiles/c
 
 CMakeFiles/cc_dict_main_example.dir/src/cc_dict_main_example.c.o: CMakeFiles/cc_dict_main_example.dir/flags.make
 CMakeFiles/cc_dict_main_example.dir/src/cc_dict_main_example.c.o: ../src/cc_dict_main_example.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gabriel/Documents/gitrepos/pc/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/cc_dict_main_example.dir/src/cc_dict_main_example.c.o"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cc_dict_main_example.dir/src/cc_dict_main_example.c.o   -c /home/gabriel/Documents/gitrepos/pc/src/cc_dict_main_example.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/arthur/Área de Trabalho/pc/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/cc_dict_main_example.dir/src/cc_dict_main_example.c.o"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cc_dict_main_example.dir/src/cc_dict_main_example.c.o   -c "/home/arthur/Área de Trabalho/pc/src/cc_dict_main_example.c"
 
 CMakeFiles/cc_dict_main_example.dir/src/cc_dict_main_example.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/cc_dict_main_example.dir/src/cc_dict_main_example.c.i"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gabriel/Documents/gitrepos/pc/src/cc_dict_main_example.c > CMakeFiles/cc_dict_main_example.dir/src/cc_dict_main_example.c.i
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/arthur/Área de Trabalho/pc/src/cc_dict_main_example.c" > CMakeFiles/cc_dict_main_example.dir/src/cc_dict_main_example.c.i
 
 CMakeFiles/cc_dict_main_example.dir/src/cc_dict_main_example.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cc_dict_main_example.dir/src/cc_dict_main_example.c.s"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gabriel/Documents/gitrepos/pc/src/cc_dict_main_example.c -o CMakeFiles/cc_dict_main_example.dir/src/cc_dict_main_example.c.s
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/arthur/Área de Trabalho/pc/src/cc_dict_main_example.c" -o CMakeFiles/cc_dict_main_example.dir/src/cc_dict_main_example.c.s
 
 CMakeFiles/cc_dict_main_example.dir/src/cc_dict_main_example.c.o.requires:
 
@@ -117,7 +117,7 @@ cc_dict_main_example: CMakeFiles/cc_dict_main_example.dir/src/cc_dict.c.o
 cc_dict_main_example: CMakeFiles/cc_dict_main_example.dir/src/cc_dict_main_example.c.o
 cc_dict_main_example: CMakeFiles/cc_dict_main_example.dir/build.make
 cc_dict_main_example: CMakeFiles/cc_dict_main_example.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/gabriel/Documents/gitrepos/pc/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable cc_dict_main_example"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/arthur/Área de Trabalho/pc/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable cc_dict_main_example"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/cc_dict_main_example.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -135,6 +135,6 @@ CMakeFiles/cc_dict_main_example.dir/clean:
 .PHONY : CMakeFiles/cc_dict_main_example.dir/clean
 
 CMakeFiles/cc_dict_main_example.dir/depend:
-	cd /home/gabriel/Documents/gitrepos/pc/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/gabriel/Documents/gitrepos/pc /home/gabriel/Documents/gitrepos/pc /home/gabriel/Documents/gitrepos/pc/build /home/gabriel/Documents/gitrepos/pc/build /home/gabriel/Documents/gitrepos/pc/build/CMakeFiles/cc_dict_main_example.dir/DependInfo.cmake --color=$(COLOR)
+	cd "/home/arthur/Área de Trabalho/pc/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/arthur/Área de Trabalho/pc" "/home/arthur/Área de Trabalho/pc" "/home/arthur/Área de Trabalho/pc/build" "/home/arthur/Área de Trabalho/pc/build" "/home/arthur/Área de Trabalho/pc/build/CMakeFiles/cc_dict_main_example.dir/DependInfo.cmake" --color=$(COLOR)
 .PHONY : CMakeFiles/cc_dict_main_example.dir/depend
 

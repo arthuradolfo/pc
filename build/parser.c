@@ -62,11 +62,11 @@
 
 
 /* Copy the first part of user declarations.  */
-#line 4 "parser.y" /* yacc.c:339  */
+#line 5 "parser.y" /* yacc.c:339  */
 
 #include "main.h"
 
-#line 70 "/home/gabriel/Documents/gitrepos/pc/build/parser.c" /* yacc.c:339  */
+#line 70 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -86,8 +86,8 @@
 
 /* In a future release of Bison, this section will be replaced
    by #include "parser.h".  */
-#ifndef YY_YY_HOME_GABRIEL_DOCUMENTS_GITREPOS_PC_BUILD_PARSER_H_INCLUDED
-# define YY_YY_HOME_GABRIEL_DOCUMENTS_GITREPOS_PC_BUILD_PARSER_H_INCLUDED
+#ifndef YY_YY_HOME_ARTHUR_REA_DE_TRABALHO_PC_BUILD_PARSER_H_INCLUDED
+# define YY_YY_HOME_ARTHUR_REA_DE_TRABALHO_PC_BUILD_PARSER_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -157,11 +157,11 @@ extern YYSTYPE yylval;
 
 int yyparse (void);
 
-#endif /* !YY_YY_HOME_GABRIEL_DOCUMENTS_GITREPOS_PC_BUILD_PARSER_H_INCLUDED  */
+#endif /* !YY_YY_HOME_ARTHUR_REA_DE_TRABALHO_PC_BUILD_PARSER_H_INCLUDED  */
 
 /* Copy the second part of user declarations.  */
 
-#line 165 "/home/gabriel/Documents/gitrepos/pc/build/parser.c" /* yacc.c:358  */
+#line 165 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -462,7 +462,7 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    54,    54
+       0,    55,    55
 };
 #endif
 
@@ -1240,7 +1240,7 @@ yyreduce:
   switch (yyn)
     {
       
-#line 1244 "/home/gabriel/Documents/gitrepos/pc/build/parser.c" /* yacc.c:1646  */
+#line 1244 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1468,5 +1468,5 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 56 "parser.y" /* yacc.c:1906  */
+#line 57 "parser.y" /* yacc.c:1906  */
 

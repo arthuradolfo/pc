@@ -4,6 +4,17 @@
 int lineNumber;
 comp_dict_t* symbolsTable;
 
+void remove_collisions(comp_dict_item_t * item)
+{
+  comp_dict_item_t* ptaux;
+  while (item != NULL) {
+    ptaux = item;
+    free(ptaux->value);
+    dict_remove(symbolsTable, ptaux->key);
+    item = item->next;
+  }
+}
+
 int comp_set_line_number (char *yytext)
 {
   int i = 0;
@@ -31,13 +42,16 @@ void putToSymbolsTable(char* key, int line)
 {
   if (!symbolsTable) return;
 
-  st_value_t* entryValue = (st_value_t*) malloc(sizeof(st_value_t));
+  st_value_t* entryValue = (st_value_t *) malloc(sizeof(st_value_t));
   entryValue->line = line;
-
-  char* keyCopy = (char*) malloc(sizeof(char)*strlen(key));
-  strcpy(keyCopy, key);
-
-  dict_put(symbolsTable, keyCopy, entryValue);
+  st_value_t* getEntry = dict_get(symbolsTable, key);
+  if(getEntry) {
+    free(entryValue);
+    getEntry->line = line;
+  }
+  else {
+    dict_put(symbolsTable, key, entryValue);
+  }
 }
 
 void getAndPrintSomeEntries()
@@ -81,9 +95,12 @@ void clearSymbolsTable()
     if (!symbolsTable) return;
 
     int i, l;
-    st_value_t* entrada;
-    for (i = 0, l = symbolsTable->size; i < l; ++i) {
+    for (i = 0, l = symbolsTable->size; i < l; i++) {
       if (symbolsTable->data[i]) {
+        if(symbolsTable->data[i]->next) {
+          remove_collisions(symbolsTable->data[i]->next);
+        }
+        free(symbolsTable->data[i]->value);
         dict_remove(symbolsTable, symbolsTable->data[i]->key);
       }
     }

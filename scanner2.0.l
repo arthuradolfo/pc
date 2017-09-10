@@ -1,12 +1,13 @@
 /*
-  Coloque aqui o identificador do grupo e dos seus membros
+  Arthur Adolfo 			- 	00262515
+  Gabriel de Souza Seibel 	- 	00262513
 */
 
 LTR  [a-z_A-Z]
 DGT  [0-9]
 BCM	 "//"
 ESP  [!#-&(-/:->[-^{}]
-INT  {DGT}+
+INT  [-+]?{DGT}+
 FLT  {INT}\.{DGT}+
 
 %{

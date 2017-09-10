@@ -1,5 +1,6 @@
 /*
-  Coloque aqui o identificador do grupo e dos seus membros
+  Arthur Adolfo 			- 	00262515
+  Gabriel de Souza Seibel 	- 	00262513
 */
 %{
 #include "main.h"
