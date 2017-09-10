@@ -10,8 +10,8 @@ void remove_collisions(comp_dict_item_t * item)
   while (item != NULL) {
     ptaux = item;
     free(ptaux->value);
-    dict_remove(symbolsTable, ptaux->key);
     item = item->next;
+    dict_remove(symbolsTable, ptaux->key);
   }
 }
 
