@@ -1,5 +1,0 @@
-/home/arthur/Área de Trabalho/pc/CMakeFiles/test.dir
-/home/arthur/Área de Trabalho/pc/CMakeFiles/main.dir
-/home/arthur/Área de Trabalho/pc/CMakeFiles/edit_cache.dir
-/home/arthur/Área de Trabalho/pc/CMakeFiles/cc_dict_main_example.dir
-/home/arthur/Área de Trabalho/pc/CMakeFiles/rebuild_cache.dir

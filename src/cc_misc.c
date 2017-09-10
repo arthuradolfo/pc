@@ -33,7 +33,8 @@ void getAndPrintSomeEntries()
   printf("Get entrada Pablo: linha %d\n", entradaPablo->line);
 }
 
-void printSymbolsTable() {
+void printSymbolsTable()
+{
   printf("\nprintSymbolsTable: \n");
 
   if (!symbolsTable) return;
@@ -48,9 +49,10 @@ void printSymbolsTable() {
   }
 }
 
-void clearSymbolsTable() {
+void clearSymbolsTable()
+{
     //remover todas as entradas da tabela antes de libera-la
-    printf("\nclearSymbolsTable: \n");
+    //printf("\nclearSymbolsTable: \n");
 
     if (!symbolsTable) return;
 
@@ -63,11 +65,12 @@ void clearSymbolsTable() {
     }
     dict_free(symbolsTable);
 
-    printf("symbolsTable freed\n");
+    //printf("symbolsTable freed\n");
 }
 
-void putSomeEntries() {
-  printf("\nputSomeEntries: \n");
+void putSomeEntries()
+{
+  //printf("\nputSomeEntries: \n");
 
   if (!symbolsTable) return;
 
@@ -89,26 +92,16 @@ void putSomeEntries() {
 void main_init (int argc, char **argv)
 {
   //implemente esta função com rotinas de inicialização, se necessário
-  printf("\nmain_init: \n");
   lineNumber = 1;
-
   symbolsTable = dict_new();
-  dict_debug_print(symbolsTable);
 
   putSomeEntries();
-  dict_debug_print(symbolsTable);
-  getAndPrintSomeEntries();
-  comp_print_table();
-
-  printf("\nmain: \n");
 }
 
 void main_finalize (void)
 {
   //implemente esta função com rotinas de finalização, se necessário
-  printf("\nmain_finalize: \n");
-  comp_print_table();
-  getAndPrintSomeEntries();
+
   clearSymbolsTable();
 }
 
@@ -117,7 +110,6 @@ void comp_print_table (void)
   //para cada entrada na tabela de símbolos
   //Etapa 1: chame a função cc_dict_etapa_1_print_entrada
   //implemente esta função
-  printf("\ncomp_print_table:\n");
 
   if (!symbolsTable) return;
 

@@ -31,21 +31,3 @@ e1_valgrind_13 0 0
 e1_valgrind_14 0 0
 e1_valgrind_15 0 0
 ---
-e1_avaliacao_02
-e1_avaliacao_08
-e1_avaliacao_16
-e1_valgrind_00
-e1_valgrind_01
-e1_valgrind_02
-e1_valgrind_03
-e1_valgrind_05
-e1_valgrind_06
-e1_valgrind_07
-e1_valgrind_08
-e1_valgrind_09
-e1_valgrind_10
-e1_valgrind_11
-e1_valgrind_12
-e1_valgrind_13
-e1_valgrind_14
-e1_valgrind_15

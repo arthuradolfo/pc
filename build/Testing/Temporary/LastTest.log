@@ -1,52 +1,52 @@
-Start testing: Sep 09 16:33 BRT
+Start testing: Sep 10 12:26 BRT
 ----------------------------------------------------------
 1/407 Testing: e1_avaliacao_00
 1/407 Test: e1_avaliacao_00
-Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_00.tesh"
-Directory: /home/arthur/Área de Trabalho/pc
-"e1_avaliacao_00" start time: Sep 09 16:33 BRT
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_00.tesh"
+Directory: /home/gabriel/Documents/gitrepos/pc/build
+"e1_avaliacao_00" start time: Sep 10 12:26 BRT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
-Test suite `/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_00.tesh'
+Test suite `/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_00.tesh'
 [avaliacao_00.tesh:5] ./main ./tests/e1/input/nivel0.tokens
 Test suite `avaliacao_00.tesh' OK
 <end of output>
-Test time =   0.04 sec
+Test time =   0.06 sec
 ----------------------------------------------------------
 Test Passed.
-"e1_avaliacao_00" end time: Sep 09 16:33 BRT
+"e1_avaliacao_00" end time: Sep 10 12:26 BRT
 "e1_avaliacao_00" time elapsed: 00:00:00
 ----------------------------------------------------------
 
 2/407 Testing: e1_avaliacao_01
 2/407 Test: e1_avaliacao_01
-Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_01.tesh"
-Directory: /home/arthur/Área de Trabalho/pc
-"e1_avaliacao_01" start time: Sep 09 16:33 BRT
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_01.tesh"
+Directory: /home/gabriel/Documents/gitrepos/pc/build
+"e1_avaliacao_01" start time: Sep 10 12:26 BRT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
-Test suite `/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_01.tesh'
+Test suite `/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_01.tesh'
 [avaliacao_01.tesh:5] ./main ./tests/e1/input/nivel1.tokens
 Test suite `avaliacao_01.tesh' OK
 <end of output>
-Test time =   0.04 sec
+Test time =   0.06 sec
 ----------------------------------------------------------
 Test Passed.
-"e1_avaliacao_01" end time: Sep 09 16:33 BRT
+"e1_avaliacao_01" end time: Sep 10 12:26 BRT
 "e1_avaliacao_01" time elapsed: 00:00:00
 ----------------------------------------------------------
 
 3/407 Testing: e1_avaliacao_02
 3/407 Test: e1_avaliacao_02
-Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_02.tesh"
-Directory: /home/arthur/Área de Trabalho/pc
-"e1_avaliacao_02" start time: Sep 09 16:33 BRT
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_02.tesh"
+Directory: /home/gabriel/Documents/gitrepos/pc/build
+"e1_avaliacao_02" start time: Sep 10 12:26 BRT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
-Test suite `/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_02.tesh'
+Test suite `/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_02.tesh'
 [avaliacao_02.tesh:5] ./main ./tests/e1/input/nivel2.tokens
 Output of <avaliacao_02.tesh:5> mismatch:
 ...
@@ -1322,98 +1322,98 @@ Output of <avaliacao_02.tesh:5> mismatch:
   459 TK_LIT_STRING ["R>R4Y:oev(KL6$INh!U string }{yc"]
 Test suite `avaliacao_02.tesh': NOK (<avaliacao_02.tesh:5> output mismatch)
 <end of output>
-Test time =   0.11 sec
+Test time =   0.10 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_avaliacao_02" end time: Sep 09 16:33 BRT
+"e1_avaliacao_02" end time: Sep 10 12:26 BRT
 "e1_avaliacao_02" time elapsed: 00:00:00
 ----------------------------------------------------------
 
 4/407 Testing: e1_avaliacao_03
 4/407 Test: e1_avaliacao_03
-Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_03.tesh"
-Directory: /home/arthur/Área de Trabalho/pc
-"e1_avaliacao_03" start time: Sep 09 16:33 BRT
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_03.tesh"
+Directory: /home/gabriel/Documents/gitrepos/pc/build
+"e1_avaliacao_03" start time: Sep 10 12:26 BRT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
-Test suite `/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_03.tesh'
+Test suite `/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_03.tesh'
 [avaliacao_03.tesh:5] ./main ./tests/e1/input/nivel3.tokens
 Test suite `avaliacao_03.tesh' OK
 <end of output>
-Test time =   0.07 sec
+Test time =   0.08 sec
 ----------------------------------------------------------
 Test Passed.
-"e1_avaliacao_03" end time: Sep 09 16:33 BRT
+"e1_avaliacao_03" end time: Sep 10 12:26 BRT
 "e1_avaliacao_03" time elapsed: 00:00:00
 ----------------------------------------------------------
 
 5/407 Testing: e1_avaliacao_05
 5/407 Test: e1_avaliacao_05
-Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_05.tesh"
-Directory: /home/arthur/Área de Trabalho/pc
-"e1_avaliacao_05" start time: Sep 09 16:33 BRT
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_05.tesh"
+Directory: /home/gabriel/Documents/gitrepos/pc/build
+"e1_avaliacao_05" start time: Sep 10 12:26 BRT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
-Test suite `/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_05.tesh'
+Test suite `/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_05.tesh'
 [avaliacao_05.tesh:5] ./main ./tests/e1/input/nivel5.tokens
 Test suite `avaliacao_05.tesh' OK
 <end of output>
-Test time =   0.04 sec
+Test time =   0.08 sec
 ----------------------------------------------------------
 Test Passed.
-"e1_avaliacao_05" end time: Sep 09 16:33 BRT
+"e1_avaliacao_05" end time: Sep 10 12:26 BRT
 "e1_avaliacao_05" time elapsed: 00:00:00
 ----------------------------------------------------------
 
 6/407 Testing: e1_avaliacao_06
 6/407 Test: e1_avaliacao_06
-Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_06.tesh"
-Directory: /home/arthur/Área de Trabalho/pc
-"e1_avaliacao_06" start time: Sep 09 16:33 BRT
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_06.tesh"
+Directory: /home/gabriel/Documents/gitrepos/pc/build
+"e1_avaliacao_06" start time: Sep 10 12:26 BRT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
-Test suite `/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_06.tesh'
+Test suite `/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_06.tesh'
 [avaliacao_06.tesh:5] ./main ./tests/e1/input/nivel6.tokens
 Test suite `avaliacao_06.tesh' OK
 <end of output>
-Test time =   0.04 sec
+Test time =   0.06 sec
 ----------------------------------------------------------
 Test Passed.
-"e1_avaliacao_06" end time: Sep 09 16:33 BRT
+"e1_avaliacao_06" end time: Sep 10 12:26 BRT
 "e1_avaliacao_06" time elapsed: 00:00:00
 ----------------------------------------------------------
 
 7/407 Testing: e1_avaliacao_07
 7/407 Test: e1_avaliacao_07
-Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_07.tesh"
-Directory: /home/arthur/Área de Trabalho/pc
-"e1_avaliacao_07" start time: Sep 09 16:33 BRT
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_07.tesh"
+Directory: /home/gabriel/Documents/gitrepos/pc/build
+"e1_avaliacao_07" start time: Sep 10 12:26 BRT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
-Test suite `/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_07.tesh'
+Test suite `/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_07.tesh'
 [avaliacao_07.tesh:5] ./main ./tests/e1/input/nivel7.tokens
 Test suite `avaliacao_07.tesh' OK
 <end of output>
-Test time =   0.04 sec
+Test time =   0.07 sec
 ----------------------------------------------------------
 Test Passed.
-"e1_avaliacao_07" end time: Sep 09 16:33 BRT
+"e1_avaliacao_07" end time: Sep 10 12:26 BRT
 "e1_avaliacao_07" time elapsed: 00:00:00
 ----------------------------------------------------------
 
 8/407 Testing: e1_avaliacao_08
 8/407 Test: e1_avaliacao_08
-Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_08.tesh"
-Directory: /home/arthur/Área de Trabalho/pc
-"e1_avaliacao_08" start time: Sep 09 16:33 BRT
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_08.tesh"
+Directory: /home/gabriel/Documents/gitrepos/pc/build
+"e1_avaliacao_08" start time: Sep 10 12:26 BRT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
-Test suite `/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_08.tesh'
+Test suite `/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_08.tesh'
 [avaliacao_08.tesh:5] ./main ./tests/e1/input/nivel8.tokens
 Output of <avaliacao_08.tesh:5> mismatch:
   1 TK_LIT_INT [0]
@@ -1431,155 +1431,155 @@ Output of <avaliacao_08.tesh:5> mismatch:
 + 5 TK_LIT_FLOAT [-2.3]
 Test suite `avaliacao_08.tesh': NOK (<avaliacao_08.tesh:5> output mismatch)
 <end of output>
-Test time =   0.04 sec
+Test time =   0.16 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_avaliacao_08" end time: Sep 09 16:33 BRT
+"e1_avaliacao_08" end time: Sep 10 12:26 BRT
 "e1_avaliacao_08" time elapsed: 00:00:00
 ----------------------------------------------------------
 
 9/407 Testing: e1_avaliacao_09
 9/407 Test: e1_avaliacao_09
-Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_09.tesh"
-Directory: /home/arthur/Área de Trabalho/pc
-"e1_avaliacao_09" start time: Sep 09 16:33 BRT
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_09.tesh"
+Directory: /home/gabriel/Documents/gitrepos/pc/build
+"e1_avaliacao_09" start time: Sep 10 12:26 BRT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
-Test suite `/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_09.tesh'
+Test suite `/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_09.tesh'
 [avaliacao_09.tesh:5] ./main ./tests/e1/input/nivel9.tokens
 Test suite `avaliacao_09.tesh' OK
 <end of output>
-Test time =   0.04 sec
+Test time =   0.20 sec
 ----------------------------------------------------------
 Test Passed.
-"e1_avaliacao_09" end time: Sep 09 16:33 BRT
+"e1_avaliacao_09" end time: Sep 10 12:26 BRT
 "e1_avaliacao_09" time elapsed: 00:00:00
 ----------------------------------------------------------
 
 10/407 Testing: e1_avaliacao_10
 10/407 Test: e1_avaliacao_10
-Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_10.tesh"
-Directory: /home/arthur/Área de Trabalho/pc
-"e1_avaliacao_10" start time: Sep 09 16:33 BRT
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_10.tesh"
+Directory: /home/gabriel/Documents/gitrepos/pc/build
+"e1_avaliacao_10" start time: Sep 10 12:26 BRT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
-Test suite `/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_10.tesh'
+Test suite `/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_10.tesh'
 [avaliacao_10.tesh:5] ./main ./tests/e1/input/nivel10.tokens
 Test suite `avaliacao_10.tesh' OK
 <end of output>
-Test time =   0.04 sec
+Test time =   0.22 sec
 ----------------------------------------------------------
 Test Passed.
-"e1_avaliacao_10" end time: Sep 09 16:33 BRT
+"e1_avaliacao_10" end time: Sep 10 12:26 BRT
 "e1_avaliacao_10" time elapsed: 00:00:00
 ----------------------------------------------------------
 
 11/407 Testing: e1_avaliacao_11
 11/407 Test: e1_avaliacao_11
-Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_11.tesh"
-Directory: /home/arthur/Área de Trabalho/pc
-"e1_avaliacao_11" start time: Sep 09 16:33 BRT
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_11.tesh"
+Directory: /home/gabriel/Documents/gitrepos/pc/build
+"e1_avaliacao_11" start time: Sep 10 12:26 BRT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
-Test suite `/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_11.tesh'
+Test suite `/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_11.tesh'
 [avaliacao_11.tesh:5] ./main ./tests/e1/input/nivel11.tokens
 Test suite `avaliacao_11.tesh' OK
 <end of output>
-Test time =   0.04 sec
+Test time =   0.11 sec
 ----------------------------------------------------------
 Test Passed.
-"e1_avaliacao_11" end time: Sep 09 16:33 BRT
+"e1_avaliacao_11" end time: Sep 10 12:26 BRT
 "e1_avaliacao_11" time elapsed: 00:00:00
 ----------------------------------------------------------
 
 12/407 Testing: e1_avaliacao_12
 12/407 Test: e1_avaliacao_12
-Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_12.tesh"
-Directory: /home/arthur/Área de Trabalho/pc
-"e1_avaliacao_12" start time: Sep 09 16:33 BRT
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_12.tesh"
+Directory: /home/gabriel/Documents/gitrepos/pc/build
+"e1_avaliacao_12" start time: Sep 10 12:26 BRT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
-Test suite `/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_12.tesh'
+Test suite `/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_12.tesh'
 [avaliacao_12.tesh:5] ./main ./tests/e1/input/nivel12.tokens
 Test suite `avaliacao_12.tesh' OK
 <end of output>
-Test time =   0.04 sec
+Test time =   0.06 sec
 ----------------------------------------------------------
 Test Passed.
-"e1_avaliacao_12" end time: Sep 09 16:33 BRT
+"e1_avaliacao_12" end time: Sep 10 12:26 BRT
 "e1_avaliacao_12" time elapsed: 00:00:00
 ----------------------------------------------------------
 
 13/407 Testing: e1_avaliacao_13
 13/407 Test: e1_avaliacao_13
-Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_13.tesh"
-Directory: /home/arthur/Área de Trabalho/pc
-"e1_avaliacao_13" start time: Sep 09 16:33 BRT
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_13.tesh"
+Directory: /home/gabriel/Documents/gitrepos/pc/build
+"e1_avaliacao_13" start time: Sep 10 12:26 BRT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
-Test suite `/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_13.tesh'
+Test suite `/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_13.tesh'
 [avaliacao_13.tesh:5] ./main ./tests/e1/input/nivel13.tokens
 Test suite `avaliacao_13.tesh' OK
 <end of output>
-Test time =   0.04 sec
+Test time =   0.07 sec
 ----------------------------------------------------------
 Test Passed.
-"e1_avaliacao_13" end time: Sep 09 16:33 BRT
+"e1_avaliacao_13" end time: Sep 10 12:26 BRT
 "e1_avaliacao_13" time elapsed: 00:00:00
 ----------------------------------------------------------
 
 14/407 Testing: e1_avaliacao_14
 14/407 Test: e1_avaliacao_14
-Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_14.tesh"
-Directory: /home/arthur/Área de Trabalho/pc
-"e1_avaliacao_14" start time: Sep 09 16:33 BRT
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_14.tesh"
+Directory: /home/gabriel/Documents/gitrepos/pc/build
+"e1_avaliacao_14" start time: Sep 10 12:26 BRT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
-Test suite `/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_14.tesh'
+Test suite `/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_14.tesh'
 [avaliacao_14.tesh:5] ./main ./tests/e1/input/nivel14.tokens
 Test suite `avaliacao_14.tesh' OK
 <end of output>
-Test time =   0.04 sec
+Test time =   0.08 sec
 ----------------------------------------------------------
 Test Passed.
-"e1_avaliacao_14" end time: Sep 09 16:33 BRT
+"e1_avaliacao_14" end time: Sep 10 12:26 BRT
 "e1_avaliacao_14" time elapsed: 00:00:00
 ----------------------------------------------------------
 
 15/407 Testing: e1_avaliacao_15
 15/407 Test: e1_avaliacao_15
-Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_15.tesh"
-Directory: /home/arthur/Área de Trabalho/pc
-"e1_avaliacao_15" start time: Sep 09 16:33 BRT
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_15.tesh"
+Directory: /home/gabriel/Documents/gitrepos/pc/build
+"e1_avaliacao_15" start time: Sep 10 12:26 BRT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
-Test suite `/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_15.tesh'
+Test suite `/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_15.tesh'
 [avaliacao_15.tesh:5] ./main ./tests/e1/input/nivel15.tokens
 Test suite `avaliacao_15.tesh' OK
 <end of output>
-Test time =   0.04 sec
+Test time =   0.06 sec
 ----------------------------------------------------------
 Test Passed.
-"e1_avaliacao_15" end time: Sep 09 16:33 BRT
+"e1_avaliacao_15" end time: Sep 10 12:26 BRT
 "e1_avaliacao_15" time elapsed: 00:00:00
 ----------------------------------------------------------
 
 16/407 Testing: e1_avaliacao_16
 16/407 Test: e1_avaliacao_16
-Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_16.tesh"
-Directory: /home/arthur/Área de Trabalho/pc
-"e1_avaliacao_16" start time: Sep 09 16:33 BRT
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_16.tesh"
+Directory: /home/gabriel/Documents/gitrepos/pc/build
+"e1_avaliacao_16" start time: Sep 10 12:26 BRT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
-Test suite `/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_16.tesh'
+Test suite `/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_16.tesh'
 [avaliacao_16.tesh:5] ./main ./tests/e1/input/nivel16.tokens
 Output of <avaliacao_16.tesh:5> mismatch:
   1 TK_PR_STATIC [static]
@@ -1589,167 +1589,465 @@ Output of <avaliacao_16.tesh:5> mismatch:
 + 2 TK_LIT_INT [-2]
 Test suite `avaliacao_16.tesh': NOK (<avaliacao_16.tesh:5> output mismatch)
 <end of output>
-Test time =   0.04 sec
+Test time =   0.06 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_avaliacao_16" end time: Sep 09 16:33 BRT
+"e1_avaliacao_16" end time: Sep 10 12:26 BRT
 "e1_avaliacao_16" time elapsed: 00:00:00
 ----------------------------------------------------------
 
 17/407 Testing: e1_avaliacao_17
 17/407 Test: e1_avaliacao_17
-Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_17.tesh"
-Directory: /home/arthur/Área de Trabalho/pc
-"e1_avaliacao_17" start time: Sep 09 16:33 BRT
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_17.tesh"
+Directory: /home/gabriel/Documents/gitrepos/pc/build
+"e1_avaliacao_17" start time: Sep 10 12:26 BRT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
-Test suite `/home/arthur/Área de Trabalho/pc/tests/e1/avaliacao_17.tesh'
+Test suite `/home/gabriel/Documents/gitrepos/pc/tests/e1/avaliacao_17.tesh'
 [avaliacao_17.tesh:5] ./main ./tests/e1/input/nivel17.tokens
 Test suite `avaliacao_17.tesh' OK
 <end of output>
-Test time =   0.04 sec
+Test time =   0.09 sec
 ----------------------------------------------------------
 Test Passed.
-"e1_avaliacao_17" end time: Sep 09 16:33 BRT
+"e1_avaliacao_17" end time: Sep 10 12:26 BRT
 "e1_avaliacao_17" time elapsed: 00:00:00
 ----------------------------------------------------------
 
 18/407 Testing: e1_valgrind_00
 18/407 Test: e1_valgrind_00
-Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e1/valgrind_00.tesh"
-Directory: /home/arthur/Área de Trabalho/pc
-"e1_valgrind_00" start time: Sep 09 16:33 BRT
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/gabriel/Documents/gitrepos/pc/tests/e1/valgrind_00.tesh"
+Directory: /home/gabriel/Documents/gitrepos/pc/build
+"e1_valgrind_00" start time: Sep 10 12:26 BRT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
-Test suite `/home/arthur/Área de Trabalho/pc/tests/e1/valgrind_00.tesh'
+Test suite `/home/gabriel/Documents/gitrepos/pc/tests/e1/valgrind_00.tesh'
 [valgrind_00.tesh:6] ./tests/scripts/valgrindtest ./main ./tests/e1/input/nivel0.tokens
-Test suite `valgrind_00.tesh': NOK (<valgrind_00.tesh:6> returned code 2)
+Test suite `valgrind_00.tesh': NOK (<valgrind_00.tesh:6> returned code 1)
 Output of <valgrind_00.tesh:6> so far:
-|| [31m[1mValgrind is probably not installed (checked with 'which valgrind')
-|| (B[m
+|| invalid writes:
+|| 0
+|| invalid read:
+|| 0
+|| jumps/moves depending on uninitialized values:
+|| 0
+|| lost bytes:
+|| 16
 (ignoring the output of <valgrind_00.tesh:6> as requested)
 <end of output>
-Test time =   0.04 sec
+Test time =   0.64 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_valgrind_00" end time: Sep 09 16:33 BRT
+"e1_valgrind_00" end time: Sep 10 12:26 BRT
 "e1_valgrind_00" time elapsed: 00:00:00
 ----------------------------------------------------------
 
 19/407 Testing: e1_valgrind_01
 19/407 Test: e1_valgrind_01
-Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e1/valgrind_01.tesh"
-Directory: /home/arthur/Área de Trabalho/pc
-"e1_valgrind_01" start time: Sep 09 16:33 BRT
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/gabriel/Documents/gitrepos/pc/tests/e1/valgrind_01.tesh"
+Directory: /home/gabriel/Documents/gitrepos/pc/build
+"e1_valgrind_01" start time: Sep 10 12:26 BRT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
-Test suite `/home/arthur/Área de Trabalho/pc/tests/e1/valgrind_01.tesh'
+Test suite `/home/gabriel/Documents/gitrepos/pc/tests/e1/valgrind_01.tesh'
 [valgrind_01.tesh:6] ./tests/scripts/valgrindtest ./main ./tests/e1/input/nivel1.tokens
-Test suite `valgrind_01.tesh': NOK (<valgrind_01.tesh:6> returned code 2)
+Test suite `valgrind_01.tesh': NOK (<valgrind_01.tesh:6> returned code 1)
 Output of <valgrind_01.tesh:6> so far:
-|| [31m[1mValgrind is probably not installed (checked with 'which valgrind')
-|| (B[m
+|| invalid writes:
+|| 0
+|| invalid read:
+|| 0
+|| jumps/moves depending on uninitialized values:
+|| 0
+|| lost bytes:
+|| 16
 (ignoring the output of <valgrind_01.tesh:6> as requested)
 <end of output>
-Test time =   0.04 sec
+Test time =   0.57 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_valgrind_01" end time: Sep 09 16:33 BRT
+"e1_valgrind_01" end time: Sep 10 12:26 BRT
 "e1_valgrind_01" time elapsed: 00:00:00
 ----------------------------------------------------------
 
 20/407 Testing: e1_valgrind_02
 20/407 Test: e1_valgrind_02
-Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e1/valgrind_02.tesh"
-Directory: /home/arthur/Área de Trabalho/pc
-"e1_valgrind_02" start time: Sep 09 16:33 BRT
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/gabriel/Documents/gitrepos/pc/tests/e1/valgrind_02.tesh"
+Directory: /home/gabriel/Documents/gitrepos/pc/build
+"e1_valgrind_02" start time: Sep 10 12:26 BRT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
-Test suite `/home/arthur/Área de Trabalho/pc/tests/e1/valgrind_02.tesh'
+Test suite `/home/gabriel/Documents/gitrepos/pc/tests/e1/valgrind_02.tesh'
 [valgrind_02.tesh:6] ./tests/scripts/valgrindtest ./main ./tests/e1/input/nivel2.tokens
-Test suite `valgrind_02.tesh': NOK (<valgrind_02.tesh:6> returned code 2)
+Test suite `valgrind_02.tesh': NOK (<valgrind_02.tesh:6> returned code 1)
 Output of <valgrind_02.tesh:6> so far:
-|| [31m[1mValgrind is probably not installed (checked with 'which valgrind')
-|| (B[m
+|| invalid writes:
+|| 0
+|| invalid read:
+|| 0
+|| jumps/moves depending on uninitialized values:
+|| 0
+|| lost bytes:
+|| 16
 (ignoring the output of <valgrind_02.tesh:6> as requested)
 <end of output>
-Test time =   0.04 sec
+Test time =   1.48 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_valgrind_02" end time: Sep 09 16:33 BRT
-"e1_valgrind_02" time elapsed: 00:00:00
+"e1_valgrind_02" end time: Sep 10 12:26 BRT
+"e1_valgrind_02" time elapsed: 00:00:01
 ----------------------------------------------------------
 
 21/407 Testing: e1_valgrind_03
 21/407 Test: e1_valgrind_03
-Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e1/valgrind_03.tesh"
-Directory: /home/arthur/Área de Trabalho/pc
-"e1_valgrind_03" start time: Sep 09 16:33 BRT
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/gabriel/Documents/gitrepos/pc/tests/e1/valgrind_03.tesh"
+Directory: /home/gabriel/Documents/gitrepos/pc/build
+"e1_valgrind_03" start time: Sep 10 12:26 BRT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
-Test suite `/home/arthur/Área de Trabalho/pc/tests/e1/valgrind_03.tesh'
+Test suite `/home/gabriel/Documents/gitrepos/pc/tests/e1/valgrind_03.tesh'
 [valgrind_03.tesh:6] ./tests/scripts/valgrindtest ./main ./tests/e1/input/nivel3.tokens
-Test suite `valgrind_03.tesh': NOK (<valgrind_03.tesh:6> returned code 2)
+Test suite `valgrind_03.tesh': NOK (<valgrind_03.tesh:6> returned code 1)
 Output of <valgrind_03.tesh:6> so far:
-|| [31m[1mValgrind is probably not installed (checked with 'which valgrind')
-|| (B[m
+|| invalid writes:
+|| 0
+|| invalid read:
+|| 0
+|| jumps/moves depending on uninitialized values:
+|| 0
+|| lost bytes:
+|| 16
 (ignoring the output of <valgrind_03.tesh:6> as requested)
 <end of output>
-Test time =   0.04 sec
+Test time =   0.51 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_valgrind_03" end time: Sep 09 16:33 BRT
+"e1_valgrind_03" end time: Sep 10 12:26 BRT
 "e1_valgrind_03" time elapsed: 00:00:00
 ----------------------------------------------------------
 
 22/407 Testing: e1_valgrind_05
 22/407 Test: e1_valgrind_05
-Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e1/valgrind_05.tesh"
-Directory: /home/arthur/Área de Trabalho/pc
-"e1_valgrind_05" start time: Sep 09 16:33 BRT
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/gabriel/Documents/gitrepos/pc/tests/e1/valgrind_05.tesh"
+Directory: /home/gabriel/Documents/gitrepos/pc/build
+"e1_valgrind_05" start time: Sep 10 12:26 BRT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
-Test suite `/home/arthur/Área de Trabalho/pc/tests/e1/valgrind_05.tesh'
+Test suite `/home/gabriel/Documents/gitrepos/pc/tests/e1/valgrind_05.tesh'
 [valgrind_05.tesh:6] ./tests/scripts/valgrindtest ./main ./tests/e1/input/nivel5.tokens
-Test suite `valgrind_05.tesh': NOK (<valgrind_05.tesh:6> returned code 2)
+Test suite `valgrind_05.tesh': NOK (<valgrind_05.tesh:6> returned code 1)
 Output of <valgrind_05.tesh:6> so far:
-|| [31m[1mValgrind is probably not installed (checked with 'which valgrind')
-|| (B[m
+|| invalid writes:
+|| 0
+|| invalid read:
+|| 0
+|| jumps/moves depending on uninitialized values:
+|| 0
+|| lost bytes:
+|| 16
 (ignoring the output of <valgrind_05.tesh:6> as requested)
 <end of output>
-Test time =   0.04 sec
+Test time =   0.53 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_valgrind_05" end time: Sep 09 16:33 BRT
+"e1_valgrind_05" end time: Sep 10 12:26 BRT
 "e1_valgrind_05" time elapsed: 00:00:00
 ----------------------------------------------------------
 
 23/407 Testing: e1_valgrind_06
 23/407 Test: e1_valgrind_06
-Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e1/valgrind_06.tesh"
-Directory: /home/arthur/Área de Trabalho/pc
-"e1_valgrind_06" start time: Sep 09 16:33 BRT
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/gabriel/Documents/gitrepos/pc/tests/e1/valgrind_06.tesh"
+Directory: /home/gabriel/Documents/gitrepos/pc/build
+"e1_valgrind_06" start time: Sep 10 12:26 BRT
 Output:
 ----------------------------------------------------------
 Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
-Test suite `/home/arthur/Área de Trabalho/pc/tests/e1/valgrind_06.tesh'
+Test suite `/home/gabriel/Documents/gitrepos/pc/tests/e1/valgrind_06.tesh'
 [valgrind_06.tesh:6] ./tests/scripts/valgrindtest ./main ./tests/e1/input/nivel6.tokens
-Test suite `valgrind_06.tesh': NOK (<valgrind_06.tesh:6> returned code 2)
+Test suite `valgrind_06.tesh': NOK (<valgrind_06.tesh:6> returned code 1)
 Output of <valgrind_06.tesh:6> so far:
-|| [31m[1mValgrind is probably not installed (checked with 'which valgrind')
-|| (B[m
+|| invalid writes:
+|| 0
+|| invalid read:
+|| 0
+|| jumps/moves depending on uninitialized values:
+|| 0
+|| lost bytes:
+|| 16
 (ignoring the output of <valgrind_06.tesh:6> as requested)
 <end of output>
-Test time =   0.04 sec
+Test time =   0.58 sec
 ----------------------------------------------------------
 Test Failed.
-"e1_valgrind_06" end time: Sep 09 16:33 BRT
+"e1_valgrind_06" end time: Sep 10 12:26 BRT
 "e1_valgrind_06" time elapsed: 00:00:00
 ----------------------------------------------------------
 
+24/407 Testing: e1_valgrind_07
+24/407 Test: e1_valgrind_07
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/gabriel/Documents/gitrepos/pc/tests/e1/valgrind_07.tesh"
+Directory: /home/gabriel/Documents/gitrepos/pc/build
+"e1_valgrind_07" start time: Sep 10 12:26 BRT
+Output:
+----------------------------------------------------------
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
+Test suite `/home/gabriel/Documents/gitrepos/pc/tests/e1/valgrind_07.tesh'
+[valgrind_07.tesh:6] ./tests/scripts/valgrindtest ./main ./tests/e1/input/nivel7.tokens
+Test suite `valgrind_07.tesh': NOK (<valgrind_07.tesh:6> returned code 1)
+Output of <valgrind_07.tesh:6> so far:
+|| invalid writes:
+|| 0
+|| invalid read:
+|| 0
+|| jumps/moves depending on uninitialized values:
+|| 0
+|| lost bytes:
+|| 16
+(ignoring the output of <valgrind_07.tesh:6> as requested)
+<end of output>
+Test time =   0.55 sec
+----------------------------------------------------------
+Test Failed.
+"e1_valgrind_07" end time: Sep 10 12:26 BRT
+"e1_valgrind_07" time elapsed: 00:00:00
+----------------------------------------------------------
+
+25/407 Testing: e1_valgrind_08
+25/407 Test: e1_valgrind_08
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/gabriel/Documents/gitrepos/pc/tests/e1/valgrind_08.tesh"
+Directory: /home/gabriel/Documents/gitrepos/pc/build
+"e1_valgrind_08" start time: Sep 10 12:26 BRT
+Output:
+----------------------------------------------------------
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
+Test suite `/home/gabriel/Documents/gitrepos/pc/tests/e1/valgrind_08.tesh'
+[valgrind_08.tesh:6] ./tests/scripts/valgrindtest ./main ./tests/e1/input/nivel8.tokens
+Test suite `valgrind_08.tesh': NOK (<valgrind_08.tesh:6> returned code 1)
+Output of <valgrind_08.tesh:6> so far:
+|| invalid writes:
+|| 0
+|| invalid read:
+|| 0
+|| jumps/moves depending on uninitialized values:
+|| 0
+|| lost bytes:
+|| 16
+(ignoring the output of <valgrind_08.tesh:6> as requested)
+<end of output>
+Test time =   0.52 sec
+----------------------------------------------------------
+Test Failed.
+"e1_valgrind_08" end time: Sep 10 12:26 BRT
+"e1_valgrind_08" time elapsed: 00:00:00
+----------------------------------------------------------
+
+26/407 Testing: e1_valgrind_09
+26/407 Test: e1_valgrind_09
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/gabriel/Documents/gitrepos/pc/tests/e1/valgrind_09.tesh"
+Directory: /home/gabriel/Documents/gitrepos/pc/build
+"e1_valgrind_09" start time: Sep 10 12:26 BRT
+Output:
+----------------------------------------------------------
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
+Test suite `/home/gabriel/Documents/gitrepos/pc/tests/e1/valgrind_09.tesh'
+[valgrind_09.tesh:6] ./tests/scripts/valgrindtest ./main ./tests/e1/input/nivel9.tokens
+Test suite `valgrind_09.tesh': NOK (<valgrind_09.tesh:6> returned code 1)
+Output of <valgrind_09.tesh:6> so far:
+|| invalid writes:
+|| 0
+|| invalid read:
+|| 0
+|| jumps/moves depending on uninitialized values:
+|| 0
+|| lost bytes:
+|| 16
+(ignoring the output of <valgrind_09.tesh:6> as requested)
+<end of output>
+Test time =   0.50 sec
+----------------------------------------------------------
+Test Failed.
+"e1_valgrind_09" end time: Sep 10 12:26 BRT
+"e1_valgrind_09" time elapsed: 00:00:00
+----------------------------------------------------------
+
+27/407 Testing: e1_valgrind_10
+27/407 Test: e1_valgrind_10
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/gabriel/Documents/gitrepos/pc/tests/e1/valgrind_10.tesh"
+Directory: /home/gabriel/Documents/gitrepos/pc/build
+"e1_valgrind_10" start time: Sep 10 12:26 BRT
+Output:
+----------------------------------------------------------
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
+Test suite `/home/gabriel/Documents/gitrepos/pc/tests/e1/valgrind_10.tesh'
+[valgrind_10.tesh:6] ./tests/scripts/valgrindtest ./main ./tests/e1/input/nivel10.tokens
+Test suite `valgrind_10.tesh': NOK (<valgrind_10.tesh:6> returned code 1)
+Output of <valgrind_10.tesh:6> so far:
+|| invalid writes:
+|| 0
+|| invalid read:
+|| 0
+|| jumps/moves depending on uninitialized values:
+|| 0
+|| lost bytes:
+|| 16
+(ignoring the output of <valgrind_10.tesh:6> as requested)
+<end of output>
+Test time =   0.54 sec
+----------------------------------------------------------
+Test Failed.
+"e1_valgrind_10" end time: Sep 10 12:26 BRT
+"e1_valgrind_10" time elapsed: 00:00:00
+----------------------------------------------------------
+
+28/407 Testing: e1_valgrind_11
+28/407 Test: e1_valgrind_11
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/gabriel/Documents/gitrepos/pc/tests/e1/valgrind_11.tesh"
+Directory: /home/gabriel/Documents/gitrepos/pc/build
+"e1_valgrind_11" start time: Sep 10 12:26 BRT
+Output:
+----------------------------------------------------------
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
+Test suite `/home/gabriel/Documents/gitrepos/pc/tests/e1/valgrind_11.tesh'
+[valgrind_11.tesh:6] ./tests/scripts/valgrindtest ./main ./tests/e1/input/nivel11.tokens
+Test suite `valgrind_11.tesh': NOK (<valgrind_11.tesh:6> returned code 1)
+Output of <valgrind_11.tesh:6> so far:
+|| invalid writes:
+|| 0
+|| invalid read:
+|| 0
+|| jumps/moves depending on uninitialized values:
+|| 0
+|| lost bytes:
+|| 16
+(ignoring the output of <valgrind_11.tesh:6> as requested)
+<end of output>
+Test time =   0.62 sec
+----------------------------------------------------------
+Test Failed.
+"e1_valgrind_11" end time: Sep 10 12:26 BRT
+"e1_valgrind_11" time elapsed: 00:00:00
+----------------------------------------------------------
+
+29/407 Testing: e1_valgrind_12
+29/407 Test: e1_valgrind_12
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/gabriel/Documents/gitrepos/pc/tests/e1/valgrind_12.tesh"
+Directory: /home/gabriel/Documents/gitrepos/pc/build
+"e1_valgrind_12" start time: Sep 10 12:26 BRT
+Output:
+----------------------------------------------------------
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
+Test suite `/home/gabriel/Documents/gitrepos/pc/tests/e1/valgrind_12.tesh'
+[valgrind_12.tesh:6] ./tests/scripts/valgrindtest ./main ./tests/e1/input/nivel12.tokens
+Test suite `valgrind_12.tesh': NOK (<valgrind_12.tesh:6> returned code 1)
+Output of <valgrind_12.tesh:6> so far:
+|| invalid writes:
+|| 0
+|| invalid read:
+|| 0
+|| jumps/moves depending on uninitialized values:
+|| 0
+|| lost bytes:
+|| 16
+(ignoring the output of <valgrind_12.tesh:6> as requested)
+<end of output>
+Test time =   0.57 sec
+----------------------------------------------------------
+Test Failed.
+"e1_valgrind_12" end time: Sep 10 12:26 BRT
+"e1_valgrind_12" time elapsed: 00:00:00
+----------------------------------------------------------
+
+30/407 Testing: e1_valgrind_13
+30/407 Test: e1_valgrind_13
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/gabriel/Documents/gitrepos/pc/tests/e1/valgrind_13.tesh"
+Directory: /home/gabriel/Documents/gitrepos/pc/build
+"e1_valgrind_13" start time: Sep 10 12:26 BRT
+Output:
+----------------------------------------------------------
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
+Test suite `/home/gabriel/Documents/gitrepos/pc/tests/e1/valgrind_13.tesh'
+[valgrind_13.tesh:6] ./tests/scripts/valgrindtest ./main ./tests/e1/input/nivel13.tokens
+Test suite `valgrind_13.tesh': NOK (<valgrind_13.tesh:6> returned code 1)
+Output of <valgrind_13.tesh:6> so far:
+|| invalid writes:
+|| 0
+|| invalid read:
+|| 0
+|| jumps/moves depending on uninitialized values:
+|| 0
+|| lost bytes:
+|| 16
+(ignoring the output of <valgrind_13.tesh:6> as requested)
+<end of output>
+Test time =   0.55 sec
+----------------------------------------------------------
+Test Failed.
+"e1_valgrind_13" end time: Sep 10 12:26 BRT
+"e1_valgrind_13" time elapsed: 00:00:00
+----------------------------------------------------------
+
+31/407 Testing: e1_valgrind_14
+31/407 Test: e1_valgrind_14
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/gabriel/Documents/gitrepos/pc/tests/e1/valgrind_14.tesh"
+Directory: /home/gabriel/Documents/gitrepos/pc/build
+"e1_valgrind_14" start time: Sep 10 12:26 BRT
+Output:
+----------------------------------------------------------
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
+Test suite `/home/gabriel/Documents/gitrepos/pc/tests/e1/valgrind_14.tesh'
+[valgrind_14.tesh:6] ./tests/scripts/valgrindtest ./main ./tests/e1/input/nivel14.tokens
+Test suite `valgrind_14.tesh': NOK (<valgrind_14.tesh:6> returned code 1)
+Output of <valgrind_14.tesh:6> so far:
+|| invalid writes:
+|| 0
+|| invalid read:
+|| 0
+|| jumps/moves depending on uninitialized values:
+|| 0
+|| lost bytes:
+|| 16
+(ignoring the output of <valgrind_14.tesh:6> as requested)
+<end of output>
+Test time =   0.53 sec
+----------------------------------------------------------
+Test Failed.
+"e1_valgrind_14" end time: Sep 10 12:26 BRT
+"e1_valgrind_14" time elapsed: 00:00:00
+----------------------------------------------------------
+
+32/407 Testing: e1_valgrind_15
+32/407 Test: e1_valgrind_15
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/gabriel/Documents/gitrepos/pc/tests/e1/valgrind_15.tesh"
+Directory: /home/gabriel/Documents/gitrepos/pc/build
+"e1_valgrind_15" start time: Sep 10 12:26 BRT
+Output:
+----------------------------------------------------------
+Unescaped left brace in regex is deprecated, passed through in regex; marked by <-- HERE in m/\${ <-- HERE (\w+)(?::[=-][^}]*)?}/ at ./tests/scripts/tesh line 345.
+Test suite `/home/gabriel/Documents/gitrepos/pc/tests/e1/valgrind_15.tesh'
+[valgrind_15.tesh:6] ./tests/scripts/valgrindtest ./main ./tests/e1/input/nivel15.tokens
+Test suite `valgrind_15.tesh': NOK (<valgrind_15.tesh:6> returned code 1)
+Output of <valgrind_15.tesh:6> so far:
+|| invalid writes:
+|| 0
+|| invalid read:
+|| 0
+|| jumps/moves depending on uninitialized values:
+|| 0
+|| lost bytes:
+|| 16
+(ignoring the output of <valgrind_15.tesh:6> as requested)
+<end of output>
+Test time =   0.50 sec
+----------------------------------------------------------
+Test Failed.
+"e1_valgrind_15" end time: Sep 10 12:26 BRT
+"e1_valgrind_15" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Sep 10 12:26 BRT
