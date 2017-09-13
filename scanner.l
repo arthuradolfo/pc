@@ -7,7 +7,7 @@ LTR  [a-z_A-Z]
 DGT  [0-9]
 BCM	 "//"
 ESP  [!#-&(-\-/:->[-^{}]
-INT  {DGT}+
+INT  [-+]?{DGT}+
 FLT  {INT}\.{DGT}+
 
 %{

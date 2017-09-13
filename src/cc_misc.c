@@ -40,8 +40,16 @@ void yyerror (char const *mensagem)
 
 void putToSymbolsTable(char* key, int line)
 {
-  if (!symbolsTable) return;
-
+  if (!symbolsTable) return;	
+  
+  int i = 0;
+  while(i < strlen(key)) {
+    if(key[i] == '"') {
+      key[i] = key[i+1];
+      if(i+1 <= strlen(key)) key[i+1] = '"';
+    }
+    i++;
+  }
   st_value_t* entryValue = (st_value_t *) malloc(sizeof(st_value_t));
   entryValue->line = line;
   st_value_t* getEntry = dict_get(symbolsTable, key);
