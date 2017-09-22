@@ -91,7 +91,17 @@ extern int yydebug;
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+
+union YYSTYPE
+{
+#line 12 "parser.y" /* yacc.c:1909  */
+
+	void *valor_lexico;   /* Pointer to run-time expression operator */
+
+#line 102 "/home/suporte/Área de Trabalho/pc/build/parser.h" /* yacc.c:1909  */
+};
+
+typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif

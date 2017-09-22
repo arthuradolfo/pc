@@ -21,6 +21,10 @@ stdlib.h
 -
 string.h
 -
+stdbool.h
+-
+main.h
+../include/main.h
 
 ../include/cc_tree.h
 
@@ -43,8 +47,12 @@ parser.h
 ../include/parser.h
 
 /home/suporte/Área de Trabalho/pc/build/parser.c
+parser.h
+/home/suporte/Área de Trabalho/pc/build/parser.h
 main.h
 /home/suporte/Área de Trabalho/pc/build/main.h
+cc_misc.h
+/home/suporte/Área de Trabalho/pc/build/cc_misc.h
 stddef.h
 -
 libintl.h
@@ -77,6 +85,8 @@ parser.h
 /home/suporte/Área de Trabalho/pc/build/parser.h
 cc_misc.h
 /home/suporte/Área de Trabalho/pc/build/cc_misc.h
+main.h
+/home/suporte/Área de Trabalho/pc/build/main.h
 unistd.h
 -
 

@@ -7,8 +7,11 @@ comp_dict_t* symbolsTable;
 void remove_collisions(comp_dict_item_t * item)
 {
   comp_dict_item_t* ptaux;
+  st_value_t* entrada;
   while (item != NULL) {
     ptaux = item;
+    entrada = dict_get(symbolsTable, ptaux->key);
+    free(entrada->value.s);
     free(ptaux->value);
     item = item->next;
     dict_remove(symbolsTable, ptaux->key);
@@ -38,27 +41,67 @@ void yyerror (char const *mensagem)
   fprintf (stderr, "%s\n", mensagem); //altere para que apareça a linha
 }
 
-void putToSymbolsTable(char* key, int line)
+st_value_t* putToSymbolsTable(char* key, int line, int token_type)
 {
   if (!symbolsTable) return;	
   
-  int i = 0;
+  int i = 0, string = 0;
+  char *token_str = (char *) malloc(sizeof(int));
+  char *value;
   while(i < strlen(key)) {
-    if(key[i] == '"') {
+    if(key[i] == '"' || key[i] == '\'') {
+      string = 1;
       key[i] = key[i+1];
-      if(i+1 <= strlen(key)) key[i+1] = '"';
+      key[strlen(key)-1] = '\0';
+    }
+    else if(string == 1) {
+      key[i] = key[i+1];
     }
     i++;
   }
+  value = strdup(key);
+  sprintf(token_str, "%d", token_type);
+  strcat(key, token_str);
+  free(token_str);
   st_value_t* entryValue = (st_value_t *) malloc(sizeof(st_value_t));
   entryValue->line = line;
+  entryValue->token_type = token_type;
+  if(token_type == POA_LIT_INT) {
+    entryValue->value.i = atoi(value);
+    free(value);
+  }
+  if(token_type == POA_LIT_FLOAT) {
+    entryValue->value.f = atof(value);
+    free(value);
+  }
+  if(token_type == POA_LIT_CHAR) {
+    entryValue->value.c = *value;
+    free(value);
+  }
+  if(token_type == POA_LIT_STRING) {
+    entryValue->value.s = value;
+  }
+  if(token_type == POA_LIT_BOOL) {
+    if(strcmp(value, "true") == 0) {
+      entryValue->value.b = false;
+    }
+    else {
+      entryValue->value.b = true;
+    }
+    free(value);
+  }
+  if(token_type == POA_IDENT) {
+    entryValue->value.s = value;
+  }
   st_value_t* getEntry = dict_get(symbolsTable, key);
   if(getEntry) {
     free(entryValue);
     getEntry->line = line;
+    return getEntry;
   }
   else {
     dict_put(symbolsTable, key, entryValue);
+    return entryValue;
   }
 }
 
@@ -99,7 +142,7 @@ void clearSymbolsTable()
 {
     //remover todas as entradas da tabela antes de libera-la
     //printf("\nclearSymbolsTable: \n");
-
+    st_value_t* entrada;
     if (!symbolsTable) return;
 
     int i, l;
@@ -108,6 +151,8 @@ void clearSymbolsTable()
         if(symbolsTable->data[i]->next) {
           remove_collisions(symbolsTable->data[i]->next);
         }
+        entrada = dict_get(symbolsTable, symbolsTable->data[i]->key);
+        free(entrada->value.s);
         free(symbolsTable->data[i]->value);
         dict_remove(symbolsTable, symbolsTable->data[i]->key);
       }
@@ -151,7 +196,7 @@ void main_finalize (void)
 {
   //implemente esta função com rotinas de finalização, se necessário
 
-  //comp_print_table();
+  comp_print_table();
   clearSymbolsTable();
 }
 
@@ -169,7 +214,25 @@ void comp_print_table (void)
     if (symbolsTable->data[i]) {
       entrada = dict_get(symbolsTable, symbolsTable->data[i]->key);
       //printf("Chave %s Valor %d\n", symbolsTable->data[i]->key, entrada->line);
-      cc_dict_etapa_1_print_entrada(symbolsTable->data[i]->key, entrada->line);
+      if(entrada->token_type == POA_IDENT) {
+        printf("%s\n", entrada->value.s);
+      }
+      if(entrada->token_type == POA_LIT_INT) {
+        printf("%d\n", entrada->value.i);
+      }
+      if(entrada->token_type == POA_LIT_FLOAT) {
+        printf("%f\n", entrada->value.f);
+      }
+      if(entrada->token_type == POA_LIT_BOOL) {
+        printf("%d\n", entrada->value.b);
+      }
+      if(entrada->token_type == POA_LIT_CHAR) {
+        printf("%c\n", entrada->value.c);
+      }
+      if(entrada->token_type == POA_LIT_STRING) {
+        printf("%s\n", entrada->value.s);
+      }
+      cc_dict_etapa_2_print_entrada(symbolsTable->data[i]->key, entrada->line, entrada->token_type);
     }
   }
 }

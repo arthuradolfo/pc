@@ -9,9 +9,14 @@ CMakeFiles/main.dir/parser.c.o
  ../include/cc_tree.h
  ../include/main.h
  /home/suporte/Área de Trabalho/pc/build/parser.c
- parser.h
+ /home/suporte/Área de Trabalho/pc/build/parser.h
 CMakeFiles/main.dir/scanner.c.o
+ ../include/cc_dict.h
+ ../include/cc_gv.h
+ ../include/cc_list.h
  ../include/cc_misc.h
+ ../include/cc_tree.h
+ ../include/main.h
  /home/suporte/Área de Trabalho/pc/build/parser.h
  /home/suporte/Área de Trabalho/pc/build/scanner.c
 CMakeFiles/main.dir/src/cc_dict.c.o
@@ -24,8 +29,13 @@ CMakeFiles/main.dir/src/cc_list.c.o
  /home/suporte/Área de Trabalho/pc/src/cc_list.c
 CMakeFiles/main.dir/src/cc_misc.c.o
  ../include/cc_dict.h
+ ../include/cc_gv.h
+ ../include/cc_list.h
  ../include/cc_misc.h
+ ../include/cc_tree.h
+ ../include/main.h
  /home/suporte/Área de Trabalho/pc/src/cc_misc.c
+ parser.h
 CMakeFiles/main.dir/src/cc_tree.c.o
  ../include/cc_tree.h
  /home/suporte/Área de Trabalho/pc/src/cc_tree.c

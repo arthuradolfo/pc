@@ -3,8 +3,15 @@
   Gabriel de Souza Seibel 	- 	00262513
 */
 %{
+#include "parser.h" //arquivo automaticamente gerado pelo bison
 #include "main.h"
+#include "cc_misc.h" //arquivo com funcoes de auto incremento
 %}
+
+%union
+{
+	void *valor_lexico;   /* Pointer to run-time expression operator */
+}
 
 /* Declaração dos tokens da linguagem */
 %token TK_PR_INT

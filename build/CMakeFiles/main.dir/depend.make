@@ -10,7 +10,12 @@ CMakeFiles/main.dir/parser.c.o: ../include/main.h
 CMakeFiles/main.dir/parser.c.o: parser.c
 CMakeFiles/main.dir/parser.c.o: parser.h
 
+CMakeFiles/main.dir/scanner.c.o: ../include/cc_dict.h
+CMakeFiles/main.dir/scanner.c.o: ../include/cc_gv.h
+CMakeFiles/main.dir/scanner.c.o: ../include/cc_list.h
 CMakeFiles/main.dir/scanner.c.o: ../include/cc_misc.h
+CMakeFiles/main.dir/scanner.c.o: ../include/cc_tree.h
+CMakeFiles/main.dir/scanner.c.o: ../include/main.h
 CMakeFiles/main.dir/scanner.c.o: parser.h
 CMakeFiles/main.dir/scanner.c.o: scanner.c
 
@@ -23,8 +28,13 @@ CMakeFiles/main.dir/src/cc_gv.c.o: ../src/cc_gv.c
 CMakeFiles/main.dir/src/cc_list.c.o: ../src/cc_list.c
 
 CMakeFiles/main.dir/src/cc_misc.c.o: ../include/cc_dict.h
+CMakeFiles/main.dir/src/cc_misc.c.o: ../include/cc_gv.h
+CMakeFiles/main.dir/src/cc_misc.c.o: ../include/cc_list.h
 CMakeFiles/main.dir/src/cc_misc.c.o: ../include/cc_misc.h
+CMakeFiles/main.dir/src/cc_misc.c.o: ../include/cc_tree.h
+CMakeFiles/main.dir/src/cc_misc.c.o: ../include/main.h
 CMakeFiles/main.dir/src/cc_misc.c.o: ../src/cc_misc.c
+CMakeFiles/main.dir/src/cc_misc.c.o: parser.h
 
 CMakeFiles/main.dir/src/cc_tree.c.o: ../include/cc_tree.h
 CMakeFiles/main.dir/src/cc_tree.c.o: ../src/cc_tree.c

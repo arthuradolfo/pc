@@ -13,6 +13,7 @@ FLT  {INT}\.{DGT}+
 %{
 #include "parser.h" //arquivo automaticamente gerado pelo bison
 #include "cc_misc.h" //arquivo com funcoes de auto incremento
+#include "main.h" //arquivo com constantes da main
 %}
 
 %%
@@ -42,12 +43,12 @@ FLT  {INT}\.{DGT}+
 "private"                     return TK_PR_PRIVATE;
 "public"                      return TK_PR_PUBLIC;
 "protected"                   return TK_PR_PROTECTED;
-"false"						            putToSymbolsTable(yytext, comp_get_line_number()); return TK_LIT_FALSE;
-"true"						            putToSymbolsTable(yytext, comp_get_line_number()); return TK_LIT_TRUE;
-{INT}          					  	  putToSymbolsTable(yytext, comp_get_line_number()); return TK_LIT_INT;
-{FLT}				                  putToSymbolsTable(yytext, comp_get_line_number()); return TK_LIT_FLOAT;
-'.'						                putToSymbolsTable(yytext, comp_get_line_number()); return TK_LIT_CHAR;
-\"(\\.|[^"])*\"				        putToSymbolsTable(yytext, comp_get_line_number()); return TK_LIT_STRING;
+"false"						            yylval.valor_lexico = putToSymbolsTable(yytext, comp_get_line_number(), POA_LIT_BOOL); return TK_LIT_FALSE;
+"true"						            yylval.valor_lexico = putToSymbolsTable(yytext, comp_get_line_number(), POA_LIT_BOOL); return TK_LIT_TRUE;
+{INT}          					  	  yylval.valor_lexico = putToSymbolsTable(yytext, comp_get_line_number(),POA_LIT_INT); return TK_LIT_INT;
+{FLT}				                  yylval.valor_lexico = putToSymbolsTable(yytext, comp_get_line_number(), POA_LIT_FLOAT); return TK_LIT_FLOAT;
+'.'						                yylval.valor_lexico = putToSymbolsTable(yytext, comp_get_line_number(), POA_LIT_CHAR); return TK_LIT_CHAR;
+\"(\\.|[^"])*\"				        yylval.valor_lexico = putToSymbolsTable(yytext, comp_get_line_number(), POA_LIT_STRING); return TK_LIT_STRING;
 {ESP}						              return yytext[0];
 "<="						              return TK_OC_LE;
 ">="						              return TK_OC_GE;
@@ -57,7 +58,7 @@ FLT  {INT}\.{DGT}+
 "||"						              return TK_OC_OR;
 "<<"						              return TK_OC_SL;
 ">>"						              return TK_OC_SR;
-{LTR}({LTR}|{DGT})*           putToSymbolsTable(yytext, comp_get_line_number()); return TK_IDENTIFICADOR;
+{LTR}({LTR}|{DGT})*           yylval.valor_lexico = putToSymbolsTable(yytext, comp_get_line_number(), POA_IDENT); return TK_IDENTIFICADOR;
 {BCM}(.*)		  			          //nao faz nada
 "/*"((.|\n)*)"*/"		  	      comp_set_line_number(yytext);
 [ \t]+        				        //nao faz nada com espacos

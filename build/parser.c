@@ -64,9 +64,11 @@
 /* Copy the first part of user declarations.  */
 #line 5 "parser.y" /* yacc.c:339  */
 
+#include "parser.h" //arquivo automaticamente gerado pelo bison
 #include "main.h"
+#include "cc_misc.h" //arquivo com funcoes de auto incremento
 
-#line 70 "/home/suporte/Área de Trabalho/pc/build/parser.c" /* yacc.c:339  */
+#line 72 "/home/suporte/Área de Trabalho/pc/build/parser.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -147,7 +149,17 @@ extern int yydebug;
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+
+union YYSTYPE
+{
+#line 12 "parser.y" /* yacc.c:355  */
+
+	void *valor_lexico;   /* Pointer to run-time expression operator */
+
+#line 160 "/home/suporte/Área de Trabalho/pc/build/parser.c" /* yacc.c:355  */
+};
+
+typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif
@@ -161,7 +173,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 165 "/home/suporte/Área de Trabalho/pc/build/parser.c" /* yacc.c:358  */
+#line 177 "/home/suporte/Área de Trabalho/pc/build/parser.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -462,7 +474,7 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    55,    55
+       0,    62,    62
 };
 #endif
 
@@ -1240,7 +1252,7 @@ yyreduce:
   switch (yyn)
     {
       
-#line 1244 "/home/suporte/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1256 "/home/suporte/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1468,5 +1480,5 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 57 "parser.y" /* yacc.c:1906  */
+#line 64 "parser.y" /* yacc.c:1906  */
 
