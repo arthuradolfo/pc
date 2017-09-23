@@ -1,9 +1,20 @@
 #include "cc_misc.h"
 #include "cc_dict.h"
 
+/**
+  * @var int lineNumber Gerencia o numero de linahs do arquivo processado
+  */
 int lineNumber;
+
+/**
+  * @var comp_dict_t symbolsTable Gerencia a tabela de simbolos
+  */
 comp_dict_t* symbolsTable;
 
+/**
+  * Da free em ponteiros das entradas da tabela de simbolos que estao no ponteiro next (quando a colisao de entradas)
+  * @param comp_dict_item_t* item
+  */
 void remove_collisions(comp_dict_item_t * item)
 {
   comp_dict_item_t* ptaux;
@@ -20,6 +31,11 @@ void remove_collisions(comp_dict_item_t * item)
   }
 }
 
+
+/**
+  * Confere os \n no token e soma no lineNumber
+  * @param char* yytext
+  */
 int comp_set_line_number (char *yytext)
 {
   int i = 0;
@@ -31,10 +47,12 @@ int comp_set_line_number (char *yytext)
   }
 }
 
+/**
+  * Getter da variavel lineNumber
+  * @return int lineNumber
+  */
 int comp_get_line_number (void)
 {
-  //implemente esta função
-
   return lineNumber;
 }
 
@@ -43,18 +61,67 @@ void yyerror (char const *mensagem)
   fprintf (stderr, "%s\n", mensagem); //altere para que apareça a linha
 }
 
-st_value_t* putToSymbolsTable(char* key, int line, int token_type)
-{
-  if (!symbolsTable) return;	
-  
+
+/**
+ * Converte o token para o tipo especificado e insere no campo value da entrada da tabela de simbolos
+ * @param st_value_t* entryValue
+ * @param char* value
+ */
+void setEntryValue(st_value_t* entryValue, char* value) {
+  switch(entryValue->token_type) {
+    case POA_LIT_INT:
+      entryValue->value.i = atoi(value);
+      free(value);
+      break;
+
+    case POA_LIT_FLOAT:
+      entryValue->value.f = atof(value);
+      free(value);
+      break;
+
+    case POA_LIT_CHAR:
+      entryValue->value.c = *value;
+      free(value);
+      break;
+
+    case POA_LIT_STRING:
+      entryValue->value.s = value;
+      break;
+
+    case POA_LIT_BOOL:
+      if(strcmp(value, "true") == 0) {
+        entryValue->value.b = false;
+      }
+      else {
+        entryValue->value.b = true;
+      }
+      free(value);
+      break;
+
+    case POA_IDENT:
+      entryValue->value.s = value;
+      break;
+
+    default:
+      break;
+  }
+}
+
+/**
+ * Remove aspas simples e duplas dos tokens tipo TK_LIT_STRING e TK_LIT_CHAR
+ * @param char* key
+ */
+void removeQuotes(char *key) {
   int i = 0, string = 0;
-  char *token_str = (char *) malloc(sizeof(int));
-  char *value;
-  
   while(i < strlen(key)) {
     if(key[i] == '"' || key[i] == '\'') {
       string = 1;
-      key[i] = key[i+1];
+      if(key[i+1] == '"') {
+        key[i] = '\0';
+      }
+      else {
+        key[i] = key[i+1];
+      }
       key[strlen(key)-1] = '\0';
     }
     else if(string == 1) {
@@ -62,41 +129,45 @@ st_value_t* putToSymbolsTable(char* key, int line, int token_type)
     }
     i++;
   }
+}
 
-  value = strdup(key);
+/**
+  * Concatena tipo do token ao key
+  * @param char* key
+  * @param int token_type
+  */
+void concatTokeType(char *key, int token_type) {
+  char *token_str = (char *) malloc(sizeof(int));
   sprintf(token_str, "%d", token_type);
   strcat(key, token_str);
   free(token_str);
+}
+
+/**
+ * Coloca o token na tabela de simbolos
+ * @param char* key
+ * @param int line
+ * @int token_type
+ * @return st_value_t* entryValue
+ */
+st_value_t* putToSymbolsTable(char* key, int line, int token_type)
+{
+  if (!symbolsTable) return;	
+  
+  char *value;
+  
+  removeQuotes(key);
+
+  value = strdup(key);
+
+  concatTokeType(key, token_type);
+
   st_value_t* entryValue = (st_value_t *) malloc(sizeof(st_value_t));
   entryValue->line = line;
   entryValue->token_type = token_type;
-  if(token_type == POA_LIT_INT) {
-    entryValue->value.i = atoi(value);
-    free(value);
-  }
-  if(token_type == POA_LIT_FLOAT) {
-    entryValue->value.f = atof(value);
-    free(value);
-  }
-  if(token_type == POA_LIT_CHAR) {
-    entryValue->value.c = *value;
-    free(value);
-  }
-  if(token_type == POA_LIT_STRING) {
-    entryValue->value.s = value;
-  }
-  if(token_type == POA_LIT_BOOL) {
-    if(strcmp(value, "true") == 0) {
-      entryValue->value.b = false;
-    }
-    else {
-      entryValue->value.b = true;
-    }
-    free(value);
-  }
-  if(token_type == POA_IDENT) {
-    entryValue->value.s = value;
-  }
+  
+  setEntryValue(entryValue, value);
+  
   st_value_t* getEntry = dict_get(symbolsTable, key);
   if(getEntry) {
     free(entryValue);
@@ -142,6 +213,9 @@ void printSymbolsTable()
   }
 }
 
+/**
+  * Libera os espacos de memoria ocupados pelos ponteiros da tabela de simbolos
+  */
 void clearSymbolsTable()
 {
     //remover todas as entradas da tabela antes de libera-la
@@ -220,24 +294,6 @@ void comp_print_table (void)
     if (symbolsTable->data[i]) {
       entrada = dict_get(symbolsTable, symbolsTable->data[i]->key);
       //printf("Chave %s Valor %d\n", symbolsTable->data[i]->key, entrada->line);
-      if(entrada->token_type == POA_IDENT) {
-        printf("%s\n", entrada->value.s);
-      }
-      if(entrada->token_type == POA_LIT_INT) {
-        printf("%d\n", entrada->value.i);
-      }
-      if(entrada->token_type == POA_LIT_FLOAT) {
-        printf("%f\n", entrada->value.f);
-      }
-      if(entrada->token_type == POA_LIT_BOOL) {
-        printf("%d\n", entrada->value.b);
-      }
-      if(entrada->token_type == POA_LIT_CHAR) {
-        printf("%c\n", entrada->value.c);
-      }
-      if(entrada->token_type == POA_LIT_STRING) {
-        printf("%s\n", entrada->value.s);
-      }
       cc_dict_etapa_2_print_entrada(symbolsTable->data[i]->key, entrada->line, entrada->token_type);
     }
   }

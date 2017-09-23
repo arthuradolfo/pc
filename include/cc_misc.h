@@ -24,6 +24,9 @@ typedef struct symbolsTable_value {
 int getLineNumber (void);
 void yyerror (char const *mensagem);
 void comp_print_table();
+void concatTokeType(char *key, int token_type);
+void removeQuotes(char *key);
+void setEntryValue(st_value_t* entryValue, char* value);
 st_value_t* putToSymbolsTable(char* key, int line, int token_type);
 void main_init (int argc, char **argv);
 void main_finalize (void);

@@ -33,7 +33,6 @@ Terminais sem uso na gramática
    TK_OC_OR
    TK_OC_SL
    TK_OC_SR
-   TK_LIT_INT
    TK_LIT_FLOAT
    TK_LIT_FALSE
    TK_LIT_TRUE
@@ -43,11 +42,27 @@ Terminais sem uso na gramática
    TOKEN_ERRO
 
 
+Regras inúteis no analisador por causa de conflitos
+
+    6 def_funcs: %empty
+
+
+Estado 0 conflitos: 1 de redução/redução
+
+
 Gramática
 
     0 $accept: programa $end
 
-    1 programa: %empty
+    1 programa: def_new_var
+    2         | def_global_var
+    3         | def_funcs
+
+    4 def_new_var: TK_LIT_INT
+
+    5 def_global_var: %empty
+
+    6 def_funcs: %empty
 
 
 Terminais, com as regras onde eles aparecem
@@ -87,7 +102,7 @@ TK_OC_AND (287)
 TK_OC_OR (288)
 TK_OC_SL (289)
 TK_OC_SR (290)
-TK_LIT_INT (291)
+TK_LIT_INT (291) 4
 TK_LIT_FLOAT (292)
 TK_LIT_FALSE (293)
 TK_LIT_TRUE (294)
@@ -102,26 +117,67 @@ Não terminais com as regras onde eles aparecem
 $accept (44)
     à esquerda: 0
 programa (45)
-    à esquerda: 1, à direita: 0
+    à esquerda: 1 2 3, à direita: 0
+def_new_var (46)
+    à esquerda: 4, à direita: 1
+def_global_var (47)
+    à esquerda: 5, à direita: 2
+def_funcs (48)
+    à esquerda: 6, à direita: 3
 
 
 Estado 0
 
     0 $accept: . programa $end
 
-    $padrão  reduzir usando a regra 1 (programa)
+    TK_LIT_INT  deslocar, e ir ao estado 1
 
-    programa  ir ao estado 1
+    $end      reduzir usando a regra 5 (def_global_var)
+    $end      [reduzir usando a regra 6 (def_funcs)]
+    $padrão  reduzir usando a regra 5 (def_global_var)
+
+    programa        ir ao estado 2
+    def_new_var     ir ao estado 3
+    def_global_var  ir ao estado 4
+    def_funcs       ir ao estado 5
 
 
 Estado 1
 
-    0 $accept: programa . $end
+    4 def_new_var: TK_LIT_INT .
 
-    $end  deslocar, e ir ao estado 2
+    $padrão  reduzir usando a regra 4 (def_new_var)
 
 
 Estado 2
+
+    0 $accept: programa . $end
+
+    $end  deslocar, e ir ao estado 6
+
+
+Estado 3
+
+    1 programa: def_new_var .
+
+    $padrão  reduzir usando a regra 1 (programa)
+
+
+Estado 4
+
+    2 programa: def_global_var .
+
+    $padrão  reduzir usando a regra 2 (programa)
+
+
+Estado 5
+
+    3 programa: def_funcs .
+
+    $padrão  reduzir usando a regra 3 (programa)
+
+
+Estado 6
 
     0 $accept: programa $end .
 

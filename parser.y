@@ -59,6 +59,10 @@
 %%
 /* Regras (e ações) da gramática */
 
-programa:
-
+programa: def_new_var;
+programa: def_global_var;
+programa: def_funcs;
+def_new_var: TK_LIT_INT {printf("oi\n");};
+def_global_var: ;
+def_funcs: ;
 %%
