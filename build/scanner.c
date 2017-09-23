@@ -1,6 +1,6 @@
-#line 2 "/home/suporte/Área de Trabalho/pc/build/scanner.c"
+#line 2 "/home/arthur/Área de Trabalho/pc/build/scanner.c"
 
-#line 4 "/home/suporte/Área de Trabalho/pc/build/scanner.c"
+#line 4 "/home/arthur/Área de Trabalho/pc/build/scanner.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -574,7 +574,7 @@ char *yytext;
 #include "parser.h" //arquivo automaticamente gerado pelo bison
 #include "cc_misc.h" //arquivo com funcoes de auto incremento
 #include "main.h" //arquivo com constantes da main
-#line 578 "/home/suporte/Área de Trabalho/pc/build/scanner.c"
+#line 578 "/home/arthur/Área de Trabalho/pc/build/scanner.c"
 
 #define INITIAL 0
 
@@ -794,7 +794,7 @@ YY_DECL
 	{
 #line 19 "scanner.l"
 
-#line 798 "/home/suporte/Área de Trabalho/pc/build/scanner.c"
+#line 798 "/home/arthur/Área de Trabalho/pc/build/scanner.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -1089,7 +1089,7 @@ YY_RULE_SETUP
 #line 66 "scanner.l"
 ECHO;
 	YY_BREAK
-#line 1093 "/home/suporte/Área de Trabalho/pc/build/scanner.c"
+#line 1093 "/home/arthur/Área de Trabalho/pc/build/scanner.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 

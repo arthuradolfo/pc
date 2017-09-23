@@ -11,7 +11,9 @@ void remove_collisions(comp_dict_item_t * item)
   while (item != NULL) {
     ptaux = item;
     entrada = dict_get(symbolsTable, ptaux->key);
-    free(entrada->value.s);
+    if(entrada->token_type == POA_IDENT || entrada->token_type == POA_LIT_STRING) {
+      free(entrada->value.s);
+    }
     free(ptaux->value);
     item = item->next;
     dict_remove(symbolsTable, ptaux->key);
@@ -48,6 +50,7 @@ st_value_t* putToSymbolsTable(char* key, int line, int token_type)
   int i = 0, string = 0;
   char *token_str = (char *) malloc(sizeof(int));
   char *value;
+  
   while(i < strlen(key)) {
     if(key[i] == '"' || key[i] == '\'') {
       string = 1;
@@ -59,6 +62,7 @@ st_value_t* putToSymbolsTable(char* key, int line, int token_type)
     }
     i++;
   }
+
   value = strdup(key);
   sprintf(token_str, "%d", token_type);
   strcat(key, token_str);
@@ -152,7 +156,9 @@ void clearSymbolsTable()
           remove_collisions(symbolsTable->data[i]->next);
         }
         entrada = dict_get(symbolsTable, symbolsTable->data[i]->key);
-        free(entrada->value.s);
+        if(entrada->token_type == POA_IDENT || entrada->token_type == POA_LIT_STRING) {
+          free(entrada->value.s);
+        }
         free(symbolsTable->data[i]->value);
         dict_remove(symbolsTable, symbolsTable->data[i]->key);
       }

@@ -68,7 +68,7 @@
 #include "main.h"
 #include "cc_misc.h" //arquivo com funcoes de auto incremento
 
-#line 72 "/home/suporte/Área de Trabalho/pc/build/parser.c" /* yacc.c:339  */
+#line 72 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -88,8 +88,8 @@
 
 /* In a future release of Bison, this section will be replaced
    by #include "parser.h".  */
-#ifndef YY_YY_HOME_SUPORTE_REA_DE_TRABALHO_PC_BUILD_PARSER_H_INCLUDED
-# define YY_YY_HOME_SUPORTE_REA_DE_TRABALHO_PC_BUILD_PARSER_H_INCLUDED
+#ifndef YY_YY_HOME_ARTHUR_REA_DE_TRABALHO_PC_BUILD_PARSER_H_INCLUDED
+# define YY_YY_HOME_ARTHUR_REA_DE_TRABALHO_PC_BUILD_PARSER_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -156,7 +156,7 @@ union YYSTYPE
 
 	void *valor_lexico;   /* Pointer to run-time expression operator */
 
-#line 160 "/home/suporte/Área de Trabalho/pc/build/parser.c" /* yacc.c:355  */
+#line 160 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:355  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -169,11 +169,11 @@ extern YYSTYPE yylval;
 
 int yyparse (void);
 
-#endif /* !YY_YY_HOME_SUPORTE_REA_DE_TRABALHO_PC_BUILD_PARSER_H_INCLUDED  */
+#endif /* !YY_YY_HOME_ARTHUR_REA_DE_TRABALHO_PC_BUILD_PARSER_H_INCLUDED  */
 
 /* Copy the second part of user declarations.  */
 
-#line 177 "/home/suporte/Área de Trabalho/pc/build/parser.c" /* yacc.c:358  */
+#line 177 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -1252,7 +1252,7 @@ yyreduce:
   switch (yyn)
     {
       
-#line 1256 "/home/suporte/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1256 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
