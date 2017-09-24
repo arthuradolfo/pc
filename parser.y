@@ -76,14 +76,14 @@ encapsulation : TK_PR_PROTECTED
 encapsulation : TK_PR_PRIVATE
 encapsulation : TK_PR_PUBLIC ;
 
-def_global_var: TK_PR_STATIC type_var TK_IDENTIFICADOR '[' TK_LIT_INT ']' ';';
-def_global_var: TK_PR_STATIC type_var TK_IDENTIFICADOR ';';
-def_global_var: type_var TK_IDENTIFICADOR '[' TK_LIT_INT ']' ';';
-def_global_var: type_var TK_IDENTIFICADOR ';';
+def_global_var: TK_PR_STATIC any_type TK_IDENTIFICADOR '[' TK_LIT_INT ']' ';';
+def_global_var: TK_PR_STATIC any_type TK_IDENTIFICADOR ';';
+def_global_var: any_type TK_IDENTIFICADOR '[' TK_LIT_INT ']' ';';
+def_global_var: any_type TK_IDENTIFICADOR ';';
 
 def_funcs: header body;
-header: TK_PR_STATIC type_var TK_IDENTIFICADOR '(' parameters ')'
-header: type_var TK_IDENTIFICADOR '(' parameters ')'
+header: TK_PR_STATIC any_type TK_IDENTIFICADOR '(' parameters ')'
+header: any_type TK_IDENTIFICADOR '(' parameters ')'
 body: '{' command_sequence '}'
 
 command_sequence: %empty
@@ -97,18 +97,16 @@ simple_command: func_call ';'
 simple_command: shift_command ';'
 simple_command: action_command
 
-def_local_var: TK_PR_STATIC TK_PR_CONST type_var_user TK_IDENTIFICADOR
-def_local_var: TK_PR_STATIC TK_PR_CONST type_var_local TK_IDENTIFICADOR
-def_local_var: TK_PR_STATIC TK_PR_CONST type_var_local TK_IDENTIFICADOR innitialize
-def_local_var: TK_PR_CONST type_var_user TK_IDENTIFICADOR ';'
-def_local_var: TK_PR_CONST type_var_local TK_IDENTIFICADOR
-def_local_var: TK_PR_CONST type_var_local TK_IDENTIFICADOR innitialize
-def_local_var: TK_PR_STATIC type_var_user TK_IDENTIFICADOR
-def_local_var: TK_PR_STATIC type_var_local TK_IDENTIFICADOR
-def_local_var: TK_PR_STATIC type_var_local TK_IDENTIFICADOR innitialize
-def_local_var: type_var_user TK_IDENTIFICADOR
-def_local_var: type_var_local TK_IDENTIFICADOR
-def_local_var: type_var_local TK_IDENTIFICADOR innitialize
+def_local_var: optional_static optional_const def_local_var_tail
+def_local_var_tail: user_type TK_IDENTIFICADOR
+def_local_var_tail: any_type TK_IDENTIFICADOR optional_init
+
+optional_static: %empty
+optional_static: TK_PR_STATIC
+optional_const: %empty
+optional_const: TK_PR_CONST
+optional_init: %empty
+optional_init: TK_OC_LE expression
 
 atribuition_command: TK_IDENTIFICADOR '=' expression
 atribuition_command: TK_IDENTIFICADOR '[' expression ']' '=' expression
@@ -132,8 +130,6 @@ expression_sequence: %empty
 expression_sequence: ',' expression_sequence
 expression_sequence: expression expression_sequence
 
-innitialize: TK_OC_LE expression
-
 expression: TK_LIT_INT
 expression: TK_LIT_FLOAT
 expression: TK_LIT_CHAR
@@ -146,18 +142,12 @@ array_expression: '[' expression ']'
 array_expression: %empty
 
 parameters: %empty
-parameters: TK_PR_CONST type_var TK_IDENTIFICADOR parameters
-parameters: type_var TK_IDENTIFICADOR parameters
+parameters: TK_PR_CONST any_type TK_IDENTIFICADOR parameters
+parameters: any_type TK_IDENTIFICADOR parameters
 parameters: ',' parameters
 
-type_var_local: TK_PR_INT
-type_var_local: TK_PR_FLOAT
-type_var_local: TK_PR_BOOL
-type_var_local: TK_PR_CHAR
-type_var_local: TK_PR_STRING
-
-type_var: primitive_type
-type_var: type_var_user
+any_type: primitive_type
+any_type: user_type
 
 primitive_type: TK_PR_INT
 primitive_type: TK_PR_FLOAT
@@ -165,5 +155,5 @@ primitive_type: TK_PR_BOOL
 primitive_type: TK_PR_CHAR
 primitive_type: TK_PR_STRING
 
-type_var_user: TK_IDENTIFICADOR
+user_type: TK_IDENTIFICADOR
 %%
