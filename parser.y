@@ -60,11 +60,21 @@
 /* Regras (e ações) da gramática */
 
 programa: %empty;
-programa: def_new_type programa;
+programa: def_type programa;
 programa: def_global_var programa;
 programa: def_funcs programa;
 
-def_new_type: TK_LIT_INT TK_LIT_FALSE ';';
+def_type : TK_PR_CLASS TK_IDENTIFICADOR '[' type_fields ']' ';' ;
+type_fields : %empty
+type_fields : type_field more_fields
+more_fields: %empty
+more_fields: one_more_field more_fields
+one_more_field : ':' type_field
+type_field : encapsulation primitive_type TK_IDENTIFICADOR
+
+encapsulation : TK_PR_PROTECTED
+encapsulation : TK_PR_PRIVATE
+encapsulation : TK_PR_PUBLIC ;
 
 def_global_var: TK_PR_STATIC type_var TK_IDENTIFICADOR '[' TK_LIT_INT ']' ';';
 def_global_var: TK_PR_STATIC type_var TK_IDENTIFICADOR ';';
@@ -146,12 +156,14 @@ type_var_local: TK_PR_BOOL
 type_var_local: TK_PR_CHAR
 type_var_local: TK_PR_STRING
 
-type_var: TK_PR_INT
-type_var: TK_PR_FLOAT
-type_var: TK_PR_BOOL
-type_var: TK_PR_CHAR
-type_var: TK_PR_STRING
+type_var: primitive_type
 type_var: type_var_user
+
+primitive_type: TK_PR_INT
+primitive_type: TK_PR_FLOAT
+primitive_type: TK_PR_BOOL
+primitive_type: TK_PR_CHAR
+primitive_type: TK_PR_STRING
 
 type_var_user: TK_IDENTIFICADOR
 %%
