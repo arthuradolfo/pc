@@ -89,17 +89,19 @@ body: '{' command_sequence '}'
 command_sequence: %empty
 command_sequence: simple_command command_sequence
 
+simple_command: TK_IDENTIFICADOR command_proceeding_identifier ';'
 simple_command: def_local_var ';'
-simple_command: atribuition_command ';'
 simple_command: input_command ';'
 simple_command: output_command ';'
-simple_command: func_call ';'
-simple_command: shift_command ';'
 simple_command: action_command
 
+command_proceeding_identifier: attribution_command
+command_proceeding_identifier: func_call
+command_proceeding_identifier: shift_command
+
 def_local_var: optional_static optional_const def_local_var_tail
-def_local_var_tail: user_type TK_IDENTIFICADOR
-def_local_var_tail: any_type TK_IDENTIFICADOR optional_init
+def_local_var_tail: TK_IDENTIFICADOR TK_IDENTIFICADOR
+def_local_var_tail: primitive_type TK_IDENTIFICADOR optional_init
 
 optional_static: %empty
 optional_static: TK_PR_STATIC
@@ -108,18 +110,18 @@ optional_const: TK_PR_CONST
 optional_init: %empty
 optional_init: TK_OC_LE expression
 
-atribuition_command: TK_IDENTIFICADOR '=' expression
-atribuition_command: TK_IDENTIFICADOR '[' expression ']' '=' expression
-atribuition_command: TK_IDENTIFICADOR '$' TK_IDENTIFICADOR '=' expression
+attribution_command: '=' expression
+attribution_command: '[' expression ']' '=' expression
+attribution_command: '$' TK_IDENTIFICADOR '=' expression
 
 input_command: TK_PR_INPUT expression
 
 output_command: TK_PR_OUTPUT expression expression_sequence
 
-func_call: TK_IDENTIFICADOR '(' expression_sequence ')'
+func_call: '(' expression_sequence ')'
 
-shift_command: TK_IDENTIFICADOR TK_OC_SL TK_LIT_INT
-shift_command: TK_IDENTIFICADOR TK_OC_SR TK_LIT_INT
+shift_command: TK_OC_SL TK_LIT_INT
+shift_command: TK_OC_SR TK_LIT_INT
 
 action_command: TK_PR_RETURN expression ';'
 action_command: TK_PR_CONTINUE ';'
@@ -147,7 +149,7 @@ parameters: any_type TK_IDENTIFICADOR parameters
 parameters: ',' parameters
 
 any_type: primitive_type
-any_type: user_type
+any_type: TK_IDENTIFICADOR
 
 primitive_type: TK_PR_INT
 primitive_type: TK_PR_FLOAT
@@ -155,5 +157,4 @@ primitive_type: TK_PR_BOOL
 primitive_type: TK_PR_CHAR
 primitive_type: TK_PR_STRING
 
-user_type: TK_IDENTIFICADOR
 %%
