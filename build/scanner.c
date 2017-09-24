@@ -1077,7 +1077,7 @@ comp_set_line_number(yytext);
 case 45:
 YY_RULE_SETUP
 #line 64 "scanner.l"
-//nao faz nada com espacos
+//nao faz nada
 	YY_BREAK
 case 46:
 YY_RULE_SETUP

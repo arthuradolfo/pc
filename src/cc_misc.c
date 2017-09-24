@@ -6,10 +6,13 @@
   */
 int lineNumber;
 
+
 /**
   * @var comp_dict_t symbolsTable Gerencia a tabela de simbolos
   */
 comp_dict_t* symbolsTable;
+
+comp_dict_t* pointersToFreeTable;
 
 /**
   * Da free em ponteiros das entradas da tabela de simbolos que estao no ponteiro next (quando a colisao de entradas)
@@ -31,6 +34,16 @@ void remove_collisions(comp_dict_item_t * item)
   }
 }
 
+void remove_collisions2(comp_dict_item_t * item)
+{
+  comp_dict_item_t* ptaux;
+  st_value_t* entrada;
+  while (item != NULL) {
+    ptaux = item;
+    item = item->next;
+    dict_remove(pointersToFreeTable, ptaux->key);
+  }
+}
 
 /**
   * Confere os \n no token e soma no lineNumber
@@ -58,7 +71,7 @@ int comp_get_line_number (void)
 
 void yyerror (char const *mensagem)
 {
-  fprintf (stderr, "%s\n", mensagem); //altere para que apareça a linha
+  fprintf (stderr, "%s in line %d\n", mensagem, lineNumber); //altere para que apareça a linha
 }
 
 
@@ -136,8 +149,8 @@ void removeQuotes(char *key) {
   * @param char* key
   * @param int token_type
   */
-void concatTokeType(char *key, int token_type) {
-  char *token_str = (char *) malloc(sizeof(int));
+void concatTokenType(char *key, int token_type) {
+  char *token_str = (char *) malloc(sizeof(char)*2);
   sprintf(token_str, "%d", token_type);
   strcat(key, token_str);
   free(token_str);
@@ -153,29 +166,46 @@ void concatTokeType(char *key, int token_type) {
 st_value_t* putToSymbolsTable(char* key, int line, int token_type)
 {
   if (!symbolsTable) return;	
-  
+
+
   char *value;
-  
+  char *key_aux = (char *) malloc((strlen(key)+2)*sizeof(char));
   removeQuotes(key);
+
+  strcpy(key_aux, key);
 
   value = strdup(key);
 
-  concatTokeType(key, token_type);
+  concatTokenType(key_aux, token_type);
 
   st_value_t* entryValue = (st_value_t *) malloc(sizeof(st_value_t));
+  
   entryValue->line = line;
   entryValue->token_type = token_type;
   
   setEntryValue(entryValue, value);
   
-  st_value_t* getEntry = dict_get(symbolsTable, key);
+  st_value_t* getEntryPointerToFree = dict_get(pointersToFreeTable, key);
+  if(getEntryPointerToFree) {
+    getEntryPointerToFree->line = line;
+  }
+  else {
+    dict_put(pointersToFreeTable, key, entryValue);
+  }
+
+  st_value_t* getEntry = dict_get(symbolsTable, key_aux);
   if(getEntry) {
+    free(key_aux);
+    if(token_type == POA_IDENT || token_type == POA_LIT_STRING) {
+      free(entryValue->value.s);
+    }
     free(entryValue);
     getEntry->line = line;
     return getEntry;
   }
   else {
-    dict_put(symbolsTable, key, entryValue);
+    dict_put(symbolsTable, key_aux, entryValue);
+    free(key_aux);
     return entryValue;
   }
 }
@@ -242,6 +272,30 @@ void clearSymbolsTable()
     //printf("symbolsTable freed\n");
 }
 
+/**
+  * Libera os espacos de memoria ocupados pelos ponteiros da tabela de ponteiros a serem liberados
+  */
+void clearPointerToFreeTable()
+{
+    //remover todas as entradas da tabela antes de libera-la
+    //printf("\nclearSymbolsTable: \n");
+    st_value_t* entrada;
+    if (!pointersToFreeTable) return;
+
+    int i, l;
+    for (i = 0, l = pointersToFreeTable->size; i < l; i++) {
+      if (pointersToFreeTable->data[i]) {
+        if(pointersToFreeTable->data[i]->next) {
+          remove_collisions2(pointersToFreeTable->data[i]->next);
+        }
+        dict_remove(pointersToFreeTable, pointersToFreeTable->data[i]->key);
+      }
+    }
+    dict_free(pointersToFreeTable);
+
+    //printf("symbolsTable freed\n");
+}
+
 void putSomeEntries()
 {
   //printf("\nputSomeEntries: \n");
@@ -267,8 +321,8 @@ void main_init (int argc, char **argv)
 {
   //implemente esta função com rotinas de inicialização, se necessário
   lineNumber = 1;
+  pointersToFreeTable = dict_new();
   symbolsTable = dict_new();
-
   //putToSymbolsTable("Bolo", 87);
 }
 
@@ -278,6 +332,8 @@ void main_finalize (void)
 
   comp_print_table();
   clearSymbolsTable();
+
+  clearPointerToFreeTable();
 }
 
 void comp_print_table (void)

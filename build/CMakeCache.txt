@@ -168,10 +168,10 @@ CMAKE_STRIP:FILEPATH=/usr/bin/strip
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
 //The Etapa 1 compilation
-ETAPA_1:BOOL=OFF
+ETAPA_1:BOOL=ON
 
 //The Etapa 2 compilation
-ETAPA_2:BOOL=ON
+ETAPA_2:BOOL=OFF
 
 //The Etapa 3 compilation
 ETAPA_3:BOOL=OFF

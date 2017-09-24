@@ -61,6 +61,6 @@ FLT  {INT}\.{DGT}+
 {LTR}({LTR}|{DGT})*           yylval.valor_lexico = putToSymbolsTable(yytext, comp_get_line_number(), POA_IDENT); return TK_IDENTIFICADOR;
 {BCM}(.*)		  			          //nao faz nada
 "/*"((.|\n)*)"*/"		  	      comp_set_line_number(yytext);
-[ \t]+        				        //nao faz nada com espacos
+[ \t]+        				        //nao faz nada
 .                             return TOKEN_ERRO;
 %%

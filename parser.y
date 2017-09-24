@@ -59,10 +59,11 @@
 %%
 /* Regras (e ações) da gramática */
 
-programa: def_new_var;
-programa: def_global_var;
-programa: def_funcs;
-def_new_var: TK_LIT_INT {printf("oi\n");};
-def_global_var: ;
-def_funcs: ;
+programa: %empty;
+programa: programa def_new_type;
+programa: programa def_global_var;
+programa: programa def_funcs;
+def_new_type: TK_LIT_INT TK_LIT_FALSE {printf("Int!\n");};
+def_global_var: TK_LIT_FALSE {printf("False!\n");};
+def_funcs: TK_LIT_TRUE {printf("True!\n");};
 %%

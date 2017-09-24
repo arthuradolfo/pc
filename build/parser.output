@@ -34,35 +34,26 @@ Terminais sem uso na gramática
    TK_OC_SL
    TK_OC_SR
    TK_LIT_FLOAT
-   TK_LIT_FALSE
-   TK_LIT_TRUE
    TK_LIT_CHAR
    TK_LIT_STRING
    TK_IDENTIFICADOR
    TOKEN_ERRO
 
 
-Regras inúteis no analisador por causa de conflitos
-
-    6 def_funcs: %empty
-
-
-Estado 0 conflitos: 1 de redução/redução
-
-
 Gramática
 
     0 $accept: programa $end
 
-    1 programa: def_new_var
-    2         | def_global_var
-    3         | def_funcs
+    1 programa: %empty
+    2         | programa def_new_type
+    3         | programa def_global_var
+    4         | programa def_funcs
 
-    4 def_new_var: TK_LIT_INT
+    5 def_new_type: TK_LIT_INT TK_LIT_FALSE
 
-    5 def_global_var: %empty
+    6 def_global_var: TK_LIT_FALSE
 
-    6 def_funcs: %empty
+    7 def_funcs: TK_LIT_TRUE
 
 
 Terminais, com as regras onde eles aparecem
@@ -102,10 +93,10 @@ TK_OC_AND (287)
 TK_OC_OR (288)
 TK_OC_SL (289)
 TK_OC_SR (290)
-TK_LIT_INT (291) 4
+TK_LIT_INT (291) 5
 TK_LIT_FLOAT (292)
-TK_LIT_FALSE (293)
-TK_LIT_TRUE (294)
+TK_LIT_FALSE (293) 5 6
+TK_LIT_TRUE (294) 7
 TK_LIT_CHAR (295)
 TK_LIT_STRING (296)
 TK_IDENTIFICADOR (297)
@@ -117,68 +108,92 @@ Não terminais com as regras onde eles aparecem
 $accept (44)
     à esquerda: 0
 programa (45)
-    à esquerda: 1 2 3, à direita: 0
-def_new_var (46)
-    à esquerda: 4, à direita: 1
-def_global_var (47)
+    à esquerda: 1 2 3 4, à direita: 0 2 3 4
+def_new_type (46)
     à esquerda: 5, à direita: 2
-def_funcs (48)
+def_global_var (47)
     à esquerda: 6, à direita: 3
+def_funcs (48)
+    à esquerda: 7, à direita: 4
 
 
 Estado 0
 
     0 $accept: . programa $end
 
-    TK_LIT_INT  deslocar, e ir ao estado 1
+    $padrão  reduzir usando a regra 1 (programa)
 
-    $end      reduzir usando a regra 5 (def_global_var)
-    $end      [reduzir usando a regra 6 (def_funcs)]
-    $padrão  reduzir usando a regra 5 (def_global_var)
-
-    programa        ir ao estado 2
-    def_new_var     ir ao estado 3
-    def_global_var  ir ao estado 4
-    def_funcs       ir ao estado 5
+    programa  ir ao estado 1
 
 
 Estado 1
 
-    4 def_new_var: TK_LIT_INT .
+    0 $accept: programa . $end
+    2 programa: programa . def_new_type
+    3         | programa . def_global_var
+    4         | programa . def_funcs
 
-    $padrão  reduzir usando a regra 4 (def_new_var)
+    $end          deslocar, e ir ao estado 2
+    TK_LIT_INT    deslocar, e ir ao estado 3
+    TK_LIT_FALSE  deslocar, e ir ao estado 4
+    TK_LIT_TRUE   deslocar, e ir ao estado 5
+
+    def_new_type    ir ao estado 6
+    def_global_var  ir ao estado 7
+    def_funcs       ir ao estado 8
 
 
 Estado 2
 
-    0 $accept: programa . $end
+    0 $accept: programa $end .
 
-    $end  deslocar, e ir ao estado 6
+    $padrão  aceitar
 
 
 Estado 3
 
-    1 programa: def_new_var .
+    5 def_new_type: TK_LIT_INT . TK_LIT_FALSE
 
-    $padrão  reduzir usando a regra 1 (programa)
+    TK_LIT_FALSE  deslocar, e ir ao estado 9
 
 
 Estado 4
 
-    2 programa: def_global_var .
+    6 def_global_var: TK_LIT_FALSE .
 
-    $padrão  reduzir usando a regra 2 (programa)
+    $padrão  reduzir usando a regra 6 (def_global_var)
 
 
 Estado 5
 
-    3 programa: def_funcs .
+    7 def_funcs: TK_LIT_TRUE .
 
-    $padrão  reduzir usando a regra 3 (programa)
+    $padrão  reduzir usando a regra 7 (def_funcs)
 
 
 Estado 6
 
-    0 $accept: programa $end .
+    2 programa: programa def_new_type .
 
-    $padrão  aceitar
+    $padrão  reduzir usando a regra 2 (programa)
+
+
+Estado 7
+
+    3 programa: programa def_global_var .
+
+    $padrão  reduzir usando a regra 3 (programa)
+
+
+Estado 8
+
+    4 programa: programa def_funcs .
+
+    $padrão  reduzir usando a regra 4 (programa)
+
+
+Estado 9
+
+    5 def_new_type: TK_LIT_INT TK_LIT_FALSE .
+
+    $padrão  reduzir usando a regra 5 (def_new_type)

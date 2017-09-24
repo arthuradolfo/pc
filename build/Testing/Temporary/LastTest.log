@@ -1,0 +1,4784 @@
+Start testing: Sep 24 12:14 BRT
+----------------------------------------------------------
+185/559 Testing: e2_avaliacao_certa_01
+185/559 Test: e2_avaliacao_certa_01
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_01.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_certa_01" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_01'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_01:2] ./main ./tests/e2/input/certa01.txt
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_01.tesh:2> mismatch:
++ 2 TK_PR_FLOAT [float]
++ 2 TK_IDENTIFICADOR [v1]
++ 2 TK_ESPECIAL [;]
++ 3 TK_PR_INT [int]
++ 3 TK_IDENTIFICADOR [v1]
++ 3 TK_ESPECIAL [;]
++ 4 TK_PR_CHAR [char]
++ 4 TK_IDENTIFICADOR [v1]
++ 4 TK_ESPECIAL [;]
++ 5 TK_PR_BOOL [bool]
++ 5 TK_IDENTIFICADOR [v1]
++ 5 TK_ESPECIAL [;]
++ 6 TK_PR_STRING [string]
++ 6 TK_IDENTIFICADOR [v1]
++ 6 TK_ESPECIAL [;]
++ 6 [v16] 6
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_01.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_01.tesh:2> output mismatch)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_certa_01" end time: Sep 24 12:14 BRT
+"e2_avaliacao_certa_01" time elapsed: 00:00:00
+----------------------------------------------------------
+
+186/559 Testing: e2_avaliacao_certa_02
+186/559 Test: e2_avaliacao_certa_02
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_02.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_certa_02" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_02'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_02:2] ./main ./tests/e2/input/certa02.txt
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_02.tesh:2> mismatch:
++ 2 TK_PR_FLOAT [float]
++ 2 TK_IDENTIFICADOR [v1]
++ 2 TK_ESPECIAL [[]
++ 2 TK_LIT_INT [2]
++ 2 TK_ESPECIAL []]
++ 2 TK_ESPECIAL [;]
++ 3 TK_PR_INT [int]
++ 3 TK_IDENTIFICADOR [v1]
++ 3 TK_ESPECIAL [[]
++ 3 TK_LIT_INT [3]
++ 3 TK_ESPECIAL []]
++ 3 TK_ESPECIAL [;]
++ 4 TK_PR_CHAR [char]
++ 4 TK_IDENTIFICADOR [v1]
++ 4 TK_ESPECIAL [[]
++ 4 TK_LIT_INT [4]
++ 4 TK_ESPECIAL []]
++ 4 TK_ESPECIAL [;]
++ 5 TK_PR_BOOL [bool]
++ 5 TK_IDENTIFICADOR [v1]
++ 5 TK_ESPECIAL [[]
++ 5 TK_LIT_INT [5]
++ 5 TK_ESPECIAL []]
++ 5 TK_ESPECIAL [;]
++ 6 TK_PR_STRING [string]
++ 6 TK_IDENTIFICADOR [v1]
++ 6 TK_ESPECIAL [[]
++ 6 TK_LIT_INT [6]
++ 6 TK_ESPECIAL []]
++ 6 TK_ESPECIAL [;]
++ 6 [v16] 6
++ 2 [21] 1
++ 5 [51] 1
++ 4 [41] 1
++ 6 [61] 1
++ 3 [31] 1
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_02.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_02.tesh:2> output mismatch)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_certa_02" end time: Sep 24 12:14 BRT
+"e2_avaliacao_certa_02" time elapsed: 00:00:00
+----------------------------------------------------------
+
+187/559 Testing: e2_avaliacao_certa_03
+187/559 Test: e2_avaliacao_certa_03
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_03.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_certa_03" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_03'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_03:2] ./main ./tests/e2/input/certa03.txt
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_03.tesh:2> mismatch:
++ 2 TK_PR_FLOAT [float]
++ 2 TK_IDENTIFICADOR [f1]
++ 2 TK_ESPECIAL [(]
++ 2 TK_ESPECIAL [)]
++ 2 TK_ESPECIAL [{]
++ 2 TK_ESPECIAL [}]
++ 3 TK_PR_INT [int]
++ 3 TK_IDENTIFICADOR [f2]
++ 3 TK_ESPECIAL [(]
++ 3 TK_ESPECIAL [)]
++ 3 TK_ESPECIAL [{]
++ 3 TK_ESPECIAL [}]
++ 4 TK_PR_CHAR [char]
++ 4 TK_IDENTIFICADOR [f3]
++ 4 TK_ESPECIAL [(]
++ 4 TK_ESPECIAL [)]
++ 4 TK_ESPECIAL [{]
++ 4 TK_ESPECIAL [}]
++ 5 TK_PR_BOOL [bool]
++ 5 TK_IDENTIFICADOR [f4]
++ 5 TK_ESPECIAL [(]
++ 5 TK_ESPECIAL [)]
++ 5 TK_ESPECIAL [{]
++ 5 TK_ESPECIAL [}]
++ 6 TK_PR_STRING [string]
++ 6 TK_IDENTIFICADOR [f5]
++ 6 TK_ESPECIAL [(]
++ 6 TK_ESPECIAL [)]
++ 6 TK_ESPECIAL [{]
++ 6 TK_ESPECIAL [}]
++ 8 TK_PR_FLOAT [float]
++ 8 TK_IDENTIFICADOR [f1]
++ 8 TK_ESPECIAL [(]
++ 8 TK_PR_FLOAT [float]
++ 8 TK_IDENTIFICADOR [v1]
++ 8 TK_ESPECIAL [,]
++ 8 TK_PR_INT [int]
++ 8 TK_IDENTIFICADOR [v2]
++ 8 TK_ESPECIAL [,]
++ 8 TK_PR_CHAR [char]
++ 8 TK_IDENTIFICADOR [v3]
++ 8 TK_ESPECIAL [,]
++ 8 TK_PR_BOOL [bool]
++ 8 TK_IDENTIFICADOR [v4]
++ 8 TK_ESPECIAL [,]
++ 8 TK_PR_STRING [string]
++ 8 TK_IDENTIFICADOR [v5]
++ 8 TK_ESPECIAL [)]
++ 8 TK_ESPECIAL [{]
++ 8 TK_ESPECIAL [}]
++ 9 TK_PR_INT [int]
++ 9 TK_IDENTIFICADOR [f2]
++ 9 TK_ESPECIAL [(]
++ 9 TK_PR_FLOAT [float]
++ 9 TK_IDENTIFICADOR [v1]
++ 9 TK_ESPECIAL [,]
++ 9 TK_PR_INT [int]
++ 9 TK_IDENTIFICADOR [v2]
++ 9 TK_ESPECIAL [,]
++ 9 TK_PR_CHAR [char]
++ 9 TK_IDENTIFICADOR [v3]
++ 9 TK_ESPECIAL [,]
++ 9 TK_PR_BOOL [bool]
++ 9 TK_IDENTIFICADOR [v4]
++ 9 TK_ESPECIAL [,]
++ 9 TK_PR_STRING [string]
++ 9 TK_IDENTIFICADOR [v5]
++ 9 TK_ESPECIAL [)]
++ 9 TK_ESPECIAL [{]
++ 9 TK_ESPECIAL [}]
++ 10 TK_PR_CHAR [char]
++ 10 TK_IDENTIFICADOR [f3]
++ 10 TK_ESPECIAL [(]
++ 10 TK_PR_FLOAT [float]
++ 10 TK_IDENTIFICADOR [v1]
++ 10 TK_ESPECIAL [,]
++ 10 TK_PR_INT [int]
++ 10 TK_IDENTIFICADOR [v2]
++ 10 TK_ESPECIAL [,]
++ 10 TK_PR_CHAR [char]
++ 10 TK_IDENTIFICADOR [v3]
++ 10 TK_ESPECIAL [,]
++ 10 TK_PR_BOOL [bool]
++ 10 TK_IDENTIFICADOR [v4]
++ 10 TK_ESPECIAL [,]
++ 10 TK_PR_STRING [string]
++ 10 TK_IDENTIFICADOR [v5]
++ 10 TK_ESPECIAL [)]
++ 10 TK_ESPECIAL [{]
++ 10 TK_ESPECIAL [}]
++ 11 TK_PR_BOOL [bool]
++ 11 TK_IDENTIFICADOR [f4]
++ 11 TK_ESPECIAL [(]
++ 11 TK_PR_FLOAT [float]
++ 11 TK_IDENTIFICADOR [v1]
++ 11 TK_ESPECIAL [,]
++ 11 TK_PR_INT [int]
++ 11 TK_IDENTIFICADOR [v2]
++ 11 TK_ESPECIAL [,]
++ 11 TK_PR_CHAR [char]
++ 11 TK_IDENTIFICADOR [v3]
++ 11 TK_ESPECIAL [,]
++ 11 TK_PR_BOOL [bool]
++ 11 TK_IDENTIFICADOR [v4]
++ 11 TK_ESPECIAL [,]
++ 11 TK_PR_STRING [string]
++ 11 TK_IDENTIFICADOR [v5]
++ 11 TK_ESPECIAL [)]
++ 11 TK_ESPECIAL [{]
++ 11 TK_ESPECIAL [}]
++ 12 TK_PR_STRING [string]
++ 12 TK_IDENTIFICADOR [f5]
++ 12 TK_ESPECIAL [(]
++ 12 TK_PR_FLOAT [float]
++ 12 TK_IDENTIFICADOR [v1]
++ 12 TK_ESPECIAL [,]
++ 12 TK_PR_INT [int]
++ 12 TK_IDENTIFICADOR [v2]
++ 12 TK_ESPECIAL [,]
++ 12 TK_PR_CHAR [char]
++ 12 TK_IDENTIFICADOR [v3]
++ 12 TK_ESPECIAL [,]
++ 12 TK_PR_BOOL [bool]
++ 12 TK_IDENTIFICADOR [v4]
++ 12 TK_ESPECIAL [,]
++ 12 TK_PR_STRING [string]
++ 12 TK_IDENTIFICADOR [v5]
++ 12 TK_ESPECIAL [)]
++ 12 TK_ESPECIAL [{]
++ 12 TK_ESPECIAL [}]
++ 11 [f46] 6
++ 12 [v16] 6
++ 12 [v56] 6
++ 12 [v26] 6
++ 10 [f36] 6
++ 9 [f26] 6
++ 8 [f16] 6
++ 12 [v36] 6
++ 12 [f56] 6
++ 12 [v46] 6
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_03.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_03.tesh:2> output mismatch)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_certa_03" end time: Sep 24 12:14 BRT
+"e2_avaliacao_certa_03" time elapsed: 00:00:00
+----------------------------------------------------------
+
+188/559 Testing: e2_avaliacao_certa_04
+188/559 Test: e2_avaliacao_certa_04
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_04.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_certa_04" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_04'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_04:2] ./main ./tests/e2/input/certa04.txt
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_04.tesh:2> mismatch:
++ 2 TK_PR_INT [int]
++ 2 TK_IDENTIFICADOR [f1]
++ 2 TK_ESPECIAL [(]
++ 2 TK_ESPECIAL [)]
++ 3 TK_ESPECIAL [{]
++ 4 TK_PR_FLOAT [float]
++ 4 TK_IDENTIFICADOR [v1]
++ 4 TK_ESPECIAL [;]
++ 5 TK_PR_INT [int]
++ 5 TK_IDENTIFICADOR [v2]
++ 5 TK_ESPECIAL [;]
++ 6 TK_PR_CHAR [char]
++ 6 TK_IDENTIFICADOR [v3]
++ 6 TK_ESPECIAL [;]
++ 7 TK_PR_BOOL [bool]
++ 7 TK_IDENTIFICADOR [v4]
++ 7 TK_ESPECIAL [;]
++ 8 TK_PR_STRING [string]
++ 8 TK_IDENTIFICADOR [v5]
++ 8 TK_ESPECIAL [;]
++ 9 TK_ESPECIAL [}]
++ 4 [v16] 6
++ 8 [v56] 6
++ 5 [v26] 6
++ 2 [f16] 6
++ 6 [v36] 6
++ 7 [v46] 6
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_04.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_04.tesh:2> output mismatch)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_certa_04" end time: Sep 24 12:14 BRT
+"e2_avaliacao_certa_04" time elapsed: 00:00:00
+----------------------------------------------------------
+
+189/559 Testing: e2_avaliacao_certa_05
+189/559 Test: e2_avaliacao_certa_05
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_05.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_certa_05" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_05'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_05:2] ./main ./tests/e2/input/certa05.txt
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_05.tesh:2> mismatch:
++ 2 TK_PR_FLOAT [float]
++ 2 TK_IDENTIFICADOR [b]
++ 2 TK_ESPECIAL [;]
++ 3 TK_PR_STRING [string]
++ 3 TK_IDENTIFICADOR [c]
++ 3 TK_ESPECIAL [;]
++ 4 TK_PR_INT [int]
++ 4 TK_IDENTIFICADOR [f1]
++ 4 TK_ESPECIAL [(]
++ 4 TK_ESPECIAL [)]
++ 5 TK_ESPECIAL [{]
++ 6 TK_PR_INT [int]
++ 6 TK_IDENTIFICADOR [a]
++ 6 TK_ESPECIAL [;]
++ 8 TK_IDENTIFICADOR [a]
++ 8 TK_ESPECIAL [=]
++ 8 TK_LIT_INT [5]
++ 8 TK_ESPECIAL [;]
++ 9 TK_IDENTIFICADOR [b]
++ 9 TK_ESPECIAL [=]
++ 9 TK_LIT_INT [0]
++ 9 TK_ESPECIAL [;]
++ 10 TK_IDENTIFICADOR [c]
++ 10 TK_ESPECIAL [=]
++ 10 TK_IDENTIFICADOR [a]
++ 10 TK_ESPECIAL [+]
++ 10 TK_IDENTIFICADOR [b]
++ 10 TK_ESPECIAL [*]
++ 10 TK_LIT_INT [0]
++ 10 TK_ESPECIAL [;]
++ 11 TK_ESPECIAL [}]
++ 10 [a6] 6
++ 10 [01] 1
++ 8 [51] 1
++ 10 [b6] 6
++ 4 [f16] 6
++ 10 [c6] 6
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_05.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_05.tesh:2> output mismatch)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_certa_05" end time: Sep 24 12:14 BRT
+"e2_avaliacao_certa_05" time elapsed: 00:00:00
+----------------------------------------------------------
+
+190/559 Testing: e2_avaliacao_certa_06
+190/559 Test: e2_avaliacao_certa_06
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_06.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_certa_06" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_06'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_06:2] ./main ./tests/e2/input/certa06.txt
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_06.tesh:2> mismatch:
++ 2 TK_PR_INT [int]
++ 2 TK_IDENTIFICADOR [f1]
++ 2 TK_ESPECIAL [(]
++ 2 TK_ESPECIAL [)]
++ 3 TK_ESPECIAL [{]
++ 4 TK_IDENTIFICADOR [a]
++ 4 TK_ESPECIAL [=]
++ 4 TK_IDENTIFICADOR [f1]
++ 4 TK_ESPECIAL [(]
++ 4 TK_ESPECIAL [)]
++ 4 TK_ESPECIAL [;]
++ 5 TK_IDENTIFICADOR [b]
++ 5 TK_ESPECIAL [=]
++ 5 TK_LIT_FLOAT [2.4]
++ 5 TK_ESPECIAL [;]
++ 6 TK_IDENTIFICADOR [c]
++ 6 TK_ESPECIAL [=]
++ 6 TK_LIT_STRING [teste]
++ 6 TK_ESPECIAL [;]
++ 7 TK_IDENTIFICADOR [k]
++ 7 TK_ESPECIAL [=]
++ 7 TK_LIT_CHAR [l]
++ 7 TK_ESPECIAL [;]
++ 8 TK_IDENTIFICADOR [t]
++ 8 TK_ESPECIAL [[]
++ 8 TK_LIT_INT [10]
++ 8 TK_ESPECIAL []]
++ 8 TK_ESPECIAL [=]
++ 8 TK_LIT_CHAR [k]
++ 8 TK_ESPECIAL [;]
++ 10 TK_IDENTIFICADOR [a]
++ 10 TK_ESPECIAL [[]
++ 10 TK_LIT_INT [30]
++ 10 TK_ESPECIAL []]
++ 10 TK_ESPECIAL [=]
++ 10 TK_LIT_INT [10]
++ 10 TK_ESPECIAL [;]
++ 11 TK_IDENTIFICADOR [b]
++ 11 TK_ESPECIAL [[]
++ 11 TK_IDENTIFICADOR [a]
++ 11 TK_ESPECIAL [+]
++ 11 TK_IDENTIFICADOR [b]
++ 11 TK_ESPECIAL []]
++ 11 TK_ESPECIAL [=]
++ 11 TK_LIT_INT [2]
++ 11 TK_ESPECIAL [;]
++ 12 TK_IDENTIFICADOR [c]
++ 12 TK_ESPECIAL [[]
++ 12 TK_LIT_INT [5]
++ 12 TK_ESPECIAL []]
++ 12 TK_ESPECIAL [=]
++ 12 TK_IDENTIFICADOR [a]
++ 12 TK_ESPECIAL [[]
++ 12 TK_LIT_INT [2]
++ 12 TK_ESPECIAL [*]
++ 12 TK_IDENTIFICADOR [c]
++ 12 TK_ESPECIAL [+]
++ 12 TK_IDENTIFICADOR [k]
++ 12 TK_ESPECIAL []]
++ 12 TK_ESPECIAL [;]
++ 13 TK_ESPECIAL [}]
++ 12 [21] 1
++ 12 [a6] 6
++ 12 [51] 1
++ 8 [t6] 6
++ 11 [b6] 6
++ 4 [f16] 6
++ 7 [l3] 3
++ 12 [c6] 6
++ 6 [teste4] 4
++ 8 [k3] 3
++ 5 [2.42] 2
++ 10 [101] 1
++ 10 [301] 1
++ 12 [k6] 6
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_06.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_06.tesh:2> output mismatch)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_certa_06" end time: Sep 24 12:14 BRT
+"e2_avaliacao_certa_06" time elapsed: 00:00:00
+----------------------------------------------------------
+
+191/559 Testing: e2_avaliacao_certa_07
+191/559 Test: e2_avaliacao_certa_07
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_07.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_certa_07" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_07'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_07:2] ./main ./tests/e2/input/certa07.txt
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_07.tesh:2> mismatch:
++ 2 TK_PR_INT [int]
++ 2 TK_IDENTIFICADOR [v1]
++ 2 TK_ESPECIAL [;]
++ 3 TK_PR_INT [int]
++ 3 TK_IDENTIFICADOR [f1]
++ 3 TK_ESPECIAL [(]
++ 3 TK_PR_FLOAT [float]
++ 3 TK_IDENTIFICADOR [k]
++ 3 TK_ESPECIAL [,]
++ 3 TK_PR_INT [int]
++ 3 TK_IDENTIFICADOR [l]
++ 3 TK_ESPECIAL [)]
++ 4 TK_ESPECIAL [{]
++ 6 TK_ESPECIAL [}]
++ 7 TK_PR_INT [int]
++ 7 TK_IDENTIFICADOR [v2]
++ 7 TK_ESPECIAL [[]
++ 7 TK_LIT_INT [100]
++ 7 TK_ESPECIAL []]
++ 7 TK_ESPECIAL [;]
++ 8 TK_PR_CHAR [char]
++ 8 TK_IDENTIFICADOR [v3]
++ 8 TK_ESPECIAL [;]
++ 2 [v16] 6
++ 7 [v26] 6
++ 3 [f16] 6
++ 3 [l6] 6
++ 8 [v36] 6
++ 7 [1001] 1
++ 3 [k6] 6
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_07.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_07.tesh:2> output mismatch)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_certa_07" end time: Sep 24 12:14 BRT
+"e2_avaliacao_certa_07" time elapsed: 00:00:00
+----------------------------------------------------------
+
+192/559 Testing: e2_avaliacao_certa_08
+192/559 Test: e2_avaliacao_certa_08
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_08.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_certa_08" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_08'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_08:2] ./main ./tests/e2/input/certa08.txt
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_08.tesh:2> mismatch:
++ 2 TK_PR_INT [int]
++ 2 TK_IDENTIFICADOR [minha_funcao]
++ 2 TK_ESPECIAL [(]
++ 2 TK_PR_FLOAT [float]
++ 2 TK_IDENTIFICADOR [k]
++ 2 TK_ESPECIAL [,]
++ 2 TK_PR_INT [int]
++ 2 TK_IDENTIFICADOR [l]
++ 2 TK_ESPECIAL [)]
++ 3 TK_ESPECIAL [{]
++ 4 TK_PR_INT [int]
++ 4 TK_IDENTIFICADOR [a]
++ 4 TK_ESPECIAL [;]
++ 5 TK_IDENTIFICADOR [a]
++ 5 TK_ESPECIAL [=]
++ 5 TK_LIT_INT [5]
++ 5 TK_ESPECIAL [;]
++ 6 TK_PR_FLOAT [float]
++ 6 TK_IDENTIFICADOR [p]
++ 6 TK_ESPECIAL [;]
++ 7 TK_IDENTIFICADOR [p]
++ 7 TK_ESPECIAL [=]
++ 7 TK_IDENTIFICADOR [a]
++ 7 TK_ESPECIAL [;]
++ 8 TK_ESPECIAL [{]
++ 9 TK_PR_INT [int]
++ 9 TK_IDENTIFICADOR [c]
++ 9 TK_ESPECIAL [;]
++ 10 TK_IDENTIFICADOR [c]
++ 10 TK_ESPECIAL [=]
++ 10 TK_LIT_INT [0]
++ 10 TK_ESPECIAL [;]
++ 11 TK_PR_FLOAT [float]
++ 11 TK_IDENTIFICADOR [k]
++ 11 TK_ESPECIAL [;]
++ 12 TK_IDENTIFICADOR [k]
++ 12 TK_ESPECIAL [=]
++ 12 TK_LIT_FLOAT [3.0]
++ 12 TK_ESPECIAL [;]
++ 13 TK_ESPECIAL [}]
++ 14 TK_ESPECIAL [}]
++ 15 TK_PR_INT [int]
++ 15 TK_IDENTIFICADOR [variavel_k]
++ 15 TK_ESPECIAL [[]
++ 15 TK_LIT_INT [100]
++ 15 TK_ESPECIAL []]
++ 15 TK_ESPECIAL [;]
++ 16 TK_PR_CHAR [char]
++ 16 TK_IDENTIFICADOR [variavel_x]
++ 16 TK_ESPECIAL [;]
++ 16 [variavel_x6] 6
++ 7 [a6] 6
++ 10 [01] 1
++ 5 [51] 1
++ 15 [variavel_k6] 6
++ 7 [p6] 6
++ 2 [l6] 6
++ 10 [c6] 6
++ 12 [3.02] 2
++ 15 [1001] 1
++ 12 [k6] 6
++ 2 [minha_funcao6] 6
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_08.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_08.tesh:2> output mismatch)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_certa_08" end time: Sep 24 12:14 BRT
+"e2_avaliacao_certa_08" time elapsed: 00:00:00
+----------------------------------------------------------
+
+193/559 Testing: e2_avaliacao_certa_09
+193/559 Test: e2_avaliacao_certa_09
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_09.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_certa_09" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_09'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_09:2] ./main ./tests/e2/input/certa09.txt
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_09.tesh:2> mismatch:
++ 2 TK_PR_INT [int]
++ 2 TK_IDENTIFICADOR [f1]
++ 2 TK_ESPECIAL [(]
++ 2 TK_PR_FLOAT [float]
++ 2 TK_IDENTIFICADOR [k]
++ 2 TK_ESPECIAL [,]
++ 2 TK_PR_INT [int]
++ 2 TK_IDENTIFICADOR [l]
++ 2 TK_ESPECIAL [)]
++ 3 TK_ESPECIAL [{]
++ 4 TK_IDENTIFICADOR [a]
++ 4 TK_ESPECIAL [=]
++ 4 TK_LIT_INT [5]
++ 4 TK_ESPECIAL [;]
++ 5 TK_IDENTIFICADOR [p]
++ 5 TK_ESPECIAL [=]
++ 5 TK_IDENTIFICADOR [a]
++ 5 TK_ESPECIAL [;]
++ 6 TK_PR_IF [if]
++ 6 TK_ESPECIAL [(]
++ 6 TK_IDENTIFICADOR [a]
++ 6 TK_OC_EQ [==]
++ 6 TK_LIT_INT [0]
++ 6 TK_ESPECIAL [)]
++ 6 TK_PR_THEN [then]
++ 6 TK_PR_OUTPUT [output]
++ 6 TK_IDENTIFICADOR [x]
++ 6 TK_ESPECIAL [;]
++ 7 TK_ESPECIAL [}]
++ 6 [x6] 6
++ 6 [a6] 6
++ 6 [01] 1
++ 4 [51] 1
++ 2 [f16] 6
++ 5 [p6] 6
++ 2 [l6] 6
++ 2 [k6] 6
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_09.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_09.tesh:2> output mismatch)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_certa_09" end time: Sep 24 12:14 BRT
+"e2_avaliacao_certa_09" time elapsed: 00:00:00
+----------------------------------------------------------
+
+194/559 Testing: e2_avaliacao_certa_10
+194/559 Test: e2_avaliacao_certa_10
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_10.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_certa_10" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_10'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_10:2] ./main ./tests/e2/input/certa10.txt
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_10.tesh:2> mismatch:
++ 2 TK_PR_INT [int]
++ 2 TK_IDENTIFICADOR [minha_funcao]
++ 2 TK_ESPECIAL [(]
++ 2 TK_PR_FLOAT [float]
++ 2 TK_IDENTIFICADOR [k]
++ 2 TK_ESPECIAL [,]
++ 2 TK_PR_INT [int]
++ 2 TK_IDENTIFICADOR [l]
++ 2 TK_ESPECIAL [)]
++ 3 TK_ESPECIAL [{]
++ 4 TK_IDENTIFICADOR [a]
++ 4 TK_ESPECIAL [=]
++ 4 TK_LIT_INT [5]
++ 4 TK_ESPECIAL [;]
++ 5 TK_IDENTIFICADOR [p]
++ 5 TK_ESPECIAL [=]
++ 5 TK_IDENTIFICADOR [a]
++ 5 TK_ESPECIAL [;]
++ 6 TK_PR_IF [if]
++ 6 TK_ESPECIAL [(]
++ 6 TK_IDENTIFICADOR [a]
++ 6 TK_OC_EQ [==]
++ 6 TK_LIT_INT [0]
++ 6 TK_ESPECIAL [)]
++ 7 TK_PR_THEN [then]
++ 7 TK_PR_OUTPUT [output]
++ 7 TK_IDENTIFICADOR [x]
++ 8 TK_PR_ELSE [else]
++ 8 TK_PR_OUTPUT [output]
++ 8 TK_LIT_STRING [nada]
++ 8 TK_ESPECIAL [;]
++ 9 TK_PR_IF [if]
++ 9 TK_ESPECIAL [(]
++ 9 TK_IDENTIFICADOR [a]
++ 9 TK_OC_EQ [==]
++ 9 TK_LIT_INT [0]
++ 9 TK_ESPECIAL [)]
++ 10 TK_PR_THEN [then]
++ 10 TK_ESPECIAL [{]
++ 10 TK_PR_FLOAT [float]
++ 10 TK_IDENTIFICADOR [x]
++ 10 TK_ESPECIAL [;]
++ 10 TK_PR_OUTPUT [output]
++ 10 TK_IDENTIFICADOR [x]
++ 10 TK_ESPECIAL [;]
++ 10 TK_ESPECIAL [}]
++ 10 TK_ESPECIAL [;]
++ 11 TK_ESPECIAL [}]
++ 10 [x6] 6
++ 9 [a6] 6
++ 9 [01] 1
++ 4 [51] 1
++ 5 [p6] 6
++ 2 [l6] 6
++ 8 [nada4] 4
++ 2 [k6] 6
++ 2 [minha_funcao6] 6
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_10.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_10.tesh:2> output mismatch)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_certa_10" end time: Sep 24 12:14 BRT
+"e2_avaliacao_certa_10" time elapsed: 00:00:00
+----------------------------------------------------------
+
+195/559 Testing: e2_avaliacao_certa_11
+195/559 Test: e2_avaliacao_certa_11
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_11.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_certa_11" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_11'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_11:2] ./main ./tests/e2/input/certa11.txt
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_11.tesh:2> mismatch:
++ 2 TK_PR_FLOAT [float]
++ 2 TK_IDENTIFICADOR [variavel_flutuante]
++ 2 TK_ESPECIAL [;]
++ 3 TK_PR_INT [int]
++ 3 TK_IDENTIFICADOR [variavel_inteira]
++ 3 TK_ESPECIAL [;]
++ 4 TK_PR_CHAR [char]
++ 4 TK_IDENTIFICADOR [variavel_caractere]
++ 4 TK_ESPECIAL [;]
++ 5 TK_PR_INT [int]
++ 5 TK_IDENTIFICADOR [minha_funcao]
++ 5 TK_ESPECIAL [(]
++ 5 TK_PR_FLOAT [float]
++ 5 TK_IDENTIFICADOR [k]
++ 5 TK_ESPECIAL [,]
++ 5 TK_PR_INT [int]
++ 5 TK_IDENTIFICADOR [l]
++ 5 TK_ESPECIAL [)]
++ 6 TK_ESPECIAL [{]
++ 7 TK_PR_WHILE [while]
++ 7 TK_ESPECIAL [(]
++ 7 TK_IDENTIFICADOR [a]
++ 7 TK_ESPECIAL [<]
++ 7 TK_LIT_INT [9]
++ 7 TK_ESPECIAL [)]
++ 7 TK_PR_DO [do]
++ 7 TK_PR_OUTPUT [output]
++ 7 TK_LIT_STRING [a=]
++ 7 TK_ESPECIAL [,]
++ 7 TK_IDENTIFICADOR [a]
++ 7 TK_ESPECIAL [;]
++ 8 TK_IDENTIFICADOR [a]
++ 8 TK_ESPECIAL [=]
++ 8 TK_LIT_INT [5]
++ 8 TK_ESPECIAL [;]
++ 9 TK_IDENTIFICADOR [p]
++ 9 TK_ESPECIAL [=]
++ 9 TK_IDENTIFICADOR [a]
++ 9 TK_ESPECIAL [;]
++ 10 TK_ESPECIAL [}]
++ 4 [variavel_caractere6] 6
++ 9 [a6] 6
++ 8 [51] 1
++ 9 [p6] 6
++ 2 [variavel_flutuante6] 6
++ 5 [l6] 6
++ 7 [a=4] 4
++ 7 [91] 1
++ 5 [k6] 6
++ 5 [minha_funcao6] 6
++ 3 [variavel_inteira6] 6
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_11.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_11.tesh:2> output mismatch)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_certa_11" end time: Sep 24 12:14 BRT
+"e2_avaliacao_certa_11" time elapsed: 00:00:00
+----------------------------------------------------------
+
+196/559 Testing: e2_avaliacao_certa_12
+196/559 Test: e2_avaliacao_certa_12
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_12.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_certa_12" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_12'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_12:2] ./main ./tests/e2/input/certa12.txt
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_12.tesh:2> mismatch:
++ 2 TK_PR_FLOAT [float]
++ 2 TK_IDENTIFICADOR [variavel_flutuante]
++ 2 TK_ESPECIAL [;]
++ 3 TK_PR_INT [int]
++ 3 TK_IDENTIFICADOR [variavel_inteira]
++ 3 TK_ESPECIAL [;]
++ 4 TK_PR_CHAR [char]
++ 4 TK_IDENTIFICADOR [variavel_caractere]
++ 4 TK_ESPECIAL [;]
++ 5 TK_PR_INT [int]
++ 5 TK_IDENTIFICADOR [minha_funcao]
++ 5 TK_ESPECIAL [(]
++ 5 TK_PR_FLOAT [float]
++ 5 TK_IDENTIFICADOR [k]
++ 5 TK_ESPECIAL [,]
++ 5 TK_PR_INT [int]
++ 5 TK_IDENTIFICADOR [l]
++ 5 TK_ESPECIAL [)]
++ 6 TK_ESPECIAL [{]
++ 7 TK_IDENTIFICADOR [a]
++ 7 TK_ESPECIAL [=]
++ 7 TK_LIT_INT [1]
++ 7 TK_ESPECIAL [;]
++ 8 TK_IDENTIFICADOR [b]
++ 8 TK_ESPECIAL [=]
++ 8 TK_LIT_INT [2]
++ 8 TK_ESPECIAL [;]
++ 9 TK_IDENTIFICADOR [c]
++ 9 TK_ESPECIAL [=]
++ 9 TK_LIT_CHAR [c]
++ 9 TK_ESPECIAL [;]
++ 10 TK_IDENTIFICADOR [a]
++ 10 TK_ESPECIAL [=]
++ 10 TK_IDENTIFICADOR [a]
++ 10 TK_LIT_INT [+1]
++ 10 TK_ESPECIAL [;]
++ 11 TK_IDENTIFICADOR [b]
++ 11 TK_ESPECIAL [=]
++ 11 TK_IDENTIFICADOR [a]
++ 11 TK_ESPECIAL [+]
++ 11 TK_IDENTIFICADOR [c]
++ 11 TK_ESPECIAL [;]
++ 12 TK_IDENTIFICADOR [c]
++ 12 TK_ESPECIAL [=]
++ 12 TK_IDENTIFICADOR [c]
++ 12 TK_ESPECIAL [-]
++ 12 TK_ESPECIAL [(]
++ 12 TK_LIT_INT [1]
++ 12 TK_ESPECIAL [*]
++ 12 TK_LIT_INT [1]
++ 12 TK_ESPECIAL [)]
++ 12 TK_ESPECIAL [;]
++ 13 TK_IDENTIFICADOR [k]
++ 13 TK_ESPECIAL [=]
++ 13 TK_LIT_INT [1]
++ 13 TK_ESPECIAL [+]
++ 13 TK_LIT_INT [2]
++ 13 TK_ESPECIAL [+]
++ 13 TK_LIT_INT [3]
++ 13 TK_ESPECIAL [*]
++ 13 TK_LIT_INT [5]
++ 13 TK_ESPECIAL [/]
++ 13 TK_LIT_INT [2]
++ 13 TK_ESPECIAL [+]
++ 13 TK_LIT_INT [2]
++ 13 TK_ESPECIAL [*]
++ 13 TK_LIT_INT [5]
++ 13 TK_ESPECIAL [*]
++ 13 TK_LIT_INT [1]
++ 13 TK_ESPECIAL [/]
++ 13 TK_LIT_INT [2]
++ 13 TK_ESPECIAL [-]
++ 13 TK_LIT_INT [3]
++ 13 TK_ESPECIAL [;]
++ 14 TK_PR_OUTPUT [output]
++ 14 TK_IDENTIFICADOR [a]
++ 14 TK_ESPECIAL [,]
++ 14 TK_IDENTIFICADOR [b]
++ 14 TK_ESPECIAL [,]
++ 14 TK_IDENTIFICADOR [c]
++ 14 TK_ESPECIAL [;]
++ 15 TK_ESPECIAL [}]
++ 4 [variavel_caractere6] 6
++ 10 [+11] 1
++ 13 [21] 1
++ 14 [a6] 6
++ 13 [51] 1
++ 14 [b6] 6
++ 13 [11] 1
++ 2 [variavel_flutuante6] 6
++ 5 [l6] 6
++ 14 [c6] 6
++ 9 [c3] 3
++ 13 [31] 1
++ 13 [k6] 6
++ 5 [minha_funcao6] 6
++ 3 [variavel_inteira6] 6
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_12.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_12.tesh:2> output mismatch)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_certa_12" end time: Sep 24 12:14 BRT
+"e2_avaliacao_certa_12" time elapsed: 00:00:00
+----------------------------------------------------------
+
+197/559 Testing: e2_avaliacao_certa_13
+197/559 Test: e2_avaliacao_certa_13
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_13.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_certa_13" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_13'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_13:2] ./main ./tests/e2/input/certa13.txt
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_13.tesh:2> mismatch:
++ 2 TK_PR_FLOAT [float]
++ 2 TK_IDENTIFICADOR [variavel_flutuante]
++ 2 TK_ESPECIAL [;]
++ 3 TK_PR_INT [int]
++ 3 TK_IDENTIFICADOR [variavel_inteira]
++ 3 TK_ESPECIAL [;]
++ 4 TK_PR_CHAR [char]
++ 4 TK_IDENTIFICADOR [variavel_caractere]
++ 4 TK_ESPECIAL [;]
++ 5 TK_PR_INT [int]
++ 5 TK_IDENTIFICADOR [minha_funcao]
++ 5 TK_ESPECIAL [(]
++ 5 TK_PR_FLOAT [float]
++ 5 TK_IDENTIFICADOR [k]
++ 5 TK_ESPECIAL [,]
++ 5 TK_PR_INT [int]
++ 5 TK_IDENTIFICADOR [l]
++ 5 TK_ESPECIAL [)]
++ 6 TK_ESPECIAL [{]
++ 7 TK_IDENTIFICADOR [a]
++ 7 TK_ESPECIAL [=]
++ 7 TK_LIT_INT [1]
++ 7 TK_ESPECIAL [;]
++ 8 TK_IDENTIFICADOR [b]
++ 8 TK_ESPECIAL [=]
++ 8 TK_LIT_INT [2]
++ 8 TK_ESPECIAL [;]
++ 9 TK_IDENTIFICADOR [c]
++ 9 TK_ESPECIAL [=]
++ 9 TK_LIT_CHAR [c]
++ 9 TK_ESPECIAL [;]
++ 10 TK_IDENTIFICADOR [a]
++ 10 TK_ESPECIAL [=]
++ 10 TK_IDENTIFICADOR [a]
++ 10 TK_LIT_INT [+1]
++ 10 TK_ESPECIAL [;]
++ 11 TK_IDENTIFICADOR [b]
++ 11 TK_ESPECIAL [=]
++ 11 TK_IDENTIFICADOR [a]
++ 11 TK_ESPECIAL [+]
++ 11 TK_IDENTIFICADOR [c]
++ 11 TK_ESPECIAL [;]
++ 12 TK_IDENTIFICADOR [c]
++ 12 TK_ESPECIAL [=]
++ 12 TK_IDENTIFICADOR [c]
++ 12 TK_ESPECIAL [-]
++ 12 TK_ESPECIAL [(]
++ 12 TK_LIT_INT [1]
++ 12 TK_ESPECIAL [*]
++ 12 TK_LIT_INT [1]
++ 12 TK_ESPECIAL [)]
++ 12 TK_ESPECIAL [;]
++ 13 TK_IDENTIFICADOR [k]
++ 13 TK_ESPECIAL [=]
++ 13 TK_LIT_INT [1]
++ 13 TK_ESPECIAL [+]
++ 13 TK_LIT_INT [2]
++ 13 TK_ESPECIAL [+]
++ 13 TK_LIT_INT [3]
++ 13 TK_ESPECIAL [*]
++ 13 TK_LIT_INT [5]
++ 13 TK_ESPECIAL [/]
++ 13 TK_LIT_INT [2]
++ 13 TK_ESPECIAL [+]
++ 13 TK_LIT_INT [2]
++ 13 TK_ESPECIAL [*]
++ 13 TK_LIT_INT [5]
++ 13 TK_ESPECIAL [*]
++ 13 TK_LIT_INT [1]
++ 13 TK_ESPECIAL [/]
++ 13 TK_LIT_INT [2]
++ 13 TK_ESPECIAL [-]
++ 13 TK_LIT_INT [3]
++ 13 TK_ESPECIAL [;]
++ 14 TK_PR_OUTPUT [output]
++ 14 TK_IDENTIFICADOR [a]
++ 14 TK_ESPECIAL [+]
++ 14 TK_IDENTIFICADOR [b]
++ 14 TK_ESPECIAL [+]
++ 14 TK_IDENTIFICADOR [c]
++ 14 TK_ESPECIAL [;]
++ 15 TK_ESPECIAL [}]
++ 4 [variavel_caractere6] 6
++ 10 [+11] 1
++ 13 [21] 1
++ 14 [a6] 6
++ 13 [51] 1
++ 14 [b6] 6
++ 13 [11] 1
++ 2 [variavel_flutuante6] 6
++ 5 [l6] 6
++ 14 [c6] 6
++ 9 [c3] 3
++ 13 [31] 1
++ 13 [k6] 6
++ 5 [minha_funcao6] 6
++ 3 [variavel_inteira6] 6
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_13.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_13.tesh:2> output mismatch)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_certa_13" end time: Sep 24 12:14 BRT
+"e2_avaliacao_certa_13" time elapsed: 00:00:00
+----------------------------------------------------------
+
+198/559 Testing: e2_avaliacao_certa_14
+198/559 Test: e2_avaliacao_certa_14
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_14.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_certa_14" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_14'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_14:2] ./main ./tests/e2/input/certa14.txt
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_14.tesh:2> mismatch:
++ 2 TK_PR_FLOAT [float]
++ 2 TK_IDENTIFICADOR [variavel_flutuante]
++ 2 TK_ESPECIAL [;]
++ 3 TK_PR_INT [int]
++ 3 TK_IDENTIFICADOR [variavel_inteira]
++ 3 TK_ESPECIAL [;]
++ 4 TK_PR_CHAR [char]
++ 4 TK_IDENTIFICADOR [variavel_caractere]
++ 4 TK_ESPECIAL [;]
++ 5 TK_PR_INT [int]
++ 5 TK_IDENTIFICADOR [minha_funcao]
++ 5 TK_ESPECIAL [(]
++ 5 TK_PR_FLOAT [float]
++ 5 TK_IDENTIFICADOR [k]
++ 5 TK_ESPECIAL [,]
++ 5 TK_PR_INT [int]
++ 5 TK_IDENTIFICADOR [l]
++ 5 TK_ESPECIAL [)]
++ 6 TK_ESPECIAL [{]
++ 7 TK_PR_FLOAT [float]
++ 7 TK_IDENTIFICADOR [v1]
++ 7 TK_ESPECIAL [;]
++ 8 TK_PR_INT [int]
++ 8 TK_IDENTIFICADOR [v2]
++ 8 TK_ESPECIAL [;]
++ 9 TK_IDENTIFICADOR [a]
++ 9 TK_ESPECIAL [=]
++ 9 TK_LIT_INT [10]
++ 9 TK_ESPECIAL [;]
++ 10 TK_IDENTIFICADOR [v]
++ 10 TK_ESPECIAL [[]
++ 10 TK_IDENTIFICADOR [a]
++ 10 TK_LIT_INT [+1]
++ 10 TK_ESPECIAL []]
++ 10 TK_ESPECIAL [=]
++ 10 TK_LIT_INT [5]
++ 10 TK_ESPECIAL [*]
++ 10 TK_IDENTIFICADOR [b]
++ 10 TK_ESPECIAL [;]
++ 11 TK_PR_RETURN [return]
++ 11 TK_IDENTIFICADOR [v]
++ 11 TK_ESPECIAL [;]
++ 12 TK_PR_RETURN [return]
++ 12 TK_IDENTIFICADOR [v]
++ 12 TK_LIT_INT [+1]
++ 12 TK_ESPECIAL [;]
++ 13 TK_PR_RETURN [return]
++ 13 TK_IDENTIFICADOR [v]
++ 13 TK_ESPECIAL [[]
++ 13 TK_LIT_INT [10]
++ 13 TK_ESPECIAL []]
++ 13 TK_ESPECIAL [;]
++ 14 TK_PR_RETURN [return]
++ 14 TK_IDENTIFICADOR [v]
++ 14 TK_ESPECIAL [[]
++ 14 TK_IDENTIFICADOR [v]
++ 14 TK_ESPECIAL [[]
++ 14 TK_LIT_INT [10]
++ 14 TK_ESPECIAL []]
++ 14 TK_ESPECIAL [+]
++ 14 TK_IDENTIFICADOR [v]
++ 14 TK_ESPECIAL [[]
++ 14 TK_LIT_INT [1]
++ 14 TK_ESPECIAL []]
++ 14 TK_ESPECIAL []]
++ 14 TK_ESPECIAL [;]
++ 15 TK_ESPECIAL [}]
++ 4 [variavel_caractere6] 6
++ 7 [v16] 6
++ 12 [+11] 1
++ 8 [v26] 6
++ 10 [a6] 6
++ 14 [v6] 6
++ 10 [51] 1
++ 10 [b6] 6
++ 14 [11] 1
++ 2 [variavel_flutuante6] 6
++ 5 [l6] 6
++ 14 [101] 1
++ 5 [k6] 6
++ 5 [minha_funcao6] 6
++ 3 [variavel_inteira6] 6
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_14.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_14.tesh:2> output mismatch)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_certa_14" end time: Sep 24 12:14 BRT
+"e2_avaliacao_certa_14" time elapsed: 00:00:00
+----------------------------------------------------------
+
+199/559 Testing: e2_avaliacao_certa_15
+199/559 Test: e2_avaliacao_certa_15
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_15.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_certa_15" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_15'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_15:2] ./main ./tests/e2/input/certa15.txt
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_15.tesh:2> mismatch:
++ 2 TK_PR_FLOAT [float]
++ 2 TK_IDENTIFICADOR [variavel_flutuante]
++ 2 TK_ESPECIAL [;]
++ 3 TK_PR_INT [int]
++ 3 TK_IDENTIFICADOR [variavel_inteira]
++ 3 TK_ESPECIAL [;]
++ 4 TK_PR_CHAR [char]
++ 4 TK_IDENTIFICADOR [variavel_caractere]
++ 4 TK_ESPECIAL [;]
++ 5 TK_PR_INT [int]
++ 5 TK_IDENTIFICADOR [f]
++ 5 TK_ESPECIAL [(]
++ 5 TK_PR_INT [int]
++ 5 TK_IDENTIFICADOR [x]
++ 5 TK_ESPECIAL [)]
++ 5 TK_ESPECIAL [{]
++ 5 TK_PR_RETURN [return]
++ 5 TK_LIT_INT [2]
++ 5 TK_ESPECIAL [*]
++ 5 TK_IDENTIFICADOR [function]
++ 5 TK_ESPECIAL [(]
++ 5 TK_ESPECIAL [)]
++ 5 TK_ESPECIAL [;]
++ 5 TK_ESPECIAL [}]
++ 6 TK_PR_FLOAT [float]
++ 6 TK_IDENTIFICADOR [function]
++ 6 TK_ESPECIAL [(]
++ 6 TK_ESPECIAL [)]
++ 7 TK_ESPECIAL [{]
++ 8 TK_IDENTIFICADOR [a]
++ 8 TK_ESPECIAL [=]
++ 8 TK_LIT_INT [10]
++ 8 TK_ESPECIAL [;]
++ 9 TK_IDENTIFICADOR [v]
++ 9 TK_ESPECIAL [[]
++ 9 TK_IDENTIFICADOR [a]
++ 9 TK_LIT_INT [+1]
++ 9 TK_ESPECIAL []]
++ 9 TK_ESPECIAL [=]
++ 9 TK_IDENTIFICADOR [f]
++ 9 TK_ESPECIAL [(]
++ 9 TK_LIT_INT [2]
++ 9 TK_ESPECIAL [)]
++ 9 TK_ESPECIAL [;]
++ 10 TK_PR_RETURN [return]
++ 10 TK_IDENTIFICADOR [f]
++ 10 TK_ESPECIAL [(]
++ 10 TK_IDENTIFICADOR [v]
++ 10 TK_ESPECIAL [[]
++ 10 TK_IDENTIFICADOR [a]
++ 10 TK_LIT_INT [+1]
++ 10 TK_ESPECIAL [*]
++ 10 TK_IDENTIFICADOR [x]
++ 10 TK_ESPECIAL [[]
++ 10 TK_IDENTIFICADOR [v]
++ 10 TK_ESPECIAL [[]
++ 10 TK_LIT_INT [10]
++ 10 TK_ESPECIAL []]
++ 10 TK_ESPECIAL []]
++ 10 TK_ESPECIAL []]
++ 10 TK_ESPECIAL [)]
++ 10 TK_ESPECIAL [;]
++ 11 TK_ESPECIAL [}]
++ 4 [variavel_caractere6] 6
++ 10 [+11] 1
++ 10 [f6] 6
++ 9 [21] 1
++ 6 [function6] 6
++ 10 [x6] 6
++ 10 [a6] 6
++ 10 [v6] 6
++ 2 [variavel_flutuante6] 6
++ 10 [101] 1
++ 3 [variavel_inteira6] 6
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_15.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_15.tesh:2> output mismatch)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_certa_15" end time: Sep 24 12:14 BRT
+"e2_avaliacao_certa_15" time elapsed: 00:00:00
+----------------------------------------------------------
+
+200/559 Testing: e2_avaliacao_certa_16
+200/559 Test: e2_avaliacao_certa_16
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_16.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_certa_16" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_16'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_16:2] ./main ./tests/e2/input/certa16.txt
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_16.tesh:2> mismatch:
++ 2 TK_PR_INT [int]
++ 2 TK_IDENTIFICADOR [a]
++ 2 TK_ESPECIAL [;]
++ 3 TK_PR_FLOAT [float]
++ 3 TK_IDENTIFICADOR [b]
++ 3 TK_ESPECIAL [;]
++ 4 TK_PR_CHAR [char]
++ 4 TK_IDENTIFICADOR [v]
++ 4 TK_ESPECIAL [[]
++ 4 TK_LIT_INT [15]
++ 4 TK_ESPECIAL []]
++ 4 TK_ESPECIAL [;]
++ 5 TK_PR_INT [int]
++ 5 TK_IDENTIFICADOR [f2]
++ 5 TK_ESPECIAL [(]
++ 5 TK_PR_INT [int]
++ 5 TK_IDENTIFICADOR [x]
++ 5 TK_ESPECIAL [)]
++ 6 TK_ESPECIAL [{]
++ 7 TK_PR_RETURN [return]
++ 7 TK_LIT_INT [2]
++ 7 TK_ESPECIAL [*]
++ 7 TK_IDENTIFICADOR [x]
++ 7 TK_ESPECIAL [;]
++ 8 TK_ESPECIAL [}]
++ 9 TK_PR_FLOAT [float]
++ 9 TK_IDENTIFICADOR [my_function]
++ 9 TK_ESPECIAL [(]
++ 9 TK_ESPECIAL [)]
++ 10 TK_ESPECIAL [{]
++ 11 TK_IDENTIFICADOR [a]
++ 11 TK_ESPECIAL [=]
++ 11 TK_LIT_INT [10]
++ 11 TK_ESPECIAL [;]
++ 12 TK_PR_WHILE [while]
++ 12 TK_ESPECIAL [(]
++ 12 TK_IDENTIFICADOR [v]
++ 12 TK_ESPECIAL [[]
++ 12 TK_IDENTIFICADOR [a]
++ 12 TK_LIT_INT [+1]
++ 12 TK_ESPECIAL []]
++ 12 TK_OC_NE [!=]
++ 12 TK_LIT_INT [4]
++ 12 TK_ESPECIAL [)]
++ 12 TK_PR_DO [do]
++ 12 TK_IDENTIFICADOR [v]
++ 12 TK_ESPECIAL [[]
++ 12 TK_IDENTIFICADOR [a]
++ 12 TK_LIT_INT [+1]
++ 12 TK_ESPECIAL []]
++ 12 TK_ESPECIAL [=]
++ 12 TK_IDENTIFICADOR [f]
++ 12 TK_ESPECIAL [(]
++ 12 TK_LIT_INT [2]
++ 12 TK_ESPECIAL [)]
++ 12 TK_ESPECIAL [;]
++ 13 TK_ESPECIAL [}]
++ 12 [+11] 1
++ 12 [f6] 6
++ 12 [21] 1
++ 7 [x6] 6
++ 12 [a6] 6
++ 12 [v6] 6
++ 5 [f26] 6
++ 3 [b6] 6
++ 4 [151] 1
++ 12 [41] 1
++ 11 [101] 1
++ 9 [my_function6] 6
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_16.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_16.tesh:2> output mismatch)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_certa_16" end time: Sep 24 12:14 BRT
+"e2_avaliacao_certa_16" time elapsed: 00:00:00
+----------------------------------------------------------
+
+201/559 Testing: e2_avaliacao_certa_17
+201/559 Test: e2_avaliacao_certa_17
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_17.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_certa_17" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_17'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_17:2] ./main ./tests/e2/input/certa17.txt
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_17.tesh:2> mismatch:
++ 2 TK_PR_INT [int]
++ 2 TK_IDENTIFICADOR [a]
++ 2 TK_ESPECIAL [;]
++ 3 TK_PR_FLOAT [float]
++ 3 TK_IDENTIFICADOR [b]
++ 3 TK_ESPECIAL [;]
++ 4 TK_PR_CHAR [char]
++ 4 TK_IDENTIFICADOR [v]
++ 4 TK_ESPECIAL [[]
++ 4 TK_LIT_INT [15]
++ 4 TK_ESPECIAL []]
++ 4 TK_ESPECIAL [;]
++ 5 TK_PR_INT [int]
++ 5 TK_IDENTIFICADOR [f2]
++ 5 TK_ESPECIAL [(]
++ 5 TK_PR_INT [int]
++ 5 TK_IDENTIFICADOR [x]
++ 5 TK_ESPECIAL [)]
++ 6 TK_ESPECIAL [{]
++ 7 TK_PR_RETURN [return]
++ 7 TK_LIT_INT [2]
++ 7 TK_ESPECIAL [*]
++ 7 TK_IDENTIFICADOR [x]
++ 7 TK_ESPECIAL [;]
++ 8 TK_ESPECIAL [}]
++ 9 TK_PR_FLOAT [float]
++ 9 TK_IDENTIFICADOR [my_function]
++ 9 TK_ESPECIAL [(]
++ 9 TK_ESPECIAL [)]
++ 10 TK_ESPECIAL [{]
++ 11 TK_IDENTIFICADOR [a]
++ 11 TK_ESPECIAL [=]
++ 11 TK_LIT_INT [10]
++ 11 TK_ESPECIAL [;]
++ 12 TK_PR_WHILE [while]
++ 12 TK_ESPECIAL [(]
++ 12 TK_IDENTIFICADOR [v]
++ 12 TK_ESPECIAL [[]
++ 12 TK_IDENTIFICADOR [a]
++ 12 TK_LIT_INT [+1]
++ 12 TK_ESPECIAL []]
++ 12 TK_OC_NE [!=]
++ 12 TK_LIT_INT [4]
++ 12 TK_LIT_INT [+1]
++ 12 TK_ESPECIAL [)]
++ 12 TK_PR_DO [do]
++ 12 TK_IDENTIFICADOR [v]
++ 12 TK_ESPECIAL [[]
++ 12 TK_IDENTIFICADOR [a]
++ 12 TK_LIT_INT [+1]
++ 12 TK_ESPECIAL []]
++ 12 TK_ESPECIAL [=]
++ 12 TK_IDENTIFICADOR [f]
++ 12 TK_ESPECIAL [(]
++ 12 TK_LIT_INT [2]
++ 12 TK_ESPECIAL [)]
++ 12 TK_LIT_INT [+1]
++ 12 TK_ESPECIAL [;]
++ 13 TK_ESPECIAL [}]
++ 12 [+11] 1
++ 12 [f6] 6
++ 12 [21] 1
++ 7 [x6] 6
++ 12 [a6] 6
++ 12 [v6] 6
++ 5 [f26] 6
++ 3 [b6] 6
++ 4 [151] 1
++ 12 [41] 1
++ 11 [101] 1
++ 9 [my_function6] 6
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_17.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_17.tesh:2> output mismatch)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_certa_17" end time: Sep 24 12:14 BRT
+"e2_avaliacao_certa_17" time elapsed: 00:00:00
+----------------------------------------------------------
+
+202/559 Testing: e2_avaliacao_certa_18
+202/559 Test: e2_avaliacao_certa_18
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_18.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_certa_18" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_18'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_18:2] ./main ./tests/e2/input/certa18.txt
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_18.tesh:2> mismatch:
++ 2 TK_PR_INT [int]
++ 2 TK_IDENTIFICADOR [a]
++ 2 TK_ESPECIAL [;]
++ 3 TK_PR_FLOAT [float]
++ 3 TK_IDENTIFICADOR [b]
++ 3 TK_ESPECIAL [;]
++ 4 TK_PR_CHAR [char]
++ 4 TK_IDENTIFICADOR [v]
++ 4 TK_ESPECIAL [[]
++ 4 TK_LIT_INT [15]
++ 4 TK_ESPECIAL []]
++ 4 TK_ESPECIAL [;]
++ 5 TK_PR_INT [int]
++ 5 TK_IDENTIFICADOR [f2]
++ 5 TK_ESPECIAL [(]
++ 5 TK_PR_INT [int]
++ 5 TK_IDENTIFICADOR [x]
++ 5 TK_ESPECIAL [)]
++ 6 TK_ESPECIAL [{]
++ 7 TK_PR_RETURN [return]
++ 7 TK_LIT_INT [2]
++ 7 TK_ESPECIAL [*]
++ 7 TK_IDENTIFICADOR [x]
++ 7 TK_ESPECIAL [;]
++ 8 TK_ESPECIAL [}]
++ 9 TK_PR_FLOAT [float]
++ 9 TK_IDENTIFICADOR [my_function]
++ 9 TK_ESPECIAL [(]
++ 9 TK_ESPECIAL [)]
++ 10 TK_ESPECIAL [{]
++ 12 TK_ESPECIAL []]
++ 12 TK_ESPECIAL [=]
++ 12 TK_IDENTIFICADOR [f]
++ 12 TK_ESPECIAL [(]
++ 12 TK_LIT_INT [2]
++ 12 TK_ESPECIAL [)]
++ 12 TK_LIT_INT [+1]
++ 12 TK_ESPECIAL [;]
++ 14 TK_ESPECIAL [}]
++ 12 [+11] 1
++ 12 [f6] 6
++ 12 [21] 1
++ 7 [x6] 6
++ 2 [a6] 6
++ 4 [v6] 6
++ 5 [f26] 6
++ 3 [b6] 6
++ 4 [151] 1
++ 9 [my_function6] 6
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_18.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_18.tesh:2> output mismatch)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_certa_18" end time: Sep 24 12:14 BRT
+"e2_avaliacao_certa_18" time elapsed: 00:00:00
+----------------------------------------------------------
+
+203/559 Testing: e2_avaliacao_certa_19
+203/559 Test: e2_avaliacao_certa_19
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_19.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_certa_19" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_19'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_19:2] ./main ./tests/e2/input/certa19.txt
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_19.tesh:2> mismatch:
++ 2 TK_PR_INT [int]
++ 2 TK_IDENTIFICADOR [a]
++ 2 TK_ESPECIAL [;]
++ 3 TK_PR_FLOAT [float]
++ 3 TK_IDENTIFICADOR [b]
++ 3 TK_ESPECIAL [;]
++ 4 TK_PR_CHAR [char]
++ 4 TK_IDENTIFICADOR [v]
++ 4 TK_ESPECIAL [[]
++ 4 TK_LIT_INT [15]
++ 4 TK_ESPECIAL []]
++ 4 TK_ESPECIAL [;]
++ 5 TK_PR_INT [int]
++ 5 TK_IDENTIFICADOR [f2]
++ 5 TK_ESPECIAL [(]
++ 5 TK_PR_INT [int]
++ 5 TK_IDENTIFICADOR [x]
++ 5 TK_ESPECIAL [)]
++ 6 TK_ESPECIAL [{]
++ 7 TK_PR_RETURN [return]
++ 7 TK_LIT_INT [2]
++ 7 TK_ESPECIAL [*]
++ 7 TK_IDENTIFICADOR [x]
++ 7 TK_ESPECIAL [;]
++ 8 TK_ESPECIAL [}]
++ 9 TK_PR_FLOAT [float]
++ 9 TK_IDENTIFICADOR [my_function]
++ 9 TK_ESPECIAL [(]
++ 9 TK_ESPECIAL [)]
++ 10 TK_ESPECIAL [{]
++ 12 TK_PR_WHILE [while]
++ 12 TK_ESPECIAL [(]
++ 12 TK_IDENTIFICADOR [v]
++ 12 TK_ESPECIAL [[]
++ 12 TK_IDENTIFICADOR [a]
++ 12 TK_LIT_INT [+1]
++ 12 TK_ESPECIAL []]
++ 12 TK_OC_NE [!=]
++ 12 TK_LIT_INT [4]
++ 12 TK_LIT_INT [+1]
++ 12 TK_ESPECIAL [)]
++ 12 TK_PR_DO [do]
++ 12 TK_IDENTIFICADOR [v]
++ 12 TK_ESPECIAL [[]
++ 12 TK_IDENTIFICADOR [a]
++ 12 TK_ESPECIAL [+]
++ 12 TK_IDENTIFICADOR [f]
++ 12 TK_ESPECIAL [(]
++ 12 TK_LIT_INT [2]
++ 12 TK_ESPECIAL [)]
++ 12 TK_ESPECIAL []]
++ 12 TK_ESPECIAL [=]
++ 12 TK_IDENTIFICADOR [f]
++ 12 TK_ESPECIAL [(]
++ 12 TK_IDENTIFICADOR [v]
++ 12 TK_ESPECIAL [[]
++ 12 TK_LIT_INT [2]
++ 12 TK_ESPECIAL []]
++ 12 TK_ESPECIAL [)]
++ 12 TK_LIT_INT [+1]
++ 12 TK_ESPECIAL [;]
++ 13 TK_ESPECIAL [}]
++ 12 [+11] 1
++ 12 [f6] 6
++ 12 [21] 1
++ 7 [x6] 6
++ 12 [a6] 6
++ 12 [v6] 6
++ 5 [f26] 6
++ 3 [b6] 6
++ 4 [151] 1
++ 12 [41] 1
++ 9 [my_function6] 6
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_19.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_19.tesh:2> output mismatch)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_certa_19" end time: Sep 24 12:14 BRT
+"e2_avaliacao_certa_19" time elapsed: 00:00:00
+----------------------------------------------------------
+
+204/559 Testing: e2_avaliacao_certa_20
+204/559 Test: e2_avaliacao_certa_20
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_20.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_certa_20" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_20'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_20:2] ./main ./tests/e2/input/certa20.txt
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_20.tesh:2> mismatch:
++ 2 TK_PR_INT [int]
++ 2 TK_IDENTIFICADOR [a]
++ 2 TK_ESPECIAL [;]
++ 3 TK_PR_FLOAT [float]
++ 3 TK_IDENTIFICADOR [b]
++ 3 TK_ESPECIAL [;]
++ 4 TK_PR_CHAR [char]
++ 4 TK_IDENTIFICADOR [v]
++ 4 TK_ESPECIAL [[]
++ 4 TK_LIT_INT [15]
++ 4 TK_ESPECIAL []]
++ 4 TK_ESPECIAL [;]
++ 5 TK_PR_INT [int]
++ 5 TK_IDENTIFICADOR [f2]
++ 5 TK_ESPECIAL [(]
++ 5 TK_PR_INT [int]
++ 5 TK_IDENTIFICADOR [x]
++ 5 TK_ESPECIAL [)]
++ 6 TK_ESPECIAL [{]
++ 7 TK_PR_RETURN [return]
++ 7 TK_LIT_INT [2]
++ 7 TK_ESPECIAL [*]
++ 7 TK_IDENTIFICADOR [x]
++ 7 TK_ESPECIAL [;]
++ 8 TK_ESPECIAL [}]
++ 9 TK_PR_FLOAT [float]
++ 9 TK_IDENTIFICADOR [my_function]
++ 9 TK_ESPECIAL [(]
++ 9 TK_ESPECIAL [)]
++ 10 TK_ESPECIAL [{]
++ 12 TK_PR_WHILE [while]
++ 12 TK_ESPECIAL [(]
++ 12 TK_IDENTIFICADOR [v]
++ 12 TK_ESPECIAL [[]
++ 12 TK_IDENTIFICADOR [a]
++ 12 TK_LIT_INT [-1]
++ 12 TK_ESPECIAL []]
++ 12 TK_OC_NE [!=]
++ 12 TK_LIT_INT [4]
++ 12 TK_LIT_INT [-1]
++ 12 TK_ESPECIAL [)]
++ 12 TK_PR_DO [do]
++ 12 TK_IDENTIFICADOR [v]
++ 12 TK_ESPECIAL [[]
++ 12 TK_IDENTIFICADOR [a]
++ 12 TK_ESPECIAL [-]
++ 12 TK_IDENTIFICADOR [f]
++ 12 TK_ESPECIAL [(]
++ 12 TK_LIT_INT [2]
++ 12 TK_ESPECIAL [)]
++ 12 TK_ESPECIAL []]
++ 12 TK_ESPECIAL [=]
++ 12 TK_IDENTIFICADOR [f]
++ 12 TK_ESPECIAL [(]
++ 12 TK_IDENTIFICADOR [v]
++ 12 TK_ESPECIAL [[]
++ 12 TK_LIT_INT [2]
++ 12 TK_ESPECIAL []]
++ 12 TK_ESPECIAL [)]
++ 12 TK_LIT_INT [-1]
++ 12 TK_ESPECIAL [;]
++ 13 TK_IDENTIFICADOR [a]
++ 13 TK_ESPECIAL [=]
++ 13 TK_LIT_FLOAT [-3.2]
++ 13 TK_ESPECIAL [;]
++ 14 TK_ESPECIAL [{]
++ 15 TK_ESPECIAL [;]
++ 16 TK_ESPECIAL [}]
++ 17 TK_ESPECIAL [}]
++ 12 [f6] 6
++ 12 [21] 1
++ 7 [x6] 6
++ 13 [a6] 6
++ 12 [v6] 6
++ 5 [f26] 6
++ 3 [b6] 6
++ 4 [151] 1
++ 12 [41] 1
++ 9 [my_function6] 6
++ 12 [-11] 1
++ 13 [-3.22] 2
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_20.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_20.tesh:2> output mismatch)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_certa_20" end time: Sep 24 12:14 BRT
+"e2_avaliacao_certa_20" time elapsed: 00:00:00
+----------------------------------------------------------
+
+205/559 Testing: e2_avaliacao_certa_21
+205/559 Test: e2_avaliacao_certa_21
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_21.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_certa_21" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_21'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_21:2] ./main ./tests/e2/input/certa21.txt
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_21.tesh:2> mismatch:
++ 1 TK_PR_STATIC [static]
++ 1 TK_PR_INT [int]
++ 1 TK_IDENTIFICADOR [a]
++ 1 TK_ESPECIAL [[]
++ 1 TK_LIT_INT [10]
++ 1 TK_ESPECIAL []]
++ 1 TK_ESPECIAL [;]
++ 2 TK_PR_STATIC [static]
++ 2 TK_PR_INT [int]
++ 2 TK_IDENTIFICADOR [b]
++ 2 TK_ESPECIAL [(]
++ 2 TK_ESPECIAL [)]
++ 3 TK_ESPECIAL [{]
++ 4 TK_PR_CONST [const]
++ 4 TK_PR_INT [int]
++ 4 TK_IDENTIFICADOR [a]
++ 4 TK_OC_LE [<=]
++ 4 TK_LIT_INT [4]
++ 4 TK_ESPECIAL [;]
++ 5 TK_PR_STATIC [static]
++ 5 TK_PR_CONST [const]
++ 5 TK_PR_FLOAT [float]
++ 5 TK_IDENTIFICADOR [b]
++ 5 TK_OC_LE [<=]
++ 5 TK_LIT_FLOAT [5.1]
++ 5 TK_ESPECIAL [;]
++ 6 TK_ESPECIAL [}]
++ 4 [a6] 6
++ 5 [b6] 6
++ 4 [41] 1
++ 1 [101] 1
++ 5 [5.12] 2
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_21.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_21.tesh:2> output mismatch)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_certa_21" end time: Sep 24 12:14 BRT
+"e2_avaliacao_certa_21" time elapsed: 00:00:00
+----------------------------------------------------------
+
+206/559 Testing: e2_avaliacao_certa_22
+206/559 Test: e2_avaliacao_certa_22
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_22.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_certa_22" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_22'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_22:2] ./main ./tests/e2/input/certa22.txt
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_22.tesh:2> mismatch:
++ 1 TK_PR_STATIC [static]
++ 1 TK_PR_INT [int]
++ 1 TK_IDENTIFICADOR [num]
++ 1 TK_ESPECIAL [[]
++ 1 TK_LIT_INT [10]
++ 1 TK_ESPECIAL []]
++ 1 TK_ESPECIAL [;]
++ 2 TK_PR_INT [int]
++ 2 TK_IDENTIFICADOR [funcao]
++ 2 TK_ESPECIAL [(]
++ 2 TK_ESPECIAL [)]
++ 3 TK_ESPECIAL [{]
++ 4 TK_PR_FLOAT [float]
++ 4 TK_IDENTIFICADOR [var]
++ 4 TK_OC_LE [<=]
++ 4 TK_LIT_INT [10]
++ 4 TK_ESPECIAL [;]
++ 5 TK_ESPECIAL [{]
++ 6 TK_PR_INT [int]
++ 6 TK_IDENTIFICADOR [a]
++ 6 TK_ESPECIAL [;]
++ 7 TK_PR_INT [int]
++ 7 TK_IDENTIFICADOR [b]
++ 8 TK_ESPECIAL [}]
++ 8 TK_ESPECIAL [;]
++ 10 TK_PR_INT [int]
++ 10 TK_IDENTIFICADOR [c]
++ 11 TK_ESPECIAL [}]
++ 13 TK_PR_FLOAT [float]
++ 13 TK_IDENTIFICADOR [funcao2]
++ 13 TK_ESPECIAL [(]
++ 13 TK_ESPECIAL [)]
++ 14 TK_ESPECIAL [{]
++ 15 TK_PR_INT [int]
++ 15 TK_IDENTIFICADOR [u]
++ 15 TK_ESPECIAL [;]
++ 16 TK_ESPECIAL [}]
++ 6 [a6] 6
++ 7 [b6] 6
++ 10 [c6] 6
++ 15 [u6] 6
++ 1 [num6] 6
++ 4 [101] 1
++ 13 [funcao26] 6
++ 2 [funcao6] 6
++ 4 [var6] 6
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_22.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_22.tesh:2> output mismatch)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_certa_22" end time: Sep 24 12:14 BRT
+"e2_avaliacao_certa_22" time elapsed: 00:00:00
+----------------------------------------------------------
+
+207/559 Testing: e2_avaliacao_certa_23
+207/559 Test: e2_avaliacao_certa_23
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_23.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_certa_23" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_23'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_23:2] ./main ./tests/e2/input/certa23.txt
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_23.tesh:2> mismatch:
++ 1 TK_PR_INT [int]
++ 1 TK_IDENTIFICADOR [vetor]
++ 1 TK_ESPECIAL [[]
++ 1 TK_LIT_INT [5]
++ 1 TK_ESPECIAL []]
++ 1 TK_ESPECIAL [;]
++ 2 TK_PR_STATIC [static]
++ 2 TK_PR_FLOAT [float]
++ 2 TK_IDENTIFICADOR [funcao]
++ 2 TK_ESPECIAL [(]
++ 2 TK_PR_INT [int]
++ 2 TK_IDENTIFICADOR [arg1]
++ 2 TK_ESPECIAL [,]
++ 2 TK_PR_FLOAT [float]
++ 2 TK_IDENTIFICADOR [arg2]
++ 2 TK_ESPECIAL [,]
++ 2 TK_PR_CHAR [char]
++ 2 TK_IDENTIFICADOR [arg3]
++ 2 TK_ESPECIAL [)]
++ 3 TK_ESPECIAL [{]
++ 4 TK_PR_STATIC [static]
++ 4 TK_PR_CONST [const]
++ 4 TK_PR_INT [int]
++ 4 TK_IDENTIFICADOR [v]
++ 4 TK_OC_LE [<=]
++ 4 TK_LIT_INT [10]
++ 4 TK_ESPECIAL [;]
++ 5 TK_ESPECIAL [{]
++ 6 TK_PR_CONST [const]
++ 6 TK_PR_INT [int]
++ 6 TK_IDENTIFICADOR [u]
++ 6 TK_OC_LE [<=]
++ 6 TK_LIT_INT [25]
++ 7 TK_ESPECIAL [}]
++ 7 TK_ESPECIAL [;]
++ 9 TK_PR_FLOAT [float]
++ 9 TK_IDENTIFICADOR [g]
++ 9 TK_ESPECIAL [;]
++ 10 TK_ESPECIAL [}]
++ 2 [arg36] 6
++ 4 [v6] 6
++ 1 [51] 1
++ 1 [vetor6] 6
++ 2 [arg16] 6
++ 6 [251] 1
++ 6 [u6] 6
++ 2 [arg26] 6
++ 4 [101] 1
++ 2 [funcao6] 6
++ 9 [g6] 6
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_23.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_23.tesh:2> output mismatch)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_certa_23" end time: Sep 24 12:14 BRT
+"e2_avaliacao_certa_23" time elapsed: 00:00:00
+----------------------------------------------------------
+
+208/559 Testing: e2_avaliacao_certa_24
+208/559 Test: e2_avaliacao_certa_24
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_24.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_certa_24" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_24'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_24:2] ./main ./tests/e2/input/certa24.txt
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_24.tesh:2> mismatch:
++ 1 TK_PR_INT [int]
++ 1 TK_IDENTIFICADOR [vetor]
++ 1 TK_ESPECIAL [[]
++ 1 TK_LIT_INT [5]
++ 1 TK_ESPECIAL []]
++ 1 TK_ESPECIAL [;]
++ 2 TK_PR_STATIC [static]
++ 2 TK_PR_FLOAT [float]
++ 2 TK_IDENTIFICADOR [funcao]
++ 2 TK_ESPECIAL [(]
++ 2 TK_PR_CONST [const]
++ 2 TK_PR_INT [int]
++ 2 TK_IDENTIFICADOR [arg1]
++ 2 TK_ESPECIAL [,]
++ 2 TK_PR_CONST [const]
++ 2 TK_PR_FLOAT [float]
++ 2 TK_IDENTIFICADOR [arg2]
++ 2 TK_ESPECIAL [,]
++ 2 TK_PR_CONST [const]
++ 2 TK_PR_CHAR [char]
++ 2 TK_IDENTIFICADOR [arg3]
++ 2 TK_ESPECIAL [)]
++ 3 TK_ESPECIAL [{]
++ 4 TK_PR_STATIC [static]
++ 4 TK_PR_CONST [const]
++ 4 TK_PR_INT [int]
++ 4 TK_IDENTIFICADOR [v]
++ 4 TK_OC_LE [<=]
++ 4 TK_LIT_INT [10]
++ 4 TK_ESPECIAL [;]
++ 5 TK_ESPECIAL [{]
++ 6 TK_PR_CONST [const]
++ 6 TK_PR_INT [int]
++ 6 TK_IDENTIFICADOR [u]
++ 6 TK_OC_LE [<=]
++ 6 TK_LIT_INT [25]
++ 7 TK_ESPECIAL [}]
++ 7 TK_ESPECIAL [;]
++ 9 TK_PR_FLOAT [float]
++ 9 TK_IDENTIFICADOR [g]
++ 9 TK_ESPECIAL [;]
++ 10 TK_ESPECIAL [}]
++ 2 [arg36] 6
++ 4 [v6] 6
++ 1 [51] 1
++ 1 [vetor6] 6
++ 2 [arg16] 6
++ 6 [251] 1
++ 6 [u6] 6
++ 2 [arg26] 6
++ 4 [101] 1
++ 2 [funcao6] 6
++ 9 [g6] 6
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_24.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_24.tesh:2> output mismatch)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_certa_24" end time: Sep 24 12:14 BRT
+"e2_avaliacao_certa_24" time elapsed: 00:00:00
+----------------------------------------------------------
+
+209/559 Testing: e2_avaliacao_certa_25
+209/559 Test: e2_avaliacao_certa_25
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_25.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_certa_25" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_25'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_25:2] ./main ./tests/e2/input/certa25.txt
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_25.tesh:2> mismatch:
++ 1 TK_PR_FLOAT [float]
++ 1 TK_IDENTIFICADOR [fun]
++ 1 TK_ESPECIAL [(]
++ 1 TK_ESPECIAL [)]
++ 2 TK_ESPECIAL [{]
++ 3 TK_PR_CONST [const]
++ 3 TK_PR_INT [int]
++ 3 TK_IDENTIFICADOR [a]
++ 3 TK_OC_LE [<=]
++ 3 TK_LIT_INT [10]
++ 3 TK_ESPECIAL [;]
++ 4 TK_PR_STATIC [static]
++ 4 TK_PR_CONST [const]
++ 4 TK_PR_INT [int]
++ 4 TK_IDENTIFICADOR [b]
++ 4 TK_OC_LE [<=]
++ 4 TK_LIT_INT [20]
++ 4 TK_ESPECIAL [;]
++ 5 TK_PR_INT [int]
++ 5 TK_IDENTIFICADOR [c]
++ 5 TK_OC_LE [<=]
++ 5 TK_LIT_INT [30]
++ 5 TK_ESPECIAL [;]
++ 7 TK_ESPECIAL [{]
++ 8 TK_PR_INT [int]
++ 8 TK_IDENTIFICADOR [p]
++ 8 TK_ESPECIAL [;]
++ 9 TK_ESPECIAL [{]
++ 10 TK_PR_INT [int]
++ 10 TK_IDENTIFICADOR [k]
++ 11 TK_ESPECIAL [}]
++ 11 TK_ESPECIAL [;]
++ 13 TK_PR_INT [int]
++ 13 TK_IDENTIFICADOR [u]
++ 14 TK_ESPECIAL [}]
++ 15 TK_ESPECIAL [}]
++ 4 [201] 1
++ 3 [a6] 6
++ 1 [fun6] 6
++ 4 [b6] 6
++ 8 [p6] 6
++ 5 [c6] 6
++ 13 [u6] 6
++ 3 [101] 1
++ 5 [301] 1
++ 10 [k6] 6
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_25.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_25.tesh:2> output mismatch)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_certa_25" end time: Sep 24 12:14 BRT
+"e2_avaliacao_certa_25" time elapsed: 00:00:00
+----------------------------------------------------------
+
+210/559 Testing: e2_avaliacao_certa_26
+210/559 Test: e2_avaliacao_certa_26
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_26.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_certa_26" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_26'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_26:2] ./main ./tests/e2/input/certa26.txt
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_26.tesh:2> mismatch:
++ 1 TK_PR_FLOAT [float]
++ 1 TK_IDENTIFICADOR [fun]
++ 1 TK_ESPECIAL [(]
++ 1 TK_ESPECIAL [)]
++ 2 TK_ESPECIAL [{]
++ 3 TK_PR_CONST [const]
++ 3 TK_PR_INT [int]
++ 3 TK_IDENTIFICADOR [a]
++ 3 TK_OC_LE [<=]
++ 3 TK_LIT_INT [10]
++ 3 TK_ESPECIAL [;]
++ 4 TK_PR_STATIC [static]
++ 4 TK_PR_CONST [const]
++ 4 TK_PR_INT [int]
++ 4 TK_IDENTIFICADOR [b]
++ 4 TK_OC_LE [<=]
++ 4 TK_LIT_INT [20]
++ 4 TK_ESPECIAL [;]
++ 5 TK_PR_INT [int]
++ 5 TK_IDENTIFICADOR [c]
++ 5 TK_OC_LE [<=]
++ 5 TK_LIT_INT [30]
++ 5 TK_ESPECIAL [;]
++ 7 TK_ESPECIAL [{]
++ 8 TK_ESPECIAL [;]
++ 9 TK_ESPECIAL [}]
++ 9 TK_ESPECIAL [;]
++ 11 TK_ESPECIAL [{]
++ 12 TK_ESPECIAL [}]
++ 12 TK_ESPECIAL [;]
++ 14 TK_ESPECIAL [{]
++ 15 TK_ESPECIAL [{]
++ 17 TK_ESPECIAL [}]
++ 17 TK_ESPECIAL [;]
++ 18 TK_ESPECIAL [{]
++ 19 TK_PR_INT [int]
++ 19 TK_IDENTIFICADOR [b]
++ 20 TK_ESPECIAL [}]
++ 21 TK_ESPECIAL [}]
++ 22 TK_ESPECIAL [}]
++ 4 [201] 1
++ 3 [a6] 6
++ 1 [fun6] 6
++ 19 [b6] 6
++ 5 [c6] 6
++ 3 [101] 1
++ 5 [301] 1
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_26.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_26.tesh:2> output mismatch)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_certa_26" end time: Sep 24 12:14 BRT
+"e2_avaliacao_certa_26" time elapsed: 00:00:00
+----------------------------------------------------------
+
+211/559 Testing: e2_avaliacao_certa_27
+211/559 Test: e2_avaliacao_certa_27
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_27.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_certa_27" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_27'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_27:2] ./main ./tests/e2/input/certa27.txt
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_27.tesh:2> mismatch:
++ 1 TK_PR_FLOAT [float]
++ 1 TK_IDENTIFICADOR [fun]
++ 1 TK_ESPECIAL [(]
++ 1 TK_ESPECIAL [)]
++ 2 TK_ESPECIAL [{]
++ 3 TK_IDENTIFICADOR [identificador]
++ 3 TK_OC_SL [<<]
++ 3 TK_LIT_INT [3]
++ 3 TK_ESPECIAL [;]
++ 4 TK_IDENTIFICADOR [identificador]
++ 4 TK_OC_SR [>>]
++ 4 TK_LIT_INT [4]
++ 4 TK_ESPECIAL [;]
++ 5 TK_ESPECIAL [}]
++ 1 [fun6] 6
++ 4 [41] 1
++ 4 [identificador6] 6
++ 3 [31] 1
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_27.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_certa_27.tesh:2> output mismatch)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_certa_27" end time: Sep 24 12:14 BRT
+"e2_avaliacao_certa_27" time elapsed: 00:00:00
+----------------------------------------------------------
+
+212/559 Testing: e2_avaliacao_errada_01
+212/559 Test: e2_avaliacao_errada_01
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_01.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_errada_01" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_01'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_01:4] ./main ./tests/e2/input/errada01.txt
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_01.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_01.tesh:4> returned code 0)
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_01.tesh:4> so far:
+|| 1 TK_PR_FLOAT [float]
+|| 1 TK_IDENTIFICADOR [v1]
+|| 1 [v16] 6
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_01.tesh:4> as requested)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_errada_01" end time: Sep 24 12:14 BRT
+"e2_avaliacao_errada_01" time elapsed: 00:00:00
+----------------------------------------------------------
+
+213/559 Testing: e2_avaliacao_errada_02
+213/559 Test: e2_avaliacao_errada_02
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_02.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_errada_02" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_02'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_02:4] ./main ./tests/e2/input/errada02.txt
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_02.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_02.tesh:4> returned code 0)
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_02.tesh:4> so far:
+|| 1 TK_PR_INT [int]
+|| 1 TK_ESPECIAL [;]
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_02.tesh:4> as requested)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_errada_02" end time: Sep 24 12:14 BRT
+"e2_avaliacao_errada_02" time elapsed: 00:00:00
+----------------------------------------------------------
+
+214/559 Testing: e2_avaliacao_errada_03
+214/559 Test: e2_avaliacao_errada_03
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_03.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_errada_03" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_03'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_03:4] ./main ./tests/e2/input/errada03.txt
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_03.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_03.tesh:4> returned code 0)
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_03.tesh:4> so far:
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [minha_funcao]
+|| 1 TK_ESPECIAL [(]
+|| 1 TK_ESPECIAL [)]
+|| 1 TK_ESPECIAL [{]
+|| 1 TK_ESPECIAL [}]
+|| 1 TK_ESPECIAL [;]
+|| 1 [minha_funcao6] 6
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_03.tesh:4> as requested)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_errada_03" end time: Sep 24 12:14 BRT
+"e2_avaliacao_errada_03" time elapsed: 00:00:00
+----------------------------------------------------------
+
+215/559 Testing: e2_avaliacao_errada_04
+215/559 Test: e2_avaliacao_errada_04
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_04.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_errada_04" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_04'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_04:4] ./main ./tests/e2/input/errada04.txt
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_04.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_04.tesh:4> returned code 0)
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_04.tesh:4> so far:
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [minha_funcao]
+|| 1 TK_ESPECIAL [(]
+|| 1 TK_ESPECIAL [)]
+|| 2 TK_PR_FLOAT [float]
+|| 2 TK_IDENTIFICADOR [local]
+|| 2 TK_ESPECIAL [;]
+|| 3 TK_ESPECIAL [{]
+|| 4 TK_PR_DO [do]
+|| 4 TK_PR_OUTPUT [output]
+|| 5 TK_IDENTIFICADOR [x]
+|| 5 TK_ESPECIAL [(]
+|| 5 TK_LIT_INT [4]
+|| 5 TK_LIT_INT [-1]
+|| 5 TK_ESPECIAL [)]
+|| 5 TK_ESPECIAL [;]
+|| 6 TK_ESPECIAL [}]
+|| 5 [x6] 6
+|| 2 [local6] 6
+|| 5 [41] 1
+|| 5 [-11] 1
+|| 1 [minha_funcao6] 6
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_04.tesh:4> as requested)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_errada_04" end time: Sep 24 12:14 BRT
+"e2_avaliacao_errada_04" time elapsed: 00:00:00
+----------------------------------------------------------
+
+216/559 Testing: e2_avaliacao_errada_05
+216/559 Test: e2_avaliacao_errada_05
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_05.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_errada_05" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_05'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_05:4] ./main ./tests/e2/input/errada05.txt
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_05.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_05.tesh:4> returned code 0)
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_05.tesh:4> so far:
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [minha_funcao]
+|| 1 TK_ESPECIAL [(]
+|| 1 TK_ESPECIAL [)]
+|| 2 TK_ESPECIAL [{]
+|| 3 TK_PR_INT [int]
+|| 3 TK_IDENTIFICADOR [v]
+|| 4 TK_IDENTIFICADOR [a]
+|| 4 TK_ESPECIAL [=]
+|| 4 TK_LIT_INT [5]
+|| 4 TK_ESPECIAL [;]
+|| 4 TK_ESPECIAL [;]
+|| 4 TK_ESPECIAL [;]
+|| 5 TK_IDENTIFICADOR [b]
+|| 5 TK_ESPECIAL [=]
+|| 5 TK_LIT_INT [0]
+|| 5 TK_ESPECIAL [;]
+|| 6 TK_IDENTIFICADOR [c]
+|| 6 TK_ESPECIAL [=]
+|| 6 TK_LIT_INT [0]
+|| 6 TK_ESPECIAL [;]
+|| 7 TK_ESPECIAL [}]
+|| 4 [a6] 6
+|| 3 [v6] 6
+|| 6 [01] 1
+|| 4 [51] 1
+|| 5 [b6] 6
+|| 6 [c6] 6
+|| 1 [minha_funcao6] 6
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_05.tesh:4> as requested)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_errada_05" end time: Sep 24 12:14 BRT
+"e2_avaliacao_errada_05" time elapsed: 00:00:00
+----------------------------------------------------------
+
+217/559 Testing: e2_avaliacao_errada_06
+217/559 Test: e2_avaliacao_errada_06
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_06.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_errada_06" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_06'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_06:4] ./main ./tests/e2/input/errada06.txt
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_06.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_06.tesh:4> returned code 0)
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_06.tesh:4> so far:
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [minha_funcao]
+|| 1 TK_ESPECIAL [(]
+|| 1 TK_ESPECIAL [)]
+|| 2 TK_ESPECIAL [{]
+|| 3 TK_IDENTIFICADOR [b]
+|| 3 TK_ESPECIAL [=]
+|| 3 TK_LIT_INT [14]
+|| 3 TK_ESPECIAL [;]
+|| 4 TK_PR_INPUT [input]
+|| 4 TK_LIT_INT [5]
+|| 4 TK_ESPECIAL [;]
+|| 5 TK_ESPECIAL [}]
+|| 4 [51] 1
+|| 3 [b6] 6
+|| 1 [minha_funcao6] 6
+|| 3 [141] 1
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_06.tesh:4> as requested)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_errada_06" end time: Sep 24 12:14 BRT
+"e2_avaliacao_errada_06" time elapsed: 00:00:00
+----------------------------------------------------------
+
+218/559 Testing: e2_avaliacao_errada_07
+218/559 Test: e2_avaliacao_errada_07
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_07.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_errada_07" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_07'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_07:4] ./main ./tests/e2/input/errada07.txt
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_07.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_07.tesh:4> returned code 0)
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_07.tesh:4> so far:
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [minha_funcao]
+|| 1 TK_ESPECIAL [(]
+|| 1 TK_PR_FLOAT [float]
+|| 1 TK_IDENTIFICADOR [f]
+|| 1 TK_ESPECIAL [,]
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [i]
+|| 1 TK_ESPECIAL [,]
+|| 1 TK_ESPECIAL [)]
+|| 1 TK_ESPECIAL [{]
+|| 1 TK_ESPECIAL [}]
+|| 2 TK_PR_CHAR [char]
+|| 2 TK_IDENTIFICADOR [variavel_caractere]
+|| 2 TK_ESPECIAL [;]
+|| 2 [variavel_caractere6] 6
+|| 1 [f6] 6
+|| 1 [i6] 6
+|| 1 [minha_funcao6] 6
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_07.tesh:4> as requested)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_errada_07" end time: Sep 24 12:14 BRT
+"e2_avaliacao_errada_07" time elapsed: 00:00:00
+----------------------------------------------------------
+
+219/559 Testing: e2_avaliacao_errada_08
+219/559 Test: e2_avaliacao_errada_08
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_08.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_errada_08" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_08'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_08:4] ./main ./tests/e2/input/errada08.txt
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_08.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_08.tesh:4> returned code 0)
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_08.tesh:4> so far:
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [minha_funcao]
+|| 1 TK_ESPECIAL [(]
+|| 1 TK_PR_FLOAT [float]
+|| 1 TK_IDENTIFICADOR [f]
+|| 1 TK_ESPECIAL [,]
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [i]
+|| 1 TK_ESPECIAL [)]
+|| 2 TK_ESPECIAL [{]
+|| 3 TK_PR_FLOAT [float]
+|| 3 TK_IDENTIFICADOR [f]
+|| 3 TK_ESPECIAL [;]
+|| 4 TK_IDENTIFICADOR [c]
+|| 4 TK_ESPECIAL [=]
+|| 4 TK_LIT_INT [0]
+|| 4 TK_ESPECIAL [;]
+|| 5 TK_ESPECIAL [}]
+|| 6 TK_IDENTIFICADOR [x]
+|| 6 TK_ESPECIAL [=]
+|| 6 TK_LIT_INT [10]
+|| 6 TK_ESPECIAL [;]
+|| 7 TK_ESPECIAL [}]
+|| 8 TK_PR_CHAR [char]
+|| 8 TK_IDENTIFICADOR [variavel_caractere]
+|| 8 TK_ESPECIAL [;]
+|| 8 [variavel_caractere6] 6
+|| 3 [f6] 6
+|| 6 [x6] 6
+|| 4 [01] 1
+|| 1 [i6] 6
+|| 4 [c6] 6
+|| 6 [101] 1
+|| 1 [minha_funcao6] 6
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_08.tesh:4> as requested)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_errada_08" end time: Sep 24 12:14 BRT
+"e2_avaliacao_errada_08" time elapsed: 00:00:00
+----------------------------------------------------------
+
+220/559 Testing: e2_avaliacao_errada_09
+220/559 Test: e2_avaliacao_errada_09
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_09.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_errada_09" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_09'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_09:4] ./main ./tests/e2/input/errada09.txt
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_09.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_09.tesh:4> returned code 0)
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_09.tesh:4> so far:
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [minha_funcao]
+|| 1 TK_ESPECIAL [(]
+|| 1 TK_PR_FLOAT [float]
+|| 1 TK_IDENTIFICADOR [f]
+|| 1 TK_ESPECIAL [,]
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [i]
+|| 1 TK_ESPECIAL [)]
+|| 2 TK_ESPECIAL [{]
+|| 3 TK_PR_FLOAT [float]
+|| 3 TK_IDENTIFICADOR [f]
+|| 3 TK_ESPECIAL [;]
+|| 4 TK_IDENTIFICADOR [a]
+|| 4 TK_ESPECIAL [=]
+|| 4 TK_LIT_INT [5]
+|| 4 TK_ESPECIAL [;]
+|| 5 TK_IDENTIFICADOR [p]
+|| 5 TK_ESPECIAL [=]
+|| 5 TK_IDENTIFICADOR [a]
+|| 5 TK_ESPECIAL [;]
+|| 6 TK_PR_IF [if]
+|| 6 TK_ESPECIAL [(]
+|| 6 TK_IDENTIFICADOR [a]
+|| 6 TK_OC_EQ [==]
+|| 6 TK_LIT_INT [0]
+|| 6 TK_ESPECIAL [)]
+|| 6 TK_PR_THEN [then]
+|| 6 TK_ESPECIAL [{]
+|| 6 TK_PR_OUTPUT [output]
+|| 6 TK_IDENTIFICADOR [x]
+|| 6 TK_ESPECIAL [}]
+|| 6 TK_PR_ELSE [else]
+|| 7 TK_ESPECIAL [}]
+|| 3 [f6] 6
+|| 6 [x6] 6
+|| 6 [a6] 6
+|| 6 [01] 1
+|| 4 [51] 1
+|| 5 [p6] 6
+|| 1 [i6] 6
+|| 1 [minha_funcao6] 6
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_09.tesh:4> as requested)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_errada_09" end time: Sep 24 12:14 BRT
+"e2_avaliacao_errada_09" time elapsed: 00:00:00
+----------------------------------------------------------
+
+221/559 Testing: e2_avaliacao_errada_10
+221/559 Test: e2_avaliacao_errada_10
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_10.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_errada_10" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_10'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_10:4] ./main ./tests/e2/input/errada10.txt
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_10.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_10.tesh:4> returned code 0)
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_10.tesh:4> so far:
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [minha_funcao]
+|| 1 TK_ESPECIAL [(]
+|| 1 TK_PR_FLOAT [float]
+|| 1 TK_IDENTIFICADOR [f]
+|| 1 TK_ESPECIAL [,]
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [i]
+|| 1 TK_ESPECIAL [)]
+|| 2 TK_ESPECIAL [{]
+|| 3 TK_PR_FLOAT [float]
+|| 3 TK_IDENTIFICADOR [f]
+|| 3 TK_ESPECIAL [;]
+|| 4 TK_IDENTIFICADOR [a]
+|| 4 TK_ESPECIAL [=]
+|| 4 TK_LIT_INT [5]
+|| 4 TK_ESPECIAL [;]
+|| 5 TK_IDENTIFICADOR [p]
+|| 5 TK_ESPECIAL [=]
+|| 5 TK_IDENTIFICADOR [a]
+|| 5 TK_ESPECIAL [;]
+|| 6 TK_PR_IF [if]
+|| 6 TK_ESPECIAL [(]
+|| 6 TK_IDENTIFICADOR [a]
+|| 6 TK_OC_EQ [==]
+|| 6 TK_LIT_INT [0]
+|| 6 TK_ESPECIAL [)]
+|| 6 TK_PR_THEN [then]
+|| 6 TK_PR_OUTPUT [output]
+|| 6 TK_IDENTIFICADOR [x]
+|| 6 TK_ESPECIAL [;]
+|| 7 TK_ESPECIAL [{]
+|| 7 TK_PR_OUTPUT [output]
+|| 7 TK_LIT_STRING [nada]
+|| 7 TK_ESPECIAL [;]
+|| 7 TK_ESPECIAL [}]
+|| 8 TK_PR_OUTPUT [output]
+|| 8 TK_LIT_STRING [fim]
+|| 8 TK_ESPECIAL [;]
+|| 9 TK_ESPECIAL [}]
+|| 3 [f6] 6
+|| 6 [x6] 6
+|| 6 [a6] 6
+|| 6 [01] 1
+|| 4 [51] 1
+|| 8 [fim4] 4
+|| 5 [p6] 6
+|| 1 [i6] 6
+|| 7 [nada4] 4
+|| 1 [minha_funcao6] 6
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_10.tesh:4> as requested)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_errada_10" end time: Sep 24 12:14 BRT
+"e2_avaliacao_errada_10" time elapsed: 00:00:00
+----------------------------------------------------------
+
+222/559 Testing: e2_avaliacao_errada_11
+222/559 Test: e2_avaliacao_errada_11
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_11.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_errada_11" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_11'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_11:4] ./main ./tests/e2/input/errada11.txt
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_11.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_11.tesh:4> returned code 0)
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_11.tesh:4> so far:
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [minha_funcao]
+|| 1 TK_ESPECIAL [(]
+|| 1 TK_PR_FLOAT [float]
+|| 1 TK_IDENTIFICADOR [f]
+|| 1 TK_ESPECIAL [,]
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [i]
+|| 1 TK_ESPECIAL [)]
+|| 2 TK_ESPECIAL [{]
+|| 3 TK_PR_FLOAT [float]
+|| 3 TK_IDENTIFICADOR [f]
+|| 3 TK_ESPECIAL [;]
+|| 4 TK_IDENTIFICADOR [a]
+|| 4 TK_ESPECIAL [=]
+|| 4 TK_LIT_INT [5]
+|| 4 TK_ESPECIAL [;]
+|| 5 TK_IDENTIFICADOR [p]
+|| 5 TK_ESPECIAL [=]
+|| 5 TK_IDENTIFICADOR [a]
+|| 5 TK_ESPECIAL [;]
+|| 6 TK_PR_IF [if]
+|| 6 TK_ESPECIAL [(]
+|| 6 TK_IDENTIFICADOR [a]
+|| 6 TK_OC_EQ [==]
+|| 6 TK_LIT_INT [0]
+|| 6 TK_ESPECIAL [)]
+|| 6 TK_PR_THEN [then]
+|| 6 TK_PR_OUTPUT [output]
+|| 6 TK_IDENTIFICADOR [x]
+|| 6 TK_ESPECIAL [;]
+|| 7 TK_PR_ELSE [else]
+|| 7 TK_ESPECIAL [{]
+|| 7 TK_PR_OUTPUT [output]
+|| 7 TK_LIT_STRING [nada]
+|| 7 TK_ESPECIAL [;]
+|| 7 TK_ESPECIAL [}]
+|| 8 TK_PR_OUTPUT [output]
+|| 8 TK_ESPECIAL [;]
+|| 9 TK_ESPECIAL [}]
+|| 3 [f6] 6
+|| 6 [x6] 6
+|| 6 [a6] 6
+|| 6 [01] 1
+|| 4 [51] 1
+|| 5 [p6] 6
+|| 1 [i6] 6
+|| 7 [nada4] 4
+|| 1 [minha_funcao6] 6
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_11.tesh:4> as requested)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_errada_11" end time: Sep 24 12:14 BRT
+"e2_avaliacao_errada_11" time elapsed: 00:00:00
+----------------------------------------------------------
+
+223/559 Testing: e2_avaliacao_errada_12
+223/559 Test: e2_avaliacao_errada_12
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_12.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_errada_12" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_12'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_12:4] ./main ./tests/e2/input/errada12.txt
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_12.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_12.tesh:4> returned code 0)
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_12.tesh:4> so far:
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [minha_funcao]
+|| 1 TK_ESPECIAL [(]
+|| 1 TK_ESPECIAL [)]
+|| 2 TK_ESPECIAL [{]
+|| 3 TK_IDENTIFICADOR [a]
+|| 3 TK_ESPECIAL [=]
+|| 3 TK_LIT_INT [1]
+|| 3 TK_ESPECIAL [;]
+|| 4 TK_IDENTIFICADOR [b]
+|| 4 TK_ESPECIAL [=]
+|| 4 TK_LIT_INT [0]
+|| 4 TK_ESPECIAL [;]
+|| 5 TK_IDENTIFICADOR [c]
+|| 5 TK_ESPECIAL [=]
+|| 5 TK_LIT_CHAR [c]
+|| 5 TK_ESPECIAL [;]
+|| 6 TK_IDENTIFICADOR [a]
+|| 6 TK_ESPECIAL [=]
+|| 6 TK_IDENTIFICADOR [a]
+|| 6 TK_LIT_INT [+1]
+|| 6 TK_ESPECIAL [;]
+|| 7 TK_IDENTIFICADOR [b]
+|| 7 TK_ESPECIAL [=]
+|| 7 TK_IDENTIFICADOR [a]
+|| 7 TK_ESPECIAL [+]
+|| 7 TK_IDENTIFICADOR [c]
+|| 7 TK_ESPECIAL [;]
+|| 8 TK_IDENTIFICADOR [c]
+|| 8 TK_ESPECIAL [=]
+|| 8 TK_IDENTIFICADOR [c]
+|| 8 TK_ESPECIAL [-]
+|| 8 TK_ESPECIAL [(]
+|| 8 TK_LIT_INT [1]
+|| 8 TK_ESPECIAL [*]
+|| 8 TK_LIT_INT [1]
+|| 8 TK_ESPECIAL [)]
+|| 8 TK_ESPECIAL [;]
+|| 9 TK_PR_INPUT [input]
+|| 9 TK_IDENTIFICADOR [a]
+|| 9 TK_ESPECIAL [,]
+|| 9 TK_IDENTIFICADOR [b]
+|| 9 TK_ESPECIAL [,]
+|| 9 TK_IDENTIFICADOR [c]
+|| 9 TK_ESPECIAL [;]
+|| 10 TK_ESPECIAL [}]
+|| 6 [+11] 1
+|| 9 [a6] 6
+|| 4 [01] 1
+|| 9 [b6] 6
+|| 8 [11] 1
+|| 9 [c6] 6
+|| 5 [c3] 3
+|| 1 [minha_funcao6] 6
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_12.tesh:4> as requested)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_errada_12" end time: Sep 24 12:14 BRT
+"e2_avaliacao_errada_12" time elapsed: 00:00:00
+----------------------------------------------------------
+
+224/559 Testing: e2_avaliacao_errada_13
+224/559 Test: e2_avaliacao_errada_13
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_13.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_errada_13" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_13'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_13:4] ./main ./tests/e2/input/errada13.txt
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_13.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_13.tesh:4> returned code 0)
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_13.tesh:4> so far:
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [minha_funcao]
+|| 1 TK_ESPECIAL [(]
+|| 1 TK_ESPECIAL [)]
+|| 2 TK_ESPECIAL [{]
+|| 3 TK_IDENTIFICADOR [a]
+|| 3 TK_ESPECIAL [=]
+|| 3 TK_LIT_INT [1]
+|| 3 TK_ESPECIAL [;]
+|| 4 TK_IDENTIFICADOR [b]
+|| 4 TK_ESPECIAL [=]
+|| 4 TK_LIT_INT [0]
+|| 4 TK_ESPECIAL [;]
+|| 5 TK_IDENTIFICADOR [c]
+|| 5 TK_ESPECIAL [=]
+|| 5 TK_LIT_CHAR [c]
+|| 5 TK_ESPECIAL [;]
+|| 6 TK_IDENTIFICADOR [a]
+|| 6 TK_ESPECIAL [=]
+|| 6 TK_IDENTIFICADOR [a]
+|| 6 TK_LIT_INT [+1]
+|| 6 TK_ESPECIAL [;]
+|| 7 TK_IDENTIFICADOR [b]
+|| 7 TK_ESPECIAL [=]
+|| 7 TK_IDENTIFICADOR [a]
+|| 7 TK_ESPECIAL [+]
+|| 7 TK_IDENTIFICADOR [c]
+|| 7 TK_ESPECIAL [;]
+|| 8 TK_IDENTIFICADOR [c]
+|| 8 TK_ESPECIAL [=]
+|| 8 TK_IDENTIFICADOR [c]
+|| 8 TK_ESPECIAL [-]
+|| 8 TK_ESPECIAL [(]
+|| 8 TK_LIT_INT [1]
+|| 8 TK_ESPECIAL [*]
+|| 8 TK_LIT_INT [1]
+|| 8 TK_ESPECIAL [)]
+|| 8 TK_ESPECIAL [;]
+|| 9 TK_PR_RETURN [return]
+|| 9 TK_IDENTIFICADOR [a]
+|| 9 TK_ESPECIAL [,]
+|| 9 TK_IDENTIFICADOR [b]
+|| 9 TK_ESPECIAL [,]
+|| 9 TK_IDENTIFICADOR [c]
+|| 9 TK_ESPECIAL [;]
+|| 10 TK_ESPECIAL [}]
+|| 6 [+11] 1
+|| 9 [a6] 6
+|| 4 [01] 1
+|| 9 [b6] 6
+|| 8 [11] 1
+|| 9 [c6] 6
+|| 5 [c3] 3
+|| 1 [minha_funcao6] 6
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_13.tesh:4> as requested)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_errada_13" end time: Sep 24 12:14 BRT
+"e2_avaliacao_errada_13" time elapsed: 00:00:00
+----------------------------------------------------------
+
+225/559 Testing: e2_avaliacao_errada_14
+225/559 Test: e2_avaliacao_errada_14
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_14.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_errada_14" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_14'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_14:4] ./main ./tests/e2/input/errada14.txt
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_14.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_14.tesh:4> returned code 0)
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_14.tesh:4> so far:
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [minha_funcao]
+|| 1 TK_ESPECIAL [(]
+|| 1 TK_ESPECIAL [)]
+|| 2 TK_ESPECIAL [{]
+|| 3 TK_IDENTIFICADOR [a]
+|| 3 TK_ESPECIAL [=]
+|| 3 TK_LIT_INT [10]
+|| 3 TK_ESPECIAL [;]
+|| 4 TK_IDENTIFICADOR [v]
+|| 4 TK_ESPECIAL [[]
+|| 4 TK_IDENTIFICADOR [a]
+|| 4 TK_LIT_INT [+1]
+|| 4 TK_ESPECIAL []]
+|| 4 TK_ESPECIAL [=]
+|| 4 TK_LIT_INT [5]
+|| 4 TK_ESPECIAL [[]
+|| 4 TK_LIT_INT [10]
+|| 4 TK_ESPECIAL []]
+|| 4 TK_ESPECIAL [;]
+|| 5 TK_ESPECIAL [}]
+|| 4 [+11] 1
+|| 4 [a6] 6
+|| 4 [v6] 6
+|| 4 [51] 1
+|| 4 [101] 1
+|| 1 [minha_funcao6] 6
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_14.tesh:4> as requested)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_errada_14" end time: Sep 24 12:14 BRT
+"e2_avaliacao_errada_14" time elapsed: 00:00:00
+----------------------------------------------------------
+
+226/559 Testing: e2_avaliacao_errada_15
+226/559 Test: e2_avaliacao_errada_15
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_15.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_errada_15" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_15'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_15:4] ./main ./tests/e2/input/errada15.txt
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_15.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_15.tesh:4> returned code 0)
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_15.tesh:4> so far:
+|| 1 TK_PR_FLOAT [float]
+|| 1 TK_IDENTIFICADOR [variavel_vetor]
+|| 1 TK_ESPECIAL [[]
+|| 1 TK_LIT_INT [15]
+|| 1 TK_ESPECIAL []]
+|| 1 TK_ESPECIAL [;]
+|| 2 TK_PR_INT [int]
+|| 2 TK_IDENTIFICADOR [f]
+|| 2 TK_ESPECIAL [(]
+|| 2 TK_PR_INT [int]
+|| 2 TK_IDENTIFICADOR [x]
+|| 2 TK_ESPECIAL [)]
+|| 2 TK_ESPECIAL [{]
+|| 2 TK_PR_RETURN [return]
+|| 2 TK_LIT_INT [2]
+|| 2 TK_ESPECIAL [*]
+|| 2 TK_IDENTIFICADOR [x]
+|| 2 TK_ESPECIAL [;]
+|| 2 TK_ESPECIAL [}]
+|| 3 TK_PR_FLOAT [float]
+|| 3 TK_IDENTIFICADOR [function]
+|| 3 TK_ESPECIAL [(]
+|| 3 TK_ESPECIAL [)]
+|| 4 TK_ESPECIAL [{]
+|| 5 TK_IDENTIFICADOR [a]
+|| 5 TK_ESPECIAL [=]
+|| 5 TK_LIT_INT [10]
+|| 5 TK_ESPECIAL [;]
+|| 6 TK_IDENTIFICADOR [f]
+|| 6 TK_ESPECIAL [(]
+|| 6 TK_LIT_INT [3]
+|| 6 TK_ESPECIAL [)]
+|| 6 TK_ESPECIAL [=]
+|| 6 TK_IDENTIFICADOR [f]
+|| 6 TK_ESPECIAL [(]
+|| 6 TK_LIT_INT [2]
+|| 6 TK_ESPECIAL [)]
+|| 6 TK_ESPECIAL [;]
+|| 7 TK_ESPECIAL [}]
+|| 1 [variavel_vetor6] 6
+|| 6 [f6] 6
+|| 6 [21] 1
+|| 3 [function6] 6
+|| 2 [x6] 6
+|| 5 [a6] 6
+|| 1 [151] 1
+|| 5 [101] 1
+|| 6 [31] 1
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_15.tesh:4> as requested)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_errada_15" end time: Sep 24 12:14 BRT
+"e2_avaliacao_errada_15" time elapsed: 00:00:00
+----------------------------------------------------------
+
+227/559 Testing: e2_avaliacao_errada_16
+227/559 Test: e2_avaliacao_errada_16
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_16.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_errada_16" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_16'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_16:4] ./main ./tests/e2/input/errada16.txt
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_16.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_16.tesh:4> returned code 0)
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_16.tesh:4> so far:
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [a]
+|| 1 TK_ESPECIAL [;]
+|| 2 TK_PR_FLOAT [float]
+|| 2 TK_IDENTIFICADOR [b]
+|| 2 TK_ESPECIAL [;]
+|| 3 TK_PR_CHAR [char]
+|| 3 TK_IDENTIFICADOR [v]
+|| 3 TK_ESPECIAL [[]
+|| 3 TK_LIT_INT [15]
+|| 3 TK_ESPECIAL []]
+|| 3 TK_ESPECIAL [;]
+|| 4 TK_PR_INT [int]
+|| 4 TK_IDENTIFICADOR [f2]
+|| 4 TK_ESPECIAL [(]
+|| 4 TK_PR_INT [int]
+|| 4 TK_IDENTIFICADOR [x]
+|| 4 TK_ESPECIAL [)]
+|| 5 TK_ESPECIAL [{]
+|| 6 TK_PR_RETURN [return]
+|| 6 TK_LIT_INT [2]
+|| 6 TK_ESPECIAL [*]
+|| 6 TK_IDENTIFICADOR [x]
+|| 6 TK_ESPECIAL [;]
+|| 7 TK_ESPECIAL [}]
+|| 8 TK_PR_FLOAT [float]
+|| 8 TK_IDENTIFICADOR [my_function]
+|| 8 TK_ESPECIAL [(]
+|| 8 TK_ESPECIAL [)]
+|| 9 TK_ESPECIAL [{]
+|| 10 TK_IDENTIFICADOR [a]
+|| 10 TK_ESPECIAL [=]
+|| 10 TK_LIT_INT [10]
+|| 10 TK_ESPECIAL [;]
+|| 11 TK_PR_WHILE [while]
+|| 11 TK_ESPECIAL [(]
+|| 11 TK_IDENTIFICADOR [v]
+|| 11 TK_ESPECIAL [[]
+|| 11 TK_IDENTIFICADOR [a]
+|| 11 TK_LIT_INT [+1]
+|| 11 TK_ESPECIAL []]
+|| 11 TK_OC_NE [!=]
+|| 11 TK_LIT_INT [4]
+|| 11 TK_PR_DO [do]
+|| 11 TK_IDENTIFICADOR [v]
+|| 11 TK_ESPECIAL [[]
+|| 11 TK_IDENTIFICADOR [a]
+|| 11 TK_LIT_INT [+1]
+|| 11 TK_ESPECIAL []]
+|| 11 TK_ESPECIAL [=]
+|| 11 TK_IDENTIFICADOR [f]
+|| 11 TK_ESPECIAL [(]
+|| 11 TK_LIT_INT [2]
+|| 11 TK_ESPECIAL [)]
+|| 11 TK_ESPECIAL [;]
+|| 12 TK_ESPECIAL [}]
+|| 11 [+11] 1
+|| 11 [f6] 6
+|| 11 [21] 1
+|| 6 [x6] 6
+|| 11 [a6] 6
+|| 11 [v6] 6
+|| 4 [f26] 6
+|| 2 [b6] 6
+|| 3 [151] 1
+|| 11 [41] 1
+|| 10 [101] 1
+|| 8 [my_function6] 6
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_16.tesh:4> as requested)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_errada_16" end time: Sep 24 12:14 BRT
+"e2_avaliacao_errada_16" time elapsed: 00:00:00
+----------------------------------------------------------
+
+228/559 Testing: e2_avaliacao_errada_17
+228/559 Test: e2_avaliacao_errada_17
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_17.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_errada_17" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_17'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_17:4] ./main ./tests/e2/input/errada17.txt
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_17.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_17.tesh:4> returned code 0)
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_17.tesh:4> so far:
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [a]
+|| 1 TK_ESPECIAL [;]
+|| 2 TK_PR_FLOAT [float]
+|| 2 TK_IDENTIFICADOR [b]
+|| 2 TK_ESPECIAL [;]
+|| 3 TK_PR_CHAR [char]
+|| 3 TK_IDENTIFICADOR [v]
+|| 3 TK_ESPECIAL [[]
+|| 3 TK_LIT_INT [15]
+|| 3 TK_ESPECIAL []]
+|| 3 TK_ESPECIAL [;]
+|| 4 TK_PR_INT [int]
+|| 4 TK_IDENTIFICADOR [f2]
+|| 4 TK_ESPECIAL [(]
+|| 4 TK_PR_INT [int]
+|| 4 TK_IDENTIFICADOR [x]
+|| 4 TK_ESPECIAL [)]
+|| 5 TK_ESPECIAL [{]
+|| 6 TK_PR_RETURN [return]
+|| 6 TK_LIT_INT [2]
+|| 6 TK_ESPECIAL [*]
+|| 6 TK_IDENTIFICADOR [x]
+|| 6 TK_ESPECIAL [;]
+|| 7 TK_ESPECIAL [}]
+|| 8 TK_PR_FLOAT [float]
+|| 8 TK_IDENTIFICADOR [my_function]
+|| 8 TK_ESPECIAL [(]
+|| 8 TK_ESPECIAL [)]
+|| 9 TK_ESPECIAL [{]
+|| 10 TK_IDENTIFICADOR [a]
+|| 10 TK_ESPECIAL [=]
+|| 10 TK_LIT_INT [10]
+|| 10 TK_ESPECIAL [;]
+|| 11 TK_PR_WHILE [while]
+|| 11 TK_ESPECIAL [(]
+|| 11 TK_IDENTIFICADOR [v]
+|| 11 TK_ESPECIAL [[]
+|| 11 TK_IDENTIFICADOR [a]
+|| 11 TK_LIT_INT [+1]
+|| 11 TK_ESPECIAL []]
+|| 11 TK_OC_NE [!=]
+|| 11 TK_LIT_INT [4]
+|| 11 TK_LIT_INT [+1]
+|| 11 TK_ESPECIAL [)]
+|| 11 TK_IDENTIFICADOR [v]
+|| 11 TK_ESPECIAL [[]
+|| 11 TK_IDENTIFICADOR [a]
+|| 11 TK_LIT_INT [+1]
+|| 11 TK_ESPECIAL []]
+|| 11 TK_ESPECIAL [=]
+|| 11 TK_IDENTIFICADOR [f]
+|| 11 TK_ESPECIAL [(]
+|| 11 TK_LIT_INT [2]
+|| 11 TK_ESPECIAL [)]
+|| 11 TK_LIT_INT [+1]
+|| 11 TK_ESPECIAL [;]
+|| 12 TK_ESPECIAL [}]
+|| 11 [+11] 1
+|| 11 [f6] 6
+|| 11 [21] 1
+|| 6 [x6] 6
+|| 11 [a6] 6
+|| 11 [v6] 6
+|| 4 [f26] 6
+|| 2 [b6] 6
+|| 3 [151] 1
+|| 11 [41] 1
+|| 10 [101] 1
+|| 8 [my_function6] 6
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_17.tesh:4> as requested)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_errada_17" end time: Sep 24 12:14 BRT
+"e2_avaliacao_errada_17" time elapsed: 00:00:00
+----------------------------------------------------------
+
+229/559 Testing: e2_avaliacao_errada_18
+229/559 Test: e2_avaliacao_errada_18
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_18.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_errada_18" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_18'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_18:4] ./main ./tests/e2/input/errada18.txt
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_18.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_18.tesh:4> returned code 0)
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_18.tesh:4> so far:
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [a]
+|| 1 TK_ESPECIAL [;]
+|| 2 TK_PR_FLOAT [float]
+|| 2 TK_IDENTIFICADOR [b]
+|| 2 TK_ESPECIAL [;]
+|| 3 TK_PR_CHAR [char]
+|| 3 TK_IDENTIFICADOR [v]
+|| 3 TK_ESPECIAL [[]
+|| 3 TK_LIT_INT [15]
+|| 3 TK_ESPECIAL []]
+|| 3 TK_ESPECIAL [;]
+|| 4 TK_PR_INT [int]
+|| 4 TK_IDENTIFICADOR [f2]
+|| 4 TK_ESPECIAL [(]
+|| 4 TK_PR_INT [int]
+|| 4 TK_IDENTIFICADOR [x]
+|| 4 TK_ESPECIAL [)]
+|| 5 TK_ESPECIAL [{]
+|| 6 TK_PR_RETURN [return]
+|| 6 TK_LIT_INT [2]
+|| 6 TK_ESPECIAL [*]
+|| 6 TK_IDENTIFICADOR [x]
+|| 6 TK_ESPECIAL [;]
+|| 7 TK_ESPECIAL [}]
+|| 8 TK_PR_FLOAT [float]
+|| 8 TK_IDENTIFICADOR [my_function]
+|| 8 TK_ESPECIAL [(]
+|| 8 TK_ESPECIAL [)]
+|| 9 TK_ESPECIAL [{]
+|| 11 TK_ESPECIAL []]
+|| 11 TK_ESPECIAL [=]
+|| 11 TK_IDENTIFICADOR [f]
+|| 11 TK_ESPECIAL [(]
+|| 11 TK_LIT_INT [2]
+|| 11 TK_ESPECIAL [)]
+|| 11 TK_LIT_INT [+1]
+|| 11 TK_ESPECIAL [;]
+|| 12 TK_ESPECIAL [}]
+|| 11 [+11] 1
+|| 11 [f6] 6
+|| 11 [21] 1
+|| 6 [x6] 6
+|| 1 [a6] 6
+|| 3 [v6] 6
+|| 4 [f26] 6
+|| 2 [b6] 6
+|| 3 [151] 1
+|| 8 [my_function6] 6
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_18.tesh:4> as requested)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_errada_18" end time: Sep 24 12:14 BRT
+"e2_avaliacao_errada_18" time elapsed: 00:00:00
+----------------------------------------------------------
+
+230/559 Testing: e2_avaliacao_errada_19
+230/559 Test: e2_avaliacao_errada_19
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_19.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_errada_19" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_19'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_19:4] ./main ./tests/e2/input/errada19.txt
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_19.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_19.tesh:4> returned code 0)
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_19.tesh:4> so far:
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [a]
+|| 1 TK_ESPECIAL [;]
+|| 2 TK_PR_FLOAT [float]
+|| 2 TK_IDENTIFICADOR [b]
+|| 2 TK_ESPECIAL [;]
+|| 3 TK_PR_CHAR [char]
+|| 3 TK_IDENTIFICADOR [v]
+|| 3 TK_ESPECIAL [[]
+|| 3 TK_LIT_INT [15]
+|| 3 TK_ESPECIAL []]
+|| 3 TK_ESPECIAL [;]
+|| 4 TK_PR_INT [int]
+|| 4 TK_IDENTIFICADOR [f2]
+|| 4 TK_ESPECIAL [(]
+|| 4 TK_PR_INT [int]
+|| 4 TK_IDENTIFICADOR [x]
+|| 4 TK_ESPECIAL [)]
+|| 5 TK_ESPECIAL [{]
+|| 6 TK_PR_RETURN [return]
+|| 6 TK_LIT_INT [2]
+|| 6 TK_ESPECIAL [*]
+|| 6 TK_IDENTIFICADOR [x]
+|| 6 TK_ESPECIAL [;]
+|| 7 TK_ESPECIAL [}]
+|| 8 TK_PR_FLOAT [float]
+|| 8 TK_IDENTIFICADOR [my_function]
+|| 8 TK_ESPECIAL [(]
+|| 8 TK_ESPECIAL [)]
+|| 9 TK_ESPECIAL [{]
+|| 11 TK_PR_WHILE [while]
+|| 11 TK_ESPECIAL [(]
+|| 11 TK_IDENTIFICADOR [v]
+|| 11 TK_ESPECIAL [[]
+|| 11 TK_IDENTIFICADOR [a]
+|| 11 TK_LIT_INT [+1]
+|| 11 TK_ESPECIAL []]
+|| 11 TK_OC_NE [!=]
+|| 11 TK_LIT_INT [4]
+|| 11 TK_LIT_INT [+1]
+|| 11 TK_ESPECIAL [)]
+|| 11 TK_PR_DO [do]
+|| 11 TK_IDENTIFICADOR [v]
+|| 11 TK_ESPECIAL [[]
+|| 11 TK_IDENTIFICADOR [a]
+|| 11 TK_ESPECIAL [+]
+|| 11 TK_IDENTIFICADOR [f]
+|| 11 TK_ESPECIAL [(]
+|| 11 TK_LIT_INT [2]
+|| 11 TK_ESPECIAL [)]
+|| 11 TK_ESPECIAL []]
+|| 11 TK_ESPECIAL [=]
+|| 11 TK_IDENTIFICADOR [f]
+|| 11 TK_ESPECIAL [(]
+|| 11 TK_IDENTIFICADOR [v]
+|| 11 TK_ESPECIAL [[]
+|| 11 TK_ESPECIAL []]
+|| 11 TK_ESPECIAL [)]
+|| 11 TK_LIT_INT [+1]
+|| 11 TK_ESPECIAL [;]
+|| 12 TK_ESPECIAL [}]
+|| 11 [+11] 1
+|| 11 [f6] 6
+|| 11 [21] 1
+|| 6 [x6] 6
+|| 11 [a6] 6
+|| 11 [v6] 6
+|| 4 [f26] 6
+|| 2 [b6] 6
+|| 3 [151] 1
+|| 11 [41] 1
+|| 8 [my_function6] 6
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_19.tesh:4> as requested)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_errada_19" end time: Sep 24 12:14 BRT
+"e2_avaliacao_errada_19" time elapsed: 00:00:00
+----------------------------------------------------------
+
+231/559 Testing: e2_avaliacao_errada_20
+231/559 Test: e2_avaliacao_errada_20
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_20.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_errada_20" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_20'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_20:4] ./main ./tests/e2/input/errada20.txt
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_20.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_20.tesh:4> returned code 0)
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_20.tesh:4> so far:
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [f2]
+|| 1 TK_ESPECIAL [(]
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [x]
+|| 1 TK_ESPECIAL [)]
+|| 2 TK_ESPECIAL [{]
+|| 3 TK_PR_RETURN [return]
+|| 3 TK_LIT_INT [2]
+|| 3 TK_ESPECIAL [*]
+|| 3 TK_IDENTIFICADOR [x]
+|| 3 TK_ESPECIAL [;]
+|| 4 TK_ESPECIAL [}]
+|| 5 TK_PR_FLOAT [float]
+|| 5 TK_IDENTIFICADOR [my_function]
+|| 5 TK_ESPECIAL [(]
+|| 5 TK_ESPECIAL [)]
+|| 6 TK_ESPECIAL [{]
+|| 8 TK_PR_WHILE [while]
+|| 8 TK_ESPECIAL [(]
+|| 8 TK_IDENTIFICADOR [v]
+|| 8 TK_ESPECIAL [[]
+|| 8 TK_IDENTIFICADOR [a]
+|| 8 TK_LIT_INT [-1]
+|| 8 TK_ESPECIAL []]
+|| 8 TK_OC_NE [!=]
+|| 8 TK_LIT_INT [4]
+|| 8 TK_LIT_INT [-1]
+|| 8 TK_ESPECIAL [)]
+|| 8 TK_PR_DO [do]
+|| 8 TK_IDENTIFICADOR [v]
+|| 8 TK_ESPECIAL [[]
+|| 8 TK_IDENTIFICADOR [a]
+|| 8 TK_ESPECIAL []]
+|| 8 TK_ESPECIAL [=]
+|| 8 TK_LIT_INT [1]
+|| 8 TK_ESPECIAL [;]
+|| 9 TK_IDENTIFICADOR [a]
+|| 9 TK_ESPECIAL [=]
+|| 9 TK_LIT_FLOAT [-3.2]
+|| 9 TK_ESPECIAL [,]
+|| 9 TK_LIT_INT [10]
+|| 9 TK_ESPECIAL [;]
+|| 10 TK_ESPECIAL [{]
+|| 11 TK_ESPECIAL [;]
+|| 12 TK_ESPECIAL [}]
+|| 13 TK_ESPECIAL [}]
+|| 3 [21] 1
+|| 3 [x6] 6
+|| 9 [a6] 6
+|| 8 [v6] 6
+|| 1 [f26] 6
+|| 8 [11] 1
+|| 8 [41] 1
+|| 9 [101] 1
+|| 5 [my_function6] 6
+|| 8 [-11] 1
+|| 9 [-3.22] 2
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_20.tesh:4> as requested)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_errada_20" end time: Sep 24 12:14 BRT
+"e2_avaliacao_errada_20" time elapsed: 00:00:00
+----------------------------------------------------------
+
+232/559 Testing: e2_avaliacao_errada_21
+232/559 Test: e2_avaliacao_errada_21
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_21.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_errada_21" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_21'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_21:4] ./main ./tests/e2/input/errada21.txt
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_21.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_21.tesh:4> returned code 0)
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_21.tesh:4> so far:
+|| 1 TK_PR_CONST [const]
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [a]
+|| 1 TK_ESPECIAL [[]
+|| 1 TK_LIT_INT [10]
+|| 1 TK_ESPECIAL []]
+|| 1 TK_ESPECIAL [;]
+|| 2 TK_PR_STATIC [static]
+|| 2 TK_PR_INT [int]
+|| 2 TK_IDENTIFICADOR [b]
+|| 2 TK_ESPECIAL [(]
+|| 2 TK_ESPECIAL [)]
+|| 3 TK_ESPECIAL [{]
+|| 4 TK_PR_CONST [const]
+|| 4 TK_PR_INT [int]
+|| 4 TK_IDENTIFICADOR [a]
+|| 4 TK_OC_LE [<=]
+|| 4 TK_LIT_INT [4]
+|| 4 TK_ESPECIAL [;]
+|| 5 TK_PR_STATIC [static]
+|| 5 TK_PR_CONST [const]
+|| 5 TK_PR_FLOAT [float]
+|| 5 TK_IDENTIFICADOR [b]
+|| 5 TK_OC_LE [<=]
+|| 5 TK_LIT_FLOAT [5.1]
+|| 5 TK_ESPECIAL [;]
+|| 6 TK_ESPECIAL [}]
+|| 4 [a6] 6
+|| 5 [b6] 6
+|| 4 [41] 1
+|| 1 [101] 1
+|| 5 [5.12] 2
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_21.tesh:4> as requested)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_errada_21" end time: Sep 24 12:14 BRT
+"e2_avaliacao_errada_21" time elapsed: 00:00:00
+----------------------------------------------------------
+
+233/559 Testing: e2_avaliacao_errada_22
+233/559 Test: e2_avaliacao_errada_22
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_22.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_errada_22" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_22'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_22:4] ./main ./tests/e2/input/errada22.txt
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_22.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_22.tesh:4> returned code 0)
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_22.tesh:4> so far:
+|| 1 TK_PR_INT [int]
+|| 1 TK_PR_STATIC [static]
+|| 1 TK_IDENTIFICADOR [b]
+|| 1 TK_ESPECIAL [;]
+|| 2 TK_PR_INT [int]
+|| 2 TK_IDENTIFICADOR [a]
+|| 2 TK_ESPECIAL [(]
+|| 2 TK_ESPECIAL [)]
+|| 3 TK_ESPECIAL [{]
+|| 4 TK_PR_FLOAT [float]
+|| 4 TK_IDENTIFICADOR [g]
+|| 4 TK_ESPECIAL [;]
+|| 5 TK_ESPECIAL [}]
+|| 2 [a6] 6
+|| 1 [b6] 6
+|| 4 [g6] 6
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_22.tesh:4> as requested)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_errada_22" end time: Sep 24 12:14 BRT
+"e2_avaliacao_errada_22" time elapsed: 00:00:00
+----------------------------------------------------------
+
+234/559 Testing: e2_avaliacao_errada_23
+234/559 Test: e2_avaliacao_errada_23
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_23.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_errada_23" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_23'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_23:4] ./main ./tests/e2/input/errada23.txt
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_23.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_23.tesh:4> returned code 0)
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_23.tesh:4> so far:
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [h]
+|| 1 TK_ESPECIAL [[]
+|| 1 TK_LIT_INT [10]
+|| 1 TK_ESPECIAL []]
+|| 1 TK_ESPECIAL [;]
+|| 2 TK_PR_CONST [const]
+|| 2 TK_IDENTIFICADOR [funcao]
+|| 2 TK_ESPECIAL [(]
+|| 2 TK_PR_INT [int]
+|| 2 TK_IDENTIFICADOR [j]
+|| 2 TK_ESPECIAL [)]
+|| 3 TK_ESPECIAL [{]
+|| 4 TK_PR_INT [int]
+|| 4 TK_IDENTIFICADOR [abc]
+|| 4 TK_OC_LE [<=]
+|| 4 TK_LIT_INT [12]
+|| 4 TK_ESPECIAL [;]
+|| 5 TK_ESPECIAL [}]
+|| 4 [121] 1
+|| 1 [h6] 6
+|| 2 [j6] 6
+|| 1 [101] 1
+|| 2 [funcao6] 6
+|| 4 [abc6] 6
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_23.tesh:4> as requested)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_errada_23" end time: Sep 24 12:14 BRT
+"e2_avaliacao_errada_23" time elapsed: 00:00:00
+----------------------------------------------------------
+
+235/559 Testing: e2_avaliacao_errada_24
+235/559 Test: e2_avaliacao_errada_24
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_24.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_errada_24" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_24'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_24:4] ./main ./tests/e2/input/errada24.txt
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_24.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_24.tesh:4> returned code 0)
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_24.tesh:4> so far:
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [vetor]
+|| 1 TK_ESPECIAL [[]
+|| 1 TK_LIT_INT [10]
+|| 1 TK_ESPECIAL []]
+|| 1 TK_ESPECIAL [;]
+|| 2 TK_PR_INT [int]
+|| 2 TK_IDENTIFICADOR [funcao]
+|| 2 TK_ESPECIAL [(]
+|| 2 TK_PR_INT [int]
+|| 2 TK_IDENTIFICADOR [arg1]
+|| 2 TK_ESPECIAL [)]
+|| 3 TK_ESPECIAL [{]
+|| 4 TK_PR_CONST [const]
+|| 4 TK_PR_STATIC [static]
+|| 4 TK_PR_INT [int]
+|| 4 TK_IDENTIFICADOR [b]
+|| 4 TK_OC_LE [<=]
+|| 4 TK_LIT_INT [10]
+|| 4 TK_ESPECIAL [;]
+|| 5 TK_PR_INT [int]
+|| 5 TK_IDENTIFICADOR [k]
+|| 5 TK_ESPECIAL [;]
+|| 6 TK_ESPECIAL [}]
+|| 1 [vetor6] 6
+|| 2 [arg16] 6
+|| 4 [b6] 6
+|| 4 [101] 1
+|| 2 [funcao6] 6
+|| 5 [k6] 6
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_24.tesh:4> as requested)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_errada_24" end time: Sep 24 12:14 BRT
+"e2_avaliacao_errada_24" time elapsed: 00:00:00
+----------------------------------------------------------
+
+236/559 Testing: e2_avaliacao_errada_25
+236/559 Test: e2_avaliacao_errada_25
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_25.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_errada_25" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_25'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_25:4] ./main ./tests/e2/input/errada25.txt
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_25.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_25.tesh:4> returned code 0)
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_25.tesh:4> so far:
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [vetor]
+|| 1 TK_ESPECIAL [[]
+|| 1 TK_LIT_INT [10]
+|| 1 TK_ESPECIAL []]
+|| 1 TK_ESPECIAL [;]
+|| 2 TK_PR_INT [int]
+|| 2 TK_IDENTIFICADOR [funcao]
+|| 2 TK_ESPECIAL [(]
+|| 2 TK_PR_INT [int]
+|| 2 TK_IDENTIFICADOR [arg1]
+|| 2 TK_ESPECIAL [)]
+|| 3 TK_ESPECIAL [{]
+|| 4 TK_PR_STATIC [static]
+|| 4 TK_PR_INT [int]
+|| 4 TK_PR_CONST [const]
+|| 4 TK_IDENTIFICADOR [c]
+|| 4 TK_OC_LE [<=]
+|| 4 TK_LIT_INT [10]
+|| 4 TK_ESPECIAL [;]
+|| 5 TK_PR_INT [int]
+|| 5 TK_IDENTIFICADOR [m]
+|| 5 TK_ESPECIAL [;]
+|| 6 TK_ESPECIAL [}]
+|| 5 [m6] 6
+|| 1 [vetor6] 6
+|| 2 [arg16] 6
+|| 4 [c6] 6
+|| 4 [101] 1
+|| 2 [funcao6] 6
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_25.tesh:4> as requested)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_errada_25" end time: Sep 24 12:14 BRT
+"e2_avaliacao_errada_25" time elapsed: 00:00:00
+----------------------------------------------------------
+
+237/559 Testing: e2_avaliacao_errada_26
+237/559 Test: e2_avaliacao_errada_26
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_26.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_errada_26" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_26'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_26:4] ./main ./tests/e2/input/errada26.txt
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_26.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_26.tesh:4> returned code 0)
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_26.tesh:4> so far:
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [j]
+|| 1 TK_ESPECIAL [;]
+|| 2 TK_PR_INT [int]
+|| 2 TK_IDENTIFICADOR [function]
+|| 2 TK_ESPECIAL [(]
+|| 2 TK_PR_INT [int]
+|| 2 TK_IDENTIFICADOR [arg1]
+|| 2 TK_ESPECIAL [,]
+|| 2 TK_PR_FLOAT [float]
+|| 2 TK_IDENTIFICADOR [arg2]
+|| 2 TK_ESPECIAL [,]
+|| 2 TK_PR_CHAR [char]
+|| 2 TK_IDENTIFICADOR [arg3]
+|| 2 TK_ESPECIAL [)]
+|| 3 TK_ESPECIAL [{]
+|| 4 TK_PR_CONST [const]
+|| 4 TK_IDENTIFICADOR [var]
+|| 4 TK_ESPECIAL [;]
+|| 5 TK_PR_INT [int]
+|| 5 TK_IDENTIFICADOR [abc]
+|| 5 TK_ESPECIAL [;]
+|| 6 TK_ESPECIAL [}]
+|| 2 [arg36] 6
+|| 2 [function6] 6
+|| 2 [arg16] 6
+|| 2 [arg26] 6
+|| 1 [j6] 6
+|| 4 [var6] 6
+|| 5 [abc6] 6
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_26.tesh:4> as requested)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_errada_26" end time: Sep 24 12:14 BRT
+"e2_avaliacao_errada_26" time elapsed: 00:00:00
+----------------------------------------------------------
+
+238/559 Testing: e2_avaliacao_errada_27
+238/559 Test: e2_avaliacao_errada_27
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_27.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_errada_27" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_27'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_27:4] ./main ./tests/e2/input/errada27.txt
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_27.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_27.tesh:4> returned code 0)
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_27.tesh:4> so far:
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [vetor]
+|| 1 TK_ESPECIAL [[]
+|| 1 TK_LIT_INT [5]
+|| 1 TK_ESPECIAL []]
+|| 1 TK_ESPECIAL [;]
+|| 2 TK_PR_STATIC [static]
+|| 2 TK_PR_FLOAT [float]
+|| 2 TK_IDENTIFICADOR [funcao]
+|| 2 TK_ESPECIAL [(]
+|| 2 TK_PR_STATIC [static]
+|| 2 TK_PR_INT [int]
+|| 2 TK_IDENTIFICADOR [arg1]
+|| 2 TK_ESPECIAL [,]
+|| 2 TK_PR_STATIC [static]
+|| 2 TK_PR_FLOAT [float]
+|| 2 TK_IDENTIFICADOR [arg2]
+|| 2 TK_ESPECIAL [,]
+|| 2 TK_PR_STATIC [static]
+|| 2 TK_PR_CHAR [char]
+|| 2 TK_IDENTIFICADOR [arg3]
+|| 2 TK_ESPECIAL [)]
+|| 3 TK_ESPECIAL [{]
+|| 4 TK_PR_STATIC [static]
+|| 4 TK_PR_CONST [const]
+|| 4 TK_PR_INT [int]
+|| 4 TK_OC_LE [<=]
+|| 4 TK_LIT_INT [10]
+|| 4 TK_ESPECIAL [;]
+|| 5 TK_ESPECIAL [{]
+|| 6 TK_PR_CONST [const]
+|| 6 TK_PR_INT [int]
+|| 6 TK_IDENTIFICADOR [u]
+|| 6 TK_OC_LE [<=]
+|| 6 TK_LIT_INT [25]
+|| 7 TK_ESPECIAL [}]
+|| 7 TK_ESPECIAL [;]
+|| 9 TK_PR_FLOAT [float]
+|| 9 TK_IDENTIFICADOR [g]
+|| 9 TK_ESPECIAL [;]
+|| 10 TK_ESPECIAL [}]
+|| 2 [arg36] 6
+|| 1 [51] 1
+|| 1 [vetor6] 6
+|| 2 [arg16] 6
+|| 6 [251] 1
+|| 6 [u6] 6
+|| 2 [arg26] 6
+|| 4 [101] 1
+|| 2 [funcao6] 6
+|| 9 [g6] 6
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_27.tesh:4> as requested)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_errada_27" end time: Sep 24 12:14 BRT
+"e2_avaliacao_errada_27" time elapsed: 00:00:00
+----------------------------------------------------------
+
+239/559 Testing: e2_avaliacao_errada_28
+239/559 Test: e2_avaliacao_errada_28
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_28.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_errada_28" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_28'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_28:4] ./main ./tests/e2/input/errada28.txt
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_28.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_28.tesh:4> returned code 0)
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_28.tesh:4> so far:
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [var]
+|| 1 TK_OC_LE [<=]
+|| 1 TK_LIT_INT [10]
+|| 1 TK_ESPECIAL [;]
+|| 2 TK_PR_FLOAT [float]
+|| 2 TK_IDENTIFICADOR [func]
+|| 2 TK_ESPECIAL [(]
+|| 2 TK_PR_INT [int]
+|| 2 TK_IDENTIFICADOR [arg]
+|| 2 TK_ESPECIAL [)]
+|| 3 TK_ESPECIAL [{]
+|| 4 TK_IDENTIFICADOR [arg]
+|| 4 TK_ESPECIAL [=]
+|| 4 TK_LIT_INT [10]
+|| 4 TK_ESPECIAL [;]
+|| 5 TK_ESPECIAL [}]
+|| 2 [func6] 6
+|| 4 [arg6] 6
+|| 4 [101] 1
+|| 1 [var6] 6
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_28.tesh:4> as requested)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_errada_28" end time: Sep 24 12:14 BRT
+"e2_avaliacao_errada_28" time elapsed: 00:00:00
+----------------------------------------------------------
+
+240/559 Testing: e2_avaliacao_errada_29
+240/559 Test: e2_avaliacao_errada_29
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_29.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_errada_29" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_29'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_29:4] ./main ./tests/e2/input/errada29.txt
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_29.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_29.tesh:4> returned code 0)
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_29.tesh:4> so far:
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [func]
+|| 1 TK_ESPECIAL [(]
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [arg]
+|| 1 TK_ESPECIAL [)]
+|| 2 TK_ESPECIAL [{]
+|| 3 TK_PR_FLOAT [float]
+|| 3 TK_IDENTIFICADOR [variavel]
+|| 3 TK_ESPECIAL [=]
+|| 3 TK_LIT_INT [10]
+|| 3 TK_ESPECIAL [;]
+|| 4 TK_PR_INT [int]
+|| 4 TK_IDENTIFICADOR [outraVariavel]
+|| 4 TK_ESPECIAL [;]
+|| 5 TK_ESPECIAL [}]
+|| 4 [outraVariavel6] 6
+|| 1 [func6] 6
+|| 3 [variavel6] 6
+|| 1 [arg6] 6
+|| 3 [101] 1
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_29.tesh:4> as requested)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_errada_29" end time: Sep 24 12:14 BRT
+"e2_avaliacao_errada_29" time elapsed: 00:00:00
+----------------------------------------------------------
+
+241/559 Testing: e2_avaliacao_errada_30
+241/559 Test: e2_avaliacao_errada_30
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_30.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_avaliacao_errada_30" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_30'
+[/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_30:4] ./main ./tests/e2/input/errada30.txt
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_30.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_30.tesh:4> returned code 0)
+Output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_30.tesh:4> so far:
+|| 1 TK_PR_INT [int]
+|| 1 TK_IDENTIFICADOR [b]
+|| 1 TK_ESPECIAL [;]
+|| 2 TK_PR_INT [int]
+|| 2 TK_IDENTIFICADOR [funcao]
+|| 2 TK_ESPECIAL [(]
+|| 2 TK_ESPECIAL [)]
+|| 3 TK_ESPECIAL [{]
+|| 4 TK_PR_INT [int]
+|| 4 TK_IDENTIFICADOR [a]
+|| 4 TK_ESPECIAL [;]
+|| 5 TK_IDENTIFICADOR [a]
+|| 5 TK_OC_LE [<=]
+|| 5 TK_LIT_INT [42]
+|| 5 TK_ESPECIAL [;]
+|| 6 TK_ESPECIAL [}]
+|| 5 [a6] 6
+|| 1 [b6] 6
+|| 5 [421] 1
+|| 2 [funcao6] 6
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/avaliacao_errada_30.tesh:4> as requested)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e2_avaliacao_errada_30" end time: Sep 24 12:14 BRT
+"e2_avaliacao_errada_30" time elapsed: 00:00:00
+----------------------------------------------------------
+
+242/559 Testing: e2_valgrind_certa_01
+242/559 Test: e2_valgrind_certa_01
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_01.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_certa_01" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_01'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_01:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/certa01.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_01.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_01' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_certa_01" end time: Sep 24 12:14 BRT
+"e2_valgrind_certa_01" time elapsed: 00:00:00
+----------------------------------------------------------
+
+243/559 Testing: e2_valgrind_certa_02
+243/559 Test: e2_valgrind_certa_02
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_02.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_certa_02" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_02'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_02:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/certa02.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_02.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_02' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_certa_02" end time: Sep 24 12:14 BRT
+"e2_valgrind_certa_02" time elapsed: 00:00:00
+----------------------------------------------------------
+
+244/559 Testing: e2_valgrind_certa_03
+244/559 Test: e2_valgrind_certa_03
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_03.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_certa_03" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_03'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_03:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/certa03.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_03.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_03' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_certa_03" end time: Sep 24 12:14 BRT
+"e2_valgrind_certa_03" time elapsed: 00:00:00
+----------------------------------------------------------
+
+245/559 Testing: e2_valgrind_certa_04
+245/559 Test: e2_valgrind_certa_04
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_04.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_certa_04" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_04'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_04:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/certa04.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_04.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_04' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_certa_04" end time: Sep 24 12:14 BRT
+"e2_valgrind_certa_04" time elapsed: 00:00:00
+----------------------------------------------------------
+
+246/559 Testing: e2_valgrind_certa_05
+246/559 Test: e2_valgrind_certa_05
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_05.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_certa_05" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_05'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_05:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/certa05.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_05.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_05' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_certa_05" end time: Sep 24 12:14 BRT
+"e2_valgrind_certa_05" time elapsed: 00:00:00
+----------------------------------------------------------
+
+247/559 Testing: e2_valgrind_certa_06
+247/559 Test: e2_valgrind_certa_06
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_06.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_certa_06" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_06'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_06:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/certa06.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_06.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_06' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_certa_06" end time: Sep 24 12:14 BRT
+"e2_valgrind_certa_06" time elapsed: 00:00:00
+----------------------------------------------------------
+
+248/559 Testing: e2_valgrind_certa_07
+248/559 Test: e2_valgrind_certa_07
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_07.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_certa_07" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_07'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_07:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/certa07.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_07.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_07' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_certa_07" end time: Sep 24 12:14 BRT
+"e2_valgrind_certa_07" time elapsed: 00:00:00
+----------------------------------------------------------
+
+249/559 Testing: e2_valgrind_certa_08
+249/559 Test: e2_valgrind_certa_08
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_08.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_certa_08" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_08'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_08:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/certa08.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_08.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_08' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_certa_08" end time: Sep 24 12:14 BRT
+"e2_valgrind_certa_08" time elapsed: 00:00:00
+----------------------------------------------------------
+
+250/559 Testing: e2_valgrind_certa_09
+250/559 Test: e2_valgrind_certa_09
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_09.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_certa_09" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_09'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_09:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/certa09.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_09.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_09' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_certa_09" end time: Sep 24 12:14 BRT
+"e2_valgrind_certa_09" time elapsed: 00:00:00
+----------------------------------------------------------
+
+251/559 Testing: e2_valgrind_certa_10
+251/559 Test: e2_valgrind_certa_10
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_10.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_certa_10" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_10'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_10:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/certa10.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_10.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_10' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_certa_10" end time: Sep 24 12:14 BRT
+"e2_valgrind_certa_10" time elapsed: 00:00:00
+----------------------------------------------------------
+
+252/559 Testing: e2_valgrind_certa_11
+252/559 Test: e2_valgrind_certa_11
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_11.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_certa_11" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_11'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_11:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/certa11.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_11.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_11' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_certa_11" end time: Sep 24 12:14 BRT
+"e2_valgrind_certa_11" time elapsed: 00:00:00
+----------------------------------------------------------
+
+253/559 Testing: e2_valgrind_certa_12
+253/559 Test: e2_valgrind_certa_12
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_12.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_certa_12" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_12'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_12:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/certa12.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_12.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_12' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_certa_12" end time: Sep 24 12:14 BRT
+"e2_valgrind_certa_12" time elapsed: 00:00:00
+----------------------------------------------------------
+
+254/559 Testing: e2_valgrind_certa_13
+254/559 Test: e2_valgrind_certa_13
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_13.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_certa_13" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_13'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_13:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/certa13.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_13.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_13' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_certa_13" end time: Sep 24 12:14 BRT
+"e2_valgrind_certa_13" time elapsed: 00:00:00
+----------------------------------------------------------
+
+255/559 Testing: e2_valgrind_certa_14
+255/559 Test: e2_valgrind_certa_14
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_14.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_certa_14" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_14'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_14:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/certa14.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_14.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_14' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_certa_14" end time: Sep 24 12:14 BRT
+"e2_valgrind_certa_14" time elapsed: 00:00:00
+----------------------------------------------------------
+
+256/559 Testing: e2_valgrind_certa_15
+256/559 Test: e2_valgrind_certa_15
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_15.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_certa_15" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_15'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_15:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/certa15.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_15.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_15' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_certa_15" end time: Sep 24 12:14 BRT
+"e2_valgrind_certa_15" time elapsed: 00:00:00
+----------------------------------------------------------
+
+257/559 Testing: e2_valgrind_certa_16
+257/559 Test: e2_valgrind_certa_16
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_16.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_certa_16" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_16'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_16:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/certa16.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_16.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_16' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_certa_16" end time: Sep 24 12:14 BRT
+"e2_valgrind_certa_16" time elapsed: 00:00:00
+----------------------------------------------------------
+
+258/559 Testing: e2_valgrind_certa_17
+258/559 Test: e2_valgrind_certa_17
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_17.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_certa_17" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_17'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_17:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/certa17.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_17.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_17' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_certa_17" end time: Sep 24 12:14 BRT
+"e2_valgrind_certa_17" time elapsed: 00:00:00
+----------------------------------------------------------
+
+259/559 Testing: e2_valgrind_certa_18
+259/559 Test: e2_valgrind_certa_18
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_18.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_certa_18" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_18'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_18:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/certa18.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_18.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_18' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_certa_18" end time: Sep 24 12:14 BRT
+"e2_valgrind_certa_18" time elapsed: 00:00:00
+----------------------------------------------------------
+
+260/559 Testing: e2_valgrind_certa_19
+260/559 Test: e2_valgrind_certa_19
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_19.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_certa_19" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_19'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_19:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/certa19.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_19.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_19' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_certa_19" end time: Sep 24 12:14 BRT
+"e2_valgrind_certa_19" time elapsed: 00:00:00
+----------------------------------------------------------
+
+261/559 Testing: e2_valgrind_certa_20
+261/559 Test: e2_valgrind_certa_20
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_20.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_certa_20" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_20'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_20:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/certa20.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_20.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_20' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_certa_20" end time: Sep 24 12:14 BRT
+"e2_valgrind_certa_20" time elapsed: 00:00:00
+----------------------------------------------------------
+
+262/559 Testing: e2_valgrind_certa_21
+262/559 Test: e2_valgrind_certa_21
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_21.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_certa_21" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_21'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_21:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/certa21.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_21.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_21' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_certa_21" end time: Sep 24 12:14 BRT
+"e2_valgrind_certa_21" time elapsed: 00:00:00
+----------------------------------------------------------
+
+263/559 Testing: e2_valgrind_certa_22
+263/559 Test: e2_valgrind_certa_22
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_22.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_certa_22" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_22'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_22:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/certa22.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_22.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_22' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_certa_22" end time: Sep 24 12:14 BRT
+"e2_valgrind_certa_22" time elapsed: 00:00:00
+----------------------------------------------------------
+
+264/559 Testing: e2_valgrind_certa_23
+264/559 Test: e2_valgrind_certa_23
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_23.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_certa_23" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_23'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_23:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/certa23.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_23.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_23' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_certa_23" end time: Sep 24 12:14 BRT
+"e2_valgrind_certa_23" time elapsed: 00:00:00
+----------------------------------------------------------
+
+265/559 Testing: e2_valgrind_certa_24
+265/559 Test: e2_valgrind_certa_24
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_24.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_certa_24" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_24'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_24:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/certa24.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_24.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_24' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_certa_24" end time: Sep 24 12:14 BRT
+"e2_valgrind_certa_24" time elapsed: 00:00:00
+----------------------------------------------------------
+
+266/559 Testing: e2_valgrind_certa_25
+266/559 Test: e2_valgrind_certa_25
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_25.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_certa_25" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_25'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_25:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/certa25.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_25.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_25' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_certa_25" end time: Sep 24 12:14 BRT
+"e2_valgrind_certa_25" time elapsed: 00:00:00
+----------------------------------------------------------
+
+267/559 Testing: e2_valgrind_certa_26
+267/559 Test: e2_valgrind_certa_26
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_26.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_certa_26" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_26'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_26:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/certa26.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_26.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_certa_26' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_certa_26" end time: Sep 24 12:14 BRT
+"e2_valgrind_certa_26" time elapsed: 00:00:00
+----------------------------------------------------------
+
+268/559 Testing: e2_valgrind_errada_01
+268/559 Test: e2_valgrind_errada_01
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_01.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_errada_01" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_01'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_01:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/errada01.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_01.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_01' OK
+<end of output>
+Test time =   0.35 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_errada_01" end time: Sep 24 12:14 BRT
+"e2_valgrind_errada_01" time elapsed: 00:00:00
+----------------------------------------------------------
+
+269/559 Testing: e2_valgrind_errada_02
+269/559 Test: e2_valgrind_errada_02
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_02.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_errada_02" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_02'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_02:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/errada02.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_02.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_02' OK
+<end of output>
+Test time =   0.34 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_errada_02" end time: Sep 24 12:14 BRT
+"e2_valgrind_errada_02" time elapsed: 00:00:00
+----------------------------------------------------------
+
+270/559 Testing: e2_valgrind_errada_03
+270/559 Test: e2_valgrind_errada_03
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_03.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_errada_03" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_03'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_03:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/errada03.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_03.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_03' OK
+<end of output>
+Test time =   0.35 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_errada_03" end time: Sep 24 12:14 BRT
+"e2_valgrind_errada_03" time elapsed: 00:00:00
+----------------------------------------------------------
+
+271/559 Testing: e2_valgrind_errada_04
+271/559 Test: e2_valgrind_errada_04
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_04.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_errada_04" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_04'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_04:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/errada04.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_04.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_04' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_errada_04" end time: Sep 24 12:14 BRT
+"e2_valgrind_errada_04" time elapsed: 00:00:00
+----------------------------------------------------------
+
+272/559 Testing: e2_valgrind_errada_05
+272/559 Test: e2_valgrind_errada_05
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_05.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_errada_05" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_05'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_05:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/errada05.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_05.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_05' OK
+<end of output>
+Test time =   0.35 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_errada_05" end time: Sep 24 12:14 BRT
+"e2_valgrind_errada_05" time elapsed: 00:00:00
+----------------------------------------------------------
+
+273/559 Testing: e2_valgrind_errada_06
+273/559 Test: e2_valgrind_errada_06
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_06.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_errada_06" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_06'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_06:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/errada06.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_06.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_06' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_errada_06" end time: Sep 24 12:14 BRT
+"e2_valgrind_errada_06" time elapsed: 00:00:00
+----------------------------------------------------------
+
+274/559 Testing: e2_valgrind_errada_07
+274/559 Test: e2_valgrind_errada_07
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_07.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_errada_07" start time: Sep 24 12:14 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_07'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_07:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/errada07.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_07.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_07' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_errada_07" end time: Sep 24 12:15 BRT
+"e2_valgrind_errada_07" time elapsed: 00:00:00
+----------------------------------------------------------
+
+275/559 Testing: e2_valgrind_errada_08
+275/559 Test: e2_valgrind_errada_08
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_08.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_errada_08" start time: Sep 24 12:15 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_08'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_08:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/errada08.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_08.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_08' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_errada_08" end time: Sep 24 12:15 BRT
+"e2_valgrind_errada_08" time elapsed: 00:00:00
+----------------------------------------------------------
+
+276/559 Testing: e2_valgrind_errada_09
+276/559 Test: e2_valgrind_errada_09
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_09.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_errada_09" start time: Sep 24 12:15 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_09'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_09:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/errada09.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_09.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_09' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_errada_09" end time: Sep 24 12:15 BRT
+"e2_valgrind_errada_09" time elapsed: 00:00:00
+----------------------------------------------------------
+
+277/559 Testing: e2_valgrind_errada_10
+277/559 Test: e2_valgrind_errada_10
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_10.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_errada_10" start time: Sep 24 12:15 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_10'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_10:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/errada10.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_10.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_10' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_errada_10" end time: Sep 24 12:15 BRT
+"e2_valgrind_errada_10" time elapsed: 00:00:00
+----------------------------------------------------------
+
+278/559 Testing: e2_valgrind_errada_11
+278/559 Test: e2_valgrind_errada_11
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_11.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_errada_11" start time: Sep 24 12:15 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_11'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_11:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/errada11.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_11.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_11' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_errada_11" end time: Sep 24 12:15 BRT
+"e2_valgrind_errada_11" time elapsed: 00:00:00
+----------------------------------------------------------
+
+279/559 Testing: e2_valgrind_errada_12
+279/559 Test: e2_valgrind_errada_12
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_12.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_errada_12" start time: Sep 24 12:15 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_12'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_12:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/errada12.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_12.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_12' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_errada_12" end time: Sep 24 12:15 BRT
+"e2_valgrind_errada_12" time elapsed: 00:00:00
+----------------------------------------------------------
+
+280/559 Testing: e2_valgrind_errada_13
+280/559 Test: e2_valgrind_errada_13
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_13.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_errada_13" start time: Sep 24 12:15 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_13'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_13:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/errada13.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_13.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_13' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_errada_13" end time: Sep 24 12:15 BRT
+"e2_valgrind_errada_13" time elapsed: 00:00:00
+----------------------------------------------------------
+
+281/559 Testing: e2_valgrind_errada_14
+281/559 Test: e2_valgrind_errada_14
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_14.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_errada_14" start time: Sep 24 12:15 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_14'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_14:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/errada14.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_14.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_14' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_errada_14" end time: Sep 24 12:15 BRT
+"e2_valgrind_errada_14" time elapsed: 00:00:00
+----------------------------------------------------------
+
+282/559 Testing: e2_valgrind_errada_15
+282/559 Test: e2_valgrind_errada_15
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_15.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_errada_15" start time: Sep 24 12:15 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_15'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_15:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/errada15.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_15.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_15' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_errada_15" end time: Sep 24 12:15 BRT
+"e2_valgrind_errada_15" time elapsed: 00:00:00
+----------------------------------------------------------
+
+283/559 Testing: e2_valgrind_errada_16
+283/559 Test: e2_valgrind_errada_16
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_16.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_errada_16" start time: Sep 24 12:15 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_16'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_16:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/errada16.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_16.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_16' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_errada_16" end time: Sep 24 12:15 BRT
+"e2_valgrind_errada_16" time elapsed: 00:00:00
+----------------------------------------------------------
+
+284/559 Testing: e2_valgrind_errada_17
+284/559 Test: e2_valgrind_errada_17
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_17.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_errada_17" start time: Sep 24 12:15 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_17'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_17:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/errada17.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_17.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_17' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_errada_17" end time: Sep 24 12:15 BRT
+"e2_valgrind_errada_17" time elapsed: 00:00:00
+----------------------------------------------------------
+
+285/559 Testing: e2_valgrind_errada_18
+285/559 Test: e2_valgrind_errada_18
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_18.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_errada_18" start time: Sep 24 12:15 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_18'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_18:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/errada18.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_18.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_18' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_errada_18" end time: Sep 24 12:15 BRT
+"e2_valgrind_errada_18" time elapsed: 00:00:00
+----------------------------------------------------------
+
+286/559 Testing: e2_valgrind_errada_19
+286/559 Test: e2_valgrind_errada_19
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_19.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_errada_19" start time: Sep 24 12:15 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_19'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_19:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/errada19.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_19.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_19' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_errada_19" end time: Sep 24 12:15 BRT
+"e2_valgrind_errada_19" time elapsed: 00:00:00
+----------------------------------------------------------
+
+287/559 Testing: e2_valgrind_errada_20
+287/559 Test: e2_valgrind_errada_20
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_20.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_errada_20" start time: Sep 24 12:15 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_20'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_20:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/errada20.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_20.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_20' OK
+<end of output>
+Test time =   0.37 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_errada_20" end time: Sep 24 12:15 BRT
+"e2_valgrind_errada_20" time elapsed: 00:00:00
+----------------------------------------------------------
+
+288/559 Testing: e2_valgrind_errada_21
+288/559 Test: e2_valgrind_errada_21
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_21.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_errada_21" start time: Sep 24 12:15 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_21'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_21:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/errada21.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_21.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_21' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_errada_21" end time: Sep 24 12:15 BRT
+"e2_valgrind_errada_21" time elapsed: 00:00:00
+----------------------------------------------------------
+
+289/559 Testing: e2_valgrind_errada_22
+289/559 Test: e2_valgrind_errada_22
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_22.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_errada_22" start time: Sep 24 12:15 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_22'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_22:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/errada22.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_22.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_22' OK
+<end of output>
+Test time =   0.35 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_errada_22" end time: Sep 24 12:15 BRT
+"e2_valgrind_errada_22" time elapsed: 00:00:00
+----------------------------------------------------------
+
+290/559 Testing: e2_valgrind_errada_23
+290/559 Test: e2_valgrind_errada_23
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_23.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_errada_23" start time: Sep 24 12:15 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_23'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_23:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/errada23.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_23.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_23' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_errada_23" end time: Sep 24 12:15 BRT
+"e2_valgrind_errada_23" time elapsed: 00:00:00
+----------------------------------------------------------
+
+291/559 Testing: e2_valgrind_errada_24
+291/559 Test: e2_valgrind_errada_24
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_24.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_errada_24" start time: Sep 24 12:15 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_24'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_24:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/errada24.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_24.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_24' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_errada_24" end time: Sep 24 12:15 BRT
+"e2_valgrind_errada_24" time elapsed: 00:00:00
+----------------------------------------------------------
+
+292/559 Testing: e2_valgrind_errada_25
+292/559 Test: e2_valgrind_errada_25
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_25.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_errada_25" start time: Sep 24 12:15 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_25'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_25:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/errada25.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_25.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_25' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_errada_25" end time: Sep 24 12:15 BRT
+"e2_valgrind_errada_25" time elapsed: 00:00:00
+----------------------------------------------------------
+
+293/559 Testing: e2_valgrind_errada_26
+293/559 Test: e2_valgrind_errada_26
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_26.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_errada_26" start time: Sep 24 12:15 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_26'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_26:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/errada26.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_26.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_26' OK
+<end of output>
+Test time =   0.35 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_errada_26" end time: Sep 24 12:15 BRT
+"e2_valgrind_errada_26" time elapsed: 00:00:00
+----------------------------------------------------------
+
+294/559 Testing: e2_valgrind_errada_27
+294/559 Test: e2_valgrind_errada_27
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_27.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_errada_27" start time: Sep 24 12:15 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_27'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_27:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/errada27.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_27.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_27' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_errada_27" end time: Sep 24 12:15 BRT
+"e2_valgrind_errada_27" time elapsed: 00:00:00
+----------------------------------------------------------
+
+295/559 Testing: e2_valgrind_errada_28
+295/559 Test: e2_valgrind_errada_28
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_28.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_errada_28" start time: Sep 24 12:15 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_28'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_28:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/errada28.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_28.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_28' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_errada_28" end time: Sep 24 12:15 BRT
+"e2_valgrind_errada_28" time elapsed: 00:00:00
+----------------------------------------------------------
+
+296/559 Testing: e2_valgrind_errada_29
+296/559 Test: e2_valgrind_errada_29
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_29.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_errada_29" start time: Sep 24 12:15 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_29'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_29:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/errada29.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_29.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_29' OK
+<end of output>
+Test time =   0.35 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_errada_29" end time: Sep 24 12:15 BRT
+"e2_valgrind_errada_29" time elapsed: 00:00:00
+----------------------------------------------------------
+
+297/559 Testing: e2_valgrind_errada_30
+297/559 Test: e2_valgrind_errada_30
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_30.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e2_valgrind_errada_30" start time: Sep 24 12:15 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_30'
+[/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_30:3] ./tests/scripts/valgrindtest ./main ./tests/e2/input/errada30.txt
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_30.tesh:3> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e2/valgrind_errada_30' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e2_valgrind_errada_30" end time: Sep 24 12:15 BRT
+"e2_valgrind_errada_30" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Sep 24 12:15 BRT
