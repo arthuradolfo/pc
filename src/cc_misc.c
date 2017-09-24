@@ -34,7 +34,7 @@ void remove_collisions(comp_dict_item_t * item)
   }
 }
 
-void remove_collisions2(comp_dict_item_t * item)
+void remove_collisions_pointer_to_free(comp_dict_item_t * item)
 {
   comp_dict_item_t* ptaux;
   st_value_t* entrada;
@@ -286,7 +286,7 @@ void clearPointerToFreeTable()
     for (i = 0, l = pointersToFreeTable->size; i < l; i++) {
       if (pointersToFreeTable->data[i]) {
         if(pointersToFreeTable->data[i]->next) {
-          remove_collisions2(pointersToFreeTable->data[i]->next);
+          remove_collisions_pointer_to_free(pointersToFreeTable->data[i]->next);
         }
         dict_remove(pointersToFreeTable, pointersToFreeTable->data[i]->key);
       }
@@ -330,7 +330,7 @@ void main_finalize (void)
 {
   //implemente esta função com rotinas de finalização, se necessário
 
-  comp_print_table();
+  //comp_print_table();
   clearSymbolsTable();
 
   clearPointerToFreeTable();
