@@ -61,8 +61,9 @@
 
 programa: %empty;
 programa: def_type programa;
-programa: def_global_var programa;
-programa: def_funcs programa;
+programa: optional_static def_global_var_or_def_function programa
+def_global_var_or_def_function: def_global_var
+def_global_var_or_def_function: def_function
 
 def_type : TK_PR_CLASS TK_IDENTIFICADOR '[' type_fields ']' ';' ;
 type_fields : %empty
@@ -76,13 +77,10 @@ encapsulation : TK_PR_PROTECTED
 encapsulation : TK_PR_PRIVATE
 encapsulation : TK_PR_PUBLIC ;
 
-def_global_var: TK_PR_STATIC any_type TK_IDENTIFICADOR '[' TK_LIT_INT ']' ';';
-def_global_var: TK_PR_STATIC any_type TK_IDENTIFICADOR ';';
-def_global_var: any_type TK_IDENTIFICADOR '[' TK_LIT_INT ']' ';';
-def_global_var: any_type TK_IDENTIFICADOR ';';
+def_global_var: any_type TK_IDENTIFICADOR '[' TK_LIT_INT ']' ';'
+def_global_var: any_type TK_IDENTIFICADOR ';'
 
-def_funcs: header body;
-header: TK_PR_STATIC any_type TK_IDENTIFICADOR '(' parameters ')'
+def_function: header body;
 header: any_type TK_IDENTIFICADOR '(' parameters ')'
 body: '{' command_sequence '}'
 
