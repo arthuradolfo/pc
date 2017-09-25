@@ -74,7 +74,7 @@ type_field : encapsulation primitive_type TK_IDENTIFICADOR
 
 encapsulation : TK_PR_PROTECTED
 encapsulation : TK_PR_PRIVATE
-encapsulation : TK_PR_PUBLIC 
+encapsulation : TK_PR_PUBLIC
 
 def_global_var: any_type TK_IDENTIFICADOR optional_vector_modifier ';'
 
@@ -92,6 +92,7 @@ simple_command: TK_IDENTIFICADOR command_proceeding_identifier ';'
 simple_command: def_local_var ';'
 simple_command: input_command ';'
 simple_command: output_command ';'
+simple_command: body ';'
 simple_command: action_command
 
 command_proceeding_identifier: attribution_command
