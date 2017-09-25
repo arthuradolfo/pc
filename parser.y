@@ -191,9 +191,11 @@ arit_operator: '/'
 arit_operator: '*'
 
 parameters: %empty
-parameters: TK_PR_CONST any_type TK_IDENTIFICADOR parameters
-parameters: any_type TK_IDENTIFICADOR parameters
-parameters: ',' parameters
+parameters: parameter optional_more_parameters
+parameter: optional_const any_type TK_IDENTIFICADOR
+optional_more_parameters: ',' parameter optional_more_parameters
+optional_more_parameters: %empty
+
 
 any_type: primitive_type
 any_type: TK_IDENTIFICADOR
