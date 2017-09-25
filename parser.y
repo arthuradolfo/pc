@@ -68,9 +68,8 @@ def_global_var_or_def_function: def_function
 def_type : TK_PR_CLASS TK_IDENTIFICADOR '[' type_fields ']' ';' ;
 type_fields : type_field more_fields
 more_fields: %empty
-more_fields: one_more_field more_fields
-one_more_field : ':' type_field
-type_field : encapsulation primitive_type TK_IDENTIFICADOR
+more_fields: ':' type_field more_fields
+type_field : encapsulation primitive_type TK_IDENTIFICADOR optional_vector_modifier
 
 encapsulation : TK_PR_PROTECTED
 encapsulation : TK_PR_PRIVATE
