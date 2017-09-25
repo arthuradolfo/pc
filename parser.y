@@ -96,7 +96,7 @@ simple_command: body ';'
 simple_command: action_command
 
 command_proceeding_identifier: attribution_command
-command_proceeding_identifier: func_call
+command_proceeding_identifier: func_modifier
 command_proceeding_identifier: shift_command
 
 def_local_var: optional_static optional_const def_local_var_tail
@@ -118,7 +118,7 @@ input_command: TK_PR_INPUT expression
 
 output_command: TK_PR_OUTPUT expression expression_sequence
 
-func_call: '(' expression_sequence ')'
+func_modifier: '(' expression_sequence ')'
 
 shift_command: TK_OC_SL TK_LIT_INT
 shift_command: TK_OC_SR TK_LIT_INT
@@ -132,16 +132,38 @@ expression_sequence: %empty
 expression_sequence: ',' expression_sequence
 expression_sequence: expression expression_sequence
 
-expression: TK_LIT_INT
-expression: TK_LIT_FLOAT
-expression: TK_LIT_CHAR
-expression: TK_LIT_TRUE
-expression: TK_LIT_FALSE
-expression: TK_LIT_STRING
-expression: TK_IDENTIFICADOR array_expression
+expression: literal
+expression: '(' expression ')'
+expression: TK_IDENTIFICADOR func_or_array_modifier
+expression: expression arit_log_operator expression
 
-array_expression: '[' expression ']'
-array_expression: %empty
+literal: TK_LIT_INT
+literal: TK_LIT_FLOAT
+literal: TK_LIT_CHAR
+literal: TK_LIT_TRUE
+literal: TK_LIT_FALSE
+literal: TK_LIT_STRING
+
+func_or_array_modifier: optional_array_modifier
+func_or_array_modifier: optional_func_modifier
+
+optional_func_modifier: func_modifier
+optional_func_modifier: %empty
+optional_array_modifier: '[' expression ']'
+optional_array_modifier: %empty
+
+arit_log_operator: log_operator
+arit_log_operator: arit_operator
+log_operator: TK_OC_LE
+log_operator: TK_OC_GE
+log_operator: TK_OC_EQ
+log_operator: TK_OC_NE
+log_operator: TK_OC_AND
+log_operator: TK_OC_OR
+arit_operator: '+'
+arit_operator: '-'
+arit_operator: '/'
+arit_operator: '*'
 
 parameters: %empty
 parameters: TK_PR_CONST any_type TK_IDENTIFICADOR parameters
