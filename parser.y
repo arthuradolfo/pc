@@ -74,10 +74,12 @@ type_field : encapsulation primitive_type TK_IDENTIFICADOR
 
 encapsulation : TK_PR_PROTECTED
 encapsulation : TK_PR_PRIVATE
-encapsulation : TK_PR_PUBLIC ;
+encapsulation : TK_PR_PUBLIC 
 
-def_global_var: any_type TK_IDENTIFICADOR '[' TK_LIT_INT ']' ';'
-def_global_var: any_type TK_IDENTIFICADOR ';'
+def_global_var: any_type TK_IDENTIFICADOR optional_vector_modifier ';'
+
+optional_vector_modifier: '[' TK_LIT_INT ']'
+optional_vector_modifier: %empty
 
 def_function: header body;
 header: any_type TK_IDENTIFICADOR '(' parameters ')'
