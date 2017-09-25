@@ -1,7 +1,52 @@
 int myFunction ()
 {
-  {
-    int a;
-    int b;
+  int a;
+  a = 1 + 2;
+  int b <= 3;
+  a = b;
+  a = a*a;
+  a = b/a;
+  b = (a+ 2)*7;
+
+  bool bolo <= true && false || (true && false) + 1*((b*a*a)/7/2)+ 4;
+
+  bool bolovo <= false;
+
+  bolo = bolovo >= bolo;
+
+  output a;
+  if (a == 4) then {
+    output a;
+  } else {
+    if (bolovo && bolo <= 1+ (7*5/(1- 2))) then {};
   };
+
+
+  foreach ( loser : loserBag[56], 1+ 8, bolovo, 1, (2)*((bi+den)*bauf), 3)
+  {
+    int egg <= plode;
+    bolovo = egg && bolo;
+  };
+
+
+  for (b = (soma(a+b) && 4), if(a) then {}, int egg <= true : bolo : bolo = 2, bolovo = (2+ 6)) {};
+
+
+  for (int i <= 0, { bolo = bolovo*2; bolo=bolovo && den; }, int a : (bolo||bolo): int b)
+  {
+    cacilda[i+ 2*(7- 2) / somao(4,bolo)] = cacilda[i] >= 2;
+    meuTipo$campo = 4;
+  };
+
+  do {cabron = es- 3; whaleshark = whale + shark;} while (true >= false);
+
+  while(noOneIsWatching) do {eatBooger = true; booger = isTasty - selfPitty;};
+
+  switch (climate) {
+    float a <= itfloats;
+    case 1:
+    case 2: do { hast = true ;} while (mitch);
+    case 4: break/*up with life*/; 
+  };
+
 }

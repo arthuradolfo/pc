@@ -85,14 +85,17 @@ header: any_type TK_IDENTIFICADOR '(' parameters ')'
 body: '{' command_sequence '}'
 
 command_sequence: %empty
-command_sequence: simple_command command_sequence
+command_sequence: command_in_block command_sequence
 
-simple_command: TK_IDENTIFICADOR command_proceeding_identifier ';'
-simple_command: def_local_var ';'
-simple_command: input_command ';'
-simple_command: output_command ';'
-simple_command: body ';'
-simple_command: action_command
+command_in_block: simple_command ';'
+command_in_block: action_command
+
+simple_command: TK_IDENTIFICADOR command_proceeding_identifier
+simple_command: def_local_var
+simple_command: input_command
+simple_command: output_command
+simple_command: body
+simple_command: flux_command
 
 command_proceeding_identifier: attribution_command
 command_proceeding_identifier: func_modifier
@@ -121,6 +124,29 @@ func_modifier: '(' expression_sequence ')'
 
 shift_command: TK_OC_SL TK_LIT_INT
 shift_command: TK_OC_SR TK_LIT_INT
+
+flux_command: condition_command
+flux_command: iteration_command
+flux_command: selection_command
+
+condition_command: TK_PR_IF '(' expression ')' TK_PR_THEN body optional_else
+optional_else: %empty
+optional_else: TK_PR_ELSE body
+
+iteration_command: TK_PR_FOREACH '(' TK_IDENTIFICADOR ':' foreach_expression_sequence ')' body
+iteration_command: TK_PR_FOR '(' for_command_sequence ':' expression ':' for_command_sequence ')' body
+iteration_command: TK_PR_WHILE '(' expression ')' TK_PR_DO body
+iteration_command: TK_PR_DO body TK_PR_WHILE '(' expression ')'
+
+selection_command: TK_PR_SWITCH '(' expression ')' body
+
+for_command_sequence: simple_command optional_extra_for_commands
+optional_extra_for_commands: %empty
+optional_extra_for_commands: ',' simple_command optional_extra_for_commands
+
+foreach_expression_sequence: expression optional_extra_foreach_expressions
+optional_extra_foreach_expressions: %empty
+optional_extra_foreach_expressions: ',' expression optional_extra_foreach_expressions
 
 action_command: TK_PR_RETURN expression ';'
 action_command: TK_PR_CONTINUE ';'
