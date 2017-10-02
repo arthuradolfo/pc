@@ -161,6 +161,7 @@ expression: literal
 expression: '(' expression ')'
 expression: TK_IDENTIFICADOR func_or_array_modifier
 expression: expression arit_log_operator expression
+expression: unary_arit_log_operator expression
 
 literal: TK_LIT_INT
 literal: TK_LIT_FLOAT
@@ -189,6 +190,9 @@ arit_operator: '+'
 arit_operator: '-'
 arit_operator: '/'
 arit_operator: '*'
+
+unary_arit_log_operator: '-'
+unary_arit_log_operator: '+'
 
 parameters: %empty
 parameters: parameter optional_more_parameters

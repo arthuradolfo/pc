@@ -1,8 +1,8 @@
-/* A Bison parser, made by GNU Bison 3.0.4.  */
+/* A Bison parser, made by GNU Bison 3.0.2.  */
 
 /* Bison interface for Yacc-like parsers in C
 
-   Copyright (C) 1984, 1989-1990, 2000-2015 Free Software Foundation, Inc.
+   Copyright (C) 1984, 1989-1990, 2000-2013 Free Software Foundation, Inc.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -30,8 +30,8 @@
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
-#ifndef YY_YY_HOME_ARTHUR_REA_DE_TRABALHO_PC_BUILD_PARSER_H_INCLUDED
-# define YY_YY_HOME_ARTHUR_REA_DE_TRABALHO_PC_BUILD_PARSER_H_INCLUDED
+#ifndef YY_YY_HOME_ALUNO_DESKTOP_PC_BUILD_PARSER_H_INCLUDED
+# define YY_YY_HOME_ALUNO_DESKTOP_PC_BUILD_PARSER_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -91,17 +91,15 @@ extern int yydebug;
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-
+typedef union YYSTYPE YYSTYPE;
 union YYSTYPE
 {
 #line 12 "parser.y" /* yacc.c:1909  */
 
 	void *valor_lexico;   /* Pointer to run-time expression operator */
 
-#line 102 "/home/arthur/Área de Trabalho/pc/build/parser.h" /* yacc.c:1909  */
+#line 102 "/home/aluno/Desktop/pc/build/parser.h" /* yacc.c:1909  */
 };
-
-typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif
@@ -111,4 +109,4 @@ extern YYSTYPE yylval;
 
 int yyparse (void);
 
-#endif /* !YY_YY_HOME_ARTHUR_REA_DE_TRABALHO_PC_BUILD_PARSER_H_INCLUDED  */
+#endif /* !YY_YY_HOME_ALUNO_DESKTOP_PC_BUILD_PARSER_H_INCLUDED  */
