@@ -1,11 +1,13 @@
 #include "cc_misc.h"
 #include "cc_dict.h"
+#include "cc_ast.h"
+
+#define GRAPHVIZ_FILENAME "graphvizAST.dot"
 
 /**
   * @var int lineNumber Gerencia o numero de linahs do arquivo processado
   */
 int lineNumber;
-
 
 /**
   * @var comp_dict_t symbolsTable Gerencia a tabela de simbolos
@@ -13,6 +15,8 @@ int lineNumber;
 comp_dict_t* symbolsTable;
 
 comp_dict_t* pointersToFreeTable;
+
+comp_tree_t* abstractSyntaxTree;
 
 /**
   * Da free em ponteiros das entradas da tabela de simbolos que estao no ponteiro next (quando a colisao de entradas)
@@ -165,7 +169,7 @@ void concatTokenType(char *key, int token_type) {
  */
 st_value_t* putToSymbolsTable(char* key, int line, int token_type)
 {
-  if (!symbolsTable) return;	
+  if (!symbolsTable) return;
 
 
   char *value;
@@ -179,12 +183,12 @@ st_value_t* putToSymbolsTable(char* key, int line, int token_type)
   concatTokenType(key_aux, token_type);
 
   st_value_t* entryValue = (st_value_t *) malloc(sizeof(st_value_t));
-  
+
   entryValue->line = line;
   entryValue->token_type = token_type;
-  
+
   setEntryValue(entryValue, value);
-  
+
   st_value_t* getEntryPointerToFree = dict_get(pointersToFreeTable, key);
   if(getEntryPointerToFree) {
     getEntryPointerToFree->line = line;
@@ -249,7 +253,6 @@ void printSymbolsTable()
 void clearSymbolsTable()
 {
     //remover todas as entradas da tabela antes de libera-la
-    //printf("\nclearSymbolsTable: \n");
     st_value_t* entrada;
     if (!symbolsTable) return;
 
@@ -268,8 +271,6 @@ void clearSymbolsTable()
       }
     }
     dict_free(symbolsTable);
-
-    //printf("symbolsTable freed\n");
 }
 
 /**
@@ -278,7 +279,6 @@ void clearSymbolsTable()
 void clearPointerToFreeTable()
 {
     //remover todas as entradas da tabela antes de libera-la
-    //printf("\nclearSymbolsTable: \n");
     st_value_t* entrada;
     if (!pointersToFreeTable) return;
 
@@ -292,13 +292,10 @@ void clearPointerToFreeTable()
       }
     }
     dict_free(pointersToFreeTable);
-
-    //printf("symbolsTable freed\n");
 }
 
 void putSomeEntries()
 {
-  //printf("\nputSomeEntries: \n");
 
   if (!symbolsTable) return;
 
@@ -317,22 +314,206 @@ void putSomeEntries()
   dict_put(symbolsTable, "Pablo", valuePablo);
 }
 
+/**
+ * Retorna o tipo AST de um nodo
+ * (sempre uma das constantes em ast.h)
+ * //TODO implementar de fato
+ */
+int getASTtype(comp_tree_t* node)
+{
+	return AST_PROGRAMA;
+}
+
+/**
+ * Retorna o lexema de um nodo que é um lexema válido somente
+ * se o tipo for um AST_IDENTIFICADOR (o lexema do
+ * identificador), AST_LITERAL (o lexema do literal) ou
+ * AST_FUNCAO (o lexema do identificador da função).
+ * Se nao for nenhum desses, retorna NULL
+ * //TODO implementar de fato
+ */
+char* getASTlexem(comp_tree_t* node)
+{
+	return NULL;
+}
+
+void generateExampleTree()
+{
+	//filhos da raiz
+	int* a = malloc(sizeof(int));
+	*a = 42;
+	comp_tree_t* nodo1 = tree_make_node(a);
+	tree_insert_node(abstractSyntaxTree, nodo1);
+
+	int* b = malloc(sizeof(int));
+	*b = 42;
+	comp_tree_t* nodo2 = tree_make_node(b);
+	tree_insert_node(abstractSyntaxTree, nodo2);
+
+	int* c = malloc(sizeof(int));
+	*c = 42;
+	comp_tree_t* nodo3 = tree_make_node(c);
+	tree_insert_node(abstractSyntaxTree, nodo3);
+
+	int* d = malloc(sizeof(int));
+	*d = 42;
+	comp_tree_t* nodo4 = tree_make_node(d);
+	tree_insert_node(abstractSyntaxTree, nodo4);
+
+
+	//filhos de nodo1
+	int* e = malloc(sizeof(int));
+	*e = 42;
+	comp_tree_t* nodo5 = tree_make_node(e);
+	tree_insert_node(nodo1, nodo5);
+
+	int* f = malloc(sizeof(int));
+	*f = 42;
+	comp_tree_t* nodo6 = tree_make_node(f);
+	tree_insert_node(nodo1, nodo6);
+
+	int* g = malloc(sizeof(int));
+	*g = 42;
+	comp_tree_t* nodo7 = tree_make_node(g);
+	tree_insert_node(nodo1, nodo7);
+
+	int* h = malloc(sizeof(int));
+	*h = 42;
+	comp_tree_t* nodo8 = tree_make_node(h);
+	tree_insert_node(nodo1, nodo8);
+
+
+	//filhos de nodo2
+	int* i = malloc(sizeof(int));
+	*i = 42;
+	comp_tree_t* nodo9 = tree_make_node(i);
+	tree_insert_node(nodo2, nodo9);
+
+	int* j = malloc(sizeof(int));
+	*j = 42;
+	comp_tree_t* nodo10 = tree_make_node(j);
+	tree_insert_node(nodo2, nodo10);
+
+	int* k = malloc(sizeof(int));
+	*k = 42;
+	comp_tree_t* nodo11 = tree_make_node(k);
+	tree_insert_node(nodo2, nodo11);
+
+	int* l = malloc(sizeof(int));
+	*l = 42;
+	comp_tree_t* nodo12 = tree_make_node(l);
+	tree_insert_node(nodo2, nodo12);
+
+
+	//filhos de nodo3
+	int* m = malloc(sizeof(int));
+	*m = 42;
+	comp_tree_t* nodo13 = tree_make_node(m);
+	tree_insert_node(nodo3, nodo13);
+
+	int* n = malloc(sizeof(int));
+	*n = 42;
+	comp_tree_t* nodo14 = tree_make_node(n);
+	tree_insert_node(nodo3, nodo14);
+
+	int* o = malloc(sizeof(int));
+	*o = 42;
+	comp_tree_t* nodo15 = tree_make_node(o);
+	tree_insert_node(nodo3, nodo15);
+
+	int* p = malloc(sizeof(int));
+	*p = 42;
+	comp_tree_t* nodo16 = tree_make_node(p);
+	tree_insert_node(nodo3, nodo16);
+}
+
+/**
+ * Percorre filhos do nodo,
+ * declarando, conectando e fazendo recursao em cada um
+ * @param pai nodo considerado pai no nivel atual de recursao
+ */
+void putToGraphviz(comp_tree_t *pai)
+{
+	if (pai == NULL) return;
+
+	//percorre filhos do nodo
+	comp_tree_t* filho = pai->first;
+	for (int i = 0; i < pai->childnodes; ++i) {
+		if (filho != NULL) {
+			//declara filho no arquivo
+			gv_declare(getASTtype(filho), filho, getASTlexem(filho));
+			//conecta pai e filho
+			gv_connect(pai, filho);
+
+			//recursao sobre o filho
+			putToGraphviz(filho);
+		} else return;
+
+		filho = filho->next;
+	}
+}
+
+/**
+ * Percorre filhos do nodo,
+ * liberando campo value e fazendo recursao em cada um
+ * @param pai nodo considerado pai no nivel atual de recursao
+ */
+void freeValue(comp_tree_t* pai)
+{
+	if (pai == NULL) return;
+
+	//percorre filhos do nodo
+	comp_tree_t* filho = pai->first;
+	for (int i = 0; i < pai->childnodes; ++i) {
+		if (filho != NULL) {
+
+			if (filho->value != NULL)
+				free(filho->value);
+
+			//recursao sobre o filho
+			freeValue(filho);
+		} else return;
+
+		filho = filho->next;
+	}
+}
+
+/**
+ * Libera values dos nodos da AST recursivamente
+ * e depois libera a arvore
+ */
+void clearAndFreeAST()
+{
+	if (abstractSyntaxTree->value != NULL)
+		free(abstractSyntaxTree->value);
+	freeValue(abstractSyntaxTree);
+	tree_free(abstractSyntaxTree);
+}
+
 void main_init (int argc, char **argv)
 {
   //implemente esta função com rotinas de inicialização, se necessário
   lineNumber = 1;
   pointersToFreeTable = dict_new();
   symbolsTable = dict_new();
-  //putToSymbolsTable("Bolo", 87);
+
+	abstractSyntaxTree = tree_new();
+	gv_init(GRAPHVIZ_FILENAME);
+	gv_declare(AST_PROGRAMA, abstractSyntaxTree, NULL);
+	generateExampleTree();
 }
 
 void main_finalize (void)
 {
   //implemente esta função com rotinas de finalização, se necessário
 
+
   //comp_print_table();
   clearSymbolsTable();
 
+	putToGraphviz(abstractSyntaxTree);
+	gv_close();
+	clearAndFreeAST();
   clearPointerToFreeTable();
 }
 
