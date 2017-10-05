@@ -9,6 +9,12 @@ int myFunction ()
   a = b/a;
   b = (a+ 2)*7;
 
+  int a <= 2;
+
+  return k;
+
+  bool bolo <= true && false && true;
+
   bool bolo <= true && false || (true && false) + 1*((b*a*a)/7/2)+ 4;
 
   bool bolovo <= false;
@@ -50,7 +56,14 @@ int myFunction ()
     float a <= itfloats;
     case 1:
     case 2: do { hast = true ;} while (mitch);
-    case 4: break/*up with life*/; 
+    case 4: break/*up with life*/;
   };
 
+}
+
+
+float fun()
+{
+   identificador << 3;
+   identificador >> 4;
 }
