@@ -56,82 +56,95 @@
 %token TK_IDENTIFICADOR
 %token TOKEN_ERRO
 
+
 %%
 /* Regras (e ações) da gramática */
 
-programa: %empty;
-programa: def_type programa;
-programa: optional_static def_global_var_or_def_function programa
-def_global_var_or_def_function: def_global_var
-def_global_var_or_def_function: def_function
+// programa e declaracao de globais (SEM CONFLITOS)
 
-def_type : TK_PR_CLASS TK_IDENTIFICADOR '[' type_fields ']' ';' ;
-type_fields : type_field more_fields
-more_fields: %empty
-more_fields: ':' type_field more_fields
-type_field : encapsulation primitive_type TK_IDENTIFICADOR optional_vector_modifier
+programa: %empty
+programa: def_type programa
+programa: def_global_var programa
+programa: def_function programa
 
-encapsulation : TK_PR_PROTECTED
-encapsulation : TK_PR_PRIVATE
-encapsulation : TK_PR_PUBLIC
+def_global_var: any_type TK_IDENTIFICADOR ';'
+def_global_var: any_type TK_IDENTIFICADOR '[' expression ']' ';'
+def_global_var: TK_PR_STATIC any_type TK_IDENTIFICADOR ';'
+def_global_var: TK_PR_STATIC any_type TK_IDENTIFICADOR '[' expression ']' ';'
 
-def_global_var: any_type TK_IDENTIFICADOR optional_vector_modifier ';'
+any_type: TK_IDENTIFICADOR
+any_type: primitive_type
 
-optional_vector_modifier: '[' TK_LIT_INT ']'
-optional_vector_modifier: %empty
+
+// funcoes (SEM CONFLITOS)
 
 def_function: header body;
+def_function: TK_PR_STATIC header body;
 header: any_type TK_IDENTIFICADOR '(' parameters ')'
 body: '{' command_sequence '}'
 
-command_sequence: %empty
-command_sequence: command_in_block command_sequence
+//tem erro aqui (cuidar virgula no fim da lista)
+parameters: %empty
+parameters: parameter
+parameters: parameter parameter_chain
 
-command_in_block: simple_command ';'
+parameter_chain: ',' parameter
+parameter_chain: ',' parameter parameter_chain
+
+parameter: any_type TK_IDENTIFICADOR
+parameter: TK_PR_CONST any_type TK_IDENTIFICADOR
+
+command_sequence: %empty
+command_sequence: command_in_block ';' command_sequence
+command_sequence: TK_PR_CASE TK_LIT_INT ':' command_sequence
+
+command_in_block: simple_command
+command_in_block: io_command
 command_in_block: action_command
 
-simple_command: TK_IDENTIFICADOR command_proceeding_identifier
+simple_command: attribution_command
+simple_command: function_call
+simple_command: shift_command
 simple_command: def_local_var
-simple_command: input_command
-simple_command: output_command
 simple_command: body
 simple_command: flux_command
 
-command_proceeding_identifier: attribution_command
-command_proceeding_identifier: func_modifier
-command_proceeding_identifier: shift_command
+io_command: input_command
+io_command: output_command
 
-def_local_var: optional_static optional_const def_local_var_tail
-def_local_var_tail: TK_IDENTIFICADOR TK_IDENTIFICADOR
-def_local_var_tail: primitive_type TK_IDENTIFICADOR optional_init
+def_local_var: TK_IDENTIFICADOR TK_IDENTIFICADOR
+def_local_var: primitive_type TK_IDENTIFICADOR
+def_local_var: primitive_type TK_IDENTIFICADOR TK_OC_LE expression
+def_local_var: TK_PR_STATIC TK_IDENTIFICADOR TK_IDENTIFICADOR
+def_local_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR
+def_local_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR TK_OC_LE expression
+def_local_var: TK_PR_CONST TK_IDENTIFICADOR TK_IDENTIFICADOR
+def_local_var: TK_PR_CONST primitive_type TK_IDENTIFICADOR
+def_local_var: TK_PR_CONST primitive_type TK_IDENTIFICADOR TK_OC_LE expression
+def_local_var: TK_PR_STATIC TK_PR_CONST TK_IDENTIFICADOR TK_IDENTIFICADOR
+def_local_var: TK_PR_STATIC TK_PR_CONST primitive_type TK_IDENTIFICADOR
+def_local_var: TK_PR_STATIC TK_PR_CONST primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 
-optional_static: %empty
-optional_static: TK_PR_STATIC
-optional_const: %empty
-optional_const: TK_PR_CONST
-optional_init: %empty
-optional_init: TK_OC_LE expression
-
-attribution_command: '=' expression
-attribution_command: '[' expression ']' '=' expression
-attribution_command: '$' TK_IDENTIFICADOR '=' expression
+attribution_command: TK_IDENTIFICADOR '=' expression
+attribution_command: TK_IDENTIFICADOR '[' expression ']' '=' expression
+attribution_command: TK_IDENTIFICADOR '$' TK_IDENTIFICADOR '=' expression
 
 input_command: TK_PR_INPUT expression
 
-output_command: TK_PR_OUTPUT expression expression_sequence
+output_command: TK_PR_OUTPUT expression_sequence
 
-func_modifier: '(' expression_sequence ')'
+function_call: TK_IDENTIFICADOR '(' expression_sequence ')'
+function_call: TK_IDENTIFICADOR '(' ')'
 
-shift_command: TK_OC_SL TK_LIT_INT
-shift_command: TK_OC_SR TK_LIT_INT
+shift_command: TK_IDENTIFICADOR TK_OC_SL TK_LIT_INT
+shift_command: TK_IDENTIFICADOR TK_OC_SR TK_LIT_INT
 
 flux_command: condition_command
 flux_command: iteration_command
 flux_command: selection_command
 
-condition_command: TK_PR_IF '(' expression ')' TK_PR_THEN body optional_else
-optional_else: %empty
-optional_else: TK_PR_ELSE body
+condition_command: TK_PR_IF '(' expression ')' TK_PR_THEN body
+condition_command: TK_PR_IF '(' expression ')' TK_PR_THEN body TK_PR_ELSE body
 
 iteration_command: TK_PR_FOREACH '(' TK_IDENTIFICADOR ':' foreach_expression_sequence ')' body
 iteration_command: TK_PR_FOR '(' for_command_sequence ':' expression ':' for_command_sequence ')' body
@@ -140,28 +153,49 @@ iteration_command: TK_PR_DO body TK_PR_WHILE '(' expression ')'
 
 selection_command: TK_PR_SWITCH '(' expression ')' body
 
-for_command_sequence: simple_command optional_extra_for_commands
-optional_extra_for_commands: %empty
-optional_extra_for_commands: ',' simple_command optional_extra_for_commands
+for_command_sequence: simple_command
+for_command_sequence: simple_command ',' for_command_sequence
 
-foreach_expression_sequence: expression optional_extra_foreach_expressions
-optional_extra_foreach_expressions: %empty
-optional_extra_foreach_expressions: ',' expression optional_extra_foreach_expressions
+foreach_expression_sequence: expression
+foreach_expression_sequence: expression ',' foreach_expression_sequence
 
-action_command: TK_PR_RETURN expression ';'
-action_command: TK_PR_CONTINUE ';'
-action_command: TK_PR_BREAK ';'
-action_command: TK_PR_CASE TK_LIT_INT ':'
+action_command: TK_PR_RETURN expression
+action_command: TK_PR_CONTINUE
+action_command: TK_PR_BREAK
 
-expression_sequence: %empty
-expression_sequence: ',' expression_sequence
-expression_sequence: expression expression_sequence
 
-expression: literal
-expression: '(' expression ')'
-expression: TK_IDENTIFICADOR func_or_array_modifier
-expression: expression arit_log_operator expression
-expression: unary_arit_log_operator expression
+// definicoes de tipos (SEM CONFLITOS)
+
+def_type: TK_PR_CLASS TK_IDENTIFICADOR '[' type_fields ']' ';' ;
+type_fields: type_field
+type_fields: type_field ':' type_fields
+type_field: encapsulation primitive_type TK_IDENTIFICADOR
+type_field: encapsulation primitive_type TK_IDENTIFICADOR '[' expression ']'
+
+encapsulation: TK_PR_PROTECTED
+encapsulation: TK_PR_PRIVATE
+encapsulation: TK_PR_PUBLIC
+
+primitive_type: TK_PR_INT
+primitive_type: TK_PR_FLOAT
+primitive_type: TK_PR_BOOL
+primitive_type: TK_PR_CHAR
+primitive_type: TK_PR_STRING
+
+
+//expressions e expressions sequences (SEM CONFLITOS)
+
+expression: operator sub_expression
+expression: sub_expression_chain
+sub_expression_chain: sub_expression
+sub_expression_chain: sub_expression operator sub_expression_chain
+
+sub_expression: '(' expression ')'
+sub_expression: literal
+sub_expression: TK_IDENTIFICADOR
+sub_expression: TK_IDENTIFICADOR '[' expression ']'
+sub_expression: function_call
+
 
 literal: TK_LIT_INT
 literal: TK_LIT_FLOAT
@@ -170,44 +204,21 @@ literal: TK_LIT_TRUE
 literal: TK_LIT_FALSE
 literal: TK_LIT_STRING
 
-func_or_array_modifier: optional_array_modifier
-func_or_array_modifier: optional_func_modifier
+operator: TK_OC_LE
+operator: TK_OC_GE
+operator: TK_OC_EQ
+operator: TK_OC_NE
+operator: TK_OC_AND
+operator: TK_OC_OR
+operator: '+'
+operator: '-'
+operator: '/'
+operator: '*'
 
-optional_func_modifier: func_modifier
-optional_func_modifier: %empty
-optional_array_modifier: '[' expression ']'
-optional_array_modifier: %empty
-
-arit_log_operator: log_operator
-arit_log_operator: arit_operator
-log_operator: TK_OC_LE
-log_operator: TK_OC_GE
-log_operator: TK_OC_EQ
-log_operator: TK_OC_NE
-log_operator: TK_OC_AND
-log_operator: TK_OC_OR
-arit_operator: '+'
-arit_operator: '-'
-arit_operator: '/'
-arit_operator: '*'
-
-unary_arit_log_operator: '-'
-unary_arit_log_operator: '+'
-
-parameters: %empty
-parameters: parameter optional_more_parameters
-parameter: optional_const any_type TK_IDENTIFICADOR
-optional_more_parameters: ',' parameter optional_more_parameters
-optional_more_parameters: %empty
+expression_sequence: expression
+expression_sequence: expression ',' expression_sequence
 
 
-any_type: primitive_type
-any_type: TK_IDENTIFICADOR
 
-primitive_type: TK_PR_INT
-primitive_type: TK_PR_FLOAT
-primitive_type: TK_PR_BOOL
-primitive_type: TK_PR_CHAR
-primitive_type: TK_PR_STRING
 
 %%
