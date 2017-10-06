@@ -60,6 +60,10 @@
 %type<tree> prime_programa
 %type<tree> programa
 %type<tree> def_function
+%type<tree> body
+%type<tree> command_sequence
+%type<tree> command_in_block
+%type<tree> case_command
 
 %%
 /* Regras (e ações) da gramática */
@@ -90,10 +94,26 @@ any_type: primitive_type
 
 // funcoes
 
-def_function: header body { $$ = tree_make_node(NULL); }
-def_function: TK_PR_STATIC header body { $$ = tree_make_node(NULL); }
+def_function: header body
+{
+	$$ = tree_make_node(NULL);
+	if ($2)
+		tree_insert_node($$,$2);
+}
+def_function: TK_PR_STATIC header body
+{
+	$$ = tree_make_node(NULL);
+	if ($3)
+		tree_insert_node($$,$3);
+}
 header: any_type TK_IDENTIFICADOR '(' parameters ')'
 body: '{' command_sequence '}'
+{
+	if ($2)
+	 	$$ = $2;
+	else
+		$$ = NULL;
+}
 
 parameters: %empty
 parameters: parameter
@@ -105,13 +125,24 @@ parameter_chain: ',' parameter parameter_chain
 parameter: any_type TK_IDENTIFICADOR
 parameter: TK_PR_CONST any_type TK_IDENTIFICADOR
 
-command_sequence: %empty
+command_sequence: %empty { $$ = NULL; }
 command_sequence: command_in_block ';' command_sequence
-command_sequence: TK_PR_CASE TK_LIT_INT ':' command_sequence
+{
+	if ($3)
+		tree_insert_node($1,$3);
+	$$ = $1;
+}
+command_sequence: case_command ':' command_sequence
+{
+	if ($3)
+		tree_insert_node($1,$3);
+	$$ = $1;
+}
+case_command: TK_PR_CASE TK_LIT_INT { $$ = tree_make_node(NULL); } 
 
-command_in_block: simple_command
-command_in_block: io_command
-command_in_block: action_command
+command_in_block: simple_command { $$ = tree_make_node(NULL); }
+command_in_block: io_command { $$ = tree_make_node(NULL); }
+command_in_block: action_command { $$ = tree_make_node(NULL); }
 
 simple_command: attribution_command
 simple_command: function_call
