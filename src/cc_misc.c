@@ -1,6 +1,5 @@
 #include "cc_misc.h"
 #include "cc_dict.h"
-#include "cc_ast.h"
 
 #define GRAPHVIZ_FILENAME "graphvizAST.dot"
 
@@ -17,6 +16,16 @@ comp_dict_t* symbolsTable;
 comp_dict_t* pointersToFreeTable;
 
 comp_tree_t* abstractSyntaxTree;
+
+void set_ast_root(comp_tree_t* root)
+{
+  abstractSyntaxTree = root;
+}
+
+comp_tree_t* get_ast_root()
+{
+  return abstractSyntaxTree;
+}
 
 /**
   * Da free em ponteiros das entradas da tabela de simbolos que estao no ponteiro next (quando a colisao de entradas)
@@ -497,10 +506,9 @@ void main_init (int argc, char **argv)
   pointersToFreeTable = dict_new();
   symbolsTable = dict_new();
 
-	abstractSyntaxTree = tree_new();
+	//abstractSyntaxTree = tree_new();
 	gv_init(GRAPHVIZ_FILENAME);
-	gv_declare(AST_PROGRAMA, abstractSyntaxTree, NULL);
-	generateExampleTree();
+	//generateExampleTree();
 }
 
 void main_finalize (void)
@@ -511,9 +519,13 @@ void main_finalize (void)
   //comp_print_table();
   clearSymbolsTable();
 
-	putToGraphviz(abstractSyntaxTree);
+  //printf("Building .dot ...\n");
+  gv_declare(AST_PROGRAMA, abstractSyntaxTree, NULL);
+  putToGraphviz(abstractSyntaxTree);
 	gv_close();
+  //printf("Clearing AST ...\n");
 	clearAndFreeAST();
+  //printf("Clearing pointersToFreeTable ...\n");
   clearPointerToFreeTable();
 }
 

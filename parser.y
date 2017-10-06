@@ -2,14 +2,15 @@
   Arthur Adolfo 			- 	00262515
   Gabriel de Souza Seibel 	- 	00262513
 */
-%{
+%code requires{
 #include "parser.h" //arquivo automaticamente gerado pelo bison
 #include "main.h"
 #include "cc_misc.h" //arquivo com funcoes de auto incremento
-%}
+}
 
 %union
 {
+	comp_tree_t *tree;
 	void *valor_lexico;   /* Pointer to run-time expression operator */
 }
 
@@ -56,16 +57,27 @@
 %token TK_IDENTIFICADOR
 %token TOKEN_ERRO
 
+%type<tree> prime_programa
+%type<tree> programa
+%type<tree> def_function
 
 %%
 /* Regras (e ações) da gramática */
 
-// programa e declaracao de globais (SEM CONFLITOS)
+// programa e declaracao de globais
 
-programa: %empty
-programa: def_type programa
-programa: def_global_var programa
+prime_programa: programa { if ($1) set_ast_root($1); }
+
+programa: %empty { $$ = NULL; }
+programa: def_type programa { if ($2) $$ = $2; else $$ = NULL; }
+programa: def_global_var programa { if ($2) $$ = $2; else $$ = NULL; }
 programa: def_function programa
+{
+	if ($2) {
+		tree_insert_node($1,$2);
+	}
+	$$ = $1;
+}
 
 def_global_var: any_type TK_IDENTIFICADOR ';'
 def_global_var: any_type TK_IDENTIFICADOR '[' expression ']' ';'
@@ -76,14 +88,13 @@ any_type: TK_IDENTIFICADOR
 any_type: primitive_type
 
 
-// funcoes (SEM CONFLITOS)
+// funcoes
 
-def_function: header body;
-def_function: TK_PR_STATIC header body;
+def_function: header body { $$ = tree_make_node(NULL); }
+def_function: TK_PR_STATIC header body { $$ = tree_make_node(NULL); }
 header: any_type TK_IDENTIFICADOR '(' parameters ')'
 body: '{' command_sequence '}'
 
-//tem erro aqui (cuidar virgula no fim da lista)
 parameters: %empty
 parameters: parameter
 parameters: parameter parameter_chain
@@ -164,9 +175,9 @@ action_command: TK_PR_CONTINUE
 action_command: TK_PR_BREAK
 
 
-// definicoes de tipos (SEM CONFLITOS)
+// definicoes de tipos
 
-def_type: TK_PR_CLASS TK_IDENTIFICADOR '[' type_fields ']' ';' ;
+def_type: TK_PR_CLASS TK_IDENTIFICADOR '[' type_fields ']' ';'
 type_fields: type_field
 type_fields: type_field ':' type_fields
 type_field: encapsulation primitive_type TK_IDENTIFICADOR
@@ -183,7 +194,7 @@ primitive_type: TK_PR_CHAR
 primitive_type: TK_PR_STRING
 
 
-//expressions e expressions sequences (SEM CONFLITOS)
+//expressions e expressions sequences
 
 expression: operator sub_expression
 expression: sub_expression_chain
@@ -217,8 +228,5 @@ operator: '*'
 
 expression_sequence: expression
 expression_sequence: expression ',' expression_sequence
-
-
-
 
 %%

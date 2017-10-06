@@ -5,6 +5,8 @@
 #include <string.h>
 #include <stdbool.h>
 #include "main.h"
+#include "cc_tree.h"
+#include "cc_ast.h"
 
 union Value {
 	int i;
@@ -20,6 +22,8 @@ typedef struct symbolsTable_value {
     union Value value;
 } st_value_t;
 
+void set_ast_root(comp_tree_t* root);
+comp_tree_t* get_ast_root();
 
 int getLineNumber (void);
 void yyerror (char const *mensagem);

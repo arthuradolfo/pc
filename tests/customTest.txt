@@ -67,3 +67,13 @@ float fun()
    identificador << 3;
    identificador >> 4;
 }
+
+static char charer()
+{
+  do { re = mi; }  while (fa);
+}
+
+string stringer(int b, float c)
+{
+  //test me
+}
