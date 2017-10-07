@@ -73,6 +73,7 @@
 %type<tree> selection_command
 %type<tree> shift_command
 %type<tree> def_local_var
+%type<tree> expression
 
 %%
 /* Regras (e ações) da gramática */
@@ -124,7 +125,7 @@ def_function: TK_PR_STATIC any_type TK_IDENTIFICADOR '(' parameters ')' body
 	if ($7)
 		tree_insert_node($$,$7);
 }
-body: '{' command_sequence '}' {	$$ = $2; }
+body: '{' command_sequence '}' { $$ = $2; }
 
 parameters: %empty
 parameters: parameter
@@ -161,7 +162,7 @@ simple_command: flux_command { $$ = $1; }
 simple_command: '{' command_sequence '}'
 {
 	$$ = tree_make_node(new_ast_node_value(AST_BLOCO, NULL));
-	if ($2) tree_insert_node($$,$2); 
+	if ($2) tree_insert_node($$,$2);
 }
 
 io_command: input_command
@@ -198,8 +199,31 @@ flux_command: condition_command
 flux_command: iteration_command
 flux_command: selection_command
 
-condition_command: TK_PR_IF '(' expression ')' TK_PR_THEN body { $$ = tree_make_node(new_ast_node_value(AST_IF_ELSE, NULL)); }
-condition_command: TK_PR_IF '(' expression ')' TK_PR_THEN body TK_PR_ELSE body { $$ = tree_make_node(new_ast_node_value(AST_IF_ELSE, NULL)); }
+condition_command: TK_PR_IF '(' expression ')' TK_PR_THEN body
+{
+	$$ = tree_make_node(new_ast_node_value(AST_IF_ELSE, NULL));
+	if ($3) tree_insert_node($$, $3);
+
+	if ($6)
+		tree_insert_node($$, $6);
+	else
+		tree_insert_node($$, tree_make_node(new_ast_node_value(AST_BLOCO, NULL)));
+}
+condition_command: TK_PR_IF '(' expression ')' TK_PR_THEN body TK_PR_ELSE body
+{
+	$$ = tree_make_node(new_ast_node_value(AST_IF_ELSE, NULL));
+	if ($3) tree_insert_node($$, $3);
+
+	if ($6)
+		tree_insert_node($$, $6);
+	else
+		tree_insert_node($$, tree_make_node(new_ast_node_value(AST_BLOCO, NULL)));
+
+	if ($8)
+		tree_insert_node($$, $8);
+	else
+		tree_insert_node($$, tree_make_node(new_ast_node_value(AST_BLOCO, NULL)));
+}
 
 iteration_command: TK_PR_FOREACH '(' TK_IDENTIFICADOR ':' foreach_expression_sequence ')' body { $$ = NULL; }
 iteration_command: TK_PR_FOR '(' for_command_sequence ':' expression ':' for_command_sequence ')' body { $$ = NULL; }
@@ -240,8 +264,8 @@ primitive_type: TK_PR_STRING
 
 //expressions e expressions sequences
 
-expression: operator sub_expression
-expression: sub_expression_chain
+expression: operator sub_expression { $$ = NULL; }
+expression: sub_expression_chain { $$ = NULL; }
 sub_expression_chain: sub_expression
 sub_expression_chain: sub_expression operator sub_expression_chain
 
