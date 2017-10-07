@@ -71,6 +71,7 @@
 %type<tree> iteration_command
 %type<tree> condition_command
 %type<tree> selection_command
+%type<tree> shift_command
 %type<tree> def_local_var
 
 %%
@@ -123,13 +124,7 @@ def_function: TK_PR_STATIC any_type TK_IDENTIFICADOR '(' parameters ')' body
 	if ($7)
 		tree_insert_node($$,$7);
 }
-body: '{' command_sequence '}'
-{
-	if ($2)
-	 	$$ = $2;
-	else
-		$$ = NULL;
-}
+body: '{' command_sequence '}' {	$$ = $2; }
 
 parameters: %empty
 parameters: parameter
@@ -160,10 +155,10 @@ command_in_block: action_command { $$ = $1; }
 
 simple_command: attribution_command { $$ = $1; }
 simple_command: function_call { $$ = tree_make_node(new_ast_node_value(AST_CHAMADA_DE_FUNCAO, NULL)); }
-simple_command: shift_command { $$ = tree_make_node(new_ast_node_value(AST_ARIM_MULTIPLICACAO, NULL)); } //TODO ver se tem problema usar mul
+simple_command: shift_command { $$ = $1; }
 simple_command: def_local_var { $$ = $1; }
 simple_command: flux_command { $$ = $1; }
-simple_command: body { $$ = ($1)? $1 : NULL; }
+simple_command: '{' command_sequence '}' {	$$ = tree_make_unary_node(new_ast_node_value(AST_BLOCO, NULL), $2); }
 
 io_command: input_command
 io_command: output_command
@@ -192,8 +187,8 @@ output_command: TK_PR_OUTPUT expression_sequence
 function_call: TK_IDENTIFICADOR '(' expression_sequence ')'
 function_call: TK_IDENTIFICADOR '(' ')'
 
-shift_command: TK_IDENTIFICADOR TK_OC_SL TK_LIT_INT
-shift_command: TK_IDENTIFICADOR TK_OC_SR TK_LIT_INT
+shift_command: TK_IDENTIFICADOR TK_OC_SL TK_LIT_INT { $$ = tree_make_node(new_ast_node_value(AST_SHIFT_LEFT, NULL)); }
+shift_command: TK_IDENTIFICADOR TK_OC_SR TK_LIT_INT { $$ = tree_make_node(new_ast_node_value(AST_SHIFT_RIGHT, NULL)); }
 
 flux_command: condition_command
 flux_command: iteration_command

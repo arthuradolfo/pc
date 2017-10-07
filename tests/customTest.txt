@@ -13,11 +13,19 @@ int myFunction ()
 
   return k;
 
-  bool bolo <= true && false && true;
-
   bool bolo <= true && false || (true && false) + 1*((b*a*a)/7/2)+ 4;
 
-  bool bolovo <= false;
+  {
+    do {
+      //code
+    } while(condition);
+
+    abort();
+
+    printf();
+
+    atrib = trib;
+  };
 
   bolo = bolovo >= bolo;
 
@@ -60,7 +68,6 @@ int myFunction ()
   };
 
 }
-
 
 float fun()
 {
