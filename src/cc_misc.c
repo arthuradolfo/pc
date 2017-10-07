@@ -326,11 +326,15 @@ void putSomeEntries()
 /**
  * Retorna o tipo AST de um nodo
  * (sempre uma das constantes em ast.h)
- * //TODO implementar de fato
  */
 int getASTtype(comp_tree_t* node)
 {
-	return AST_PROGRAMA;
+  ast_node_value_t* value = (ast_node_value_t*) node->value;
+
+  if (value != NULL)
+    return value->type;
+  else
+    return NULL;
 }
 
 /**
@@ -343,7 +347,16 @@ int getASTtype(comp_tree_t* node)
  */
 char* getASTlexem(comp_tree_t* node)
 {
-	return NULL;
+  ast_node_value_t* value = (ast_node_value_t*) node->value;
+  if (value == NULL) return NULL;
+
+  switch (value->type) {
+    case AST_FUNCAO: return "lex_funcao";
+    case AST_LITERAL: return "lex_literal";
+    case AST_IDENTIFICADOR: return "lex_identificador";
+
+    default: return NULL;
+  }
 }
 
 void generateExampleTree()
