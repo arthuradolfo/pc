@@ -22,6 +22,12 @@ int myFunction ()
 
     abort();
 
+    {
+      {
+        if(a)then{};
+        {};
+      };
+    };
     printf();
 
     atrib = trib;

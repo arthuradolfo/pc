@@ -158,7 +158,11 @@ simple_command: function_call { $$ = tree_make_node(new_ast_node_value(AST_CHAMA
 simple_command: shift_command { $$ = $1; }
 simple_command: def_local_var { $$ = $1; }
 simple_command: flux_command { $$ = $1; }
-simple_command: '{' command_sequence '}' {	$$ = tree_make_unary_node(new_ast_node_value(AST_BLOCO, NULL), $2); }
+simple_command: '{' command_sequence '}'
+{
+	$$ = tree_make_node(new_ast_node_value(AST_BLOCO, NULL));
+	if ($2) tree_insert_node($$,$2); 
+}
 
 io_command: input_command
 io_command: output_command
