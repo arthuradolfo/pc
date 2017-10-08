@@ -6,6 +6,16 @@
 
 #IncludeRegexTransform: 
 
+../include/cc_ast.h
+
+../include/cc_ast_node.h
+cc_dict.h
+../include/cc_dict.h
+cc_misc.h
+../include/cc_misc.h
+stdlib.h
+-
+
 ../include/cc_dict.h
 
 ../include/cc_gv.h
@@ -23,6 +33,10 @@ stdbool.h
 -
 main.h
 ../include/main.h
+cc_tree.h
+../include/cc_tree.h
+cc_ast.h
+../include/cc_ast.h
 
 ../include/cc_tree.h
 
@@ -44,9 +58,41 @@ cc_gv.h
 parser.h
 ../include/parser.h
 
-/home/aluno/Desktop/pc/build/parser.h
+/home/arthur/Área de Trabalho/pc/build/parser.c
+parser.h
+/home/arthur/Área de Trabalho/pc/build/parser.h
+main.h
+/home/arthur/Área de Trabalho/pc/build/main.h
+cc_misc.h
+/home/arthur/Área de Trabalho/pc/build/cc_misc.h
+cc_ast_node.h
+/home/arthur/Área de Trabalho/pc/build/cc_ast_node.h
+stddef.h
+-
+libintl.h
+-
+alloca.h
+-
+malloc.h
+-
+stdlib.h
+-
+stdlib.h
+-
+stdio.h
+-
 
-/home/aluno/Desktop/pc/build/scanner.c
+/home/arthur/Área de Trabalho/pc/build/parser.h
+parser.h
+/home/arthur/Área de Trabalho/pc/build/parser.h
+main.h
+/home/arthur/Área de Trabalho/pc/build/main.h
+cc_misc.h
+/home/arthur/Área de Trabalho/pc/build/cc_misc.h
+cc_ast_node.h
+/home/arthur/Área de Trabalho/pc/build/cc_ast_node.h
+
+/home/arthur/Área de Trabalho/pc/build/scanner.c
 stdio.h
 -
 string.h
@@ -58,11 +104,63 @@ stdlib.h
 inttypes.h
 -
 parser.h
-/home/aluno/Desktop/pc/build/parser.h
+/home/arthur/Área de Trabalho/pc/build/parser.h
 cc_misc.h
-/home/aluno/Desktop/pc/build/cc_misc.h
+/home/arthur/Área de Trabalho/pc/build/cc_misc.h
 main.h
-/home/aluno/Desktop/pc/build/main.h
+/home/arthur/Área de Trabalho/pc/build/main.h
 unistd.h
 -
+
+/home/arthur/Área de Trabalho/pc/src/cc_ast_node.c
+cc_ast_node.h
+/home/arthur/Área de Trabalho/pc/src/cc_ast_node.h
+
+/home/arthur/Área de Trabalho/pc/src/cc_dict.c
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+cc_dict.h
+/home/arthur/Área de Trabalho/pc/src/cc_dict.h
+
+/home/arthur/Área de Trabalho/pc/src/cc_gv.c
+stdio.h
+-
+stdlib.h
+-
+cc_ast.h
+/home/arthur/Área de Trabalho/pc/src/cc_ast.h
+
+/home/arthur/Área de Trabalho/pc/src/cc_list.c
+
+/home/arthur/Área de Trabalho/pc/src/cc_misc.c
+cc_misc.h
+/home/arthur/Área de Trabalho/pc/src/cc_misc.h
+cc_dict.h
+/home/arthur/Área de Trabalho/pc/src/cc_dict.h
+
+/home/arthur/Área de Trabalho/pc/src/cc_tree.c
+stdio.h
+-
+stdlib.h
+-
+cc_tree.h
+/home/arthur/Área de Trabalho/pc/src/cc_tree.h
+
+/home/arthur/Área de Trabalho/pc/src/main.c
+main.h
+/home/arthur/Área de Trabalho/pc/src/main.h
+
+parser.h
+parser.h
+parser.h
+main.h
+main.h
+cc_misc.h
+cc_misc.h
+cc_ast_node.h
+cc_ast_node.h
 

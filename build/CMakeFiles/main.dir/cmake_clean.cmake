@@ -1,4 +1,4 @@
-FILE(REMOVE_RECURSE
+file(REMOVE_RECURSE
   "scanner.c"
   "parser.c"
   "parser.h"
@@ -11,11 +11,12 @@ FILE(REMOVE_RECURSE
   "CMakeFiles/main.dir/src/cc_dict.c.o"
   "CMakeFiles/main.dir/src/cc_list.c.o"
   "CMakeFiles/main.dir/src/cc_tree.c.o"
+  "CMakeFiles/main.dir/src/cc_ast_node.c.o"
   "main.pdb"
   "main"
 )
 
 # Per-language clean rules from dependency scanning.
-FOREACH(lang C)
-  INCLUDE(CMakeFiles/main.dir/cmake_clean_${lang}.cmake OPTIONAL)
-ENDFOREACH(lang)
+foreach(lang C)
+  include(CMakeFiles/main.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

@@ -110,6 +110,7 @@ programa: def_type programa { if ($2) $$ = $2; else $$ = NULL; }
 programa: def_global_var programa { if ($2) $$ = $2; else $$ = NULL; }
 programa: def_function programa
 {
+	$1 = tree_make_node(new_ast_node_value(AST_FUNCAO, yylval.valor_lexico));
 	if ($2) {
 		tree_insert_node($1,$2);
 	}
@@ -134,13 +135,13 @@ any_type: primitive_type
 
 def_function: any_type TK_IDENTIFICADOR '(' parameters ')' body
 {
-	$$ = tree_make_node(new_ast_node_value(AST_FUNCAO, $2));
+	$$ = tree_make_node(new_ast_node_value(AST_FUNCAO, yylval.valor_lexico));
 	if ($6)
 		tree_insert_node($$,$6);
 }
 def_function: TK_PR_STATIC any_type TK_IDENTIFICADOR '(' parameters ')' body
 {
-	$$ = tree_make_node(new_ast_node_value(AST_FUNCAO, $3));
+	$$ = tree_make_node(new_ast_node_value(AST_FUNCAO, yylval.valor_lexico));
 	if ($7)
 		tree_insert_node($$,$7);
 }
@@ -191,46 +192,46 @@ def_local_var: TK_IDENTIFICADOR TK_IDENTIFICADOR { $$ = NULL; }
 def_local_var: primitive_type TK_IDENTIFICADOR { $$ = NULL; }
 def_local_var: primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 {
-	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, $2));
+	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, yylval.valor_lexico));
 	$$ = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, NULL), node_identificador, $4);
 }
 def_local_var: TK_PR_STATIC TK_IDENTIFICADOR TK_IDENTIFICADOR { $$ = NULL; }
 def_local_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR { $$ = NULL; }
 def_local_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 {
-	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, $3));
+	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, yylval.valor_lexico));
 	$$ = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, NULL), node_identificador, $5);
 }
 def_local_var: TK_PR_CONST TK_IDENTIFICADOR TK_IDENTIFICADOR { $$ = NULL; }
 def_local_var: TK_PR_CONST primitive_type TK_IDENTIFICADOR { $$ = NULL; }
 def_local_var: TK_PR_CONST primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 {
-	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, $3));
+	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, yylval.valor_lexico));
 	$$ = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, NULL), node_identificador, $5);
 }
 def_local_var: TK_PR_STATIC TK_PR_CONST TK_IDENTIFICADOR TK_IDENTIFICADOR { $$ = NULL; }
 def_local_var: TK_PR_STATIC TK_PR_CONST primitive_type TK_IDENTIFICADOR { $$ = NULL; }
 def_local_var: TK_PR_STATIC TK_PR_CONST primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 {
-	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, $4));
+	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, yylval.valor_lexico));
 	$$ = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, NULL), node_identificador, $6);
 }
 
 attribution_command: TK_IDENTIFICADOR '=' expression
 {
-	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, $1));
+	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, yylval.valor_lexico));
 	$$ = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, NULL), node_identificador, $3);
 }
 attribution_command: TK_IDENTIFICADOR '[' expression ']' '=' expression
 {
-	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, $1));
+	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, yylval.valor_lexico));
 	comp_tree_t* node_vetor_indexado = tree_make_binary_node(new_ast_node_value(AST_VETOR_INDEXADO, NULL), node_identificador, $3);
 	$$ = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, NULL), node_vetor_indexado, $6);
 }
 attribution_command: TK_IDENTIFICADOR '$' TK_IDENTIFICADOR '=' expression
 {
-	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, $1));
-	comp_tree_t* node_campo = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, $3));
+	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, yylval.valor_lexico));
+	comp_tree_t* node_campo = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, yylval.valor_lexico));
 	$$ = tree_make_ternary_node(new_ast_node_value(AST_ATRIBUICAO, NULL), node_identificador, $5, node_campo);
 }
 
@@ -240,23 +241,23 @@ output_command: TK_PR_OUTPUT expression_sequence
 
 function_call: TK_IDENTIFICADOR '(' expression_sequence ')'
 {
-	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, $1));
+	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, yylval.valor_lexico));
 	$$ = tree_make_binary_node(new_ast_node_value(AST_CHAMADA_DE_FUNCAO, NULL), node_identificador, $3);
 }
 function_call: TK_IDENTIFICADOR '(' ')'
 {
-	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, $1));
+	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, yylval.valor_lexico));
 	$$ = tree_make_unary_node(new_ast_node_value(AST_CHAMADA_DE_FUNCAO, NULL), node_identificador);
 }
 
 shift_command: TK_IDENTIFICADOR TK_OC_SL TK_LIT_INT
 {
-	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, $1));
+	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, yylval.valor_lexico));
 	$$ = tree_make_unary_node(new_ast_node_value(AST_SHIFT_LEFT, NULL), node_identificador);
 }
 shift_command: TK_IDENTIFICADOR TK_OC_SR TK_LIT_INT
 {
-	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, $1));
+	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, yylval.valor_lexico));
 	$$ = tree_make_unary_node(new_ast_node_value(AST_SHIFT_RIGHT, NULL), node_identificador);
 }
 
@@ -383,22 +384,22 @@ sub_expression: unary_operator sub_expression
 }
 sub_expression: '(' expression ')' { $$ = $2; }
 sub_expression: literal { $$ = $1; }
-sub_expression: TK_IDENTIFICADOR { $$ = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, $1)); }
+sub_expression: TK_IDENTIFICADOR { $$ = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, yylval.valor_lexico)); }
 sub_expression: TK_IDENTIFICADOR '[' expression ']'
 {
-	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, $1));
+	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, yylval.valor_lexico));
 	$$ = tree_make_binary_node(new_ast_node_value(AST_VETOR_INDEXADO,NULL), node_identificador, $3);
 }
 sub_expression: function_call { $$ = $1; }
 
 
 
-literal: TK_LIT_INT { $$ = tree_make_node(new_ast_node_value(AST_LITERAL, $1)); }
-literal: TK_LIT_FLOAT { $$ = tree_make_node(new_ast_node_value(AST_LITERAL, $1)); }
-literal: TK_LIT_CHAR { $$ = tree_make_node(new_ast_node_value(AST_LITERAL, $1)); }
-literal: TK_LIT_TRUE { $$ = tree_make_node(new_ast_node_value(AST_LITERAL, $1)); }
-literal: TK_LIT_FALSE { $$ = tree_make_node(new_ast_node_value(AST_LITERAL, $1)); }
-literal: TK_LIT_STRING { $$ = tree_make_node(new_ast_node_value(AST_LITERAL, $1)); }
+literal: TK_LIT_INT { $$ = tree_make_node(new_ast_node_value(AST_LITERAL, yylval.valor_lexico)); }
+literal: TK_LIT_FLOAT { $$ = tree_make_node(new_ast_node_value(AST_LITERAL, yylval.valor_lexico)); }
+literal: TK_LIT_CHAR { $$ = tree_make_node(new_ast_node_value(AST_LITERAL, yylval.valor_lexico)); }
+literal: TK_LIT_TRUE { $$ = tree_make_node(new_ast_node_value(AST_LITERAL, yylval.valor_lexico)); }
+literal: TK_LIT_FALSE { $$ = tree_make_node(new_ast_node_value(AST_LITERAL, yylval.valor_lexico)); }
+literal: TK_LIT_STRING { $$ = tree_make_node(new_ast_node_value(AST_LITERAL, yylval.valor_lexico)); }
 
 operator: TK_OC_LE { $$ = tree_make_node(new_ast_node_value(AST_LOGICO_COMP_LE, NULL)); }
 operator: TK_OC_GE { $$ = tree_make_node(new_ast_node_value(AST_LOGICO_COMP_GE, NULL)); }

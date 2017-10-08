@@ -348,12 +348,39 @@ int getASTtype(comp_tree_t* node)
 char* getASTlexem(comp_tree_t* node)
 {
   ast_node_value_t* value = (ast_node_value_t*) node->value;
+  char *string_aux = malloc(sizeof(char)*200);
   if (value == NULL) return NULL;
 
   switch (value->type) {
-    case AST_FUNCAO: return "lex_funcao";
-    case AST_LITERAL: return "lex_literal";
-    case AST_IDENTIFICADOR: return "lex_identificador";
+    case AST_FUNCAO: 
+      return value->symbols_table_entry->value.s;    
+    case AST_LITERAL: 
+      switch(value->symbols_table_entry->token_type) {
+        case POA_LIT_INT:
+          sprintf(string_aux, "%d", value->symbols_table_entry->value.i);
+          return string_aux;
+
+        case POA_LIT_FLOAT:
+          sprintf(string_aux, "%f", value->symbols_table_entry->value.f);
+          return string_aux;
+
+        case POA_LIT_CHAR:
+          return &value->symbols_table_entry->value.c;
+
+        case POA_LIT_STRING:
+          return value->symbols_table_entry->value.s;
+
+        case POA_LIT_BOOL:
+          if(value->symbols_table_entry->value.b) {
+            return "true";
+          }
+          else {
+            return "false";
+          }
+          
+      }
+    case AST_IDENTIFICADOR: 
+      return value->symbols_table_entry->value.s;
 
     default: return NULL;
   }
@@ -530,12 +557,12 @@ void main_finalize (void)
 
 
   //comp_print_table();
-  clearSymbolsTable();
 
   //printf("Building .dot ...\n");
   gv_declare(AST_PROGRAMA, abstractSyntaxTree, NULL);
   putToGraphviz(abstractSyntaxTree);
 	gv_close();
+  clearSymbolsTable();
   //printf("Clearing AST ...\n");
 	clearAndFreeAST();
   //printf("Clearing pointersToFreeTable ...\n");
