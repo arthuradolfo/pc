@@ -1,23 +1,39 @@
+int var[1];
+string var;
 //comentario
 int myFunction ()
 {
+  input b;
+
   int a;
   a = 1 + 2;
   int b <= 3;
   a = b;
   a = a*a;
   a = b/a;
+  c = c + 1 + 2 + (3);
+  b = a + 2* 7;
   b = (a+ 2)*7;
+
+  int a <= 2;
+
+  return k;
 
   bool bolo <= true && false || (true && false) + 1*((b*a*a)/7/2)+ 4;
 
-  bool bolovo <= false;
+  {
+    do {
+      //code
+    } while(condition);
+
+    abort();
+  };
 
   bolo = bolovo >= bolo;
 
   output a;
   if (a == 4) then {
-    output a;
+    output a,c,d;
   } else {
     if (bolovo && bolo <= 1+ (7*5/(1- 2))) then {};
   };
@@ -50,7 +66,46 @@ int myFunction ()
     float a <= itfloats;
     case 1:
     case 2: do { hast = true ;} while (mitch);
-    case 4: break/*up with life*/; 
+    case 4: break/*up with life*/;
   };
 
+
+
+  var[5*6-(7/5)] = bolo/7+752 && ('c');
+  varUserType$campo = exp;
+}
+
+int testeDeParenteses(int a, bool b)
+{
+  b = ( ((a + b) * (c + (1 + 2 + 3) - 4 / (a - (func(5,6,bolo<=2>=3)/2)))) && (a==b));
+
+  return theReturn;
+  return 0;
+  return a+(b);
+}
+
+string testeOperandosUnarios(int c)
+{
+  a = -1 + !(k/---5 + 6+++7);
+}
+
+float fun()
+{
+  bool bone <= hard && to_chew;
+
+  if (cond) then {
+    comman = d;
+  } else { haha << 3; };
+
+  identificador >> 3;
+}
+
+static char charer()
+{
+  do { re = mi; }  while (fa);
+}
+
+string stringer(int b, float c)
+{
+  //test me
 }
