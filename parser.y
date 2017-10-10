@@ -103,6 +103,9 @@ prime_programa: programa
 	set_ast_root($$);
 	if ($1)
 		tree_insert_node($$, $1);
+
+	gv_declare(AST_PROGRAMA, $$, NULL);
+	putToGraphviz($$);
 }
 
 programa: %empty { $$ = NULL; }

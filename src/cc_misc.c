@@ -352,9 +352,9 @@ char* getASTlexem(comp_tree_t* node)
   if (value == NULL) return NULL;
 
   switch (value->type) {
-    case AST_FUNCAO: 
-      return value->symbols_table_entry->value.s;    
-    case AST_LITERAL: 
+    case AST_FUNCAO:
+      return value->symbols_table_entry->value.s;
+    case AST_LITERAL:
       switch(value->symbols_table_entry->token_type) {
         case POA_LIT_INT:
           sprintf(string_aux, "%d", value->symbols_table_entry->value.i);
@@ -377,9 +377,9 @@ char* getASTlexem(comp_tree_t* node)
           else {
             return "false";
           }
-          
+
       }
-    case AST_IDENTIFICADOR: 
+    case AST_IDENTIFICADOR:
       return value->symbols_table_entry->value.s;
 
     default: return NULL;
@@ -547,7 +547,7 @@ void main_init (int argc, char **argv)
   symbolsTable = dict_new();
 
 	//abstractSyntaxTree = tree_new();
-	gv_init(GRAPHVIZ_FILENAME);
+	//gv_init(GRAPHVIZ_FILENAME);
 	//generateExampleTree();
 }
 
@@ -559,9 +559,9 @@ void main_finalize (void)
   //comp_print_table();
 
   //printf("Building .dot ...\n");
-  gv_declare(AST_PROGRAMA, abstractSyntaxTree, NULL);
-  putToGraphviz(abstractSyntaxTree);
-	gv_close();
+  //gv_declare(AST_PROGRAMA, abstractSyntaxTree, NULL);
+  //putToGraphviz(abstractSyntaxTree);
+	//gv_close();
   clearSymbolsTable();
   //printf("Clearing AST ...\n");
 	clearAndFreeAST();

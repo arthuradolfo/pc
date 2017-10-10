@@ -24,6 +24,7 @@ typedef struct symbolsTable_value {
 
 void set_ast_root(comp_tree_t* root);
 comp_tree_t* get_ast_root();
+void putToGraphviz(comp_tree_t *pai);
 
 int getLineNumber (void);
 void yyerror (char const *mensagem);
