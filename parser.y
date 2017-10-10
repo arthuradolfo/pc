@@ -80,6 +80,9 @@
 %type<tree> condition_command
 %type<tree> selection_command
 %type<tree> shift_command
+%type<tree> io_command
+%type<tree> input_command
+%type<tree> output_command
 %type<tree> def_local_var
 %type<tree> function_call
 %type<tree> expression
@@ -173,7 +176,7 @@ command_sequence: case_command ':' command_sequence { $$ = $3; }
 case_command: TK_PR_CASE TK_LIT_INT
 
 command_in_block: simple_command { $$ = $1; }
-command_in_block: io_command { $$ = NULL; }
+command_in_block: io_command { $$ = $1; }
 command_in_block: action_command { $$ = $1; }
 
 simple_command: attribution_command { $$ = $1; }
@@ -187,8 +190,8 @@ simple_command: '{' command_sequence '}'
 	if ($2) tree_insert_node($$,$2);
 }
 
-io_command: input_command
-io_command: output_command
+io_command: input_command { $$ = $1; }
+io_command: output_command { $$ = $1; }
 
 def_local_var: TK_IDENTIFICADOR TK_IDENTIFICADOR { $$ = NULL; }
 def_local_var: primitive_type TK_IDENTIFICADOR { $$ = NULL; }
@@ -237,9 +240,9 @@ attribution_command: TK_IDENTIFICADOR '$' TK_IDENTIFICADOR '=' expression
 	$$ = tree_make_ternary_node(new_ast_node_value(AST_ATRIBUICAO, NULL), node_identificador, $5, node_campo);
 }
 
-input_command: TK_PR_INPUT expression
+input_command: TK_PR_INPUT expression {	$$ = tree_make_unary_node(new_ast_node_value(AST_INPUT, NULL), $2); }
 
-output_command: TK_PR_OUTPUT expression_sequence
+output_command: TK_PR_OUTPUT expression_sequence {	$$ = tree_make_unary_node(new_ast_node_value(AST_OUTPUT,NULL), $2); }
 
 function_call: TK_IDENTIFICADOR '(' expression_sequence ')'
 {
