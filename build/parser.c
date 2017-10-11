@@ -479,18 +479,18 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
-       0,   100,   100,   108,   109,   110,   111,   122,   123,   124,
-     127,   129,   130,   135,   141,   147,   149,   150,   151,   153,
-     154,   156,   157,   159,   160,   169,   170,   172,   173,   174,
-     176,   177,   178,   179,   180,   181,   187,   188,   190,   191,
-     192,   197,   198,   199,   204,   205,   206,   211,   212,   213,
-     219,   224,   230,   237,   239,   241,   246,   252,   257,   263,
-     264,   265,   267,   280,   300,   301,   302,   316,   330,   332,
-     333,   335,   336,   338,   339,   340,   345,   346,   347,   348,
-     349,   351,   352,   353,   355,   356,   357,   358,   359,   364,
-     365,   366,   375,   384,   385,   386,   387,   392,   396,   397,
-     398,   399,   400,   401,   403,   404,   405,   406,   407,   408,
-     409,   410,   411,   412,   414,   415,   416,   419,   420
+       0,   103,   103,   114,   115,   116,   117,   128,   129,   130,
+     131,   133,   134,   139,   145,   151,   153,   154,   155,   157,
+     158,   160,   161,   163,   164,   173,   174,   176,   177,   178,
+     180,   181,   182,   183,   184,   185,   191,   192,   194,   195,
+     196,   201,   202,   203,   208,   209,   210,   215,   216,   217,
+     223,   228,   234,   241,   243,   245,   250,   256,   261,   267,
+     268,   269,   271,   284,   304,   305,   306,   320,   334,   336,
+     337,   339,   340,   342,   343,   344,   349,   350,   351,   352,
+     353,   355,   356,   357,   359,   360,   361,   362,   363,   368,
+     369,   370,   379,   388,   389,   390,   391,   396,   400,   401,
+     402,   403,   404,   405,   407,   408,   409,   410,   411,   412,
+     413,   414,   415,   416,   418,   419,   420,   423,   424
 };
 #endif
 
@@ -1437,79 +1437,82 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 101 "parser.y" /* yacc.c:1646  */
+#line 104 "parser.y" /* yacc.c:1646  */
     {
 	(yyval.tree) = tree_new();
 	set_ast_root((yyval.tree));
 	if ((yyvsp[0].tree))
 		tree_insert_node((yyval.tree), (yyvsp[0].tree));
+
+	gv_declare(AST_PROGRAMA, (yyval.tree), NULL);
+	putToGraphviz((yyval.tree));
 }
-#line 1448 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1451 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 3:
-#line 108 "parser.y" /* yacc.c:1646  */
+#line 114 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = NULL; }
-#line 1454 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1457 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 4:
-#line 109 "parser.y" /* yacc.c:1646  */
+#line 115 "parser.y" /* yacc.c:1646  */
     { if ((yyvsp[0].tree)) (yyval.tree) = (yyvsp[0].tree); else (yyval.tree) = NULL; }
-#line 1460 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1463 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 5:
-#line 110 "parser.y" /* yacc.c:1646  */
+#line 116 "parser.y" /* yacc.c:1646  */
     { if ((yyvsp[0].tree)) (yyval.tree) = (yyvsp[0].tree); else (yyval.tree) = NULL; }
-#line 1466 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1469 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 6:
-#line 112 "parser.y" /* yacc.c:1646  */
+#line 118 "parser.y" /* yacc.c:1646  */
     {
 	if ((yyvsp[0].tree)) {
 		tree_insert_node((yyvsp[-1].tree),(yyvsp[0].tree));
 	}
 	(yyval.tree) = (yyvsp[-1].tree);
 }
-#line 1477 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1480 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 136 "parser.y" /* yacc.c:1646  */
+#line 140 "parser.y" /* yacc.c:1646  */
     {
 	(yyval.tree) = tree_make_node(new_ast_node_value(AST_FUNCAO, (yyvsp[-4].valor_lexico)));
 	if ((yyvsp[0].tree))
 		tree_insert_node((yyval.tree),(yyvsp[0].tree));
 }
-#line 1487 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1490 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 142 "parser.y" /* yacc.c:1646  */
+#line 146 "parser.y" /* yacc.c:1646  */
     {
 	(yyval.tree) = tree_make_node(new_ast_node_value(AST_FUNCAO, (yyvsp[-4].valor_lexico)));
 	if ((yyvsp[0].tree))
 		tree_insert_node((yyval.tree),(yyvsp[0].tree));
 }
-#line 1497 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1500 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 147 "parser.y" /* yacc.c:1646  */
+#line 151 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = (yyvsp[-1].tree); }
-#line 1503 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1506 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 23:
-#line 159 "parser.y" /* yacc.c:1646  */
+#line 163 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = NULL; }
-#line 1509 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1512 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 161 "parser.y" /* yacc.c:1646  */
+#line 165 "parser.y" /* yacc.c:1646  */
     {
 	if ((yyvsp[-2].tree)) {
 		(yyval.tree) = (yyvsp[-2].tree);
@@ -1518,223 +1521,247 @@ yyreduce:
 		(yyval.tree) = (yyvsp[0].tree);
 	}
 }
-#line 1522 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1525 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 25:
-#line 169 "parser.y" /* yacc.c:1646  */
+#line 173 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = (yyvsp[0].tree); }
-#line 1528 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1531 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 27:
-#line 172 "parser.y" /* yacc.c:1646  */
+#line 176 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = (yyvsp[0].tree); }
-#line 1534 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1537 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 28:
-#line 173 "parser.y" /* yacc.c:1646  */
-    { (yyval.tree) = NULL; }
-#line 1540 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 177 "parser.y" /* yacc.c:1646  */
+    { (yyval.tree) = (yyvsp[0].tree); }
+#line 1543 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 29:
-#line 174 "parser.y" /* yacc.c:1646  */
+#line 178 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = (yyvsp[0].tree); }
-#line 1546 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1549 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 30:
-#line 176 "parser.y" /* yacc.c:1646  */
+#line 180 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = (yyvsp[0].tree); }
-#line 1552 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1555 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 31:
-#line 177 "parser.y" /* yacc.c:1646  */
+#line 181 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = (yyvsp[0].tree); }
-#line 1558 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1561 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 32:
-#line 178 "parser.y" /* yacc.c:1646  */
+#line 182 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = (yyvsp[0].tree); }
-#line 1564 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1567 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 33:
-#line 179 "parser.y" /* yacc.c:1646  */
+#line 183 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = (yyvsp[0].tree); }
-#line 1570 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1573 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 34:
-#line 180 "parser.y" /* yacc.c:1646  */
+#line 184 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = (yyvsp[0].tree); }
-#line 1576 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1579 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 35:
-#line 182 "parser.y" /* yacc.c:1646  */
+#line 186 "parser.y" /* yacc.c:1646  */
     {
 	(yyval.tree) = tree_make_node(new_ast_node_value(AST_BLOCO, NULL));
 	if ((yyvsp[-1].tree)) tree_insert_node((yyval.tree),(yyvsp[-1].tree));
 }
-#line 1585 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1588 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+    break;
+
+  case 36:
+#line 191 "parser.y" /* yacc.c:1646  */
+    { (yyval.tree) = (yyvsp[0].tree); }
+#line 1594 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+    break;
+
+  case 37:
+#line 192 "parser.y" /* yacc.c:1646  */
+    { (yyval.tree) = (yyvsp[0].tree); }
+#line 1600 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 38:
-#line 190 "parser.y" /* yacc.c:1646  */
+#line 194 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = NULL; }
-#line 1591 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
-    break;
-
-  case 39:
-#line 191 "parser.y" /* yacc.c:1646  */
-    { (yyval.tree) = NULL; }
-#line 1597 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
-    break;
-
-  case 40:
-#line 193 "parser.y" /* yacc.c:1646  */
-    {
-	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, (yyvsp[-2].valor_lexico)));
-	(yyval.tree) = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, NULL), node_identificador, (yyvsp[0].tree));
-}
 #line 1606 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
-  case 41:
-#line 197 "parser.y" /* yacc.c:1646  */
+  case 39:
+#line 195 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = NULL; }
 #line 1612 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
-  case 42:
-#line 198 "parser.y" /* yacc.c:1646  */
-    { (yyval.tree) = NULL; }
-#line 1618 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
-    break;
-
-  case 43:
-#line 200 "parser.y" /* yacc.c:1646  */
+  case 40:
+#line 197 "parser.y" /* yacc.c:1646  */
     {
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, (yyvsp[-2].valor_lexico)));
 	(yyval.tree) = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, NULL), node_identificador, (yyvsp[0].tree));
 }
+#line 1621 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+    break;
+
+  case 41:
+#line 201 "parser.y" /* yacc.c:1646  */
+    { (yyval.tree) = NULL; }
 #line 1627 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
-  case 44:
-#line 204 "parser.y" /* yacc.c:1646  */
+  case 42:
+#line 202 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = NULL; }
 #line 1633 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
-  case 45:
-#line 205 "parser.y" /* yacc.c:1646  */
-    { (yyval.tree) = NULL; }
-#line 1639 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
-    break;
-
-  case 46:
-#line 207 "parser.y" /* yacc.c:1646  */
+  case 43:
+#line 204 "parser.y" /* yacc.c:1646  */
     {
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, (yyvsp[-2].valor_lexico)));
 	(yyval.tree) = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, NULL), node_identificador, (yyvsp[0].tree));
 }
+#line 1642 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+    break;
+
+  case 44:
+#line 208 "parser.y" /* yacc.c:1646  */
+    { (yyval.tree) = NULL; }
 #line 1648 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
-  case 47:
-#line 211 "parser.y" /* yacc.c:1646  */
+  case 45:
+#line 209 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = NULL; }
 #line 1654 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
-  case 48:
-#line 212 "parser.y" /* yacc.c:1646  */
-    { (yyval.tree) = NULL; }
-#line 1660 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
-    break;
-
-  case 49:
-#line 214 "parser.y" /* yacc.c:1646  */
+  case 46:
+#line 211 "parser.y" /* yacc.c:1646  */
     {
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, (yyvsp[-2].valor_lexico)));
 	(yyval.tree) = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, NULL), node_identificador, (yyvsp[0].tree));
 }
+#line 1663 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+    break;
+
+  case 47:
+#line 215 "parser.y" /* yacc.c:1646  */
+    { (yyval.tree) = NULL; }
 #line 1669 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
-  case 50:
-#line 220 "parser.y" /* yacc.c:1646  */
+  case 48:
+#line 216 "parser.y" /* yacc.c:1646  */
+    { (yyval.tree) = NULL; }
+#line 1675 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+    break;
+
+  case 49:
+#line 218 "parser.y" /* yacc.c:1646  */
     {
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, (yyvsp[-2].valor_lexico)));
 	(yyval.tree) = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, NULL), node_identificador, (yyvsp[0].tree));
 }
-#line 1678 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1684 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+    break;
+
+  case 50:
+#line 224 "parser.y" /* yacc.c:1646  */
+    {
+	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, (yyvsp[-2].valor_lexico)));
+	(yyval.tree) = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, NULL), node_identificador, (yyvsp[0].tree));
+}
+#line 1693 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 51:
-#line 225 "parser.y" /* yacc.c:1646  */
+#line 229 "parser.y" /* yacc.c:1646  */
     {
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, (yyvsp[-5].valor_lexico)));
 	comp_tree_t* node_vetor_indexado = tree_make_binary_node(new_ast_node_value(AST_VETOR_INDEXADO, NULL), node_identificador, (yyvsp[-3].tree));
 	(yyval.tree) = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, NULL), node_vetor_indexado, (yyvsp[0].tree));
 }
-#line 1688 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1703 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 52:
-#line 231 "parser.y" /* yacc.c:1646  */
+#line 235 "parser.y" /* yacc.c:1646  */
     {
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, (yyvsp[-4].valor_lexico)));
 	comp_tree_t* node_campo = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, (yyvsp[-2].valor_lexico)));
 	(yyval.tree) = tree_make_ternary_node(new_ast_node_value(AST_ATRIBUICAO, NULL), node_identificador, (yyvsp[0].tree), node_campo);
 }
-#line 1698 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1713 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+    break;
+
+  case 53:
+#line 241 "parser.y" /* yacc.c:1646  */
+    {	(yyval.tree) = tree_make_unary_node(new_ast_node_value(AST_INPUT, NULL), (yyvsp[0].tree)); }
+#line 1719 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+    break;
+
+  case 54:
+#line 243 "parser.y" /* yacc.c:1646  */
+    {	(yyval.tree) = tree_make_unary_node(new_ast_node_value(AST_OUTPUT,NULL), (yyvsp[0].tree)); }
+#line 1725 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 55:
-#line 242 "parser.y" /* yacc.c:1646  */
+#line 246 "parser.y" /* yacc.c:1646  */
     {
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, (yyvsp[-3].valor_lexico)));
 	(yyval.tree) = tree_make_binary_node(new_ast_node_value(AST_CHAMADA_DE_FUNCAO, NULL), node_identificador, (yyvsp[-1].tree));
 }
-#line 1707 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1734 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 56:
-#line 247 "parser.y" /* yacc.c:1646  */
+#line 251 "parser.y" /* yacc.c:1646  */
     {
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, (yyvsp[-2].valor_lexico)));
 	(yyval.tree) = tree_make_unary_node(new_ast_node_value(AST_CHAMADA_DE_FUNCAO, NULL), node_identificador);
 }
-#line 1716 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1743 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 57:
-#line 253 "parser.y" /* yacc.c:1646  */
+#line 257 "parser.y" /* yacc.c:1646  */
     {
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, (yyvsp[-2].valor_lexico)));
 	(yyval.tree) = tree_make_unary_node(new_ast_node_value(AST_SHIFT_LEFT, NULL), node_identificador);
 }
-#line 1725 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1752 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 58:
-#line 258 "parser.y" /* yacc.c:1646  */
+#line 262 "parser.y" /* yacc.c:1646  */
     {
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, (yyvsp[-2].valor_lexico)));
 	(yyval.tree) = tree_make_unary_node(new_ast_node_value(AST_SHIFT_RIGHT, NULL), node_identificador);
 }
-#line 1734 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1761 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 62:
-#line 268 "parser.y" /* yacc.c:1646  */
+#line 272 "parser.y" /* yacc.c:1646  */
     {
 	(yyval.tree) = tree_make_node(new_ast_node_value(AST_IF_ELSE, NULL));
 
@@ -1747,11 +1774,11 @@ yyreduce:
 	else
 		tree_insert_node((yyval.tree), tree_make_node(new_ast_node_value(AST_BLOCO, NULL)));
 }
-#line 1751 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1778 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 63:
-#line 281 "parser.y" /* yacc.c:1646  */
+#line 285 "parser.y" /* yacc.c:1646  */
     {
 	(yyval.tree) = tree_make_node(new_ast_node_value(AST_IF_ELSE, NULL));
 
@@ -1770,23 +1797,23 @@ yyreduce:
 	else
 		tree_insert_node((yyval.tree), tree_make_node(new_ast_node_value(AST_BLOCO, NULL)));
 }
-#line 1774 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1801 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 64:
-#line 300 "parser.y" /* yacc.c:1646  */
+#line 304 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = NULL; }
-#line 1780 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1807 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 65:
-#line 301 "parser.y" /* yacc.c:1646  */
+#line 305 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = NULL; }
-#line 1786 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1813 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 66:
-#line 303 "parser.y" /* yacc.c:1646  */
+#line 307 "parser.y" /* yacc.c:1646  */
     {
 	(yyval.tree) = tree_make_node(new_ast_node_value(AST_WHILE_DO, NULL));
 
@@ -1800,11 +1827,11 @@ yyreduce:
 		tree_insert_node((yyval.tree), tree_make_node(new_ast_node_value(AST_BLOCO, NULL)));
 
 }
-#line 1804 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1831 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 67:
-#line 317 "parser.y" /* yacc.c:1646  */
+#line 321 "parser.y" /* yacc.c:1646  */
     {
 	(yyval.tree) = tree_make_node(new_ast_node_value(AST_DO_WHILE, NULL));
 
@@ -1817,47 +1844,47 @@ yyreduce:
 	//pendura expression
 	if ((yyvsp[-1].tree)) tree_insert_node((yyval.tree), (yyvsp[-1].tree));
 }
-#line 1821 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1848 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 68:
-#line 330 "parser.y" /* yacc.c:1646  */
+#line 334 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = NULL; }
-#line 1827 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1854 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 73:
-#line 338 "parser.y" /* yacc.c:1646  */
+#line 342 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = tree_make_unary_node(new_ast_node_value(AST_RETURN, NULL), (yyvsp[0].tree)); }
-#line 1833 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1860 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 74:
-#line 339 "parser.y" /* yacc.c:1646  */
+#line 343 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = NULL; }
-#line 1839 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1866 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 75:
-#line 340 "parser.y" /* yacc.c:1646  */
+#line 344 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = NULL; }
-#line 1845 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1872 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 89:
-#line 364 "parser.y" /* yacc.c:1646  */
+#line 368 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = (yyvsp[0].tree); }
-#line 1851 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1878 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 90:
-#line 365 "parser.y" /* yacc.c:1646  */
+#line 369 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = (yyvsp[0].tree); }
-#line 1857 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1884 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 91:
-#line 367 "parser.y" /* yacc.c:1646  */
+#line 371 "parser.y" /* yacc.c:1646  */
     {
 	//operador sobe
 	(yyval.tree) = (yyvsp[-1].tree);
@@ -1865,11 +1892,11 @@ yyreduce:
 	tree_insert_node((yyval.tree), (yyvsp[-2].tree));
 	tree_insert_node((yyval.tree), (yyvsp[0].tree));
 }
-#line 1869 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1896 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 92:
-#line 376 "parser.y" /* yacc.c:1646  */
+#line 380 "parser.y" /* yacc.c:1646  */
     {
 	if ((yyvsp[-1].tree)) {
 		(yyval.tree) = (yyvsp[-1].tree);
@@ -1878,175 +1905,175 @@ yyreduce:
 		(yyval.tree) = (yyvsp[0].tree);
 	}
 }
-#line 1882 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1909 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 93:
-#line 384 "parser.y" /* yacc.c:1646  */
+#line 388 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = (yyvsp[-1].tree); }
-#line 1888 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1915 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 94:
-#line 385 "parser.y" /* yacc.c:1646  */
+#line 389 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = (yyvsp[0].tree); }
-#line 1894 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1921 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 95:
-#line 386 "parser.y" /* yacc.c:1646  */
+#line 390 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, (yyvsp[0].valor_lexico))); }
-#line 1900 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1927 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 96:
-#line 388 "parser.y" /* yacc.c:1646  */
+#line 392 "parser.y" /* yacc.c:1646  */
     {
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, (yyvsp[-3].valor_lexico)));
 	(yyval.tree) = tree_make_binary_node(new_ast_node_value(AST_VETOR_INDEXADO,NULL), node_identificador, (yyvsp[-1].tree));
 }
-#line 1909 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1936 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 97:
-#line 392 "parser.y" /* yacc.c:1646  */
+#line 396 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = (yyvsp[0].tree); }
-#line 1915 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1942 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 98:
-#line 396 "parser.y" /* yacc.c:1646  */
+#line 400 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = tree_make_node(new_ast_node_value(AST_LITERAL, (yyvsp[0].valor_lexico))); }
-#line 1921 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1948 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 99:
-#line 397 "parser.y" /* yacc.c:1646  */
+#line 401 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = tree_make_node(new_ast_node_value(AST_LITERAL, (yyvsp[0].valor_lexico))); }
-#line 1927 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1954 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 100:
-#line 398 "parser.y" /* yacc.c:1646  */
+#line 402 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = tree_make_node(new_ast_node_value(AST_LITERAL, (yyvsp[0].valor_lexico))); }
-#line 1933 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1960 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 101:
-#line 399 "parser.y" /* yacc.c:1646  */
+#line 403 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = tree_make_node(new_ast_node_value(AST_LITERAL, (yyvsp[0].valor_lexico))); }
-#line 1939 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1966 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 102:
-#line 400 "parser.y" /* yacc.c:1646  */
+#line 404 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = tree_make_node(new_ast_node_value(AST_LITERAL, (yyvsp[0].valor_lexico))); }
-#line 1945 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1972 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 103:
-#line 401 "parser.y" /* yacc.c:1646  */
+#line 405 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = tree_make_node(new_ast_node_value(AST_LITERAL, (yyvsp[0].valor_lexico))); }
-#line 1951 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1978 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 104:
-#line 403 "parser.y" /* yacc.c:1646  */
+#line 407 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = tree_make_node(new_ast_node_value(AST_LOGICO_COMP_LE, NULL)); }
-#line 1957 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1984 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 105:
-#line 404 "parser.y" /* yacc.c:1646  */
+#line 408 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = tree_make_node(new_ast_node_value(AST_LOGICO_COMP_GE, NULL)); }
-#line 1963 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1990 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 106:
-#line 405 "parser.y" /* yacc.c:1646  */
+#line 409 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = tree_make_node(new_ast_node_value(AST_LOGICO_COMP_IGUAL, NULL)); }
-#line 1969 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 1996 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 107:
-#line 406 "parser.y" /* yacc.c:1646  */
+#line 410 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = tree_make_node(new_ast_node_value(AST_LOGICO_COMP_DIF, NULL)); }
-#line 1975 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 2002 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 108:
-#line 407 "parser.y" /* yacc.c:1646  */
+#line 411 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = tree_make_node(new_ast_node_value(AST_LOGICO_E, NULL)); }
-#line 1981 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 2008 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 109:
-#line 408 "parser.y" /* yacc.c:1646  */
+#line 412 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = tree_make_node(new_ast_node_value(AST_LOGICO_OU, NULL)); }
-#line 1987 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 2014 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 110:
-#line 409 "parser.y" /* yacc.c:1646  */
+#line 413 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = tree_make_node(new_ast_node_value(AST_ARIM_SOMA, NULL)); }
-#line 1993 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 2020 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 111:
-#line 410 "parser.y" /* yacc.c:1646  */
+#line 414 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = tree_make_node(new_ast_node_value(AST_ARIM_SUBTRACAO, NULL)); }
-#line 1999 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 2026 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 112:
-#line 411 "parser.y" /* yacc.c:1646  */
+#line 415 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = tree_make_node(new_ast_node_value(AST_ARIM_DIVISAO, NULL)); }
-#line 2005 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 2032 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 113:
-#line 412 "parser.y" /* yacc.c:1646  */
+#line 416 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = tree_make_node(new_ast_node_value(AST_ARIM_MULTIPLICACAO, NULL)); }
-#line 2011 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 2038 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 114:
-#line 414 "parser.y" /* yacc.c:1646  */
+#line 418 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = tree_make_node(new_ast_node_value(AST_ARIM_INVERSAO, NULL)); }
-#line 2017 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 2044 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 115:
-#line 415 "parser.y" /* yacc.c:1646  */
+#line 419 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = tree_make_node(new_ast_node_value(AST_LOGICO_COMP_NEGACAO, NULL)); }
-#line 2023 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 2050 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 116:
-#line 416 "parser.y" /* yacc.c:1646  */
+#line 420 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = NULL; }
-#line 2029 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 2056 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 117:
-#line 419 "parser.y" /* yacc.c:1646  */
+#line 423 "parser.y" /* yacc.c:1646  */
     { (yyval.tree) = (yyvsp[0].tree); }
-#line 2035 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 2062 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
   case 118:
-#line 421 "parser.y" /* yacc.c:1646  */
+#line 425 "parser.y" /* yacc.c:1646  */
     {
 	//sobe expressao
 	(yyval.tree) = (yyvsp[-2].tree);
 	//pendura proxima
 	tree_insert_node((yyval.tree), (yyvsp[0].tree));
 }
-#line 2046 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 2073 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
     break;
 
 
-#line 2050 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
+#line 2077 "/home/arthur/Área de Trabalho/pc/build/parser.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -2274,5 +2301,5 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 428 "parser.y" /* yacc.c:1906  */
+#line 432 "parser.y" /* yacc.c:1906  */
 

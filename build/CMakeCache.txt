@@ -171,10 +171,10 @@ CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 ETAPA_1:BOOL=OFF
 
 //The Etapa 2 compilation
-ETAPA_2:BOOL=ON
+ETAPA_2:BOOL=OFF
 
 //The Etapa 3 compilation
-ETAPA_3:BOOL=OFF
+ETAPA_3:BOOL=ON
 
 //The Etapa 4 compilation
 ETAPA_4:BOOL=OFF

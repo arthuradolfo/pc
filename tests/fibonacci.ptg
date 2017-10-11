@@ -1,0 +1,18 @@
+/**
+ * Programa exemplo na linguagem POA que resolve
+ * fibonacci
+ */
+
+int fibonacci(int a) {
+	if(a <= 1) then {
+		return a;
+	}
+	else {
+		return fibonacci(a-1)+fibonacci(a-2);
+	};
+}
+
+int main() {
+	output fibonacci(10);
+	return 0;
+}

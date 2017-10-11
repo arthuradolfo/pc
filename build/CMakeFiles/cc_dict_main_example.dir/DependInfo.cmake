@@ -11,7 +11,7 @@ set(CMAKE_C_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_C
-  "AVALIACAO_ETAPA_2=1"
+  "AVALIACAO_ETAPA_3=1"
   )
 
 # The include file search paths:
