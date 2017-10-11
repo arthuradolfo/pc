@@ -1,0 +1,79 @@
+/**
+ * Programa exemplo na linguagem POA que resolve
+ * em alto nivel o problema dos leitores e escritores
+ * com preferencia para leitores
+ */
+
+class thread_t [ public int tid : protected int prio ];
+
+class semaforo_t [ public int estado ];
+
+thread_t escritor;
+thread_t leitor;
+
+//garantem exclusão mutua
+semaforo_t mutex_contador_leitores;
+semaforo_t mutex_escrita;
+
+int contador_leitores;
+
+void escrever()
+{
+  int i <= 0;
+  string mensagem <= "escrevendo";
+  while (true) do
+  {
+    i = i + 1;
+    //tenta obter lock para escrita
+    p(mutex_escrita);
+
+    //faz escrita
+    output mensagem, i;
+
+    v(mutex_escrita);
+  };
+}
+
+void ler()
+{
+  int i <= 0;
+  string mensagem <= "lendo";
+  while (true) do
+  {
+    i = i + 1;
+    //se é primeiro leitor pega o lock de escritas
+    p(mutex_contador_leitores);
+    contador_leitores = contador_leitores + 1;
+    if (contador_leitores == 1) then { p(mutex_escrita); };
+    v(mutex_contador_leitores);
+
+    //faz leitura
+    output mensagem, i;
+
+    //se é ultimo leitor libera lock de escritas
+    p(mutex_contador_leitores);
+    contador_leitores = contador_leitores - 1;
+    if (contador_leitores == 0) then { v(mutex_escrita); };
+    v(mutex_contador_leitores);
+  };
+}
+
+int main()
+{
+  mutex_contador_leitores$estado = 1;
+  mutex_escrita$estado = 1;
+
+  escritor$tid = 0;
+  leitor$tid = 1;
+
+  //cria threads
+  if ((launch_thread(escritor, escrever) || launch_thread(leitor, ler)) <= -1) then
+  {
+    printf("launch_thread retornou erro.\n");
+    thread_exit(-1);
+  }
+  else
+  {
+    thread_exit(0);
+  };
+}
