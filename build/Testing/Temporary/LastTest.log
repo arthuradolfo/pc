@@ -1,0 +1,2034 @@
+Start testing: Oct 10 22:47 BRT
+----------------------------------------------------------
+298/559 Testing: e3_aval_000
+298/559 Test: e3_aval_000
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_000.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_000" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_000'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_000:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_000.ptg tests/e3/i_e3_000.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_000.ptg tests/e3/i_e3_000.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_000" end time: Oct 10 22:47 BRT
+"e3_aval_000" time elapsed: 00:00:00
+----------------------------------------------------------
+
+299/559 Testing: e3_aval_001
+299/559 Test: e3_aval_001
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_001.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_001" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_001'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_001:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_001.ptg tests/e3/i_e3_001.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_001.ptg tests/e3/i_e3_001.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_001" end time: Oct 10 22:47 BRT
+"e3_aval_001" time elapsed: 00:00:00
+----------------------------------------------------------
+
+300/559 Testing: e3_aval_002
+300/559 Test: e3_aval_002
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_002.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_002" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_002'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_002:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_002.ptg tests/e3/i_e3_002.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_002.ptg tests/e3/i_e3_002.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_002" end time: Oct 10 22:47 BRT
+"e3_aval_002" time elapsed: 00:00:00
+----------------------------------------------------------
+
+301/559 Testing: e3_aval_003
+301/559 Test: e3_aval_003
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_003.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_003" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_003'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_003:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_003.ptg tests/e3/i_e3_003.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_003.ptg tests/e3/i_e3_003.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_003" end time: Oct 10 22:47 BRT
+"e3_aval_003" time elapsed: 00:00:00
+----------------------------------------------------------
+
+302/559 Testing: e3_aval_004
+302/559 Test: e3_aval_004
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_004.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_004" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_004'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_004:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_004.ptg tests/e3/i_e3_004.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_004.ptg tests/e3/i_e3_004.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_004" end time: Oct 10 22:47 BRT
+"e3_aval_004" time elapsed: 00:00:00
+----------------------------------------------------------
+
+303/559 Testing: e3_aval_005
+303/559 Test: e3_aval_005
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_005.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_005" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_005'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_005:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_005.ptg tests/e3/i_e3_005.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_005.ptg tests/e3/i_e3_005.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_005" end time: Oct 10 22:47 BRT
+"e3_aval_005" time elapsed: 00:00:00
+----------------------------------------------------------
+
+304/559 Testing: e3_aval_006
+304/559 Test: e3_aval_006
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_006.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_006" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_006'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_006:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_006.ptg tests/e3/i_e3_006.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_006.ptg tests/e3/i_e3_006.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_006" end time: Oct 10 22:47 BRT
+"e3_aval_006" time elapsed: 00:00:00
+----------------------------------------------------------
+
+305/559 Testing: e3_aval_007
+305/559 Test: e3_aval_007
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_007.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_007" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_007'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_007:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_007.ptg tests/e3/i_e3_007.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_007.ptg tests/e3/i_e3_007.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_007" end time: Oct 10 22:47 BRT
+"e3_aval_007" time elapsed: 00:00:00
+----------------------------------------------------------
+
+306/559 Testing: e3_aval_008
+306/559 Test: e3_aval_008
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_008.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_008" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_008'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_008:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_008.ptg tests/e3/i_e3_008.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_008.ptg tests/e3/i_e3_008.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_008" end time: Oct 10 22:47 BRT
+"e3_aval_008" time elapsed: 00:00:00
+----------------------------------------------------------
+
+307/559 Testing: e3_aval_009
+307/559 Test: e3_aval_009
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_009.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_009" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_009'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_009:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_009.ptg tests/e3/i_e3_009.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_009.ptg tests/e3/i_e3_009.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_009" end time: Oct 10 22:47 BRT
+"e3_aval_009" time elapsed: 00:00:00
+----------------------------------------------------------
+
+308/559 Testing: e3_aval_010
+308/559 Test: e3_aval_010
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_010.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_010" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_010'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_010:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_010.ptg tests/e3/i_e3_010.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_010.ptg tests/e3/i_e3_010.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_010" end time: Oct 10 22:47 BRT
+"e3_aval_010" time elapsed: 00:00:00
+----------------------------------------------------------
+
+309/559 Testing: e3_aval_011
+309/559 Test: e3_aval_011
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_011.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_011" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_011'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_011:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_011.ptg tests/e3/i_e3_011.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_011.ptg tests/e3/i_e3_011.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_011" end time: Oct 10 22:47 BRT
+"e3_aval_011" time elapsed: 00:00:00
+----------------------------------------------------------
+
+310/559 Testing: e3_aval_012
+310/559 Test: e3_aval_012
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_012.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_012" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_012'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_012:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_012.ptg tests/e3/i_e3_012.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_012.ptg tests/e3/i_e3_012.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_012" end time: Oct 10 22:47 BRT
+"e3_aval_012" time elapsed: 00:00:00
+----------------------------------------------------------
+
+311/559 Testing: e3_aval_013
+311/559 Test: e3_aval_013
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_013.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_013" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_013'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_013:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_013.ptg tests/e3/i_e3_013.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_013.ptg tests/e3/i_e3_013.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_013" end time: Oct 10 22:47 BRT
+"e3_aval_013" time elapsed: 00:00:00
+----------------------------------------------------------
+
+312/559 Testing: e3_aval_014
+312/559 Test: e3_aval_014
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_014.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_014" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_014'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_014:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_014.ptg tests/e3/i_e3_014.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_014.ptg tests/e3/i_e3_014.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_014" end time: Oct 10 22:47 BRT
+"e3_aval_014" time elapsed: 00:00:00
+----------------------------------------------------------
+
+313/559 Testing: e3_aval_015
+313/559 Test: e3_aval_015
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_015.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_015" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_015'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_015:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_015.ptg tests/e3/i_e3_015.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_015.ptg tests/e3/i_e3_015.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_015" end time: Oct 10 22:47 BRT
+"e3_aval_015" time elapsed: 00:00:00
+----------------------------------------------------------
+
+314/559 Testing: e3_aval_016
+314/559 Test: e3_aval_016
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_016.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_016" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_016'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_016:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_016.ptg tests/e3/i_e3_016.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_016.ptg tests/e3/i_e3_016.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_016" end time: Oct 10 22:47 BRT
+"e3_aval_016" time elapsed: 00:00:00
+----------------------------------------------------------
+
+315/559 Testing: e3_aval_017
+315/559 Test: e3_aval_017
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_017.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_017" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_017'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_017:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_017.ptg tests/e3/i_e3_017.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_017.ptg tests/e3/i_e3_017.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_017" end time: Oct 10 22:47 BRT
+"e3_aval_017" time elapsed: 00:00:00
+----------------------------------------------------------
+
+316/559 Testing: e3_aval_018
+316/559 Test: e3_aval_018
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_018.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_018" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_018'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_018:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_018.ptg tests/e3/i_e3_018.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_018.ptg tests/e3/i_e3_018.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_018" end time: Oct 10 22:47 BRT
+"e3_aval_018" time elapsed: 00:00:00
+----------------------------------------------------------
+
+317/559 Testing: e3_aval_019
+317/559 Test: e3_aval_019
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_019.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_019" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_019'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_019:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_019.ptg tests/e3/i_e3_019.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_019.ptg tests/e3/i_e3_019.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_019" end time: Oct 10 22:47 BRT
+"e3_aval_019" time elapsed: 00:00:00
+----------------------------------------------------------
+
+318/559 Testing: e3_aval_020
+318/559 Test: e3_aval_020
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_020.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_020" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_020'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_020:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_020.ptg tests/e3/i_e3_020.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_020.ptg tests/e3/i_e3_020.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_020" end time: Oct 10 22:47 BRT
+"e3_aval_020" time elapsed: 00:00:00
+----------------------------------------------------------
+
+319/559 Testing: e3_aval_021
+319/559 Test: e3_aval_021
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_021.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_021" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_021'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_021:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_021.ptg tests/e3/i_e3_021.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_021.ptg tests/e3/i_e3_021.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_021" end time: Oct 10 22:47 BRT
+"e3_aval_021" time elapsed: 00:00:00
+----------------------------------------------------------
+
+320/559 Testing: e3_aval_022
+320/559 Test: e3_aval_022
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_022.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_022" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_022'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_022:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_022.ptg tests/e3/i_e3_022.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_022.ptg tests/e3/i_e3_022.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_022" end time: Oct 10 22:47 BRT
+"e3_aval_022" time elapsed: 00:00:00
+----------------------------------------------------------
+
+321/559 Testing: e3_aval_023
+321/559 Test: e3_aval_023
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_023.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_023" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_023'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_023:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_023.ptg tests/e3/i_e3_023.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_023.ptg tests/e3/i_e3_023.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_023" end time: Oct 10 22:47 BRT
+"e3_aval_023" time elapsed: 00:00:00
+----------------------------------------------------------
+
+322/559 Testing: e3_aval_024
+322/559 Test: e3_aval_024
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_024.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_024" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_024'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_024:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_024.ptg tests/e3/i_e3_024.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_024.ptg tests/e3/i_e3_024.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_024" end time: Oct 10 22:47 BRT
+"e3_aval_024" time elapsed: 00:00:00
+----------------------------------------------------------
+
+323/559 Testing: e3_aval_025
+323/559 Test: e3_aval_025
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_025.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_025" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_025'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_025:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_025.ptg tests/e3/i_e3_025.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_025.ptg tests/e3/i_e3_025.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_025" end time: Oct 10 22:47 BRT
+"e3_aval_025" time elapsed: 00:00:00
+----------------------------------------------------------
+
+324/559 Testing: e3_aval_026
+324/559 Test: e3_aval_026
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_026.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_026" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_026'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_026:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_026.ptg tests/e3/i_e3_026.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_026.ptg tests/e3/i_e3_026.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_026" end time: Oct 10 22:47 BRT
+"e3_aval_026" time elapsed: 00:00:00
+----------------------------------------------------------
+
+325/559 Testing: e3_aval_027
+325/559 Test: e3_aval_027
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_027.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_027" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_027'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_027:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_027.ptg tests/e3/i_e3_027.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_027.ptg tests/e3/i_e3_027.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_027" end time: Oct 10 22:47 BRT
+"e3_aval_027" time elapsed: 00:00:00
+----------------------------------------------------------
+
+326/559 Testing: e3_aval_028
+326/559 Test: e3_aval_028
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_028.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_028" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_028'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_028:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_028.ptg tests/e3/i_e3_028.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_028.ptg tests/e3/i_e3_028.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_028" end time: Oct 10 22:47 BRT
+"e3_aval_028" time elapsed: 00:00:00
+----------------------------------------------------------
+
+327/559 Testing: e3_aval_029
+327/559 Test: e3_aval_029
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_029.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_029" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_029'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_029:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_029.ptg tests/e3/i_e3_029.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_029.ptg tests/e3/i_e3_029.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_029" end time: Oct 10 22:47 BRT
+"e3_aval_029" time elapsed: 00:00:00
+----------------------------------------------------------
+
+328/559 Testing: e3_aval_030
+328/559 Test: e3_aval_030
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_030.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_030" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_030'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_030:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_030.ptg tests/e3/i_e3_030.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_030.ptg tests/e3/i_e3_030.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_030" end time: Oct 10 22:47 BRT
+"e3_aval_030" time elapsed: 00:00:00
+----------------------------------------------------------
+
+329/559 Testing: e3_aval_031
+329/559 Test: e3_aval_031
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_031.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_031" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_031'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_031:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_031.ptg tests/e3/i_e3_031.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_031.ptg tests/e3/i_e3_031.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_031" end time: Oct 10 22:47 BRT
+"e3_aval_031" time elapsed: 00:00:00
+----------------------------------------------------------
+
+330/559 Testing: e3_aval_032
+330/559 Test: e3_aval_032
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_032.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_032" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_032'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_032:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_032.ptg tests/e3/i_e3_032.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_032.ptg tests/e3/i_e3_032.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_032" end time: Oct 10 22:47 BRT
+"e3_aval_032" time elapsed: 00:00:00
+----------------------------------------------------------
+
+331/559 Testing: e3_aval_033
+331/559 Test: e3_aval_033
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_033.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_033" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_033'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_033:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_033.ptg tests/e3/i_e3_033.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_033.ptg tests/e3/i_e3_033.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_033" end time: Oct 10 22:47 BRT
+"e3_aval_033" time elapsed: 00:00:00
+----------------------------------------------------------
+
+332/559 Testing: e3_aval_034
+332/559 Test: e3_aval_034
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_034.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_034" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_034'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_034:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_034.ptg tests/e3/i_e3_034.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_034.ptg tests/e3/i_e3_034.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_034" end time: Oct 10 22:47 BRT
+"e3_aval_034" time elapsed: 00:00:00
+----------------------------------------------------------
+
+333/559 Testing: e3_aval_035
+333/559 Test: e3_aval_035
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_035.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_035" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_035'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_035:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_035.ptg tests/e3/i_e3_035.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_035.ptg tests/e3/i_e3_035.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_035" end time: Oct 10 22:47 BRT
+"e3_aval_035" time elapsed: 00:00:00
+----------------------------------------------------------
+
+334/559 Testing: e3_aval_036
+334/559 Test: e3_aval_036
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_036.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_036" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_036'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_036:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_036.ptg tests/e3/i_e3_036.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_036.ptg tests/e3/i_e3_036.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_036" end time: Oct 10 22:47 BRT
+"e3_aval_036" time elapsed: 00:00:00
+----------------------------------------------------------
+
+335/559 Testing: e3_aval_037
+335/559 Test: e3_aval_037
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_037.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_037" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_037'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_037:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_037.ptg tests/e3/i_e3_037.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_037.ptg tests/e3/i_e3_037.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_037" end time: Oct 10 22:47 BRT
+"e3_aval_037" time elapsed: 00:00:00
+----------------------------------------------------------
+
+336/559 Testing: e3_aval_038
+336/559 Test: e3_aval_038
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_038.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_038" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_038'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_038:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_038.ptg tests/e3/i_e3_038.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_038.ptg tests/e3/i_e3_038.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_038" end time: Oct 10 22:47 BRT
+"e3_aval_038" time elapsed: 00:00:00
+----------------------------------------------------------
+
+337/559 Testing: e3_aval_039
+337/559 Test: e3_aval_039
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_039.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_039" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_039'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_039:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_039.ptg tests/e3/i_e3_039.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_039.ptg tests/e3/i_e3_039.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_039" end time: Oct 10 22:47 BRT
+"e3_aval_039" time elapsed: 00:00:00
+----------------------------------------------------------
+
+338/559 Testing: e3_aval_040
+338/559 Test: e3_aval_040
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_040.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_040" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_040'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_040:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_040.ptg tests/e3/i_e3_040.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_040.ptg tests/e3/i_e3_040.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_040" end time: Oct 10 22:47 BRT
+"e3_aval_040" time elapsed: 00:00:00
+----------------------------------------------------------
+
+339/559 Testing: e3_aval_041
+339/559 Test: e3_aval_041
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_041.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_041" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_041'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_041:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_041.ptg tests/e3/i_e3_041.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_041.ptg tests/e3/i_e3_041.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_041" end time: Oct 10 22:47 BRT
+"e3_aval_041" time elapsed: 00:00:00
+----------------------------------------------------------
+
+340/559 Testing: e3_aval_042
+340/559 Test: e3_aval_042
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_042.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_042" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_042'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_042:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_042.ptg tests/e3/i_e3_042.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_042.ptg tests/e3/i_e3_042.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_042" end time: Oct 10 22:47 BRT
+"e3_aval_042" time elapsed: 00:00:00
+----------------------------------------------------------
+
+341/559 Testing: e3_aval_043
+341/559 Test: e3_aval_043
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_043.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_043" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_043'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_043:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_043.ptg tests/e3/i_e3_043.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_043.ptg tests/e3/i_e3_043.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_043" end time: Oct 10 22:47 BRT
+"e3_aval_043" time elapsed: 00:00:00
+----------------------------------------------------------
+
+342/559 Testing: e3_aval_044
+342/559 Test: e3_aval_044
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_044.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_044" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_044'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_044:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_044.ptg tests/e3/i_e3_044.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_044.ptg tests/e3/i_e3_044.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_044" end time: Oct 10 22:47 BRT
+"e3_aval_044" time elapsed: 00:00:00
+----------------------------------------------------------
+
+343/559 Testing: e3_aval_045
+343/559 Test: e3_aval_045
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_045.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_045" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_045'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_045:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_045.ptg tests/e3/i_e3_045.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_045.ptg tests/e3/i_e3_045.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_045" end time: Oct 10 22:47 BRT
+"e3_aval_045" time elapsed: 00:00:00
+----------------------------------------------------------
+
+344/559 Testing: e3_aval_046
+344/559 Test: e3_aval_046
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_046.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_046" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_046'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_046:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_046.ptg tests/e3/i_e3_046.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_046.ptg tests/e3/i_e3_046.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_046" end time: Oct 10 22:47 BRT
+"e3_aval_046" time elapsed: 00:00:00
+----------------------------------------------------------
+
+345/559 Testing: e3_aval_047
+345/559 Test: e3_aval_047
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_047.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_047" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_047'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_047:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_047.ptg tests/e3/i_e3_047.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_047.ptg tests/e3/i_e3_047.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_047" end time: Oct 10 22:47 BRT
+"e3_aval_047" time elapsed: 00:00:00
+----------------------------------------------------------
+
+346/559 Testing: e3_aval_048
+346/559 Test: e3_aval_048
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_048.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_048" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_048'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_048:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_048.ptg tests/e3/i_e3_048.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_048.ptg tests/e3/i_e3_048.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_048" end time: Oct 10 22:47 BRT
+"e3_aval_048" time elapsed: 00:00:00
+----------------------------------------------------------
+
+347/559 Testing: e3_aval_049
+347/559 Test: e3_aval_049
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_049.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_049" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_049'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_049:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_049.ptg tests/e3/i_e3_049.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_049.ptg tests/e3/i_e3_049.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_049" end time: Oct 10 22:47 BRT
+"e3_aval_049" time elapsed: 00:00:00
+----------------------------------------------------------
+
+348/559 Testing: e3_aval_050
+348/559 Test: e3_aval_050
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/aval_050.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_aval_050" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/aval_050'
+[/home/arthur/Área de Trabalho/pc/tests/e3/aval_050:4] ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_050.ptg tests/e3/i_e3_050.dot /tmp/
+open3: exec of ./tests/e3/e3_verify.sh ./main tests/e3/i_e3_050.ptg tests/e3/i_e3_050.dot /tmp/ failed at ./tests/scripts/tesh line 259.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Failed.
+"e3_aval_050" end time: Oct 10 22:47 BRT
+"e3_aval_050" time elapsed: 00:00:00
+----------------------------------------------------------
+
+349/559 Testing: e3_valg_000
+349/559 Test: e3_valg_000
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_000.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_000" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_000'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_000:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_000.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_000.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_000' OK
+<end of output>
+Test time =   0.35 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_000" end time: Oct 10 22:47 BRT
+"e3_valg_000" time elapsed: 00:00:00
+----------------------------------------------------------
+
+350/559 Testing: e3_valg_001
+350/559 Test: e3_valg_001
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_001.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_001" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_001'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_001:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_001.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_001.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_001' OK
+<end of output>
+Test time =   0.36 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_001" end time: Oct 10 22:47 BRT
+"e3_valg_001" time elapsed: 00:00:00
+----------------------------------------------------------
+
+351/559 Testing: e3_valg_002
+351/559 Test: e3_valg_002
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_002.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_002" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_002'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_002:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_002.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_002.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_002' OK
+<end of output>
+Test time =   0.37 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_002" end time: Oct 10 22:47 BRT
+"e3_valg_002" time elapsed: 00:00:00
+----------------------------------------------------------
+
+352/559 Testing: e3_valg_003
+352/559 Test: e3_valg_003
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_003.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_003" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_003'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_003:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_003.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_003.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_003' OK
+<end of output>
+Test time =   0.37 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_003" end time: Oct 10 22:47 BRT
+"e3_valg_003" time elapsed: 00:00:00
+----------------------------------------------------------
+
+353/559 Testing: e3_valg_004
+353/559 Test: e3_valg_004
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_004.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_004" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_004'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_004:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_004.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_004.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_004' OK
+<end of output>
+Test time =   0.37 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_004" end time: Oct 10 22:47 BRT
+"e3_valg_004" time elapsed: 00:00:00
+----------------------------------------------------------
+
+354/559 Testing: e3_valg_005
+354/559 Test: e3_valg_005
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_005.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_005" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_005'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_005:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_005.ptg
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_005.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e3/valg_005.tesh:4> returned code 1)
+Output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_005.tesh:4> so far:
+|| invalid writes:
+|| 0
+|| invalid read:
+|| 1
+|| jumps/moves depending on uninitialized values:
+|| 0
+|| lost bytes:
+|| 48
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_005.tesh:4> as requested)
+<end of output>
+Test time =   0.43 sec
+----------------------------------------------------------
+Test Failed.
+"e3_valg_005" end time: Oct 10 22:47 BRT
+"e3_valg_005" time elapsed: 00:00:00
+----------------------------------------------------------
+
+355/559 Testing: e3_valg_006
+355/559 Test: e3_valg_006
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_006.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_006" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_006'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_006:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_006.ptg
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_006.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e3/valg_006.tesh:4> returned code 1)
+Output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_006.tesh:4> so far:
+|| invalid writes:
+|| 0
+|| invalid read:
+|| 1
+|| jumps/moves depending on uninitialized values:
+|| 0
+|| lost bytes:
+|| 0
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_006.tesh:4> as requested)
+<end of output>
+Test time =   0.43 sec
+----------------------------------------------------------
+Test Failed.
+"e3_valg_006" end time: Oct 10 22:47 BRT
+"e3_valg_006" time elapsed: 00:00:00
+----------------------------------------------------------
+
+356/559 Testing: e3_valg_007
+356/559 Test: e3_valg_007
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_007.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_007" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_007'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_007:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_007.ptg
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_007.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e3/valg_007.tesh:4> returned code 1)
+Output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_007.tesh:4> so far:
+|| invalid writes:
+|| 0
+|| invalid read:
+|| 1
+|| jumps/moves depending on uninitialized values:
+|| 0
+|| lost bytes:
+|| 0
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_007.tesh:4> as requested)
+<end of output>
+Test time =   0.43 sec
+----------------------------------------------------------
+Test Failed.
+"e3_valg_007" end time: Oct 10 22:47 BRT
+"e3_valg_007" time elapsed: 00:00:00
+----------------------------------------------------------
+
+357/559 Testing: e3_valg_008
+357/559 Test: e3_valg_008
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_008.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_008" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_008'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_008:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_008.ptg
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_008.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e3/valg_008.tesh:4> returned code 1)
+Output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_008.tesh:4> so far:
+|| invalid writes:
+|| 0
+|| invalid read:
+|| 1
+|| jumps/moves depending on uninitialized values:
+|| 0
+|| lost bytes:
+|| 0
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_008.tesh:4> as requested)
+<end of output>
+Test time =   0.43 sec
+----------------------------------------------------------
+Test Failed.
+"e3_valg_008" end time: Oct 10 22:47 BRT
+"e3_valg_008" time elapsed: 00:00:00
+----------------------------------------------------------
+
+358/559 Testing: e3_valg_009
+358/559 Test: e3_valg_009
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_009.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_009" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_009'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_009:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_009.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_009.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_009' OK
+<end of output>
+Test time =   0.38 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_009" end time: Oct 10 22:47 BRT
+"e3_valg_009" time elapsed: 00:00:00
+----------------------------------------------------------
+
+359/559 Testing: e3_valg_010
+359/559 Test: e3_valg_010
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_010.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_010" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_010'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_010:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_010.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_010.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_010' OK
+<end of output>
+Test time =   0.38 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_010" end time: Oct 10 22:47 BRT
+"e3_valg_010" time elapsed: 00:00:00
+----------------------------------------------------------
+
+360/559 Testing: e3_valg_011
+360/559 Test: e3_valg_011
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_011.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_011" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_011'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_011:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_011.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_011.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_011' OK
+<end of output>
+Test time =   0.37 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_011" end time: Oct 10 22:47 BRT
+"e3_valg_011" time elapsed: 00:00:00
+----------------------------------------------------------
+
+361/559 Testing: e3_valg_012
+361/559 Test: e3_valg_012
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_012.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_012" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_012'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_012:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_012.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_012.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_012' OK
+<end of output>
+Test time =   0.37 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_012" end time: Oct 10 22:47 BRT
+"e3_valg_012" time elapsed: 00:00:00
+----------------------------------------------------------
+
+362/559 Testing: e3_valg_013
+362/559 Test: e3_valg_013
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_013.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_013" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_013'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_013:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_013.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_013.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_013' OK
+<end of output>
+Test time =   0.37 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_013" end time: Oct 10 22:47 BRT
+"e3_valg_013" time elapsed: 00:00:00
+----------------------------------------------------------
+
+363/559 Testing: e3_valg_014
+363/559 Test: e3_valg_014
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_014.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_014" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_014'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_014:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_014.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_014.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_014' OK
+<end of output>
+Test time =   0.37 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_014" end time: Oct 10 22:47 BRT
+"e3_valg_014" time elapsed: 00:00:00
+----------------------------------------------------------
+
+364/559 Testing: e3_valg_015
+364/559 Test: e3_valg_015
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_015.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_015" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_015'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_015:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_015.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_015.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_015' OK
+<end of output>
+Test time =   0.37 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_015" end time: Oct 10 22:47 BRT
+"e3_valg_015" time elapsed: 00:00:00
+----------------------------------------------------------
+
+365/559 Testing: e3_valg_016
+365/559 Test: e3_valg_016
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_016.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_016" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_016'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_016:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_016.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_016.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_016' OK
+<end of output>
+Test time =   0.37 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_016" end time: Oct 10 22:47 BRT
+"e3_valg_016" time elapsed: 00:00:00
+----------------------------------------------------------
+
+366/559 Testing: e3_valg_017
+366/559 Test: e3_valg_017
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_017.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_017" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_017'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_017:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_017.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_017.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_017' OK
+<end of output>
+Test time =   0.39 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_017" end time: Oct 10 22:47 BRT
+"e3_valg_017" time elapsed: 00:00:00
+----------------------------------------------------------
+
+367/559 Testing: e3_valg_018
+367/559 Test: e3_valg_018
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_018.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_018" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_018'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_018:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_018.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_018.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_018' OK
+<end of output>
+Test time =   0.38 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_018" end time: Oct 10 22:47 BRT
+"e3_valg_018" time elapsed: 00:00:00
+----------------------------------------------------------
+
+368/559 Testing: e3_valg_019
+368/559 Test: e3_valg_019
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_019.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_019" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_019'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_019:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_019.ptg
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_019.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e3/valg_019.tesh:4> returned code 1)
+Output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_019.tesh:4> so far:
+|| invalid writes:
+|| 0
+|| invalid read:
+|| 0
+|| jumps/moves depending on uninitialized values:
+|| 1
+|| lost bytes:
+|| 0
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_019.tesh:4> as requested)
+<end of output>
+Test time =   0.37 sec
+----------------------------------------------------------
+Test Failed.
+"e3_valg_019" end time: Oct 10 22:47 BRT
+"e3_valg_019" time elapsed: 00:00:00
+----------------------------------------------------------
+
+369/559 Testing: e3_valg_020
+369/559 Test: e3_valg_020
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_020.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_020" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_020'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_020:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_020.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_020.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_020' OK
+<end of output>
+Test time =   0.37 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_020" end time: Oct 10 22:47 BRT
+"e3_valg_020" time elapsed: 00:00:00
+----------------------------------------------------------
+
+370/559 Testing: e3_valg_021
+370/559 Test: e3_valg_021
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_021.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_021" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_021'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_021:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_021.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_021.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_021' OK
+<end of output>
+Test time =   0.37 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_021" end time: Oct 10 22:47 BRT
+"e3_valg_021" time elapsed: 00:00:00
+----------------------------------------------------------
+
+371/559 Testing: e3_valg_022
+371/559 Test: e3_valg_022
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_022.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_022" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_022'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_022:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_022.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_022.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_022' OK
+<end of output>
+Test time =   0.37 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_022" end time: Oct 10 22:47 BRT
+"e3_valg_022" time elapsed: 00:00:00
+----------------------------------------------------------
+
+372/559 Testing: e3_valg_023
+372/559 Test: e3_valg_023
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_023.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_023" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_023'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_023:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_023.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_023.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_023' OK
+<end of output>
+Test time =   0.37 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_023" end time: Oct 10 22:47 BRT
+"e3_valg_023" time elapsed: 00:00:00
+----------------------------------------------------------
+
+373/559 Testing: e3_valg_024
+373/559 Test: e3_valg_024
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_024.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_024" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_024'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_024:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_024.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_024.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_024' OK
+<end of output>
+Test time =   0.37 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_024" end time: Oct 10 22:47 BRT
+"e3_valg_024" time elapsed: 00:00:00
+----------------------------------------------------------
+
+374/559 Testing: e3_valg_025
+374/559 Test: e3_valg_025
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_025.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_025" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_025'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_025:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_025.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_025.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_025' OK
+<end of output>
+Test time =   0.37 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_025" end time: Oct 10 22:47 BRT
+"e3_valg_025" time elapsed: 00:00:00
+----------------------------------------------------------
+
+375/559 Testing: e3_valg_026
+375/559 Test: e3_valg_026
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_026.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_026" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_026'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_026:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_026.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_026.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_026' OK
+<end of output>
+Test time =   0.37 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_026" end time: Oct 10 22:47 BRT
+"e3_valg_026" time elapsed: 00:00:00
+----------------------------------------------------------
+
+376/559 Testing: e3_valg_027
+376/559 Test: e3_valg_027
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_027.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_027" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_027'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_027:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_027.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_027.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_027' OK
+<end of output>
+Test time =   0.37 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_027" end time: Oct 10 22:47 BRT
+"e3_valg_027" time elapsed: 00:00:00
+----------------------------------------------------------
+
+377/559 Testing: e3_valg_028
+377/559 Test: e3_valg_028
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_028.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_028" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_028'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_028:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_028.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_028.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_028' OK
+<end of output>
+Test time =   0.37 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_028" end time: Oct 10 22:47 BRT
+"e3_valg_028" time elapsed: 00:00:00
+----------------------------------------------------------
+
+378/559 Testing: e3_valg_029
+378/559 Test: e3_valg_029
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_029.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_029" start time: Oct 10 22:47 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_029'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_029:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_029.ptg
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_029.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e3/valg_029.tesh:4> returned code 1)
+Output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_029.tesh:4> so far:
+|| invalid writes:
+|| 0
+|| invalid read:
+|| 1
+|| jumps/moves depending on uninitialized values:
+|| 0
+|| lost bytes:
+|| 0
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_029.tesh:4> as requested)
+<end of output>
+Test time =   0.43 sec
+----------------------------------------------------------
+Test Failed.
+"e3_valg_029" end time: Oct 10 22:48 BRT
+"e3_valg_029" time elapsed: 00:00:00
+----------------------------------------------------------
+
+379/559 Testing: e3_valg_030
+379/559 Test: e3_valg_030
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_030.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_030" start time: Oct 10 22:48 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_030'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_030:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_030.ptg
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_030.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e3/valg_030.tesh:4> returned code 1)
+Output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_030.tesh:4> so far:
+|| invalid writes:
+|| 0
+|| invalid read:
+|| 1
+|| jumps/moves depending on uninitialized values:
+|| 0
+|| lost bytes:
+|| 0
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_030.tesh:4> as requested)
+<end of output>
+Test time =   0.43 sec
+----------------------------------------------------------
+Test Failed.
+"e3_valg_030" end time: Oct 10 22:48 BRT
+"e3_valg_030" time elapsed: 00:00:00
+----------------------------------------------------------
+
+380/559 Testing: e3_valg_031
+380/559 Test: e3_valg_031
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_031.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_031" start time: Oct 10 22:48 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_031'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_031:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_031.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_031.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_031' OK
+<end of output>
+Test time =   0.37 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_031" end time: Oct 10 22:48 BRT
+"e3_valg_031" time elapsed: 00:00:00
+----------------------------------------------------------
+
+381/559 Testing: e3_valg_032
+381/559 Test: e3_valg_032
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_032.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_032" start time: Oct 10 22:48 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_032'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_032:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_032.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_032.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_032' OK
+<end of output>
+Test time =   0.37 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_032" end time: Oct 10 22:48 BRT
+"e3_valg_032" time elapsed: 00:00:00
+----------------------------------------------------------
+
+382/559 Testing: e3_valg_033
+382/559 Test: e3_valg_033
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_033.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_033" start time: Oct 10 22:48 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_033'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_033:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_033.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_033.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_033' OK
+<end of output>
+Test time =   0.37 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_033" end time: Oct 10 22:48 BRT
+"e3_valg_033" time elapsed: 00:00:00
+----------------------------------------------------------
+
+383/559 Testing: e3_valg_034
+383/559 Test: e3_valg_034
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_034.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_034" start time: Oct 10 22:48 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_034'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_034:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_034.ptg
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_034.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e3/valg_034.tesh:4> returned code 1)
+Output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_034.tesh:4> so far:
+|| invalid writes:
+|| 0
+|| invalid read:
+|| 0
+|| jumps/moves depending on uninitialized values:
+|| 0
+|| lost bytes:
+|| 48
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_034.tesh:4> as requested)
+<end of output>
+Test time =   0.38 sec
+----------------------------------------------------------
+Test Failed.
+"e3_valg_034" end time: Oct 10 22:48 BRT
+"e3_valg_034" time elapsed: 00:00:00
+----------------------------------------------------------
+
+384/559 Testing: e3_valg_035
+384/559 Test: e3_valg_035
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_035.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_035" start time: Oct 10 22:48 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_035'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_035:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_035.ptg
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_035.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e3/valg_035.tesh:4> returned code 1)
+Output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_035.tesh:4> so far:
+|| invalid writes:
+|| 0
+|| invalid read:
+|| 0
+|| jumps/moves depending on uninitialized values:
+|| 0
+|| lost bytes:
+|| 48
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_035.tesh:4> as requested)
+<end of output>
+Test time =   0.38 sec
+----------------------------------------------------------
+Test Failed.
+"e3_valg_035" end time: Oct 10 22:48 BRT
+"e3_valg_035" time elapsed: 00:00:00
+----------------------------------------------------------
+
+385/559 Testing: e3_valg_036
+385/559 Test: e3_valg_036
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_036.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_036" start time: Oct 10 22:48 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_036'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_036:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_036.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_036.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_036' OK
+<end of output>
+Test time =   0.37 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_036" end time: Oct 10 22:48 BRT
+"e3_valg_036" time elapsed: 00:00:00
+----------------------------------------------------------
+
+386/559 Testing: e3_valg_037
+386/559 Test: e3_valg_037
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_037.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_037" start time: Oct 10 22:48 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_037'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_037:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_037.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_037.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_037' OK
+<end of output>
+Test time =   0.37 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_037" end time: Oct 10 22:48 BRT
+"e3_valg_037" time elapsed: 00:00:00
+----------------------------------------------------------
+
+387/559 Testing: e3_valg_038
+387/559 Test: e3_valg_038
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_038.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_038" start time: Oct 10 22:48 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_038'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_038:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_038.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_038.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_038' OK
+<end of output>
+Test time =   0.38 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_038" end time: Oct 10 22:48 BRT
+"e3_valg_038" time elapsed: 00:00:00
+----------------------------------------------------------
+
+388/559 Testing: e3_valg_039
+388/559 Test: e3_valg_039
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_039.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_039" start time: Oct 10 22:48 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_039'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_039:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_039.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_039.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_039' OK
+<end of output>
+Test time =   0.38 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_039" end time: Oct 10 22:48 BRT
+"e3_valg_039" time elapsed: 00:00:00
+----------------------------------------------------------
+
+389/559 Testing: e3_valg_040
+389/559 Test: e3_valg_040
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_040.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_040" start time: Oct 10 22:48 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_040'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_040:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_040.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_040.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_040' OK
+<end of output>
+Test time =   0.38 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_040" end time: Oct 10 22:48 BRT
+"e3_valg_040" time elapsed: 00:00:00
+----------------------------------------------------------
+
+390/559 Testing: e3_valg_041
+390/559 Test: e3_valg_041
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_041.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_041" start time: Oct 10 22:48 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_041'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_041:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_041.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_041.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_041' OK
+<end of output>
+Test time =   0.38 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_041" end time: Oct 10 22:48 BRT
+"e3_valg_041" time elapsed: 00:00:00
+----------------------------------------------------------
+
+391/559 Testing: e3_valg_042
+391/559 Test: e3_valg_042
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_042.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_042" start time: Oct 10 22:48 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_042'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_042:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_042.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_042.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_042' OK
+<end of output>
+Test time =   0.38 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_042" end time: Oct 10 22:48 BRT
+"e3_valg_042" time elapsed: 00:00:00
+----------------------------------------------------------
+
+392/559 Testing: e3_valg_043
+392/559 Test: e3_valg_043
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_043.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_043" start time: Oct 10 22:48 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_043'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_043:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_043.ptg
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_043.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e3/valg_043.tesh:4> returned code 1)
+Output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_043.tesh:4> so far:
+|| invalid writes:
+|| 0
+|| invalid read:
+|| 1
+|| jumps/moves depending on uninitialized values:
+|| 0
+|| lost bytes:
+|| 240
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_043.tesh:4> as requested)
+<end of output>
+Test time =   0.44 sec
+----------------------------------------------------------
+Test Failed.
+"e3_valg_043" end time: Oct 10 22:48 BRT
+"e3_valg_043" time elapsed: 00:00:00
+----------------------------------------------------------
+
+393/559 Testing: e3_valg_044
+393/559 Test: e3_valg_044
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_044.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_044" start time: Oct 10 22:48 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_044'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_044:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_044.ptg
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_044.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e3/valg_044.tesh:4> returned code 1)
+Output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_044.tesh:4> so far:
+|| invalid writes:
+|| 0
+|| invalid read:
+|| 1
+|| jumps/moves depending on uninitialized values:
+|| 0
+|| lost bytes:
+|| 96
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_044.tesh:4> as requested)
+<end of output>
+Test time =   0.44 sec
+----------------------------------------------------------
+Test Failed.
+"e3_valg_044" end time: Oct 10 22:48 BRT
+"e3_valg_044" time elapsed: 00:00:00
+----------------------------------------------------------
+
+394/559 Testing: e3_valg_045
+394/559 Test: e3_valg_045
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_045.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_045" start time: Oct 10 22:48 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_045'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_045:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_045.ptg
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_045.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e3/valg_045.tesh:4> returned code 1)
+Output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_045.tesh:4> so far:
+|| invalid writes:
+|| 0
+|| invalid read:
+|| 1
+|| jumps/moves depending on uninitialized values:
+|| 0
+|| lost bytes:
+|| 192
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_045.tesh:4> as requested)
+<end of output>
+Test time =   0.44 sec
+----------------------------------------------------------
+Test Failed.
+"e3_valg_045" end time: Oct 10 22:48 BRT
+"e3_valg_045" time elapsed: 00:00:00
+----------------------------------------------------------
+
+395/559 Testing: e3_valg_046
+395/559 Test: e3_valg_046
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_046.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_046" start time: Oct 10 22:48 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_046'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_046:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_046.ptg
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_046.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e3/valg_046.tesh:4> returned code 1)
+Output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_046.tesh:4> so far:
+|| invalid writes:
+|| 0
+|| invalid read:
+|| 1
+|| jumps/moves depending on uninitialized values:
+|| 0
+|| lost bytes:
+|| 48
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_046.tesh:4> as requested)
+<end of output>
+Test time =   0.44 sec
+----------------------------------------------------------
+Test Failed.
+"e3_valg_046" end time: Oct 10 22:48 BRT
+"e3_valg_046" time elapsed: 00:00:00
+----------------------------------------------------------
+
+396/559 Testing: e3_valg_047
+396/559 Test: e3_valg_047
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_047.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_047" start time: Oct 10 22:48 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_047'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_047:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_047.ptg
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_047.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e3/valg_047.tesh:4> returned code 1)
+Output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_047.tesh:4> so far:
+|| invalid writes:
+|| 0
+|| invalid read:
+|| 1
+|| jumps/moves depending on uninitialized values:
+|| 0
+|| lost bytes:
+|| 0
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_047.tesh:4> as requested)
+<end of output>
+Test time =   0.44 sec
+----------------------------------------------------------
+Test Failed.
+"e3_valg_047" end time: Oct 10 22:48 BRT
+"e3_valg_047" time elapsed: 00:00:00
+----------------------------------------------------------
+
+397/559 Testing: e3_valg_048
+397/559 Test: e3_valg_048
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_048.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_048" start time: Oct 10 22:48 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_048'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_048:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_048.ptg
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_048.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e3/valg_048.tesh:4> returned code 1)
+Output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_048.tesh:4> so far:
+|| invalid writes:
+|| 0
+|| invalid read:
+|| 1
+|| jumps/moves depending on uninitialized values:
+|| 0
+|| lost bytes:
+|| 48
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_048.tesh:4> as requested)
+<end of output>
+Test time =   0.44 sec
+----------------------------------------------------------
+Test Failed.
+"e3_valg_048" end time: Oct 10 22:48 BRT
+"e3_valg_048" time elapsed: 00:00:00
+----------------------------------------------------------
+
+398/559 Testing: e3_valg_049
+398/559 Test: e3_valg_049
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_049.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_049" start time: Oct 10 22:48 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_049'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_049:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_049.ptg
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_049.tesh': NOK (</home/arthur/Área de Trabalho/pc/tests/e3/valg_049.tesh:4> returned code 1)
+Output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_049.tesh:4> so far:
+|| invalid writes:
+|| 0
+|| invalid read:
+|| 1
+|| jumps/moves depending on uninitialized values:
+|| 0
+|| lost bytes:
+|| 144
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_049.tesh:4> as requested)
+<end of output>
+Test time =   0.44 sec
+----------------------------------------------------------
+Test Failed.
+"e3_valg_049" end time: Oct 10 22:48 BRT
+"e3_valg_049" time elapsed: 00:00:00
+----------------------------------------------------------
+
+399/559 Testing: e3_valg_050
+399/559 Test: e3_valg_050
+Command: "/usr/bin/perl" "-I" "./tests/scripts" "./tests/scripts/tesh" "/home/arthur/Área de Trabalho/pc/tests/e3/valg_050.tesh"
+Directory: /home/arthur/Área de Trabalho/pc/build
+"e3_valg_050" start time: Oct 10 22:48 BRT
+Output:
+----------------------------------------------------------
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_050'
+[/home/arthur/Área de Trabalho/pc/tests/e3/valg_050:4] ./tests/scripts/valgrindtest ./main tests/e3/i_e3_050.ptg
+(ignoring the output of </home/arthur/Área de Trabalho/pc/tests/e3/valg_050.tesh:4> as requested)
+Test suite `/home/arthur/Área de Trabalho/pc/tests/e3/valg_050' OK
+<end of output>
+Test time =   0.38 sec
+----------------------------------------------------------
+Test Passed.
+"e3_valg_050" end time: Oct 10 22:48 BRT
+"e3_valg_050" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Oct 10 22:48 BRT

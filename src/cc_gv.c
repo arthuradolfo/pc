@@ -210,6 +210,7 @@ void gv_declare (const int tipo, const void *pointer, char *name)
   }
 
   fprintf (fp, "node_%p [label=\"%s\"]\n", pointer, description);
+  if(tipo == AST_LITERAL) free(description);
 }
 
 /**

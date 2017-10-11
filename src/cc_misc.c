@@ -353,6 +353,7 @@ char* getASTlexem(comp_tree_t* node)
 
   switch (value->type) {
     case AST_FUNCAO:
+      free(string_aux);
       return value->symbols_table_entry->value.s;
     case AST_LITERAL:
       switch(value->symbols_table_entry->token_type) {
@@ -365,12 +366,15 @@ char* getASTlexem(comp_tree_t* node)
           return string_aux;
 
         case POA_LIT_CHAR:
+          free(string_aux);
           return &value->symbols_table_entry->value.c;
 
         case POA_LIT_STRING:
+          free(string_aux);
           return value->symbols_table_entry->value.s;
 
         case POA_LIT_BOOL:
+          free(string_aux);
           if(value->symbols_table_entry->value.b) {
             return "true";
           }
@@ -380,9 +384,12 @@ char* getASTlexem(comp_tree_t* node)
 
       }
     case AST_IDENTIFICADOR:
+      free(string_aux);
       return value->symbols_table_entry->value.s;
 
-    default: return NULL;
+    default:
+      free(string_aux); 
+      return NULL;
   }
 }
 
