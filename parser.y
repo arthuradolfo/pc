@@ -128,8 +128,6 @@ programa: def_function programa
 def_global_var: any_type TK_IDENTIFICADOR ';'
 def_global_var: any_type TK_IDENTIFICADOR '[' expression ']' ';'
 def_global_var: TK_PR_STATIC any_type TK_IDENTIFICADOR ';'
-
-
 def_global_var: TK_PR_STATIC any_type TK_IDENTIFICADOR '[' expression ']' ';'
 
 any_type: TK_IDENTIFICADOR

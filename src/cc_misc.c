@@ -116,10 +116,10 @@ void setEntryValue(st_value_t* entryValue, char* value) {
 
     case POA_LIT_BOOL:
       if(strcmp(value, "true") == 0) {
-        entryValue->value.b = false;
+        entryValue->value.b = true;
       }
       else {
-        entryValue->value.b = true;
+        entryValue->value.b = false;
       }
       free(value);
       break;
