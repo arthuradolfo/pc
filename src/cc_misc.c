@@ -366,20 +366,25 @@ char* getASTlexem(comp_tree_t* node)
           return string_aux;
 
         case POA_LIT_CHAR:
-          free(string_aux);
-          return &value->symbols_table_entry->value.c;
+          sprintf(string_aux, "%c", value->symbols_table_entry->value.c);
+          printf("asdasd %s\n", string_aux);
+          return string_aux;
 
         case POA_LIT_STRING:
-          free(string_aux);
-          return value->symbols_table_entry->value.s;
+          sprintf(string_aux, "%s", value->symbols_table_entry->value.s);
+          printf("asdasd %s\n", string_aux);
+          return string_aux;
 
         case POA_LIT_BOOL:
-          free(string_aux);
           if(value->symbols_table_entry->value.b) {
-            return "true";
+            sprintf(string_aux, "%s", "true");
+          printf("asdasd %s\n", string_aux);
+            return string_aux;
           }
           else {
-            return "false";
+            sprintf(string_aux, "%s", "false");
+          printf("asdasd %s\n", string_aux);
+            return string_aux;
           }
 
       }
@@ -388,7 +393,7 @@ char* getASTlexem(comp_tree_t* node)
       return value->symbols_table_entry->value.s;
 
     default:
-      free(string_aux); 
+      free(string_aux);
       return NULL;
   }
 }
@@ -494,10 +499,14 @@ void putToGraphviz(comp_tree_t *pai)
 
 	//percorre filhos do nodo
 	comp_tree_t* filho = pai->first;
+  char *string;
 	for (int i = 0; i < pai->childnodes; ++i) {
 		if (filho != NULL) {
+      string = getASTlexem(filho);
 			//declara filho no arquivo
-			gv_declare(getASTtype(filho), filho, getASTlexem(filho));
+			gv_declare(getASTtype(filho), filho, string);
+      if(getASTtype(filho) == AST_LITERAL) free(string);
+      //free(lexem);
 			//conecta pai e filho
 			gv_connect(pai, filho);
 
