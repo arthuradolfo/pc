@@ -126,9 +126,9 @@ programa: def_function programa
 //declaracao de globais
 
 def_global_var: any_type TK_IDENTIFICADOR ';'
-def_global_var: any_type TK_IDENTIFICADOR '[' expression ']' ';'
+def_global_var: any_type TK_IDENTIFICADOR '[' expression ']' ';' { destroyAST($4); }
 def_global_var: TK_PR_STATIC any_type TK_IDENTIFICADOR ';'
-def_global_var: TK_PR_STATIC any_type TK_IDENTIFICADOR '[' expression ']' ';'
+def_global_var: TK_PR_STATIC any_type TK_IDENTIFICADOR '[' expression ']' ';' { destroyAST($5); }
 
 any_type: TK_IDENTIFICADOR
 any_type: primitive_type
@@ -301,8 +301,10 @@ condition_command: TK_PR_IF '(' expression ')' TK_PR_THEN body TK_PR_ELSE body
 		tree_insert_node($$, tree_make_node(new_ast_node_value(AST_BLOCO, NULL)));
 }
 
-iteration_command: TK_PR_FOREACH '(' TK_IDENTIFICADOR ':' foreach_expression_sequence ')' body { $$ = NULL; }
-iteration_command: TK_PR_FOR '(' for_command_sequence ':' expression ':' for_command_sequence ')' body { $$ = NULL; }
+iteration_command: TK_PR_FOREACH '(' TK_IDENTIFICADOR ':' foreach_expression_sequence ')' body
+{ $$ = NULL; if ($7) destroyAST($7); }
+iteration_command: TK_PR_FOR '(' for_command_sequence ':' expression ':' for_command_sequence ')' body
+{ $$ = NULL; destroyAST($5); if ($9) destroyAST($9); }
 iteration_command: TK_PR_WHILE '(' expression ')' TK_PR_DO body
 {
 	$$ = tree_make_node(new_ast_node_value(AST_WHILE_DO, NULL));
@@ -331,13 +333,13 @@ iteration_command: TK_PR_DO body TK_PR_WHILE '(' expression ')'
 	if ($5) tree_insert_node($$, $5);
 }
 
-selection_command: TK_PR_SWITCH '(' expression ')' body { $$ = NULL; }
+selection_command: TK_PR_SWITCH '(' expression ')' body { $$ = NULL; destroyAST($3); if ($5) destroyAST($5); }
 
-for_command_sequence: simple_command
-for_command_sequence: simple_command ',' for_command_sequence
+for_command_sequence: simple_command { if ($1) destroyAST($1); }
+for_command_sequence: simple_command ',' for_command_sequence { if ($1) destroyAST($1); }
 
-foreach_expression_sequence: expression
-foreach_expression_sequence: expression ',' foreach_expression_sequence
+foreach_expression_sequence: expression { destroyAST($1); }
+foreach_expression_sequence: expression ',' foreach_expression_sequence { destroyAST($1); }
 
 action_command: TK_PR_RETURN expression { $$ = tree_make_unary_node(new_ast_node_value(AST_RETURN, NULL), $2); }
 action_command: TK_PR_CONTINUE { $$ = NULL; }
@@ -350,7 +352,7 @@ def_type: TK_PR_CLASS TK_IDENTIFICADOR '[' type_fields ']' ';'
 type_fields: type_field
 type_fields: type_field ':' type_fields
 type_field: encapsulation primitive_type TK_IDENTIFICADOR
-type_field: encapsulation primitive_type TK_IDENTIFICADOR '[' expression ']'
+type_field: encapsulation primitive_type TK_IDENTIFICADOR '[' expression ']' { destroyAST($5); }
 
 encapsulation: TK_PR_PROTECTED
 encapsulation: TK_PR_PRIVATE

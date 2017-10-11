@@ -551,6 +551,18 @@ void clearAndFreeAST()
 	tree_free(abstractSyntaxTree);
 }
 
+/**
+ * Libera values dos nodos da AST recursivamente
+ * e depois libera a arvore
+ */
+void destroyAST(comp_tree_t* ast)
+{
+  if (ast->value != NULL)
+    free(ast->value);
+  freeValue(ast);
+  tree_free(ast);
+}
+
 void main_init (int argc, char **argv)
 {
   //implemente esta função com rotinas de inicialização, se necessário
