@@ -367,23 +367,19 @@ char* getASTlexem(comp_tree_t* node)
 
         case POA_LIT_CHAR:
           sprintf(string_aux, "%c", value->symbols_table_entry->value.c);
-          printf("asdasd %s\n", string_aux);
           return string_aux;
 
         case POA_LIT_STRING:
           sprintf(string_aux, "%s", value->symbols_table_entry->value.s);
-          printf("asdasd %s\n", string_aux);
           return string_aux;
 
         case POA_LIT_BOOL:
           if(value->symbols_table_entry->value.b) {
             sprintf(string_aux, "%s", "true");
-          printf("asdasd %s\n", string_aux);
             return string_aux;
           }
           else {
             sprintf(string_aux, "%s", "false");
-          printf("asdasd %s\n", string_aux);
             return string_aux;
           }
 
