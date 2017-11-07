@@ -1,0 +1,40 @@
+static int a;
+float vector[2];
+
+class myClass [ public int myIntField : private char myCharField ];
+
+float floater() {
+
+}
+
+string stringer() {}
+
+int main() {
+  int b;
+  float c;
+  float d;
+  a = stringer() + "uma string";
+  a << 3;
+
+
+  char khar <= 'z';
+  //c << 2;
+  vector[true] = 1.1;
+  //vector[1.1] = 1.1;
+
+  vector[0] = 1.1;
+  vector[0] = 1;
+  vector[0] = true;
+
+  //vector[0] = 'c';
+  //vector[0] = "uma corda";
+
+  myClassInstance$myIntField = 1;
+  myClassInstance$myIntField = 1.2;
+  myClassInstance$myIntField = false;
+
+  //myClassInstance$myIntField = 'c';
+  //myClassInstance$myIntField = "stringao";
+
+
+}

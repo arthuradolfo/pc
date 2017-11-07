@@ -178,7 +178,7 @@ void concatTokenType(char *key, int token_type) {
  */
 st_value_t* putToSymbolsTable(char* key, int line, int token_type)
 {
-  if (!symbolsTable) return;
+  if (!symbolsTable) return NULL;
 
 
   char *value;
@@ -332,7 +332,7 @@ int getASTtype(comp_tree_t* node)
   ast_node_value_t* value = (ast_node_value_t*) node->value;
 
   if (value != NULL)
-    return value->type;
+    return value->syntactic_type;
   else
     return NULL;
 }
@@ -351,7 +351,7 @@ char* getASTlexem(comp_tree_t* node)
   char *string_aux = malloc(sizeof(char)*200);
   if (value == NULL) return NULL;
 
-  switch (value->type) {
+  switch (value->syntactic_type) {
     case AST_FUNCAO:
       free(string_aux);
       return value->symbols_table_entry->value.s;
@@ -610,4 +610,187 @@ void comp_print_table (void)
       cc_dict_etapa_2_print_entrada(symbolsTable->data[i]->key, entrada->line, entrada->token_type);
     }
   }
+}
+
+
+
+/* -------------------------------------------------------------------------- */
+/* ---------------------------------  AST ----------------------------------  */
+/* -------------------------------------------------------------------------- */
+
+ast_node_value_t* new_ast_node_value(int syntactic_type, int semantic_type, char* semantic_user_type, st_value_t* symbols_table_entry) {
+  ast_node_value_t* node = (ast_node_value_t*) malloc(sizeof(ast_node_value_t));
+  node->syntactic_type = syntactic_type;
+  node->semantic_type = semantic_type;
+  node->semantic_user_type = semantic_user_type;
+  node->symbols_table_entry = symbols_table_entry;
+  return node;
+}
+
+
+
+/* -------------------------------------------------------------------------- */
+/* ------------------------------- semantics -------------------------------  */
+/* -------------------------------------------------------------------------- */
+
+void print_semantic_type(int semantic_type)
+{
+  switch (semantic_type)
+  {
+    case SMTC_VOID: printf("void "); break;
+    case SMTC_INT: printf("int "); break;
+    case SMTC_FLOAT: printf("float "); break;
+    case SMTC_CHAR: printf("char "); break;
+    case SMTC_STRING: printf("string "); break;
+    case SMTC_BOOL: printf("bool "); break;
+  }
+}
+
+void print_semantic_type_ln(int semantic_type)
+{
+  switch (semantic_type)
+  {
+    case SMTC_VOID: printf("void\n"); break;
+    case SMTC_INT: printf("int\n"); break;
+    case SMTC_FLOAT: printf("float\n"); break;
+    case SMTC_CHAR: printf("char\n"); break;
+    case SMTC_STRING: printf("string\n"); break;
+    case SMTC_BOOL: printf("bool\n"); break;
+  }
+}
+
+int check_coercion_needed(int first_type, int second_type)
+{
+  if (first_type == second_type) return SMTC_SUCCESS;
+
+  if ((first_type == SMTC_FLOAT && second_type == SMTC_INT) || (first_type == SMTC_INT && second_type == SMTC_FLOAT))
+  {
+    return SMTC_FLOAT;
+  }
+  if ((first_type == SMTC_BOOL && second_type == SMTC_INT) || (first_type == SMTC_INT && second_type == SMTC_BOOL))
+  {
+    return SMTC_INT;
+  }
+  if ((first_type == SMTC_FLOAT && second_type == SMTC_BOOL) || (first_type == SMTC_BOOL && second_type == SMTC_FLOAT))
+  {
+    return SMTC_FLOAT;
+  }
+
+  //tipos incompatives
+
+  if (first_type == SMTC_CHAR || second_type == SMTC_CHAR)
+  {
+    printf("[ERRO SEMANTICO] [Linha %d] Coercao impossivel do tipo char : ", lineNumber);
+    print_semantic_type(first_type); printf("e ");
+    print_semantic_type_ln(second_type);
+    exit(SMTC_ERROR_CHAR_TO_X);
+  }
+  if (first_type == SMTC_STRING || second_type == SMTC_STRING)
+  {
+    printf("[ERRO SEMANTICO] [Linha %d] Coercao impossivel do tipo string : ", lineNumber);
+    print_semantic_type(first_type); printf("e ");
+    print_semantic_type_ln(second_type);
+    exit(SMTC_ERROR_STRING_TO_X);
+  }
+}
+
+int get_type_size(int semantic_type)
+{
+  switch (semantic_type)
+  {
+    default:
+    case SMTC_VOID: return SMTC_VOID_SIZE;
+    case SMTC_INT: return SMTC_INT_SIZE;
+    case SMTC_FLOAT: return SMTC_FLOAT_SIZE;
+    case SMTC_CHAR: return SMTC_CHAR_SIZE;
+    case SMTC_BOOL: return SMTC_BOOL_SIZE;
+  }
+}
+
+void set_st_semantic_type_and_size_primitive(int semantic_type, st_value_t* symbols_table_entry)
+{
+	//associa tipo semantico na tabela de simbolos
+	symbols_table_entry->semantic_type = semantic_type;
+	//associa tamanho na tabela de simbolos
+	symbols_table_entry->size = get_type_size(semantic_type);
+}
+
+void set_st_semantic_type_and_size_vector(int semantic_type, int length, st_value_t* symbols_table_entry)
+{
+  //associa tipo semantico na tabela de simbolos
+	symbols_table_entry->semantic_type = get_semantic_type_vector_from_element(semantic_type);
+	//associa tamanho na tabela de simbolos
+	symbols_table_entry->size = get_type_size(semantic_type) * length;
+}
+
+int get_semantic_type_of_indexed_vector(int vector_semantic_type)
+{
+  switch (vector_semantic_type)
+  {
+    default:
+    case SMTC_INT_VECTOR: return SMTC_INT;
+    case SMTC_FLOAT_VECTOR: return SMTC_FLOAT;
+    case SMTC_CHAR_VECTOR: return SMTC_CHAR;
+    case SMTC_STRING_VECTOR: return SMTC_STRING;
+    case SMTC_BOOL_VECTOR: return SMTC_BOOL;
+    case SMTC_USER_TYPE_VECTOR: return SMTC_USER_TYPE_VAR;
+  }
+}
+
+int get_semantic_type_vector_from_element(int vector_semantic_type)
+{
+  switch (vector_semantic_type)
+  {
+    default:
+    case SMTC_INT: return SMTC_INT_VECTOR;
+    case SMTC_FLOAT: return SMTC_FLOAT_VECTOR;
+    case SMTC_CHAR: return SMTC_CHAR_VECTOR;
+    case SMTC_STRING: return SMTC_STRING_VECTOR;
+    case SMTC_BOOL: return SMTC_BOOL_VECTOR;
+    case SMTC_USER_TYPE_VAR: return SMTC_USER_TYPE_VECTOR;
+  }
+}
+
+void set_st_semantic_type_and_size_user_type(st_value_t* type_entry, st_value_t* variable_entry)
+{
+  variable_entry->semantic_type = SMTC_USER_TYPE_VAR;
+  variable_entry->semantic_user_type = type_entry->value.s;
+  variable_entry->size = type_entry->size;
+}
+
+void set_st_semantic_type_and_size_vector_user_type(st_value_t* type_entry, st_value_t* variable_entry, int length)
+{
+  variable_entry->semantic_type = SMTC_USER_TYPE_VECTOR;
+  variable_entry->semantic_user_type = type_entry->value.s;
+  variable_entry->size = type_entry->size * length;
+}
+
+void verify_shiftable(st_value_t* symbols_table_entry)
+{
+  if (symbols_table_entry->semantic_type != SMTC_INT) {
+    printf("[ERRO SEMANTICO] [Linha %d] Tipo de identificador incorreto : ", lineNumber);
+    print_semantic_type(symbols_table_entry->semantic_type);
+    printf("deveria ser "); print_semantic_type_ln(SMTC_INT);
+    exit(SMTC_ERROR_WRONG_TYPE);
+  }
+}
+
+void verify_index(ast_node_value_t* ast_index)
+{
+  if (ast_index->semantic_type == SMTC_INT) return;
+  if (ast_index->semantic_type == SMTC_BOOL)
+  {
+    mark_coercion(SMTC_INT, ast_index);
+    return;
+  }
+
+  printf("[ERRO SEMANTICO] [Linha %d] Tipo incompativel para indice de vetor : ", lineNumber);
+  print_semantic_type(ast_index->semantic_type);
+  printf(". Use int ou bool\n");
+  exit(SMTC_ERROR_STRING_TO_X);
+}
+
+void mark_coercion(int semantic_type, ast_node_value_t* ast_to_coerce)
+{
+  //TODO indicar que ast deve sofrer coercao
 }
