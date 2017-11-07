@@ -11,6 +11,7 @@ int myFunction ()
   a = b;
   a = a*a;
   a = b/a;
+  c = 1 + 2 + 3;
   c = c + 1 + 2 + (3);
   b = a + 2* 7;
   b = (a+ 2)*7;
