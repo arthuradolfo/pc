@@ -13,14 +13,16 @@ int main() {
   int b;
   float c;
   float d;
-  a = stringer() + "uma string";
+  a = 1 + floater() + 3;
+  //a = 'c';
+  //a = stringer() + "uma string";
   a << 3;
 
 
   char khar <= 'z';
   //c << 2;
   vector[true] = 1.1;
-  //vector[1.1] = 1.1;
+  vector[1.1] = 1.1;
 
   vector[0] = 1.1;
   vector[0] = 1;
@@ -33,8 +35,7 @@ int main() {
   myClassInstance$myIntField = 1.2;
   myClassInstance$myIntField = false;
 
-  //myClassInstance$myIntField = 'c';
-  //myClassInstance$myIntField = "stringao";
-
-
+  myClassInstance$myCharField = 'c';
+  //myClassInstance$myCharField = b;
+  //myClassInstance$myCharField = "s";
 }

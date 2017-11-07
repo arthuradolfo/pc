@@ -83,6 +83,11 @@ typedef struct ast_node_value {
    */
    char* semantic_user_type;
 
+	 /**
+	  * Diferente de SMTC_NO_COERCION quando é necessaria coercao
+		*/
+	 int coercion;
+
   struct symbolsTable_value* symbols_table_entry;
 
 } ast_node_value_t;
@@ -100,7 +105,7 @@ ast_node_value_t* new_ast_node_value(int syntactic_type, int semantic_type, char
 
 
 /* tipos semanticos */
-#define SMTC_VOID 0
+#define SMTC_VOID -1
 #define SMTC_INT 1
 #define SMTC_FLOAT 2
 #define SMTC_CHAR 3
@@ -114,6 +119,8 @@ ast_node_value_t* new_ast_node_value(int syntactic_type, int semantic_type, char
 #define SMTC_USER_TYPE_VAR 11
 #define SMTC_USER_TYPE_VECTOR 12
 #define SMTC_USER_TYPE_NAME 13
+/** marcador de livre de coercao */
+#define SMTC_NO_COERCION 14
 
 /*tamanhos dos tipos*/
 #define SMTC_VOID_SIZE 0
@@ -121,7 +128,6 @@ ast_node_value_t* new_ast_node_value(int syntactic_type, int semantic_type, char
 #define SMTC_FLOAT_SIZE 8
 #define SMTC_CHAR_SIZE 1
 #define SMTC_BOOL_SIZE 1
-
 
 /* erros semanticos */
 
@@ -159,7 +165,12 @@ void print_semantic_type(int semantic_type);
 /**
  * Retorna um tipo inferido pela operacao com dois tipos
  */
-int check_coercion_needed(int first_type, int second_type);
+int get_coercion_needed(int first_type, int second_type);
+
+/**
+ * Infere o tipo necessario entre dois tipos
+ */
+int infere_type(int first_type, int second_type);
 
 /**
  * Retorna tamanho de um tipo primitivo
@@ -208,9 +219,13 @@ void verify_shiftable(st_value_t* symbols_table_entry);
 void verify_index(ast_node_value_t* ast_index);
 
 /**
- * Marca na ast que deve haver uma coercao
+ * Marca na ast que deve haver uma coercao (se necessaria)
  */
 void mark_coercion(int semantic_type, ast_node_value_t* ast_to_coerce);
 
+/**
+ * Marca, no nodo ast adequado, uma coercao (se necessaria)
+ */
+void mark_coercion_where_needed(ast_node_value_t* ast_node_1, ast_node_value_t* ast_node_2);
 
 #endif

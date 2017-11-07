@@ -129,14 +129,14 @@ programa: def_function programa
 
 //declaracao de globais
 
-def_global_var: primitive_type TK_IDENTIFICADOR ';' { set_st_semantic_type_and_size_primitive($1, $2); }
+def_global_var: primitive_type TK_IDENTIFICADOR ';' { set_st_semantic_type_and_size_primitive($1, $2);  }
 def_global_var: primitive_type TK_IDENTIFICADOR '[' TK_LIT_INT ']' ';'
 {
 	st_value_t* st_entry_lit_int = $4;
 	int size = st_entry_lit_int->value.i;
 	set_st_semantic_type_and_size_vector($1,size,$2);
 }
-def_global_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR ';' { set_st_semantic_type_and_size_primitive($2, $3); }
+def_global_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR ';' {	set_st_semantic_type_and_size_primitive($2, $3); }
 def_global_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR '[' TK_LIT_INT ']' ';'
 {
 	st_value_t* st_entry_lit_int = $5;
@@ -259,7 +259,7 @@ def_local_var: primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 	ast_node_value_t* ast_expression = $4->value;
 
 	//checar se tipos são compativeis
-	mark_coercion(check_coercion_needed(st_identificador->semantic_type, ast_expression->semantic_type), ast_expression);
+	mark_coercion(st_identificador->semantic_type, ast_expression);
 
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, $1, NULL, $2));
 	$$ = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, SMTC_VOID, NULL, NULL), node_identificador, $4);
@@ -281,7 +281,7 @@ def_local_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 	ast_node_value_t* ast_expression = $5->value;
 
 	//checar se tipos são compativeis
-	mark_coercion(check_coercion_needed(st_identificador->semantic_type, ast_expression->semantic_type), ast_expression);
+	mark_coercion(st_identificador->semantic_type, ast_expression);
 
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, $2, NULL, $3));
 	$$ = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, SMTC_VOID, NULL, NULL), node_identificador, $5);
@@ -303,7 +303,7 @@ def_local_var: TK_PR_CONST primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 	ast_node_value_t* ast_expression = $5->value;
 
 	//checar se tipos são compativeis
-	mark_coercion(check_coercion_needed(st_identificador->semantic_type, ast_expression->semantic_type), ast_expression);
+	mark_coercion(st_identificador->semantic_type, ast_expression);
 
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, $2, NULL, $3));
 	$$ = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, SMTC_VOID, NULL, NULL), node_identificador, $5);
@@ -325,7 +325,7 @@ def_local_var: TK_PR_STATIC TK_PR_CONST primitive_type TK_IDENTIFICADOR TK_OC_LE
 	ast_node_value_t* ast_expression = $6->value;
 
 	//checar se tipos são compativeis
-	mark_coercion(check_coercion_needed(st_identificador->semantic_type, ast_expression->semantic_type), ast_expression);
+	mark_coercion(st_identificador->semantic_type, ast_expression);
 
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, $3, NULL, $4));
 	$$ = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, SMTC_VOID, NULL, NULL), node_identificador, $6);
@@ -337,7 +337,7 @@ attribution_command: TK_IDENTIFICADOR '=' expression
 	ast_node_value_t* ast_expression = $3->value;
 
 	//checar se tipos são compativeis
-	mark_coercion(check_coercion_needed(st_identificador->semantic_type, ast_expression->semantic_type), ast_expression);
+	mark_coercion(st_identificador->semantic_type, ast_expression);
 
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, $1));
 	$$ = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, SMTC_VOID, NULL, NULL), node_identificador, $3);
@@ -346,14 +346,13 @@ attribution_command: TK_IDENTIFICADOR '[' expression ']' '=' expression
 {
 	//checar se indice é int
 	ast_node_value_t* ast_index = $3->value;
-	verify_index(ast_index);
+	mark_coercion(SMTC_INT, ast_index);
 
 	st_value_t* st_identificador = $1;
 	ast_node_value_t* ast_expression = $6->value;
 
 	//checar se tipos são compativeis
-	mark_coercion(check_coercion_needed(get_semantic_type_of_indexed_vector(st_identificador->semantic_type), ast_expression->semantic_type), ast_expression);
-
+	mark_coercion(get_semantic_type_of_indexed_vector(st_identificador->semantic_type), ast_expression);
 
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, $1));
 	comp_tree_t* node_vetor_indexado = tree_make_binary_node(new_ast_node_value(AST_VETOR_INDEXADO, get_semantic_type_of_indexed_vector(st_identificador->semantic_type),
@@ -367,8 +366,7 @@ attribution_command: TK_IDENTIFICADOR '$' TK_IDENTIFICADOR '=' expression
 	ast_node_value_t* ast_expression = $5->value;
 
 	//checar se tipos são compativeis
-	mark_coercion(check_coercion_needed(st_campo->semantic_type, ast_expression->semantic_type), ast_expression);
-
+	mark_coercion(st_campo->semantic_type, ast_expression);
 
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, $1));
 	comp_tree_t* node_campo = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_campo->semantic_type, st_campo->semantic_user_type, $3));
@@ -564,7 +562,8 @@ sub_expression_chain: sub_expression operator sub_expression_chain
 	tree_insert_node($$, $1);
 	tree_insert_node($$, $3);
 	//infere tipo semantico baseado nos operandos
-	ast_node_value_head->semantic_type = check_coercion_needed(ast_node_value_sub_expression->semantic_type, ast_node_value_sub_expression_chain->semantic_type);
+	ast_node_value_head->semantic_type = infere_type(ast_node_value_sub_expression->semantic_type, ast_node_value_sub_expression_chain->semantic_type);
+	mark_coercion_where_needed(ast_node_value_sub_expression, ast_node_value_sub_expression_chain);
 }
 
 sub_expression: unary_operator sub_expression
