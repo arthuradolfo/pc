@@ -570,26 +570,21 @@ void main_init (int argc, char **argv)
   pointersToFreeTable = dict_new();
   symbolsTable = dict_new();
 
-	//abstractSyntaxTree = tree_new();
-	//gv_init(GRAPHVIZ_FILENAME);
-	//generateExampleTree();
+  //abstractSyntaxTree = tree_new();
+  gv_init(GRAPHVIZ_FILENAME);
 }
 
 void main_finalize (void)
 {
   //implemente esta função com rotinas de finalização, se necessário
 
-
   //comp_print_table();
 
-  //printf("Building .dot ...\n");
   //gv_declare(AST_PROGRAMA, abstractSyntaxTree, NULL);
   //putToGraphviz(abstractSyntaxTree);
-	//gv_close();
+  gv_close();
   clearSymbolsTable();
-  //printf("Clearing AST ...\n");
 	clearAndFreeAST();
-  //printf("Clearing pointersToFreeTable ...\n");
   clearPointerToFreeTable();
 }
 
@@ -852,14 +847,10 @@ void mark_coercion(int prevalent_type, ast_node_value_t* ast_to_coerce)
   {
     ast_to_coerce->coercion = prevalent_type;
 
-    // printf("[Linha %d] mark_coercion : ", lineNumber);
-    // printf("semantic_type: "); print_semantic_type(ast_to_coerce->semantic_type);
-    // printf("coercion: "); print_semantic_type_ln(ast_to_coerce->coercion);
+    printf("[Linha %d] mark_coercion --- ", lineNumber);
+    printf(" | semantic_type: "); print_semantic_type(ast_to_coerce->semantic_type);
+    printf(" => coercion: "); print_semantic_type_ln(ast_to_coerce->coercion);
   }
-
-  printf("[Linha %d] mark_coercion --- ", lineNumber);
-  printf(" | semantic_type: "); print_semantic_type(ast_to_coerce->semantic_type);
-  printf(" => coercion: "); print_semantic_type_ln(ast_to_coerce->coercion);
 }
 
 void mark_coercion_where_needed(ast_node_value_t* ast_node_1, ast_node_value_t* ast_node_2)
