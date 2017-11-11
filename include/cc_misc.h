@@ -31,6 +31,12 @@ typedef struct symbolsTable_value {
 	   * Senão, deve ser NULL.
 	   */
 	   char* semantic_user_type;
+
+		 /**
+		  * Define se representa uma variavel, um vetor ou uma funcao
+			*/
+		 int var_vec_or_fun;
+
 		 int size;
     union Value value;
 } st_value_t;
@@ -111,14 +117,14 @@ ast_node_value_t* new_ast_node_value(int syntactic_type, int semantic_type, char
 #define SMTC_CHAR 3
 #define SMTC_STRING 4
 #define SMTC_BOOL 5
-#define SMTC_INT_VECTOR 6
-#define SMTC_FLOAT_VECTOR 7
-#define SMTC_CHAR_VECTOR 8
-#define SMTC_STRING_VECTOR 9
-#define SMTC_BOOL_VECTOR 10
-#define SMTC_USER_TYPE_VAR 11
-#define SMTC_USER_TYPE_VECTOR 12
-#define SMTC_USER_TYPE_NAME 13
+#define SMTC_USER_TYPE_VAR 6
+#define SMTC_USER_TYPE_NAME 7
+
+/* variavel, vetor ou funcao ?*/
+#define SMTC_VARIABLE 1
+#define SMTC_VECTOR 2
+#define SMTC_FUNCTION 3
+
 /** marcador de livre de coercao */
 #define SMTC_NO_COERCION 14
 
@@ -141,6 +147,8 @@ ast_node_value_t* new_ast_node_value(int syntactic_type, int semantic_type, char
 #define SMTC_ERROR_VARIABLE 3 //identificador deve ser utilizado como variável
 #define SMTC_ERROR_VECTOR 4 //identificador deve ser utilizado como vetor
 #define SMTC_ERROR_FUNCTION 5 //identificador deve ser utilizado como função
+#define SMTC_ERROR_FIELD 15 //identificador deve ser utilizado como campo
+#define SMTC_ERROR_INVALID_FIELD 16 //identificador não é campo de um dado tipo
 
 /* Tipos e tamanho de dados */
 #define SMTC_ERROR_WRONG_TYPE 6 //tipos incompatı́veis
@@ -183,29 +191,49 @@ int get_type_size(int semantic_type);
 void set_st_semantic_type_and_size_primitive(int semantic_type, st_value_t* symbols_table_entry);
 
 /**
+ * Seta, num Value de entrada de tabela de simbolos, o tipo semantico, seu tamanho e que é uma funcao
+ */
+void set_st_semantic_type_and_size_primitive_function(int semantic_type, st_value_t* symbols_table_entry);
+
+/**
+ * Seta, num Value de entrada de tabela de simbolos, o tipo semantico, seu tamanho e que é uma funcao user type
+ */
+void set_st_semantic_type_and_size_user_type_function(st_value_t* type_entry, st_value_t* variable_entry);
+
+/**
  * Seta, num Value de entrada de tabela de simbolos de um vetor, o tipo semantico e seu tamanho
  */
 void set_st_semantic_type_and_size_vector(int semantic_type, int length, st_value_t* symbols_table_entry);
 
 /**
- * Retorna o tipo semantico de um elemento de um vetor
- */
-int get_semantic_type_of_indexed_vector(int vector_semantic_type);
-
-/**
- * Retorna o tipo semantico de um vetor cujo tipo dos elementos é o passado por parametro
- */
-int get_semantic_type_vector_from_element(int vector_semantic_type);
-
-/**
  * Seta, num Value de entrada de tabela de simbolos de uma variavel de tipo de usuario, o tipo semantico e seu tamanho
  */
-void set_st_semantic_type_and_size_user_type(st_value_t* type_entry, st_value_t* variable_entry);
+void set_st_semantic_type_and_size_user_type(char* type_name, st_value_t* variable_entry);
 
 /**
  * Seta, num Value de entrada de tabela de simbolos de um vetor de tipo de usuario, o tipo semantico e seu tamanho
  */
 void set_st_semantic_type_and_size_vector_user_type(st_value_t* type_entry, st_value_t* variable_entry, int length);
+
+/**
+ * Seta, num Value de entrada de tabela de simbolos de um campo de tipo de usuario, o tipo semantico e sua classe relacionada
+ */
+void set_st_semantic_type_and_size_primitive_field(int semantic_type, st_value_t* symbols_table_entry);
+
+/**
+ * Seta, num Value de entrada de tabela de simbolos de um campo de vetor, o tamanho, o tipo semantico e sua classe relacionada
+ */
+void set_st_semantic_type_and_size_vector_field(int semantic_type, int length, st_value_t* symbols_table_entry);
+
+/**
+* Retorna o tipo semantico de um elemento de um vetor
+*/
+int get_semantic_type_of_indexed_vector(int vector_semantic_type);
+
+/**
+* Retorna o tipo semantico de um vetor cujo tipo dos elementos é o passado por parametro
+*/
+int get_semantic_type_vector_from_element(int vector_semantic_type);
 
 /**
  * Verifica se entrada de tabela de simbolos é shiftavel. Se nao for, encerra execucao com erro
@@ -245,6 +273,11 @@ st_value_t* putToCurrentST(char* key, int line, int token_type);
 st_value_t* search_id_in_current_st(char* key);
 
 /**
+ * Procura um identificador na tabela de simbolos global
+ */
+st_value_t* search_id_in_global_st(char* key);
+
+/**
  * Checa na tabela de simbolos global se tipo ja foi declarado.
  * Se não tiver sido, da erro
  */
@@ -272,12 +305,38 @@ st_value_t* ensure_identifier_declared(char* id_name);
  * Verifica na tabela de simbolos global se campo ja foi declarado.
  * Se não tiver sido, da erro.
  */
-st_value_t* ensure_field_declared(char* field_name);
+st_value_t* ensure_field_declared(char* field_name, char* related_user_type);
 
 /**
  * Verifica na tabela de simbolos global se funcao ja foi declarada.
  * Se não tiver sido, da erro.
  */
 st_value_t* ensure_function_declared(char* function_name);
+
+/**
+ * Verifica na tabela de simbolos global se variavel ja foi declarada.
+ * Se não tiver sido, da erro.
+ */
+st_value_t* ensure_variable_declared(char* variable_name);
+
+/**
+ * Verifica na tabela de simbolos global se vetor ja foi declarado.
+ * Se não tiver sido, da erro.
+ */
+st_value_t* ensure_vector_declared(char* vector_name);
+
+/**
+ * Retorna char* com string correspondente ao var_vec_or_fun do parametro fornecido
+ */
+char* var_vec_or_fun_to_string(st_value_t* st_entry);
+
+/**
+ * Retorna int com erro correspondente ao var_vec_or_fun fornecido
+ */
+int get_semantic_error_var_vec_or_fun(st_value_t* st_entry);
+
+void set_current_type_decl(char* type_decl);
+
+char* get_current_type_decl();
 
 #endif

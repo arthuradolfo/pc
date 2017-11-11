@@ -251,7 +251,7 @@ def_function: primitive_type TK_IDENTIFICADOR '(' parameters ')' body
 	if ($6)
 		tree_insert_node($$,$6);
 
-	set_st_semantic_type_and_size_primitive($1, st_identificador);
+	set_st_semantic_type_and_size_primitive_function($1, st_identificador);
 }
 def_function: TK_PR_STATIC primitive_type TK_IDENTIFICADOR '(' parameters ')' body
 {
@@ -266,7 +266,7 @@ def_function: TK_PR_STATIC primitive_type TK_IDENTIFICADOR '(' parameters ')' bo
 	if ($7)
 		tree_insert_node($$,$7);
 
-	set_st_semantic_type_and_size_primitive($2, st_identificador);
+	set_st_semantic_type_and_size_primitive_function($2, st_identificador);
 }
 
 def_function: TK_IDENTIFICADOR TK_IDENTIFICADOR '(' parameters ')' body
@@ -285,7 +285,7 @@ def_function: TK_IDENTIFICADOR TK_IDENTIFICADOR '(' parameters ')' body
 	if ($6)
 		tree_insert_node($$,$6);
 
-	set_st_semantic_type_and_size_user_type($1, st_identificador);
+	set_st_semantic_type_and_size_user_type_function($1, st_identificador);
 }
 def_function: TK_PR_STATIC TK_IDENTIFICADOR TK_IDENTIFICADOR '(' parameters ')' body
 {
@@ -303,7 +303,7 @@ def_function: TK_PR_STATIC TK_IDENTIFICADOR TK_IDENTIFICADOR '(' parameters ')' 
 	if ($7)
 		tree_insert_node($$,$7);
 
-	set_st_semantic_type_and_size_user_type($2, st_identificador);
+	set_st_semantic_type_and_size_user_type_function($2, st_identificador);
 }
 
 body: '{' command_sequence '}' { $$ = $2; }
@@ -569,7 +569,7 @@ def_local_var: TK_PR_STATIC TK_PR_CONST primitive_type TK_IDENTIFICADOR TK_OC_LE
 attribution_command: TK_IDENTIFICADOR '=' expression
 {
 	//garante que identificador ja foi declarado
-	st_value_t* st_identificador = ensure_identifier_declared($1);
+	st_value_t* st_identificador = ensure_variable_declared($1);
 
 	ast_node_value_t* ast_expression = $3->value;
 
@@ -582,7 +582,7 @@ attribution_command: TK_IDENTIFICADOR '=' expression
 attribution_command: TK_IDENTIFICADOR '[' expression ']' '=' expression
 {
 	//garante que identificador ja foi declarado
-	st_value_t* st_identificador = ensure_identifier_declared($1);
+	st_value_t* st_identificador = ensure_vector_declared($1);
 
 	//verifica se indice é int
 	ast_node_value_t* ast_index = $3->value;
@@ -591,18 +591,18 @@ attribution_command: TK_IDENTIFICADOR '[' expression ']' '=' expression
 	ast_node_value_t* ast_expression = $6->value;
 
 	//checar se tipos são compativeis
-	mark_coercion(get_semantic_type_of_indexed_vector(st_identificador->semantic_type), ast_expression);
+	mark_coercion(st_identificador->semantic_type, ast_expression);
 
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, st_identificador));
-	comp_tree_t* node_vetor_indexado = tree_make_binary_node(new_ast_node_value(AST_VETOR_INDEXADO, get_semantic_type_of_indexed_vector(st_identificador->semantic_type),
+	comp_tree_t* node_vetor_indexado = tree_make_binary_node(new_ast_node_value(AST_VETOR_INDEXADO, st_identificador->semantic_type,
 	 	st_identificador->semantic_user_type, NULL), node_identificador, $3);
 	$$ = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, SMTC_VOID, NULL, NULL), node_vetor_indexado, $6);
 }
 attribution_command: TK_IDENTIFICADOR '$' TK_IDENTIFICADOR '=' expression
 {
-	st_value_t* st_identificador = ensure_identifier_declared($1);
+	st_value_t* st_identificador = ensure_variable_declared($1);
 
-	st_value_t* st_campo = ensure_field_declared($3);
+	st_value_t* st_campo = ensure_field_declared($3, st_identificador->semantic_user_type);
 
 	ast_node_value_t* ast_expression = $5->value;
 
@@ -643,7 +643,7 @@ function_call: TK_IDENTIFICADOR '(' ')'
 
 shift_command: TK_IDENTIFICADOR TK_OC_SL TK_LIT_INT
 {
-	st_value_t* st_identificador = ensure_identifier_declared($1);
+	st_value_t* st_identificador = ensure_variable_declared($1);
 
 	verify_shiftable(st_identificador);
 
@@ -657,7 +657,7 @@ shift_command: TK_IDENTIFICADOR TK_OC_SL TK_LIT_INT
 }
 shift_command: TK_IDENTIFICADOR TK_OC_SR TK_LIT_INT
 {
-	st_value_t* st_identificador = ensure_identifier_declared($1);
+	st_value_t* st_identificador = ensure_variable_declared($1);
 
 	verify_shiftable(st_identificador);
 
@@ -759,7 +759,7 @@ action_command: TK_PR_BREAK { $$ = NULL; }
 
 // definicoes de tipos
 
-def_type: TK_PR_CLASS TK_IDENTIFICADOR '[' type_fields ']' ';'
+start_type_decl: TK_PR_CLASS TK_IDENTIFICADOR
 {
 	char* id_name = $2;
 	ensure_type_not_declared(id_name);
@@ -767,8 +767,18 @@ def_type: TK_PR_CLASS TK_IDENTIFICADOR '[' type_fields ']' ';'
 	//insere identificador declarado na tabela de simbolos global
 	st_value_t* st_identificador = putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
 
+
+	st_identificador->semantic_user_type = id_name;
 	st_identificador->semantic_type = SMTC_USER_TYPE_NAME;
-	st_identificador->size = $4;
+	printf("semantic_user_type: %s\n",st_identificador->semantic_user_type);
+
+	set_current_type_decl(strdup(id_name));
+}
+
+def_type: start_type_decl '[' type_fields ']' ';'
+{
+	st_value_t* st_identificador = search_id_in_global_st(get_current_type_decl());
+	st_identificador->size = $3;
 }
 type_fields: type_field { $$ = $1; }
 type_fields: type_field ':' type_fields { $$ = $1 + $3; }
@@ -779,7 +789,7 @@ type_field: encapsulation primitive_type TK_IDENTIFICADOR
 
 	//insere identificador declarado na tabela de simbolos global
 	st_value_t* st_identificador = putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
-	set_st_semantic_type_and_size_primitive($2, st_identificador);
+	set_st_semantic_type_and_size_primitive_field($2, st_identificador);
 
 	$$ = get_type_size($2);
 }
@@ -793,7 +803,7 @@ type_field: encapsulation primitive_type TK_IDENTIFICADOR '[' TK_LIT_INT ']'
 
 	st_value_t* st_entry_lit_int = $5;
 	int size = st_entry_lit_int->value.i;
-	set_st_semantic_type_and_size_vector($2, size, st_identificador);
+	set_st_semantic_type_and_size_vector_field($2, size, st_identificador);
 }
 
 encapsulation: TK_PR_PROTECTED
@@ -846,7 +856,7 @@ sub_expression: '(' expression ')' { $$ = $2; }
 sub_expression: literal {	$$ = $1; }
 sub_expression: TK_IDENTIFICADOR
 {
-	st_value_t* st_identificador = ensure_identifier_declared($1);
+	st_value_t* st_identificador = ensure_variable_declared($1);
 
 	$$ = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, st_identificador));
 }
@@ -856,10 +866,10 @@ sub_expression: TK_IDENTIFICADOR '[' expression ']'
 	ast_node_value_t* ast_index = $3->value;
 	mark_coercion(SMTC_INT, ast_index);
 
-	st_value_t* st_identificador = ensure_identifier_declared($1);
+	st_value_t* st_identificador = ensure_vector_declared($1);
 
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, st_identificador));
-	$$ = tree_make_binary_node(new_ast_node_value(AST_VETOR_INDEXADO, get_semantic_type_of_indexed_vector(st_identificador->semantic_type), st_identificador->semantic_user_type, NULL), node_identificador, $3);
+	$$ = tree_make_binary_node(new_ast_node_value(AST_VETOR_INDEXADO, st_identificador->semantic_type, st_identificador->semantic_user_type, NULL), node_identificador, $3);
 }
 sub_expression: function_call { $$ = $1; }
 

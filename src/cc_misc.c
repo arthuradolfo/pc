@@ -17,6 +17,8 @@ comp_dict_t* pointersToFreeTable;
 
 comp_tree_t* abstractSyntaxTree;
 
+char* current_type_decl;
+
 void set_ast_root(comp_tree_t* root)
 {
   abstractSyntaxTree = root;
@@ -629,6 +631,16 @@ ast_node_value_t* new_ast_node_value(int syntactic_type, int semantic_type, char
 /* ------------------------------- semantics -------------------------------  */
 /* -------------------------------------------------------------------------- */
 
+void set_current_type_decl(char* type_decl)
+{
+  current_type_decl = type_decl;
+}
+
+char* get_current_type_decl()
+{
+  return current_type_decl;
+}
+
 void print_semantic_type(int semantic_type)
 {
   printf("[type %d] ", semantic_type);
@@ -640,6 +652,7 @@ void print_semantic_type(int semantic_type)
     case SMTC_CHAR: printf("char "); break;
     case SMTC_STRING: printf("string "); break;
     case SMTC_BOOL: printf("bool "); break;
+    case SMTC_USER_TYPE_VAR: printf("user type "); break;
     case SMTC_NO_COERCION: printf("no coercion "); break;
   }
 }
@@ -655,6 +668,7 @@ void print_semantic_type_ln(int semantic_type)
     case SMTC_CHAR: printf("char"); break;
     case SMTC_STRING: printf("string"); break;
     case SMTC_BOOL: printf("bool"); break;
+    case SMTC_USER_TYPE_VAR: printf("user type"); break;
     case SMTC_NO_COERCION: printf("no coercion"); break;
   }
   printf("\n");
@@ -751,6 +765,8 @@ void set_st_semantic_type_and_size_primitive(int semantic_type, st_value_t* symb
 {
 	//associa tipo semantico na tabela de simbolos
 	symbols_table_entry->semantic_type = semantic_type;
+  //declara como variavel
+  symbols_table_entry->var_vec_or_fun = SMTC_VARIABLE;
 	//associa tamanho na tabela de simbolos
 	symbols_table_entry->size = get_type_size(semantic_type);
 }
@@ -758,51 +774,80 @@ void set_st_semantic_type_and_size_primitive(int semantic_type, st_value_t* symb
 void set_st_semantic_type_and_size_vector(int semantic_type, int length, st_value_t* symbols_table_entry)
 {
   //associa tipo semantico na tabela de simbolos
-	symbols_table_entry->semantic_type = get_semantic_type_vector_from_element(semantic_type);
+	symbols_table_entry->semantic_type = semantic_type;
+  //declara como vetor
+  symbols_table_entry->var_vec_or_fun = SMTC_VECTOR;
 	//associa tamanho na tabela de simbolos
 	symbols_table_entry->size = get_type_size(semantic_type) * length;
 }
 
-int get_semantic_type_of_indexed_vector(int vector_semantic_type)
+void set_st_semantic_type_and_size_primitive_function(int semantic_type, st_value_t* symbols_table_entry)
 {
-  switch (vector_semantic_type)
-  {
-    default:
-    case SMTC_INT_VECTOR: return SMTC_INT;
-    case SMTC_FLOAT_VECTOR: return SMTC_FLOAT;
-    case SMTC_CHAR_VECTOR: return SMTC_CHAR;
-    case SMTC_STRING_VECTOR: return SMTC_STRING;
-    case SMTC_BOOL_VECTOR: return SMTC_BOOL;
-    case SMTC_USER_TYPE_VECTOR: return SMTC_USER_TYPE_VAR;
-  }
+	//associa tipo semantico na tabela de simbolos
+	symbols_table_entry->semantic_type = semantic_type;
+  //declara como variavel
+  symbols_table_entry->var_vec_or_fun = SMTC_FUNCTION;
+	//associa tamanho na tabela de simbolos
+	symbols_table_entry->size = get_type_size(semantic_type);
 }
 
-int get_semantic_type_vector_from_element(int vector_semantic_type)
+void set_st_semantic_type_and_size_user_type_function(st_value_t* type_entry, st_value_t* variable_entry)
 {
-  switch (vector_semantic_type)
-  {
-    default:
-    case SMTC_INT: return SMTC_INT_VECTOR;
-    case SMTC_FLOAT: return SMTC_FLOAT_VECTOR;
-    case SMTC_CHAR: return SMTC_CHAR_VECTOR;
-    case SMTC_STRING: return SMTC_STRING_VECTOR;
-    case SMTC_BOOL: return SMTC_BOOL_VECTOR;
-    case SMTC_USER_TYPE_VAR: return SMTC_USER_TYPE_VECTOR;
-  }
-}
-
-void set_st_semantic_type_and_size_user_type(st_value_t* type_entry, st_value_t* variable_entry)
-{
+  //associa tipo semantico na tabela de simbolos
   variable_entry->semantic_type = SMTC_USER_TYPE_VAR;
+  //associa nome do tipo de usuario
   variable_entry->semantic_user_type = type_entry->value.s;
+  //declara como variavel
+  variable_entry->var_vec_or_fun = SMTC_FUNCTION;
+  //associa tamanho na tabela de simbolos
   variable_entry->size = type_entry->size;
+}
+
+void set_st_semantic_type_and_size_user_type(char* type_name, st_value_t* variable_entry)
+{
+  //associa tipo semantico na tabela de simbolos
+  variable_entry->semantic_type = SMTC_USER_TYPE_VAR;
+  //associa nome do tipo de usuario
+  variable_entry->semantic_user_type = type_name;
+  //declara como variavel
+  variable_entry->var_vec_or_fun = SMTC_VARIABLE;
 }
 
 void set_st_semantic_type_and_size_vector_user_type(st_value_t* type_entry, st_value_t* variable_entry, int length)
 {
-  variable_entry->semantic_type = SMTC_USER_TYPE_VECTOR;
+  //associa tipo semantico na tabela de simbolos
+  variable_entry->semantic_type = SMTC_USER_TYPE_VAR;
+  //associa nome do tipo de usuario
   variable_entry->semantic_user_type = type_entry->value.s;
+  //declara como variavel
+  variable_entry->var_vec_or_fun = SMTC_VECTOR;
+  //associa tamanho na tabela de simbolos
   variable_entry->size = type_entry->size * length;
+}
+
+void set_st_semantic_type_and_size_primitive_field(int semantic_type, st_value_t* symbols_table_entry)
+{
+	//associa tipo semantico na tabela de simbolos
+	symbols_table_entry->semantic_type = semantic_type;
+  //declara como variavel
+  symbols_table_entry->var_vec_or_fun = SMTC_VARIABLE;
+  //associa class do campo
+  symbols_table_entry->semantic_user_type = strdup(get_current_type_decl());
+  printf("sem type na funcao: %s\n", symbols_table_entry->semantic_user_type);
+	//associa tamanho na tabela de simbolos
+	symbols_table_entry->size = get_type_size(semantic_type);
+}
+
+void set_st_semantic_type_and_size_vector_field(int semantic_type, int length, st_value_t* symbols_table_entry)
+{
+  //associa tipo semantico na tabela de simbolos
+	symbols_table_entry->semantic_type = semantic_type;
+  //declara como vetor
+  symbols_table_entry->var_vec_or_fun = SMTC_VECTOR;
+  //associa class do campo
+  symbols_table_entry->semantic_user_type = current_type_decl;
+	//associa tamanho na tabela de simbolos
+	symbols_table_entry->size = get_type_size(semantic_type) * length;
 }
 
 void verify_shiftable(st_value_t* symbols_table_entry)
@@ -953,6 +998,12 @@ st_value_t* ensure_type_declared(char* type_name)
     printf("[ERRO SEMANTICO] [Linha %d] Tipo ~%s~ não declarado\n", comp_get_line_number(), type_name);
     exit(SMTC_ERROR_UNDECLARED);
   }
+  else if (st_tipo->semantic_type != SMTC_USER_TYPE_NAME)
+  {
+    printf("[ERRO SEMANTICO] [Linha %d] ~%s~ não é um tipo, deve ser usado como %s\n",
+        comp_get_line_number(), type_name, var_vec_or_fun_to_string(st_tipo));
+		exit(get_semantic_error_var_vec_or_fun(st_tipo));
+  }
   return st_tipo;
 }
 
@@ -978,19 +1029,25 @@ void ensure_identifier_not_declared(char* id_name)
 	}
 }
 
-st_value_t* ensure_identifier_declared(char* id_name)
+st_value_t* ensure_variable_declared(char* variable_name)
 {
   //TODO verificar em todo stack de sts
-  st_value_t* st_identificador = search_id_in_current_st(id_name);
-	if (!st_identificador)
+  st_value_t* st_var = search_id_in_current_st(variable_name);
+	if (!st_var)
 	{
-		printf("[ERRO SEMANTICO] [Linha %d] Identificador ~%s~ não declarado\n", comp_get_line_number(), id_name);
+		printf("[ERRO SEMANTICO] [Linha %d] Variável ~%s~ não declarada\n", comp_get_line_number(), variable_name);
 		exit(SMTC_ERROR_UNDECLARED);
 	}
-  return st_identificador;
+  else if (st_var->var_vec_or_fun != SMTC_VARIABLE)
+  {
+    printf("[ERRO SEMANTICO] [Linha %d] ~%s~ não é uma variável, deve ser usado como %s\n",
+        comp_get_line_number(), variable_name, var_vec_or_fun_to_string(st_var));
+		exit(get_semantic_error_var_vec_or_fun(st_var));
+  }
+  return st_var;
 }
 
-st_value_t* ensure_field_declared(char* field_name)
+st_value_t* ensure_field_declared(char* field_name, char* related_user_type)
 {
   st_value_t* st_campo = search_id_in_global_st(field_name);
 	if (!st_campo)
@@ -998,6 +1055,21 @@ st_value_t* ensure_field_declared(char* field_name)
 		printf("[ERRO SEMANTICO] [Linha %d] Campo ~%s~ não declarado\n", comp_get_line_number(), field_name);
 		exit(SMTC_ERROR_UNDECLARED);
 	}
+  else if (related_user_type)
+  {
+    if (strcmp(st_campo->semantic_user_type, related_user_type) != 0)
+    {
+      printf("[ERRO SEMANTICO] [Linha %d] ~%s~ não é campo da classe ~%s~, e sim da ~%s~\n",
+          comp_get_line_number(), field_name, related_user_type, st_campo->semantic_user_type);
+  		exit(SMTC_ERROR_INVALID_FIELD);
+    }
+  }
+  //related_user_type NULL
+  else {
+    printf("[ERRO SEMANTICO] [Linha %d] ~%s~ não é campo\n", comp_get_line_number(), field_name);
+    exit(SMTC_ERROR_INVALID_FIELD);
+  }
+  return st_campo;
 }
 
 st_value_t* ensure_function_declared(char* function_name)
@@ -1008,5 +1080,46 @@ st_value_t* ensure_function_declared(char* function_name)
 		printf("[ERRO SEMANTICO] [Linha %d] Função ~%s~ não declarada\n", comp_get_line_number(), function_name);
 		exit(SMTC_ERROR_UNDECLARED);
 	}
+  else if (st_identificador->var_vec_or_fun != SMTC_FUNCTION)
+  {
+    printf("[ERRO SEMANTICO] [Linha %d] ~%s~ não é uma função, deve ser usado como %s\n",
+        comp_get_line_number(), function_name, var_vec_or_fun_to_string(st_identificador));
+		exit(get_semantic_error_var_vec_or_fun(st_identificador));
+  }
   return st_identificador;
+}
+
+st_value_t* ensure_vector_declared(char* vector_name)
+{
+  st_value_t* st_identificador = search_id_in_current_st(vector_name);
+	if (!st_identificador)
+	{
+		printf("[ERRO SEMANTICO] [Linha %d] Vetor ~%s~ não declarado\n", comp_get_line_number(), vector_name);
+		exit(SMTC_ERROR_UNDECLARED);
+	}
+  else if (st_identificador->var_vec_or_fun != SMTC_VECTOR)
+  {
+    printf("[ERRO SEMANTICO] [Linha %d] ~%s~ não é um vetor, deve ser usado como %s\n",
+        comp_get_line_number(), vector_name, var_vec_or_fun_to_string(st_identificador));
+		exit(get_semantic_error_var_vec_or_fun(st_identificador));
+  }
+  return st_identificador;
+}
+
+char* var_vec_or_fun_to_string(st_value_t* st_entry)
+{
+  switch (st_entry->var_vec_or_fun) {
+    case SMTC_VARIABLE: return "variável";
+    case SMTC_VECTOR: return "vetor";
+    case SMTC_FUNCTION: return "função";
+  }
+}
+
+int get_semantic_error_var_vec_or_fun(st_value_t* st_entry)
+{
+  switch (st_entry->var_vec_or_fun) {
+    case SMTC_VARIABLE: return SMTC_ERROR_VARIABLE;
+    case SMTC_VECTOR: return SMTC_ERROR_VECTOR;
+    case SMTC_FUNCTION: return SMTC_ERROR_FUNCTION;
+  }
 }
