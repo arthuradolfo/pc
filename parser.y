@@ -495,14 +495,20 @@ attribution_command: TK_IDENTIFICADOR '$' TK_IDENTIFICADOR '=' expression
 		exit(SMTC_ERROR_UNDECLARED);
 	}
 
-	st_value_t* st_campo = $3;
+	st_value_t* st_campo = search_id_in_current_st($3);
+	if (!st_campo)
+	{
+		printf("[ERRO SEMANTICO] [Linha %d] Campo ~%s~ não declarado\n", comp_get_line_number(), (char*)$3);
+		exit(SMTC_ERROR_UNDECLARED);
+	}
+
 	ast_node_value_t* ast_expression = $5->value;
 
 	//checar se tipos são compativeis
 	mark_coercion(st_campo->semantic_type, ast_expression);
 
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, st_identificador));
-	comp_tree_t* node_campo = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_campo->semantic_type, st_campo->semantic_user_type, $3));
+	comp_tree_t* node_campo = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_campo->semantic_type, st_campo->semantic_user_type, st_campo));
 	$$ = tree_make_ternary_node(new_ast_node_value(AST_ATRIBUICAO, SMTC_VOID, NULL, NULL), node_identificador, $5, node_campo);
 }
 
@@ -699,7 +705,7 @@ type_field: encapsulation primitive_type TK_IDENTIFICADOR '[' TK_LIT_INT ']'
 
 	st_value_t* st_entry_lit_int = $5;
 	int size = st_entry_lit_int->value.i;
-	set_st_semantic_type_and_size_vector($2,size, st_identificador);
+	set_st_semantic_type_and_size_vector($2, size, st_identificador);
 }
 
 encapsulation: TK_PR_PROTECTED

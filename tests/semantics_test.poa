@@ -15,7 +15,7 @@ int main() {
   int intao;
   intao = 1;
   zeta = 1;
-  //c =2;
+  string c <= "2";
   int b;
   float c;
   float d;
@@ -25,9 +25,9 @@ int main() {
   a << 3;
 
   b = 2;
-  //
+
   char khar <= 'z';
-  // //c << 2;
+  //c << 2;
   vector[true] = 1.1;
   vector[1.1] = 1.1;
 
@@ -41,6 +41,8 @@ int main() {
   myClassInstance$myIntField = 1;
   myClassInstance$myIntField = 1.2;
   myClassInstance$myIntField = false;
+
+  //myClassInstance$naoExiste = 1;
 
   myClassInstance$myCharField = 'c';
   //myClassInstance$myCharField = b;
