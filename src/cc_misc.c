@@ -577,8 +577,8 @@ void main_finalize (void)
 {
   //implemente esta função com rotinas de finalização, se necessário
 
-  printf("Print table:\n");
-  comp_print_table();
+  // printf("Print table:\n");
+  // comp_print_table();
 
   //gv_declare(AST_PROGRAMA, abstractSyntaxTree, NULL);
   //putToGraphviz(abstractSyntaxTree);
@@ -935,4 +935,78 @@ st_value_t* search_id_in_current_st(char* key)
   strcpy(full_key, key);
 	concatTokenType(full_key, POA_IDENT);
   return dict_get(getCurrentST(), full_key);
+}
+
+st_value_t* search_id_in_global_st(char* key)
+{
+  char* full_key = (char*) malloc((strlen(key)+2)*sizeof(char));
+  strcpy(full_key, key);
+	concatTokenType(full_key, POA_IDENT);
+  return dict_get(symbolsTable, full_key);
+}
+
+st_value_t* ensure_type_declared(char* type_name)
+{
+  st_value_t* st_tipo = search_id_in_global_st(type_name);
+  if (!st_tipo)
+  {
+    printf("[ERRO SEMANTICO] [Linha %d] Tipo ~%s~ não declarado\n", comp_get_line_number(), type_name);
+    exit(SMTC_ERROR_UNDECLARED);
+  }
+  return st_tipo;
+}
+
+void ensure_type_not_declared(char* id_name)
+{
+  st_value_t* st_identificador = search_id_in_current_st(id_name);
+	if (st_identificador)
+	{
+		printf("[ERRO SEMANTICO] [Linha %d] Tipo ~%s~ já declarado na linha %d.\n",
+				comp_get_line_number(), id_name, st_identificador->line);
+		exit(SMTC_ERROR_DECLARED);
+	}
+}
+
+void ensure_identifier_not_declared(char* id_name)
+{
+  st_value_t* st_identificador = search_id_in_current_st(id_name);
+	if (st_identificador)
+	{
+		printf("[ERRO SEMANTICO] [Linha %d] Identificador ~%s~ já declarado na linha %d.\n",
+				comp_get_line_number(), id_name, st_identificador->line);
+		exit(SMTC_ERROR_DECLARED);
+	}
+}
+
+st_value_t* ensure_identifier_declared(char* id_name)
+{
+  //TODO verificar em todo stack de sts
+  st_value_t* st_identificador = search_id_in_current_st(id_name);
+	if (!st_identificador)
+	{
+		printf("[ERRO SEMANTICO] [Linha %d] Identificador ~%s~ não declarado\n", comp_get_line_number(), id_name);
+		exit(SMTC_ERROR_UNDECLARED);
+	}
+  return st_identificador;
+}
+
+st_value_t* ensure_field_declared(char* field_name)
+{
+  st_value_t* st_campo = search_id_in_global_st(field_name);
+	if (!st_campo)
+	{
+		printf("[ERRO SEMANTICO] [Linha %d] Campo ~%s~ não declarado\n", comp_get_line_number(), field_name);
+		exit(SMTC_ERROR_UNDECLARED);
+	}
+}
+
+st_value_t* ensure_function_declared(char* function_name)
+{
+  st_value_t* st_identificador = search_id_in_current_st(function_name);
+	if (!st_identificador)
+	{
+		printf("[ERRO SEMANTICO] [Linha %d] Função ~%s~ não declarada\n", comp_get_line_number(), function_name);
+		exit(SMTC_ERROR_UNDECLARED);
+	}
+  return st_identificador;
 }

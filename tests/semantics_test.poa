@@ -4,47 +4,13 @@ float vector[2];
 
 class myClass_t [ public int myIntField : private char myCharField ];
 
-float floater() {
-
+static myClass_t function()
+{
+ //something
 }
 
 string stringer() {}
 
-int main() {
-  float floatao;
-  int intao;
-  intao = 1;
-  zeta = 1;
-  string c <= "2";
-  int b;
-  float c;
-  float d;
-  a = 1 + floater() + 3;
-  //a = 'c';
-  //a = stringer() + "uma string";
-  a << 3;
+int main(int fly, float fora, bool whiteguy) {
 
-  b = 2;
-
-  char khar <= 'z';
-  //c << 2;
-  vector[true] = 1.1;
-  vector[1.1] = 1.1;
-
-  vector[0] = 1.1;
-  vector[0] = 1;
-  vector[0] = true;
-
-  //vector[0] = 'c';
-  //vector[0] = "uma corda";
-  myClass_t myClassInstance;
-  myClassInstance$myIntField = 1;
-  myClassInstance$myIntField = 1.2;
-  myClassInstance$myIntField = false;
-
-  //myClassInstance$naoExiste = 1;
-
-  myClassInstance$myCharField = 'c';
-  //myClassInstance$myCharField = b;
-  //myClassInstance$myCharField = "s";
 }

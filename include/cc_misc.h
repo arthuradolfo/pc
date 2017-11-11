@@ -244,4 +244,40 @@ st_value_t* putToCurrentST(char* key, int line, int token_type);
  */
 st_value_t* search_id_in_current_st(char* key);
 
+/**
+ * Checa na tabela de simbolos global se tipo ja foi declarado.
+ * Se não tiver sido, da erro
+ */
+st_value_t* ensure_type_declared(char* type_name);
+
+/**
+* Verifica na tabela de simbolos atual (do topo da pilha) se tipo ja foi declarado.
+* Se já tiver sido, da erro.
+*/
+void ensure_type_not_declared(char* id_name);
+
+/**
+ * Verifica na tabela de simbolos atual (do topo da pilha) se identificador ja foi declarado.
+ * Se já tiver sido, da erro.
+ */
+void ensure_identifier_not_declared(char* id_name);
+
+/**
+ * Verifica na tabela de simbolos atual (do topo da pilha) se identificador ja foi declarado.
+ * Se não tiver sido, da erro.
+ */
+st_value_t* ensure_identifier_declared(char* id_name);
+
+/**
+ * Verifica na tabela de simbolos global se campo ja foi declarado.
+ * Se não tiver sido, da erro.
+ */
+st_value_t* ensure_field_declared(char* field_name);
+
+/**
+ * Verifica na tabela de simbolos global se funcao ja foi declarada.
+ * Se não tiver sido, da erro.
+ */
+st_value_t* ensure_function_declared(char* function_name);
+
 #endif

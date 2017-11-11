@@ -1,5 +1,5 @@
 /*
-  Arthur Adolfo 			- 	00262515
+  Arthur Adolfo 						- 	00262515
   Gabriel de Souza Seibel 	- 	00262513
 */
 %code requires{
@@ -94,7 +94,6 @@
 %type<tree> operator
 %type<tree> literal
 %type<semantic_type> primitive_type
-%type<semantic_type> any_type
 %type<size> type_fields
 %type<size> type_field
 
@@ -131,33 +130,47 @@ programa: def_function programa
 
 def_global_var: primitive_type TK_IDENTIFICADOR ';'
 {
-	//insere identificador declarado na tabela de simbolos global
 	char* id_name = $2;
+
+	//verifica declaracao anterior do identificador
+	ensure_identifier_not_declared(id_name);
+
+	//insere identificador na tabela de simbolos global
 	st_value_t* st_identificador = putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_primitive($1, st_identificador);
 }
 def_global_var: primitive_type TK_IDENTIFICADOR '[' TK_LIT_INT ']' ';'
 {
-	//insere identificador declarado na tabela de simbolos global
 	char* id_name = $2;
-	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
 
+	//verifica declaracao anterior do identificador
+	ensure_identifier_not_declared(id_name);
+
+	//insere identificador na tabela de simbolos global
+	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
 	st_value_t* st_entry_lit_int = $4;
 	int size = st_entry_lit_int->value.i;
 	set_st_semantic_type_and_size_vector($1, size, st_identificador);
 }
 def_global_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR ';'
 {
-	//insere identificador declarado na tabela de simbolos global
 	char* id_name = $3;
-	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
 
+	//verifica declaracao anterior do identificador
+	ensure_identifier_not_declared(id_name);
+
+	//insere identificador na tabela de simbolos global
+	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_primitive($2, st_identificador);
 }
 def_global_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR '[' TK_LIT_INT ']' ';'
 {
-	//insere identificador declarado na tabela de simbolos global
 	char* id_name = $3;
+
+	//verifica declaracao anterior do identificador
+	ensure_identifier_not_declared(id_name);
+
+	//insere identificador na tabela de simbolos global
 	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
 
 	st_value_t* st_entry_lit_int = $5;
@@ -167,51 +180,71 @@ def_global_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR '[' TK_LIT_INT ']' 
 
 def_global_var: TK_IDENTIFICADOR TK_IDENTIFICADOR ';'
 {
-	//insere identificador declarado na tabela de simbolos global
-	char* id_name = $2;
-	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
+	//verifica se tipo existe
+	ensure_type_declared($1);
 
-	set_st_semantic_type_and_size_user_type($1,st_identificador);
+	//verifica declaracao anterior do identificador
+	char* id_name = $2;
+	ensure_identifier_not_declared(id_name);
+
+	//insere identificador na tabela de simbolos global
+	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
+	set_st_semantic_type_and_size_user_type($1, st_identificador);
 }
 def_global_var: TK_IDENTIFICADOR TK_IDENTIFICADOR '[' TK_LIT_INT ']' ';'
 {
-	//insere identificador declarado na tabela de simbolos global
-	char* id_name = $2;
-	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
+	//verifica se tipo existe
+	ensure_type_declared($1);
 
+	//verifica declaracao anterior do identificador
+	char* id_name = $2;
+	ensure_identifier_not_declared(id_name);
+
+	//insere identificador na tabela de simbolos global
+	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
 	st_value_t* st_entry_lit_int = $4;
 	int size = st_entry_lit_int->value.i;
 	set_st_semantic_type_and_size_vector_user_type($1, st_identificador, size);
 }
 def_global_var: TK_PR_STATIC TK_IDENTIFICADOR TK_IDENTIFICADOR ';'
 {
-	//insere identificador declarado na tabela de simbolos global
-	char* id_name = $3;
-	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
+	//verifica se tipo ($2) existe
+	ensure_type_declared($2);
 
+	//verifica declaracao anterior do identificador
+	char* id_name = $3;
+	ensure_identifier_not_declared(id_name);
+
+	//insere identificador na tabela de simbolos global
+	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_user_type($2, st_identificador);
 }
 def_global_var: TK_PR_STATIC TK_IDENTIFICADOR TK_IDENTIFICADOR '[' TK_LIT_INT ']' ';'
 {
-	//insere identificador declarado na tabela de simbolos global
-	char* id_name = $3;
-	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
+	//verifica se tipo ($2) existe
+	ensure_type_declared($2);
 
+	//verifica declaracao anterior do identificador
+	char* id_name = $3;
+	ensure_identifier_not_declared(id_name);
+
+	//insere identificador na tabela de simbolos global
+	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
 	st_value_t* st_entry_lit_int = $5;
 	int size = st_entry_lit_int->value.i;
 	set_st_semantic_type_and_size_vector_user_type($2, st_identificador, size);
 }
-
-any_type: TK_IDENTIFICADOR { $$ = SMTC_USER_TYPE_VAR; }
-any_type: primitive_type { $$ = $1; }
 
 
 // funcoes
 
 def_function: primitive_type TK_IDENTIFICADOR '(' parameters ')' body
 {
-	//insere identificador declarado na tabela de simbolos global
+	//verifica declaracao anterior do identificador
 	char* id_name = $2;
+	ensure_identifier_not_declared(id_name);
+
+	//insere identificador na tabela de simbolos global
 	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
 
 	$$ = tree_make_node(new_ast_node_value(AST_FUNCAO, SMTC_VOID, NULL, st_identificador));
@@ -222,8 +255,11 @@ def_function: primitive_type TK_IDENTIFICADOR '(' parameters ')' body
 }
 def_function: TK_PR_STATIC primitive_type TK_IDENTIFICADOR '(' parameters ')' body
 {
-	//insere identificador declarado na tabela de simbolos global
+	//verifica declaracao anterior do identificador
 	char* id_name = $3;
+	ensure_identifier_not_declared(id_name);
+
+	//insere identificador na tabela de simbolos global
 	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
 
 	$$ = tree_make_node(new_ast_node_value(AST_FUNCAO, SMTC_VOID, NULL, st_identificador));
@@ -235,8 +271,14 @@ def_function: TK_PR_STATIC primitive_type TK_IDENTIFICADOR '(' parameters ')' bo
 
 def_function: TK_IDENTIFICADOR TK_IDENTIFICADOR '(' parameters ')' body
 {
-	//insere identificador declarado na tabela de simbolos global
+	//verifica se tipo ($1) existe
+	ensure_type_declared($1);
+
+	//verifica declaracao anterior do identificador
 	char* id_name = $2;
+	ensure_identifier_not_declared(id_name);
+
+	//insere identificador na tabela de simbolos global
 	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
 
 	$$ = tree_make_node(new_ast_node_value(AST_FUNCAO, SMTC_VOID, NULL, st_identificador));
@@ -247,8 +289,14 @@ def_function: TK_IDENTIFICADOR TK_IDENTIFICADOR '(' parameters ')' body
 }
 def_function: TK_PR_STATIC TK_IDENTIFICADOR TK_IDENTIFICADOR '(' parameters ')' body
 {
-	//insere identificador declarado na tabela de simbolos global
+	//verifica se tipo ($2) existe
+	ensure_type_declared($2);
+
+	//verifica declaracao anterior do identificador
 	char* id_name = $3;
+	ensure_identifier_not_declared(id_name);
+
+	//insere identificador na tabela de simbolos global
 	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
 
 	$$ = tree_make_node(new_ast_node_value(AST_FUNCAO, SMTC_VOID, NULL, st_identificador));
@@ -267,19 +315,51 @@ parameters: parameter parameter_chain
 parameter_chain: ',' parameter
 parameter_chain: ',' parameter parameter_chain
 
-parameter: any_type TK_IDENTIFICADOR
+parameter: primitive_type TK_IDENTIFICADOR
 {
-	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
+	//verifica declaracao anterior do identificador
 	char* id_name = $2;
+	ensure_identifier_not_declared(id_name);
+
+	//insere identificador na tabela de simbolos global
 	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_primitive($1, st_identificador);
 }
-parameter: TK_PR_CONST any_type TK_IDENTIFICADOR
+parameter: TK_PR_CONST primitive_type TK_IDENTIFICADOR
 {
-	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
+	//verifica declaracao anterior do identificador
 	char* id_name = $3;
+	ensure_identifier_not_declared(id_name);
+
+	//insere identificador na tabela de simbolos global
 	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_primitive($2, st_identificador);
+}
+parameter: TK_IDENTIFICADOR TK_IDENTIFICADOR
+{
+	//verifica se tipo existe
+	ensure_type_declared($1);
+
+	//verifica declaracao anterior do identificador
+	char* id_name = $2;
+	ensure_identifier_not_declared(id_name);
+
+	//insere identificador na tabela de simbolos global
+	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
+	set_st_semantic_type_and_size_user_type($1, st_identificador);
+}
+parameter: TK_PR_CONST TK_IDENTIFICADOR TK_IDENTIFICADOR
+{
+	//verifica se tipo existe
+	ensure_type_declared($2);
+
+	//verifica declaracao anterior do identificador
+	char* id_name = $3;
+	ensure_identifier_not_declared(id_name);
+
+	//insere identificador na tabela de simbolos global
+	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
+	set_st_semantic_type_and_size_user_type($2, st_identificador);
 }
 
 command_sequence: %empty { $$ = NULL; }
@@ -315,8 +395,14 @@ io_command: output_command { $$ = $1; }
 
 def_local_var: TK_IDENTIFICADOR TK_IDENTIFICADOR
 {
-	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
+	//verifica se tipo existe
+	ensure_type_declared($1);
+
+	//verifica declaracao anterior do identificador
 	char* id_name = $2;
+	ensure_identifier_not_declared(id_name);
+
+	//insere identificador na tabela de simbolos global
 	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_user_type($1, st_identificador);
 
@@ -324,8 +410,10 @@ def_local_var: TK_IDENTIFICADOR TK_IDENTIFICADOR
 }
 def_local_var: primitive_type TK_IDENTIFICADOR
 {
-	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
 	char* id_name = $2;
+	ensure_identifier_not_declared(id_name);
+
+	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
 	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_primitive($1, st_identificador);
 
@@ -333,8 +421,10 @@ def_local_var: primitive_type TK_IDENTIFICADOR
 }
 def_local_var: primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 {
-	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
 	char* id_name = $2;
+	ensure_identifier_not_declared(id_name);
+
+	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
 	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_primitive($1, st_identificador);
 
@@ -348,8 +438,14 @@ def_local_var: primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 }
 def_local_var: TK_PR_STATIC TK_IDENTIFICADOR TK_IDENTIFICADOR
 {
-	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
+	//verifica se tipo existe
+	ensure_type_declared($2);
+
+	//verifica declaracao anterior do identificador
 	char* id_name = $3;
+	ensure_identifier_not_declared(id_name);
+
+	//insere identificador na tabela de simbolos global
 	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_user_type($2, st_identificador);
 
@@ -357,8 +453,10 @@ def_local_var: TK_PR_STATIC TK_IDENTIFICADOR TK_IDENTIFICADOR
 }
 def_local_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR
 {
-	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
 	char* id_name = $3;
+	ensure_identifier_not_declared(id_name);
+
+	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
 	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_primitive($2, st_identificador);
 
@@ -366,8 +464,10 @@ def_local_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR
 }
 def_local_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 {
-	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
 	char* id_name = $3;
+	ensure_identifier_not_declared(id_name);
+
+	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
 	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_primitive($2, st_identificador);
 
@@ -381,8 +481,14 @@ def_local_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 }
 def_local_var: TK_PR_CONST TK_IDENTIFICADOR TK_IDENTIFICADOR
 {
-	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
+	//verifica se tipo existe
+	ensure_type_declared($2);
+
+	//verifica declaracao anterior do identificador
 	char* id_name = $3;
+	ensure_identifier_not_declared(id_name);
+
+	//insere identificador na tabela de simbolos global
 	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_user_type($2, st_identificador);
 
@@ -390,8 +496,10 @@ def_local_var: TK_PR_CONST TK_IDENTIFICADOR TK_IDENTIFICADOR
 }
 def_local_var: TK_PR_CONST primitive_type TK_IDENTIFICADOR
 {
-	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
 	char* id_name = $3;
+	ensure_identifier_not_declared(id_name);
+
+	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
 	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_primitive($2, st_identificador);
 
@@ -399,8 +507,10 @@ def_local_var: TK_PR_CONST primitive_type TK_IDENTIFICADOR
 }
 def_local_var: TK_PR_CONST primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 {
-	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
 	char* id_name = $3;
+	ensure_identifier_not_declared(id_name);
+
+	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
 	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_primitive($2, st_identificador);
 
@@ -414,8 +524,14 @@ def_local_var: TK_PR_CONST primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 }
 def_local_var: TK_PR_STATIC TK_PR_CONST TK_IDENTIFICADOR TK_IDENTIFICADOR
 {
-	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
+	//verifica se tipo existe
+	ensure_type_declared($3);
+
+	//verifica declaracao anterior do identificador
 	char* id_name = $4;
+	ensure_identifier_not_declared(id_name);
+
+	//insere identificador na tabela de simbolos global
 	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_user_type($3, st_identificador);
 
@@ -423,8 +539,10 @@ def_local_var: TK_PR_STATIC TK_PR_CONST TK_IDENTIFICADOR TK_IDENTIFICADOR
 }
 def_local_var: TK_PR_STATIC TK_PR_CONST primitive_type TK_IDENTIFICADOR
 {
-	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
 	char* id_name = $4;
+	ensure_identifier_not_declared(id_name);
+
+	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
 	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_primitive($3, st_identificador);
 
@@ -432,8 +550,10 @@ def_local_var: TK_PR_STATIC TK_PR_CONST primitive_type TK_IDENTIFICADOR
 }
 def_local_var: TK_PR_STATIC TK_PR_CONST primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 {
-	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
 	char* id_name = $4;
+	ensure_identifier_not_declared(id_name);
+
+	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
 	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_primitive($3, st_identificador);
 
@@ -448,12 +568,8 @@ def_local_var: TK_PR_STATIC TK_PR_CONST primitive_type TK_IDENTIFICADOR TK_OC_LE
 
 attribution_command: TK_IDENTIFICADOR '=' expression
 {
-	st_value_t* st_identificador = search_id_in_current_st($1);
-	if (!st_identificador)
-	{
-		printf("[ERRO SEMANTICO] [Linha %d] Identificador ~%s~ não declarado\n", comp_get_line_number(), (char*)$1);
-		exit(SMTC_ERROR_UNDECLARED);
-	}
+	//garante que identificador ja foi declarado
+	st_value_t* st_identificador = ensure_identifier_declared($1);
 
 	ast_node_value_t* ast_expression = $3->value;
 
@@ -465,14 +581,10 @@ attribution_command: TK_IDENTIFICADOR '=' expression
 }
 attribution_command: TK_IDENTIFICADOR '[' expression ']' '=' expression
 {
-	st_value_t* st_identificador = search_id_in_current_st($1);
-	if (!st_identificador)
-	{
-		printf("[ERRO SEMANTICO] [Linha %d] Identificador ~%s~ não declarado\n", comp_get_line_number(), (char*)$1);
-		exit(SMTC_ERROR_UNDECLARED);
-	}
+	//garante que identificador ja foi declarado
+	st_value_t* st_identificador = ensure_identifier_declared($1);
 
-	//checar se indice é int
+	//verifica se indice é int
 	ast_node_value_t* ast_index = $3->value;
 	mark_coercion(SMTC_INT, ast_index);
 
@@ -488,19 +600,9 @@ attribution_command: TK_IDENTIFICADOR '[' expression ']' '=' expression
 }
 attribution_command: TK_IDENTIFICADOR '$' TK_IDENTIFICADOR '=' expression
 {
-	st_value_t* st_identificador = search_id_in_current_st($1);
-	if (!st_identificador)
-	{
-		printf("[ERRO SEMANTICO] [Linha %d] Identificador ~%s~ não declarado\n", comp_get_line_number(), (char*)$1);
-		exit(SMTC_ERROR_UNDECLARED);
-	}
+	st_value_t* st_identificador = ensure_identifier_declared($1);
 
-	st_value_t* st_campo = search_id_in_current_st($3);
-	if (!st_campo)
-	{
-		printf("[ERRO SEMANTICO] [Linha %d] Campo ~%s~ não declarado\n", comp_get_line_number(), (char*)$3);
-		exit(SMTC_ERROR_UNDECLARED);
-	}
+	st_value_t* st_campo = ensure_field_declared($3);
 
 	ast_node_value_t* ast_expression = $5->value;
 
@@ -526,24 +628,14 @@ output_command: TK_PR_OUTPUT expression_sequence
 
 function_call: TK_IDENTIFICADOR '(' expression_sequence ')'
 {
-	st_value_t* st_identificador = search_id_in_current_st($1);
-	if (!st_identificador)
-	{
-		printf("[ERRO SEMANTICO] [Linha %d] Identificador ~%s~ não declarado\n", comp_get_line_number(), (char*)$1);
-		exit(SMTC_ERROR_UNDECLARED);
-	}
+	st_value_t* st_identificador = ensure_function_declared($1);
 
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, st_identificador));
 	$$ = tree_make_binary_node(new_ast_node_value(AST_CHAMADA_DE_FUNCAO, st_identificador->semantic_type, st_identificador->semantic_user_type, NULL), node_identificador, $3);
 }
 function_call: TK_IDENTIFICADOR '(' ')'
 {
-	st_value_t* st_identificador = search_id_in_current_st($1);
-	if (!st_identificador)
-	{
-		printf("[ERRO SEMANTICO] [Linha %d] Identificador ~%s~ não declarado\n", comp_get_line_number(), (char*)$1);
-		exit(SMTC_ERROR_UNDECLARED);
-	}
+	st_value_t* st_identificador = ensure_function_declared($1);
 
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, st_identificador));
 	$$ = tree_make_unary_node(new_ast_node_value(AST_CHAMADA_DE_FUNCAO, st_identificador->semantic_type, st_identificador->semantic_user_type, NULL), node_identificador);
@@ -551,12 +643,7 @@ function_call: TK_IDENTIFICADOR '(' ')'
 
 shift_command: TK_IDENTIFICADOR TK_OC_SL TK_LIT_INT
 {
-	st_value_t* st_identificador = search_id_in_current_st($1);
-	if (!st_identificador)
-	{
-		printf("[ERRO SEMANTICO] [Linha %d] Identificador ~%s~ não declarado\n", comp_get_line_number(), (char*)$1);
-		exit(SMTC_ERROR_UNDECLARED);
-	}
+	st_value_t* st_identificador = ensure_identifier_declared($1);
 
 	verify_shiftable(st_identificador);
 
@@ -570,14 +657,9 @@ shift_command: TK_IDENTIFICADOR TK_OC_SL TK_LIT_INT
 }
 shift_command: TK_IDENTIFICADOR TK_OC_SR TK_LIT_INT
 {
-	st_value_t* st_identificador = search_id_in_current_st($1);
-	if (!st_identificador)
-	{
-		printf("[ERRO SEMANTICO] [Linha %d] Identificador ~%s~ não declarado\n", comp_get_line_number(), (char*)$1);
-		exit(SMTC_ERROR_UNDECLARED);
-	}
+	st_value_t* st_identificador = ensure_identifier_declared($1);
 
-	verify_shiftable($1);
+	verify_shiftable(st_identificador);
 
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, SMTC_INT, NULL, st_identificador));
 
@@ -679,8 +761,10 @@ action_command: TK_PR_BREAK { $$ = NULL; }
 
 def_type: TK_PR_CLASS TK_IDENTIFICADOR '[' type_fields ']' ';'
 {
-	//insere identificador declarado na tabela de simbolos global
 	char* id_name = $2;
+	ensure_type_not_declared(id_name);
+
+	//insere identificador declarado na tabela de simbolos global
 	st_value_t* st_identificador = putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
 
 	st_identificador->semantic_type = SMTC_USER_TYPE_NAME;
@@ -690,8 +774,10 @@ type_fields: type_field { $$ = $1; }
 type_fields: type_field ':' type_fields { $$ = $1 + $3; }
 type_field: encapsulation primitive_type TK_IDENTIFICADOR
 {
-	//insere identificador declarado na tabela de simbolos global
 	char* id_name = $3;
+	ensure_identifier_not_declared(id_name);
+
+	//insere identificador declarado na tabela de simbolos global
 	st_value_t* st_identificador = putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_primitive($2, st_identificador);
 
@@ -699,8 +785,10 @@ type_field: encapsulation primitive_type TK_IDENTIFICADOR
 }
 type_field: encapsulation primitive_type TK_IDENTIFICADOR '[' TK_LIT_INT ']'
 {
-	//insere identificador declarado na tabela de simbolos global
 	char* id_name = $3;
+	ensure_identifier_not_declared(id_name);
+
+	//insere identificador declarado na tabela de simbolos global
 	st_value_t* st_identificador = putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
 
 	st_value_t* st_entry_lit_int = $5;
@@ -758,26 +846,19 @@ sub_expression: '(' expression ')' { $$ = $2; }
 sub_expression: literal {	$$ = $1; }
 sub_expression: TK_IDENTIFICADOR
 {
-	st_value_t* st_identificador = search_id_in_current_st($1);
-	if (!st_identificador)
-	{
-		printf("[ERRO SEMANTICO] [Linha %d] Identificador ~%s~ não declarado\n", comp_get_line_number(), (char*)$1);
-		exit(SMTC_ERROR_UNDECLARED);
-	}
+	st_value_t* st_identificador = ensure_identifier_declared($1);
 
 	$$ = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, st_identificador));
 }
 sub_expression: TK_IDENTIFICADOR '[' expression ']'
 {
-	//TODO verificar se expression é int
-	st_value_t* st_identificador = search_id_in_current_st($1);
-	if (!st_identificador)
-	{
-		printf("[ERRO SEMANTICO] [Linha %d] Identificador ~%s~ não declarado\n", comp_get_line_number(), (char*)$1);
-		exit(SMTC_ERROR_UNDECLARED);
-	}
+	//checar se indice é int
+	ast_node_value_t* ast_index = $3->value;
+	mark_coercion(SMTC_INT, ast_index);
 
-	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, $1));
+	st_value_t* st_identificador = ensure_identifier_declared($1);
+
+	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, st_identificador));
 	$$ = tree_make_binary_node(new_ast_node_value(AST_VETOR_INDEXADO, get_semantic_type_of_indexed_vector(st_identificador->semantic_type), st_identificador->semantic_user_type, NULL), node_identificador, $3);
 }
 sub_expression: function_call { $$ = $1; }
