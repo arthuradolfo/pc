@@ -343,7 +343,6 @@ int getASTtype(comp_tree_t* node)
  * identificador), AST_LITERAL (o lexema do literal) ou
  * AST_FUNCAO (o lexema do identificador da função).
  * Se nao for nenhum desses, retorna NULL
- * //TODO implementar de fato
  */
 char* getASTlexem(comp_tree_t* node)
 {
@@ -578,7 +577,8 @@ void main_finalize (void)
 {
   //implemente esta função com rotinas de finalização, se necessário
 
-  //comp_print_table();
+  printf("Print table:\n");
+  comp_print_table();
 
   //gv_declare(AST_PROGRAMA, abstractSyntaxTree, NULL);
   //putToGraphviz(abstractSyntaxTree);
@@ -631,6 +631,7 @@ ast_node_value_t* new_ast_node_value(int syntactic_type, int semantic_type, char
 
 void print_semantic_type(int semantic_type)
 {
+  printf("[type %d] ", semantic_type);
   switch (semantic_type)
   {
     case SMTC_VOID: printf("void "); break;
@@ -645,16 +646,18 @@ void print_semantic_type(int semantic_type)
 
 void print_semantic_type_ln(int semantic_type)
 {
+  printf("[type %d] ", semantic_type);
   switch (semantic_type)
   {
-    case SMTC_VOID: printf("void\n"); break;
-    case SMTC_INT: printf("int\n"); break;
-    case SMTC_FLOAT: printf("float\n"); break;
-    case SMTC_CHAR: printf("char\n"); break;
-    case SMTC_STRING: printf("string\n"); break;
-    case SMTC_BOOL: printf("bool\n"); break;
-    case SMTC_NO_COERCION: printf("no coercion\n"); break;
+    case SMTC_VOID: printf("void"); break;
+    case SMTC_INT: printf("int"); break;
+    case SMTC_FLOAT: printf("float"); break;
+    case SMTC_CHAR: printf("char"); break;
+    case SMTC_STRING: printf("string"); break;
+    case SMTC_BOOL: printf("bool"); break;
+    case SMTC_NO_COERCION: printf("no coercion"); break;
   }
+  printf("\n");
 }
 
 int get_coercion_needed(int first_type, int second_type)
@@ -870,4 +873,66 @@ void mark_coercion_where_needed(ast_node_value_t* ast_node_1, ast_node_value_t* 
     ast_node_1->coercion = resulting_type;
   else if (type_2 != resulting_type)
     ast_node_2->coercion = resulting_type;
+}
+
+comp_dict_t* getCurrentST()
+{
+  //TODO usar pilha
+  return symbolsTable;
+}
+
+st_value_t* putToCurrentST(char* key, int line, int token_type)
+{
+  comp_dict_t* currentST = getCurrentST();
+
+  if (!currentST) return NULL;
+
+  char *value;
+  char *key_aux = (char *) malloc((strlen(key)+2)*sizeof(char));
+  removeQuotes(key);
+
+  strcpy(key_aux, key);
+
+  value = strdup(key);
+
+  concatTokenType(key_aux, token_type);
+
+  st_value_t* entryValue = (st_value_t *) malloc(sizeof(st_value_t));
+
+  entryValue->line = line;
+  entryValue->token_type = token_type;
+
+  setEntryValue(entryValue, value);
+
+  st_value_t* getEntryPointerToFree = dict_get(pointersToFreeTable, key);
+  if(getEntryPointerToFree) {
+    getEntryPointerToFree->line = line;
+  }
+  else {
+    dict_put(pointersToFreeTable, key, entryValue);
+  }
+
+  st_value_t* getEntry = dict_get(currentST, key_aux);
+  if(getEntry) {
+    free(key_aux);
+    if(token_type == POA_IDENT || token_type == POA_LIT_STRING) {
+     free(entryValue->value.s);
+    }
+    free(entryValue);
+    getEntry->line = line;
+    return getEntry;
+  }
+  else {
+    dict_put(currentST, key_aux, entryValue);
+    free(key_aux);
+    return entryValue;
+  }
+}
+
+st_value_t* search_id_in_current_st(char* key)
+{
+  char* full_key = (char*) malloc((strlen(key)+2)*sizeof(char));
+  strcpy(full_key, key);
+	concatTokenType(full_key, POA_IDENT);
+  return dict_get(getCurrentST(), full_key);
 }

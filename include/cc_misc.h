@@ -228,4 +228,20 @@ void mark_coercion(int semantic_type, ast_node_value_t* ast_to_coerce);
  */
 void mark_coercion_where_needed(ast_node_value_t* ast_node_1, ast_node_value_t* ast_node_2);
 
+/**
+ * Retorna a tabela de símbolos "atual" (do topo da pilha)
+ */
+comp_dict_t* getCurrentST();
+
+/**
+ * Coloca o token na tabela de simbolos "atual" (do topo da pilha)
+ * @return st_value_t* entryValue
+ */
+st_value_t* putToCurrentST(char* key, int line, int token_type);
+
+/**
+ * Procura um identificador na tabela de simbolos "atual" (do topo da pilha)
+ */
+st_value_t* search_id_in_current_st(char* key);
+
 #endif

@@ -58,7 +58,7 @@ FLT  {INT}\.{DGT}+
 "||"						              return TK_OC_OR;
 "<<"						              return TK_OC_SL;
 ">>"						              return TK_OC_SR;
-{LTR}({LTR}|{DGT})*           yylval.valor_lexico = putToSymbolsTable(yytext, comp_get_line_number(), POA_IDENT); return TK_IDENTIFICADOR;
+{LTR}({LTR}|{DGT})*           yylval.valor_lexico = strdup(yytext); return TK_IDENTIFICADOR;
 {BCM}(.*)		  			          //nao faz nada
 "/*"((.|\n)*)"*/"		  	      comp_set_line_number(yytext);
 [ \t]+        				        //nao faz nada

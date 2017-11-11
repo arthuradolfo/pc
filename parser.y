@@ -129,34 +129,77 @@ programa: def_function programa
 
 //declaracao de globais
 
-def_global_var: primitive_type TK_IDENTIFICADOR ';' { set_st_semantic_type_and_size_primitive($1, $2);  }
+def_global_var: primitive_type TK_IDENTIFICADOR ';'
+{
+	//insere identificador declarado na tabela de simbolos global
+	char* id_name = $2;
+	st_value_t* st_identificador = putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
+	set_st_semantic_type_and_size_primitive($1, st_identificador);
+}
 def_global_var: primitive_type TK_IDENTIFICADOR '[' TK_LIT_INT ']' ';'
 {
+	//insere identificador declarado na tabela de simbolos global
+	char* id_name = $2;
+	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
+
 	st_value_t* st_entry_lit_int = $4;
 	int size = st_entry_lit_int->value.i;
-	set_st_semantic_type_and_size_vector($1,size,$2);
+	set_st_semantic_type_and_size_vector($1, size, st_identificador);
 }
-def_global_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR ';' {	set_st_semantic_type_and_size_primitive($2, $3); }
+def_global_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR ';'
+{
+	//insere identificador declarado na tabela de simbolos global
+	char* id_name = $3;
+	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
+
+	set_st_semantic_type_and_size_primitive($2, st_identificador);
+}
 def_global_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR '[' TK_LIT_INT ']' ';'
 {
+	//insere identificador declarado na tabela de simbolos global
+	char* id_name = $3;
+	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
+
 	st_value_t* st_entry_lit_int = $5;
 	int size = st_entry_lit_int->value.i;
-	set_st_semantic_type_and_size_vector($2,size,$3);
+	set_st_semantic_type_and_size_vector($2, size, st_identificador);
 }
 
-def_global_var: TK_IDENTIFICADOR TK_IDENTIFICADOR ';' { set_st_semantic_type_and_size_user_type($1,$2); }
+def_global_var: TK_IDENTIFICADOR TK_IDENTIFICADOR ';'
+{
+	//insere identificador declarado na tabela de simbolos global
+	char* id_name = $2;
+	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
+
+	set_st_semantic_type_and_size_user_type($1,st_identificador);
+}
 def_global_var: TK_IDENTIFICADOR TK_IDENTIFICADOR '[' TK_LIT_INT ']' ';'
 {
+	//insere identificador declarado na tabela de simbolos global
+	char* id_name = $2;
+	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
+
 	st_value_t* st_entry_lit_int = $4;
 	int size = st_entry_lit_int->value.i;
-	set_st_semantic_type_and_size_vector_user_type($1,$2, size);
+	set_st_semantic_type_and_size_vector_user_type($1, st_identificador, size);
 }
-def_global_var: TK_PR_STATIC TK_IDENTIFICADOR TK_IDENTIFICADOR ';' { set_st_semantic_type_and_size_user_type($2, $3); }
+def_global_var: TK_PR_STATIC TK_IDENTIFICADOR TK_IDENTIFICADOR ';'
+{
+	//insere identificador declarado na tabela de simbolos global
+	char* id_name = $3;
+	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
+
+	set_st_semantic_type_and_size_user_type($2, st_identificador);
+}
 def_global_var: TK_PR_STATIC TK_IDENTIFICADOR TK_IDENTIFICADOR '[' TK_LIT_INT ']' ';'
 {
+	//insere identificador declarado na tabela de simbolos global
+	char* id_name = $3;
+	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
+
 	st_value_t* st_entry_lit_int = $5;
 	int size = st_entry_lit_int->value.i;
-	set_st_semantic_type_and_size_vector_user_type($2,$3, size);
+	set_st_semantic_type_and_size_vector_user_type($2, st_identificador, size);
 }
 
 any_type: TK_IDENTIFICADOR { $$ = SMTC_USER_TYPE_VAR; }
@@ -167,36 +210,52 @@ any_type: primitive_type { $$ = $1; }
 
 def_function: primitive_type TK_IDENTIFICADOR '(' parameters ')' body
 {
-	$$ = tree_make_node(new_ast_node_value(AST_FUNCAO, SMTC_VOID, NULL, $2));
+	//insere identificador declarado na tabela de simbolos global
+	char* id_name = $2;
+	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
+
+	$$ = tree_make_node(new_ast_node_value(AST_FUNCAO, SMTC_VOID, NULL, st_identificador));
 	if ($6)
 		tree_insert_node($$,$6);
 
-	set_st_semantic_type_and_size_primitive($1,$2);
+	set_st_semantic_type_and_size_primitive($1, st_identificador);
 }
 def_function: TK_PR_STATIC primitive_type TK_IDENTIFICADOR '(' parameters ')' body
 {
-	$$ = tree_make_node(new_ast_node_value(AST_FUNCAO, SMTC_VOID, NULL, $3));
+	//insere identificador declarado na tabela de simbolos global
+	char* id_name = $3;
+	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
+
+	$$ = tree_make_node(new_ast_node_value(AST_FUNCAO, SMTC_VOID, NULL, st_identificador));
 	if ($7)
 		tree_insert_node($$,$7);
 
-	set_st_semantic_type_and_size_primitive($2,$3);
+	set_st_semantic_type_and_size_primitive($2, st_identificador);
 }
 
 def_function: TK_IDENTIFICADOR TK_IDENTIFICADOR '(' parameters ')' body
 {
-	$$ = tree_make_node(new_ast_node_value(AST_FUNCAO, SMTC_VOID, NULL, $2));
+	//insere identificador declarado na tabela de simbolos global
+	char* id_name = $2;
+	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
+
+	$$ = tree_make_node(new_ast_node_value(AST_FUNCAO, SMTC_VOID, NULL, st_identificador));
 	if ($6)
 		tree_insert_node($$,$6);
 
-	set_st_semantic_type_and_size_user_type($1,$2);
+	set_st_semantic_type_and_size_user_type($1, st_identificador);
 }
 def_function: TK_PR_STATIC TK_IDENTIFICADOR TK_IDENTIFICADOR '(' parameters ')' body
 {
-	$$ = tree_make_node(new_ast_node_value(AST_FUNCAO, SMTC_VOID, NULL, $3));
+	//insere identificador declarado na tabela de simbolos global
+	char* id_name = $3;
+	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
+
+	$$ = tree_make_node(new_ast_node_value(AST_FUNCAO, SMTC_VOID, NULL, st_identificador));
 	if ($7)
 		tree_insert_node($$,$7);
 
-	set_st_semantic_type_and_size_user_type($2,$3);
+	set_st_semantic_type_and_size_user_type($2, st_identificador);
 }
 
 body: '{' command_sequence '}' { $$ = $2; }
@@ -209,7 +268,19 @@ parameter_chain: ',' parameter
 parameter_chain: ',' parameter parameter_chain
 
 parameter: any_type TK_IDENTIFICADOR
+{
+	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
+	char* id_name = $2;
+	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
+	set_st_semantic_type_and_size_primitive($1, st_identificador);
+}
 parameter: TK_PR_CONST any_type TK_IDENTIFICADOR
+{
+	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
+	char* id_name = $3;
+	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
+	set_st_semantic_type_and_size_primitive($2, st_identificador);
+}
 
 command_sequence: %empty { $$ = NULL; }
 command_sequence: command_in_block ';' command_sequence
@@ -244,131 +315,193 @@ io_command: output_command { $$ = $1; }
 
 def_local_var: TK_IDENTIFICADOR TK_IDENTIFICADOR
 {
+	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
+	char* id_name = $2;
+	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
+	set_st_semantic_type_and_size_user_type($1, st_identificador);
+
 	$$ = NULL;
-	set_st_semantic_type_and_size_user_type($1, $2);
 }
 def_local_var: primitive_type TK_IDENTIFICADOR
 {
+	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
+	char* id_name = $2;
+	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
+	set_st_semantic_type_and_size_primitive($1, st_identificador);
+
 	$$ = NULL;
-	set_st_semantic_type_and_size_primitive($1, $2);
 }
 def_local_var: primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 {
-	set_st_semantic_type_and_size_primitive($1, $2);
-	st_value_t* st_identificador = $2;
+	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
+	char* id_name = $2;
+	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
+	set_st_semantic_type_and_size_primitive($1, st_identificador);
+
 	ast_node_value_t* ast_expression = $4->value;
 
 	//checar se tipos são compativeis
 	mark_coercion(st_identificador->semantic_type, ast_expression);
 
-	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, $1, NULL, $2));
+	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, $1, NULL, st_identificador));
 	$$ = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, SMTC_VOID, NULL, NULL), node_identificador, $4);
 }
 def_local_var: TK_PR_STATIC TK_IDENTIFICADOR TK_IDENTIFICADOR
 {
+	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
+	char* id_name = $3;
+	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
+	set_st_semantic_type_and_size_user_type($2, st_identificador);
+
 	$$ = NULL;
-	set_st_semantic_type_and_size_user_type($2, $3);
 }
 def_local_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR
 {
+	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
+	char* id_name = $3;
+	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
+	set_st_semantic_type_and_size_primitive($2, st_identificador);
+
 	$$ = NULL;
-	set_st_semantic_type_and_size_primitive($2, $3);
 }
 def_local_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 {
-	set_st_semantic_type_and_size_primitive($2, $3);
-	st_value_t* st_identificador = $3;
+	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
+	char* id_name = $3;
+	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
+	set_st_semantic_type_and_size_primitive($2, st_identificador);
+
 	ast_node_value_t* ast_expression = $5->value;
 
 	//checar se tipos são compativeis
 	mark_coercion(st_identificador->semantic_type, ast_expression);
 
-	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, $2, NULL, $3));
+	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, $2, NULL, st_identificador));
 	$$ = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, SMTC_VOID, NULL, NULL), node_identificador, $5);
 }
 def_local_var: TK_PR_CONST TK_IDENTIFICADOR TK_IDENTIFICADOR
 {
+	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
+	char* id_name = $3;
+	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
+	set_st_semantic_type_and_size_user_type($2, st_identificador);
+
 	$$ = NULL;
-	set_st_semantic_type_and_size_user_type($2, $3);
 }
 def_local_var: TK_PR_CONST primitive_type TK_IDENTIFICADOR
 {
+	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
+	char* id_name = $3;
+	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
+	set_st_semantic_type_and_size_primitive($2, st_identificador);
+
 	$$ = NULL;
-	set_st_semantic_type_and_size_primitive($2, $3);
 }
 def_local_var: TK_PR_CONST primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 {
-	set_st_semantic_type_and_size_primitive($2, $3);
-	st_value_t* st_identificador = $3;
+	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
+	char* id_name = $3;
+	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
+	set_st_semantic_type_and_size_primitive($2, st_identificador);
+
 	ast_node_value_t* ast_expression = $5->value;
 
 	//checar se tipos são compativeis
 	mark_coercion(st_identificador->semantic_type, ast_expression);
 
-	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, $2, NULL, $3));
+	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, $2, NULL, st_identificador));
 	$$ = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, SMTC_VOID, NULL, NULL), node_identificador, $5);
 }
 def_local_var: TK_PR_STATIC TK_PR_CONST TK_IDENTIFICADOR TK_IDENTIFICADOR
 {
+	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
+	char* id_name = $4;
+	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
+	set_st_semantic_type_and_size_user_type($3, st_identificador);
+
 	$$ = NULL;
-	set_st_semantic_type_and_size_user_type($3, $4);
 }
 def_local_var: TK_PR_STATIC TK_PR_CONST primitive_type TK_IDENTIFICADOR
 {
+	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
+	char* id_name = $4;
+	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
+	set_st_semantic_type_and_size_primitive($3, st_identificador);
+
 	$$ = NULL;
-	set_st_semantic_type_and_size_primitive($3, $4);
 }
 def_local_var: TK_PR_STATIC TK_PR_CONST primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 {
-	set_st_semantic_type_and_size_primitive($3, $4);
-	st_value_t* st_identificador = $4;
+	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
+	char* id_name = $4;
+	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
+	set_st_semantic_type_and_size_primitive($3, st_identificador);
+
 	ast_node_value_t* ast_expression = $6->value;
 
 	//checar se tipos são compativeis
 	mark_coercion(st_identificador->semantic_type, ast_expression);
 
-	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, $3, NULL, $4));
+	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, $3, NULL, st_identificador));
 	$$ = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, SMTC_VOID, NULL, NULL), node_identificador, $6);
 }
 
 attribution_command: TK_IDENTIFICADOR '=' expression
 {
-	st_value_t* st_identificador = $1;
+	st_value_t* st_identificador = search_id_in_current_st($1);
+	if (!st_identificador)
+	{
+		printf("[ERRO SEMANTICO] [Linha %d] Identificador ~%s~ não declarado\n", comp_get_line_number(), (char*)$1);
+		exit(SMTC_ERROR_UNDECLARED);
+	}
+
 	ast_node_value_t* ast_expression = $3->value;
 
 	//checar se tipos são compativeis
 	mark_coercion(st_identificador->semantic_type, ast_expression);
 
-	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, $1));
+	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, st_identificador));
 	$$ = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, SMTC_VOID, NULL, NULL), node_identificador, $3);
 }
 attribution_command: TK_IDENTIFICADOR '[' expression ']' '=' expression
 {
+	st_value_t* st_identificador = search_id_in_current_st($1);
+	if (!st_identificador)
+	{
+		printf("[ERRO SEMANTICO] [Linha %d] Identificador ~%s~ não declarado\n", comp_get_line_number(), (char*)$1);
+		exit(SMTC_ERROR_UNDECLARED);
+	}
+
 	//checar se indice é int
 	ast_node_value_t* ast_index = $3->value;
 	mark_coercion(SMTC_INT, ast_index);
 
-	st_value_t* st_identificador = $1;
 	ast_node_value_t* ast_expression = $6->value;
 
 	//checar se tipos são compativeis
 	mark_coercion(get_semantic_type_of_indexed_vector(st_identificador->semantic_type), ast_expression);
 
-	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, $1));
+	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, st_identificador));
 	comp_tree_t* node_vetor_indexado = tree_make_binary_node(new_ast_node_value(AST_VETOR_INDEXADO, get_semantic_type_of_indexed_vector(st_identificador->semantic_type),
 	 	st_identificador->semantic_user_type, NULL), node_identificador, $3);
 	$$ = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, SMTC_VOID, NULL, NULL), node_vetor_indexado, $6);
 }
 attribution_command: TK_IDENTIFICADOR '$' TK_IDENTIFICADOR '=' expression
 {
-	st_value_t* st_identificador = $1;
+	st_value_t* st_identificador = search_id_in_current_st($1);
+	if (!st_identificador)
+	{
+		printf("[ERRO SEMANTICO] [Linha %d] Identificador ~%s~ não declarado\n", comp_get_line_number(), (char*)$1);
+		exit(SMTC_ERROR_UNDECLARED);
+	}
+
 	st_value_t* st_campo = $3;
 	ast_node_value_t* ast_expression = $5->value;
 
 	//checar se tipos são compativeis
 	mark_coercion(st_campo->semantic_type, ast_expression);
 
-	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, $1));
+	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, st_identificador));
 	comp_tree_t* node_campo = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_campo->semantic_type, st_campo->semantic_user_type, $3));
 	$$ = tree_make_ternary_node(new_ast_node_value(AST_ATRIBUICAO, SMTC_VOID, NULL, NULL), node_identificador, $5, node_campo);
 }
@@ -387,23 +520,41 @@ output_command: TK_PR_OUTPUT expression_sequence
 
 function_call: TK_IDENTIFICADOR '(' expression_sequence ')'
 {
-	st_value_t* st_identificador = $1;
-	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, $1));
+	st_value_t* st_identificador = search_id_in_current_st($1);
+	if (!st_identificador)
+	{
+		printf("[ERRO SEMANTICO] [Linha %d] Identificador ~%s~ não declarado\n", comp_get_line_number(), (char*)$1);
+		exit(SMTC_ERROR_UNDECLARED);
+	}
+
+	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, st_identificador));
 	$$ = tree_make_binary_node(new_ast_node_value(AST_CHAMADA_DE_FUNCAO, st_identificador->semantic_type, st_identificador->semantic_user_type, NULL), node_identificador, $3);
 }
 function_call: TK_IDENTIFICADOR '(' ')'
 {
-	st_value_t* st_identificador = $1;
-	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, $1));
+	st_value_t* st_identificador = search_id_in_current_st($1);
+	if (!st_identificador)
+	{
+		printf("[ERRO SEMANTICO] [Linha %d] Identificador ~%s~ não declarado\n", comp_get_line_number(), (char*)$1);
+		exit(SMTC_ERROR_UNDECLARED);
+	}
+
+	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, st_identificador));
 	$$ = tree_make_unary_node(new_ast_node_value(AST_CHAMADA_DE_FUNCAO, st_identificador->semantic_type, st_identificador->semantic_user_type, NULL), node_identificador);
 }
 
 shift_command: TK_IDENTIFICADOR TK_OC_SL TK_LIT_INT
 {
-	verify_shiftable($1);
+	st_value_t* st_identificador = search_id_in_current_st($1);
+	if (!st_identificador)
+	{
+		printf("[ERRO SEMANTICO] [Linha %d] Identificador ~%s~ não declarado\n", comp_get_line_number(), (char*)$1);
+		exit(SMTC_ERROR_UNDECLARED);
+	}
 
-	st_value_t* st_identificador = $1;
-	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, SMTC_INT, NULL, $1));
+	verify_shiftable(st_identificador);
+
+	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, SMTC_INT, NULL, st_identificador));
 
 	st_value_t* st_lit_int = $3;
 	int num_shifts = st_lit_int->value.i;
@@ -413,10 +564,16 @@ shift_command: TK_IDENTIFICADOR TK_OC_SL TK_LIT_INT
 }
 shift_command: TK_IDENTIFICADOR TK_OC_SR TK_LIT_INT
 {
+	st_value_t* st_identificador = search_id_in_current_st($1);
+	if (!st_identificador)
+	{
+		printf("[ERRO SEMANTICO] [Linha %d] Identificador ~%s~ não declarado\n", comp_get_line_number(), (char*)$1);
+		exit(SMTC_ERROR_UNDECLARED);
+	}
+
 	verify_shiftable($1);
 
-	st_value_t* st_identificador = $1;
-	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, SMTC_INT, NULL, $1));
+	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, SMTC_INT, NULL, st_identificador));
 
 	st_value_t* st_lit_int = $3;
 	int num_shifts = st_lit_int->value.i;
@@ -463,7 +620,7 @@ condition_command: TK_PR_IF '(' expression ')' TK_PR_THEN body TK_PR_ELSE body
 }
 
 iteration_command: TK_PR_FOREACH '(' TK_IDENTIFICADOR ':' foreach_expression_sequence ')' body
-{ $$ = NULL; if ($7) destroyAST($7); }
+{ $$ = NULL; if ($7) destroyAST($7); } //TODO implementar? lidar com TK_IDENTIFICADOR
 iteration_command: TK_PR_FOR '(' for_command_sequence ':' expression ':' for_command_sequence ')' body
 { $$ = NULL; destroyAST($5); if ($9) destroyAST($9); }
 iteration_command: TK_PR_WHILE '(' expression ')' TK_PR_DO body
@@ -516,7 +673,10 @@ action_command: TK_PR_BREAK { $$ = NULL; }
 
 def_type: TK_PR_CLASS TK_IDENTIFICADOR '[' type_fields ']' ';'
 {
-	st_value_t* st_identificador = $2;
+	//insere identificador declarado na tabela de simbolos global
+	char* id_name = $2;
+	st_value_t* st_identificador = putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
+
 	st_identificador->semantic_type = SMTC_USER_TYPE_NAME;
 	st_identificador->size = $4;
 }
@@ -524,14 +684,22 @@ type_fields: type_field { $$ = $1; }
 type_fields: type_field ':' type_fields { $$ = $1 + $3; }
 type_field: encapsulation primitive_type TK_IDENTIFICADOR
 {
+	//insere identificador declarado na tabela de simbolos global
+	char* id_name = $3;
+	st_value_t* st_identificador = putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
+	set_st_semantic_type_and_size_primitive($2, st_identificador);
+
 	$$ = get_type_size($2);
-	set_st_semantic_type_and_size_primitive($2,$3);
 }
 type_field: encapsulation primitive_type TK_IDENTIFICADOR '[' TK_LIT_INT ']'
 {
+	//insere identificador declarado na tabela de simbolos global
+	char* id_name = $3;
+	st_value_t* st_identificador = putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
+
 	st_value_t* st_entry_lit_int = $5;
 	int size = st_entry_lit_int->value.i;
-	set_st_semantic_type_and_size_vector($2,size,$3);
+	set_st_semantic_type_and_size_vector($2,size, st_identificador);
 }
 
 encapsulation: TK_PR_PROTECTED
@@ -584,13 +752,25 @@ sub_expression: '(' expression ')' { $$ = $2; }
 sub_expression: literal {	$$ = $1; }
 sub_expression: TK_IDENTIFICADOR
 {
-	st_value_t* st_identificador = $1;
-	$$ = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, $1));
+	st_value_t* st_identificador = search_id_in_current_st($1);
+	if (!st_identificador)
+	{
+		printf("[ERRO SEMANTICO] [Linha %d] Identificador ~%s~ não declarado\n", comp_get_line_number(), (char*)$1);
+		exit(SMTC_ERROR_UNDECLARED);
+	}
+
+	$$ = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, st_identificador));
 }
 sub_expression: TK_IDENTIFICADOR '[' expression ']'
 {
 	//TODO verificar se expression é int
-	st_value_t* st_identificador = $1;
+	st_value_t* st_identificador = search_id_in_current_st($1);
+	if (!st_identificador)
+	{
+		printf("[ERRO SEMANTICO] [Linha %d] Identificador ~%s~ não declarado\n", comp_get_line_number(), (char*)$1);
+		exit(SMTC_ERROR_UNDECLARED);
+	}
+
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, $1));
 	$$ = tree_make_binary_node(new_ast_node_value(AST_VETOR_INDEXADO, get_semantic_type_of_indexed_vector(st_identificador->semantic_type), st_identificador->semantic_user_type, NULL), node_identificador, $3);
 }
@@ -629,5 +809,6 @@ expression_sequence: expression ',' expression_sequence
 	//pendura proxima
 	tree_insert_node($$, $3);
 }
+
 
 %%
