@@ -16,11 +16,8 @@ comp_dict_t* pointersToFreeTable;
 
 comp_tree_t* abstractSyntaxTree;
 
-<<<<<<< HEAD
-char* current_type_decl;
-=======
 st_stack_t* stack;
->>>>>>> 412f5ff63d94b6853642216ab20b2990c37640b4
+char* current_type_decl;
 
 void set_ast_root(comp_tree_t* root)
 {
