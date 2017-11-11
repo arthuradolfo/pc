@@ -17,6 +17,9 @@ comp_dict_t* pointersToFreeTable;
 comp_tree_t* abstractSyntaxTree;
 
 st_stack_t* stack;
+
+st_stack_t* params_stack;
+
 char* current_type_decl;
 
 void set_ast_root(comp_tree_t* root)
@@ -571,6 +574,7 @@ void main_init (int argc, char **argv)
   pointersToFreeTable = dict_new();
   symbolsTable = dict_new();
   stack = new_stack();
+  params_stack = new_stack();
   //abstractSyntaxTree = tree_new();
   gv_init(GRAPHVIZ_FILENAME);
 }
@@ -590,6 +594,8 @@ void main_finalize (void)
   clearSymbolsTable();
 	clearAndFreeAST();
   clearPointerToFreeTable();
+  free_stack(stack);
+  free_stack(params_stack);
 }
 
 void put_items_stack() {
