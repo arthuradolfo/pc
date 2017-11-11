@@ -1,6 +1,5 @@
 #include "cc_misc.h"
 #include "cc_dict.h"
-
 #define GRAPHVIZ_FILENAME "graphvizAST.dot"
 
 /**
@@ -16,6 +15,8 @@ comp_dict_t* symbolsTable;
 comp_dict_t* pointersToFreeTable;
 
 comp_tree_t* abstractSyntaxTree;
+
+st_stack_t* stack;
 
 void set_ast_root(comp_tree_t* root)
 {
@@ -568,13 +569,15 @@ void main_init (int argc, char **argv)
   lineNumber = 1;
   pointersToFreeTable = dict_new();
   symbolsTable = dict_new();
-
+  stack = new_stack();
   //abstractSyntaxTree = tree_new();
   gv_init(GRAPHVIZ_FILENAME);
 }
 
 void main_finalize (void)
 {
+  st_stack_item_t *item;
+  st_stack_item_t *item1;
   //implemente esta função com rotinas de finalização, se necessário
 
   // printf("Print table:\n");
@@ -586,6 +589,25 @@ void main_finalize (void)
   clearSymbolsTable();
 	clearAndFreeAST();
   clearPointerToFreeTable();
+}
+
+void put_items_stack() {
+  int *a = (int*) malloc(sizeof(int));
+  *a = 10;
+  int *b = (int*) malloc(sizeof(int));
+  *b = 15;
+  printf("stack_push: %d\n", stack_push(a, stack));
+  printf("stack_push: %d\n", stack_push(b, stack));
+}
+
+void stack_print() {
+  if(!stack) printf("stack is null\n");
+  st_stack_item_t *aux_item = stack->data;
+  printf("Conteudo da pilha:\n");
+  while(aux_item) {
+    printf("%d\n", *((int*)aux_item->value));
+    aux_item = aux_item->next;
+  }
 }
 
 void comp_print_table (void)
