@@ -8,6 +8,7 @@
 typedef struct st_stack_item {
 	void *value;
 	struct st_stack_item *next;
+	struct st_stack_item *prev;
 } st_stack_item_t;
 
 
