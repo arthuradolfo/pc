@@ -22,6 +22,7 @@ int main(int fly, float fora, bool whiteguy) {
 
   seibs_t seibel;
   seibel$myIntField = 1;
+<<<<<<< HEAD
 
   aitui_t arthur;
   arthur$myIntField2 = 1;
@@ -31,4 +32,11 @@ int main(int fly, float fora, bool whiteguy) {
 
   output "abc";
   input seibel;
+=======
+  //seibel$myIntField2 = 1;
+  {
+  seibs_t seibel;
+  	seibel$myIntField = 1;
+  };
+>>>>>>> 135b74b2a47a63c49481b272e82199df5322736e
 }
