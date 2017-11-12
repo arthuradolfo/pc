@@ -275,6 +275,11 @@ void mark_coercion(int semantic_type, ast_node_value_t* ast_to_coerce);
 void mark_coercion_where_needed(ast_node_value_t* ast_node_1, ast_node_value_t* ast_node_2);
 
 /**
+ * Garante que, se nodos forem de tipos de usuario, o tipo de usuario é o mesmo
+ */
+void verify_matching_user_types(st_value_t* st_entry, ast_node_value_t* ast_expression);
+
+/**
  * Retorna a tabela de símbolos "atual" (do topo da pilha)
  */
 comp_dict_t* getCurrentST();

@@ -606,6 +606,7 @@ attribution_command: TK_IDENTIFICADOR '=' expression
 	ast_node_value_t* ast_expression = $3->value;
 
 	//checar se tipos são compativeis
+	verify_matching_user_types(st_identificador, ast_expression);
 	mark_coercion(st_identificador->semantic_type, ast_expression);
 
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, st_identificador));
@@ -623,6 +624,7 @@ attribution_command: TK_IDENTIFICADOR '[' expression ']' '=' expression
 	ast_node_value_t* ast_expression = $6->value;
 
 	//checar se tipos são compativeis
+	verify_matching_user_types(st_identificador, ast_expression);
 	mark_coercion(st_identificador->semantic_type, ast_expression);
 
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, st_identificador));
@@ -763,7 +765,7 @@ iteration_command: start_for for_command_sequence ':' expression ':' for_command
 	stack_pop(&item, &aux_stack);
 	free(item);
 
-	mark_coercion(SMTC_BOOL, $4->value);	
+	mark_coercion(SMTC_BOOL, $4->value);
 	$$ = NULL; destroyAST($4);
 	if ($8) destroyAST($8);
 }

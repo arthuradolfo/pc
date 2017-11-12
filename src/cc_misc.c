@@ -1036,6 +1036,7 @@ bool is_marked_to_coercion(ast_node_value_t* ast_node_value)
   return ast_node_value->coercion != SMTC_NO_COERCION;
 }
 
+//assume tipos diferentes
 bool coercion_possible(int first_type, int second_type)
 {
   if (first_type == SMTC_CHAR || second_type == SMTC_CHAR)
@@ -1057,7 +1058,7 @@ bool coercion_possible(int first_type, int second_type)
     printf("[ERRO SEMANTICO] [Linha %d] Coercao impossivel do tipo user type : ", lineNumber);
     print_semantic_type(first_type); printf("e ");
     print_semantic_type_ln(second_type);
-    exit(SMTC_ERROR_STRING_TO_X);
+    exit(SMTC_ERROR_WRONG_TYPE);
   }
   return true;
 }
@@ -1112,6 +1113,26 @@ void mark_coercion_where_needed(ast_node_value_t* ast_node_1, ast_node_value_t* 
     printf(" => coercion: "); print_semantic_type_ln(resulting_type);
   }
   #endif
+}
+
+void verify_matching_user_types(st_value_t* st_entry, ast_node_value_t* ast_expression)
+{
+  int type_1 = st_entry->semantic_type;
+  int type_2 = ast_expression->semantic_type;
+  char* user_type_1 = st_entry->semantic_user_type;
+  char* user_type_2 = ast_expression->semantic_user_type;
+
+  //se entrar aqui, ambos os tipos sao de user. checar se sao o mesmo tipo de user
+  if (type_1 == type_2 && type_1 == SMTC_USER_TYPE_VAR)
+  {
+    //se os tipos nao forem de fato os mesmos
+    if (strcmp(user_type_1, user_type_2) != 0)
+    {
+      printf("[ERRO SEMANTICO] [Linha %d] Coercao impossivel entre ~%s~ e ~%s~\n",
+          lineNumber, user_type_1, user_type_2);
+      exit(SMTC_ERROR_WRONG_TYPE);
+    }
+  }
 }
 
 comp_dict_t* getCurrentST()
@@ -1234,7 +1255,7 @@ st_value_t* ensure_return_type_is_correct(int semantic_type)
   printf("Semantic type: %d\n", st_tipo->semantic_type);
   if (st_tipo->semantic_type != semantic_type)
   {
-    printf("[ERRO SEMANTICO] [Linha %d] retorno devia ser do tipo ~%s~, mas foi do tipo ~%s~\n",
+    printf("[ERRO SEMANTICO] [Linha %d] Retorno deveria ser do tipo ~%s~, mas foi do tipo ~%s~\n",
         comp_get_line_number(), semantic_type_to_sting(st_tipo->semantic_type), semantic_type_to_sting(semantic_type));
     exit(SMTC_ERROR_WRONG_PAR_RETURN);
   }
@@ -1246,7 +1267,7 @@ st_value_t* ensure_return_type_user_is_correct(char *semantic_type)
   st_value_t* st_tipo = search_id_in_global_st(get_current_func_decl());
   if (strcmp(st_tipo->semantic_user_type, semantic_type) != 0)
   {
-    printf("[ERRO SEMANTICO] [Linha %d] retorno devia ser do tipo ~%s~, mas foi do tipo ~%s~\n",
+    printf("[ERRO SEMANTICO] [Linha %d] Retorno deveria ser do tipo ~%s~, mas foi do tipo ~%s~\n",
         comp_get_line_number(), st_tipo->semantic_user_type, semantic_type);
     exit(SMTC_ERROR_WRONG_PAR_RETURN);
   }

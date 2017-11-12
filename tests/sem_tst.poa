@@ -1,18 +1,20 @@
-class tipo_t [ public int integer ];
+class tipo1_t [ public int integer ];
+class tipo2_t [ public int integer2 ];
 
-float floate(){}
+tipo1_t t0_v[1];
+tipo1_t t1_v[1];
+tipo2_t t2_v[1];
 
 int main()
 {
-  tipo_t tipado;
+  tipo1_t t0;
+  tipo1_t t1;
+  tipo2_t t2;
 
-  string stringao <= "a";
-  for (int stringao, int b : true : b = 1)
-  {
-    output stringao;
-    int dentro;
-  };
-  //output dentro;
-  //output a;
+  t0 = t1;
+  t0_v[1] = t1_v[1];
 
+
+  t1 = t2;
+  t1_v[0] = t2_v[0];
 }
