@@ -742,7 +742,7 @@ iteration_command: TK_PR_FOREACH '(' TK_IDENTIFICADOR ':' foreach_expression_seq
 { $$ = NULL; if ($7) destroyAST($7); } //TODO implementar? lidar com TK_IDENTIFICADOR
 iteration_command: TK_PR_FOR '(' for_command_sequence ':' expression ':' for_command_sequence ')' body
 { $$ = NULL; destroyAST($5); if ($9) destroyAST($9); }
-iteration_command: TK_PR_WHILE '(' expression ')' TK_PR_DO body
+iteration_command: TK_PR_WHILE '(' expression ')' TK_PR_DO block
 {
 	$$ = tree_make_node(new_ast_node_value(AST_WHILE_DO, SMTC_VOID, NULL, NULL));
 
@@ -756,7 +756,7 @@ iteration_command: TK_PR_WHILE '(' expression ')' TK_PR_DO body
 		tree_insert_node($$, tree_make_node(new_ast_node_value(AST_BLOCO, SMTC_VOID, NULL, NULL)));
 
 }
-iteration_command: TK_PR_DO body TK_PR_WHILE '(' expression ')'
+iteration_command: TK_PR_DO block TK_PR_WHILE '(' expression ')'
 {
 	$$ = tree_make_node(new_ast_node_value(AST_DO_WHILE, SMTC_VOID, NULL, NULL));
 
@@ -770,7 +770,7 @@ iteration_command: TK_PR_DO body TK_PR_WHILE '(' expression ')'
 	if ($5) tree_insert_node($$, $5);
 }
 
-selection_command: TK_PR_SWITCH '(' expression ')' body { $$ = NULL; destroyAST($3); if ($5) destroyAST($5); }
+selection_command: TK_PR_SWITCH '(' expression ')' block { $$ = NULL; destroyAST($3); if ($5) destroyAST($5); }
 
 for_command_sequence: simple_command { if ($1) destroyAST($1); }
 for_command_sequence: simple_command ',' for_command_sequence { if ($1) destroyAST($1); }

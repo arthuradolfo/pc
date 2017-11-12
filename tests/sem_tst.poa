@@ -4,19 +4,16 @@ float floate(){}
 
 int main()
 {
-  if (true) then
+  do
   {
     int dentro <= 1;
+    output dentro;
     {
     };
     float a <= 1;
     output a;
-  }
-  else
-  {
-    tipo_t dentro_do_else;
-    dentro_do_else$integer = true;
-  };
+  } while (true);
   //output dentro;
+  //output a;
 
 }
