@@ -71,6 +71,7 @@
 %type<tree> programa
 %type<tree> def_function
 %type<tree> func_name
+%type<tree> func_name_user
 %type<tree> body
 %type<tree> command_sequence
 %type<tree> command_in_block
@@ -244,72 +245,76 @@ push_func_stack: %empty
 	stack_push(func_symbols_table, get_stack());
 }
 
-func_name: TK_IDENTIFICADOR
+func_name: primitive_type TK_IDENTIFICADOR
 {
 	//verifica declaracao anterior do identificador
-	char* id_name = $1;
+	char* id_name = $2;
 	ensure_identifier_not_declared(id_name);
 
 	//insere identificador na tabela de simbolos global
 	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
 
-	$$ = tree_make_node(new_ast_node_value(AST_FUNCAO, SMTC_VOID, NULL, st_identificador));\
+	$$ = tree_make_node(new_ast_node_value(AST_FUNCAO, SMTC_VOID, NULL, st_identificador));
+	set_st_semantic_type_and_size_primitive_function($1, st_identificador);
 	set_current_func_decl(id_name);
 }
 
-def_function: primitive_type func_name push_func_stack '(' parameters ')' body
-{
-	$$ = $2;
-	if ($7)
-		tree_insert_node($$,$7);
-
-	ast_node_value_t *aux_node = $$->value;
-	set_st_semantic_type_and_size_primitive_function($1, aux_node->symbols_table_entry);
-	st_stack_item_t *item;
-	st_stack_t *aux_stack = get_stack();
-	stack_pop(&item, &aux_stack);
-	free(item);
-}
-def_function: TK_PR_STATIC primitive_type func_name push_func_stack '(' parameters ')' body
-{
-	$$ = $3;
-	if ($8)
-		tree_insert_node($$,$8);
-
-	ast_node_value_t *aux_node = $$->value;
-	set_st_semantic_type_and_size_primitive_function($2, aux_node->symbols_table_entry);
-	st_stack_item_t *item;
-	st_stack_t *aux_stack = get_stack();
-	stack_pop(&item, &aux_stack);
-	free(item);
-}
-
-def_function: TK_IDENTIFICADOR func_name push_func_stack '(' parameters ')' body
+func_name_user: TK_IDENTIFICADOR TK_IDENTIFICADOR
 {
 	//verifica se tipo ($1) existe
 	ensure_type_declared($1);
 
-	$$ = $2;
-	if ($7)
-		tree_insert_node($$,$7);
+	//verifica declaracao anterior do identificador
+	char* id_name = $2;
+	ensure_identifier_not_declared(id_name);
 
-	ast_node_value_t *aux_node = $$->value;
-	set_st_semantic_type_and_size_user_type_function($1, aux_node->symbols_table_entry);
+	//insere identificador na tabela de simbolos global
+	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
+
+	$$ = tree_make_node(new_ast_node_value(AST_FUNCAO, SMTC_VOID, NULL, st_identificador));
+	set_st_semantic_type_and_size_user_type_function($1, st_identificador);
+	set_current_func_decl(id_name);
+}
+
+
+def_function: func_name push_func_stack '(' parameters ')' body
+{
+	$$ = $1;
+	if ($6)
+		tree_insert_node($$,$6);
 	st_stack_item_t *item;
 	st_stack_t *aux_stack = get_stack();
 	stack_pop(&item, &aux_stack);
 	free(item);
 }
-def_function: TK_PR_STATIC TK_IDENTIFICADOR func_name push_func_stack '(' parameters ')' body
+def_function: TK_PR_STATIC func_name push_func_stack '(' parameters ')' body
 {
-	//verifica se tipo ($2) existe
-	ensure_type_declared($2);
+	$$ = $2;
+	if ($7)
+		tree_insert_node($$,$7);
+	st_stack_item_t *item;
+	st_stack_t *aux_stack = get_stack();
+	stack_pop(&item, &aux_stack);
+	free(item);
+}
 
-	$$ = $3;
-	if ($8)
-		tree_insert_node($$,$8);
-	ast_node_value_t *aux_node = $$->value;
-	set_st_semantic_type_and_size_user_type_function($2, aux_node->symbols_table_entry);
+def_function: func_name_user push_func_stack '(' parameters ')' body
+{
+
+	$$ = $1;
+	if ($6)
+		tree_insert_node($$,$6);
+	st_stack_item_t *item;
+	st_stack_t *aux_stack = get_stack();
+	stack_pop(&item, &aux_stack);
+	free(item);
+}
+def_function: TK_PR_STATIC func_name_user push_func_stack '(' parameters ')' body
+{
+
+	$$ = $2;
+	if ($7)
+		tree_insert_node($$,$7);
 	st_stack_item_t *item;
 	st_stack_t *aux_stack = get_stack();
 	stack_pop(&item, &aux_stack);
@@ -802,6 +807,8 @@ action_command: TK_PR_RETURN expression
 {
 	//TODO verificar se expression é compativel com o retorno da funcao (como?)
 	ast_node_value_t* ast_node_value_expression = $2->value;
+	if(ast_node_value_expression->semantic_type != SMTC_USER_TYPE_VAR) ensure_return_type_is_correct(ast_node_value_expression->semantic_type);
+	else ensure_return_type_user_is_correct(ast_node_value_expression->semantic_user_type);
 	$$ = tree_make_unary_node(new_ast_node_value(AST_RETURN, ast_node_value_expression->semantic_type, ast_node_value_expression->semantic_user_type, NULL), $2);
 }
 action_command: TK_PR_CONTINUE { $$ = NULL; }

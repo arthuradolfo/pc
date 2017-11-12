@@ -384,4 +384,10 @@ void set_current_func_decl(char* func_decl);
 
 char* get_current_func_decl();
 
+char* semantic_type_to_sting(int semantic_type);
+
+st_value_t* ensure_return_type_is_correct(int semantic_type);
+
+st_value_t* ensure_return_type_user_is_correct(char *semantic_type);
+
 #endif
