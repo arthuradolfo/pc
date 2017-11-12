@@ -43,6 +43,7 @@ OPTION(ETAPA_4 "The Etapa 4 compilation" ON)
 OPTION(ETAPA_5 "The Etapa 5 compilation" OFF)
 OPTION(ETAPA_6 "The Etapa 6 compilation" OFF)
 OPTION(ETAPA_7 "The Etapa 7 compilation" OFF)
+OPTION(DEBUG "Enables debug-logging" ON)
 
 IF(ETAPA_1)
   add_definitions(-DAVALIACAO_ETAPA_1=1)
@@ -59,6 +60,10 @@ ELSEIF(ETAPA_6)
 ELSEIF(ETAPA_7)
   add_definitions(-DAVALIACAO_ETAPA_7=1)
 ENDIF(ETAPA_1)
+
+IF(DEBUG)
+ add_definitions(-DDEBUG=1)
+ENDIF(DEBUG)
 
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
    message(STATUS "Setting build type to 'Debug' as none was specified.")
