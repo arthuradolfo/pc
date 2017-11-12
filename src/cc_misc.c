@@ -291,7 +291,7 @@ void printSymbolsTable()
 
 void printFuncsParams()
 {
-  printf("\printFuncsParams: \n");
+  printf("\nprintFuncsParams: \n");
 
   if (!funcs_params) return;
 
@@ -494,92 +494,92 @@ char* getASTlexem(comp_tree_t* node)
 
 void generateExampleTree()
 {
-	//filhos da raiz
-	int* a = malloc(sizeof(int));
-	*a = 42;
-	comp_tree_t* nodo1 = tree_make_node(a);
-	tree_insert_node(abstractSyntaxTree, nodo1);
+  //filhos da raiz
+  int* a = malloc(sizeof(int));
+  *a = 42;
+  comp_tree_t* nodo1 = tree_make_node(a);
+  tree_insert_node(abstractSyntaxTree, nodo1);
 
-	int* b = malloc(sizeof(int));
-	*b = 42;
-	comp_tree_t* nodo2 = tree_make_node(b);
-	tree_insert_node(abstractSyntaxTree, nodo2);
+  int* b = malloc(sizeof(int));
+  *b = 42;
+  comp_tree_t* nodo2 = tree_make_node(b);
+  tree_insert_node(abstractSyntaxTree, nodo2);
 
-	int* c = malloc(sizeof(int));
-	*c = 42;
-	comp_tree_t* nodo3 = tree_make_node(c);
-	tree_insert_node(abstractSyntaxTree, nodo3);
+  int* c = malloc(sizeof(int));
+  *c = 42;
+  comp_tree_t* nodo3 = tree_make_node(c);
+  tree_insert_node(abstractSyntaxTree, nodo3);
 
-	int* d = malloc(sizeof(int));
-	*d = 42;
-	comp_tree_t* nodo4 = tree_make_node(d);
-	tree_insert_node(abstractSyntaxTree, nodo4);
-
-
-	//filhos de nodo1
-	int* e = malloc(sizeof(int));
-	*e = 42;
-	comp_tree_t* nodo5 = tree_make_node(e);
-	tree_insert_node(nodo1, nodo5);
-
-	int* f = malloc(sizeof(int));
-	*f = 42;
-	comp_tree_t* nodo6 = tree_make_node(f);
-	tree_insert_node(nodo1, nodo6);
-
-	int* g = malloc(sizeof(int));
-	*g = 42;
-	comp_tree_t* nodo7 = tree_make_node(g);
-	tree_insert_node(nodo1, nodo7);
-
-	int* h = malloc(sizeof(int));
-	*h = 42;
-	comp_tree_t* nodo8 = tree_make_node(h);
-	tree_insert_node(nodo1, nodo8);
+  int* d = malloc(sizeof(int));
+  *d = 42;
+  comp_tree_t* nodo4 = tree_make_node(d);
+  tree_insert_node(abstractSyntaxTree, nodo4);
 
 
-	//filhos de nodo2
-	int* i = malloc(sizeof(int));
-	*i = 42;
-	comp_tree_t* nodo9 = tree_make_node(i);
-	tree_insert_node(nodo2, nodo9);
+  //filhos de nodo1
+  int* e = malloc(sizeof(int));
+  *e = 42;
+  comp_tree_t* nodo5 = tree_make_node(e);
+  tree_insert_node(nodo1, nodo5);
 
-	int* j = malloc(sizeof(int));
-	*j = 42;
-	comp_tree_t* nodo10 = tree_make_node(j);
-	tree_insert_node(nodo2, nodo10);
+  int* f = malloc(sizeof(int));
+  *f = 42;
+  comp_tree_t* nodo6 = tree_make_node(f);
+  tree_insert_node(nodo1, nodo6);
 
-	int* k = malloc(sizeof(int));
-	*k = 42;
-	comp_tree_t* nodo11 = tree_make_node(k);
-	tree_insert_node(nodo2, nodo11);
+  int* g = malloc(sizeof(int));
+  *g = 42;
+  comp_tree_t* nodo7 = tree_make_node(g);
+  tree_insert_node(nodo1, nodo7);
 
-	int* l = malloc(sizeof(int));
-	*l = 42;
-	comp_tree_t* nodo12 = tree_make_node(l);
-	tree_insert_node(nodo2, nodo12);
+  int* h = malloc(sizeof(int));
+  *h = 42;
+  comp_tree_t* nodo8 = tree_make_node(h);
+  tree_insert_node(nodo1, nodo8);
 
 
-	//filhos de nodo3
-	int* m = malloc(sizeof(int));
-	*m = 42;
-	comp_tree_t* nodo13 = tree_make_node(m);
-	tree_insert_node(nodo3, nodo13);
+  //filhos de nodo2
+  int* i = malloc(sizeof(int));
+  *i = 42;
+  comp_tree_t* nodo9 = tree_make_node(i);
+  tree_insert_node(nodo2, nodo9);
 
-	int* n = malloc(sizeof(int));
-	*n = 42;
-	comp_tree_t* nodo14 = tree_make_node(n);
-	tree_insert_node(nodo3, nodo14);
+  int* j = malloc(sizeof(int));
+  *j = 42;
+  comp_tree_t* nodo10 = tree_make_node(j);
+  tree_insert_node(nodo2, nodo10);
 
-	int* o = malloc(sizeof(int));
-	*o = 42;
-	comp_tree_t* nodo15 = tree_make_node(o);
-	tree_insert_node(nodo3, nodo15);
+  int* k = malloc(sizeof(int));
+  *k = 42;
+  comp_tree_t* nodo11 = tree_make_node(k);
+  tree_insert_node(nodo2, nodo11);
 
-	int* p = malloc(sizeof(int));
-	*p = 42;
-	comp_tree_t* nodo16 = tree_make_node(p);
-	tree_insert_node(nodo3, nodo16);
+  int* l = malloc(sizeof(int));
+  *l = 42;
+  comp_tree_t* nodo12 = tree_make_node(l);
+  tree_insert_node(nodo2, nodo12);
+
+
+  //filhos de nodo3
+  int* m = malloc(sizeof(int));
+  *m = 42;
+  comp_tree_t* nodo13 = tree_make_node(m);
+  tree_insert_node(nodo3, nodo13);
+
+  int* n = malloc(sizeof(int));
+  *n = 42;
+  comp_tree_t* nodo14 = tree_make_node(n);
+  tree_insert_node(nodo3, nodo14);
+
+  int* o = malloc(sizeof(int));
+  *o = 42;
+  comp_tree_t* nodo15 = tree_make_node(o);
+  tree_insert_node(nodo3, nodo15);
+
+  int* p = malloc(sizeof(int));
+  *p = 42;
+  comp_tree_t* nodo16 = tree_make_node(p);
+  tree_insert_node(nodo3, nodo16);
 }
 
 /**
@@ -589,27 +589,27 @@ void generateExampleTree()
  */
 void putToGraphviz(comp_tree_t *pai)
 {
-	if (pai == NULL) return;
+  if (pai == NULL) return;
 
-	//percorre filhos do nodo
-	comp_tree_t* filho = pai->first;
+  //percorre filhos do nodo
+  comp_tree_t* filho = pai->first;
   char *string;
-	for (int i = 0; i < pai->childnodes; ++i) {
-		if (filho != NULL) {
+  for (int i = 0; i < pai->childnodes; ++i) {
+    if (filho != NULL) {
       string = getASTlexem(filho);
-			//declara filho no arquivo
-			gv_declare(getASTtype(filho), filho, string);
+      //declara filho no arquivo
+      gv_declare(getASTtype(filho), filho, string);
       if(getASTtype(filho) == AST_LITERAL) free(string);
       //free(lexem);
-			//conecta pai e filho
-			gv_connect(pai, filho);
+      //conecta pai e filho
+      gv_connect(pai, filho);
 
-			//recursao sobre o filho
-			putToGraphviz(filho);
-		} else return;
+      //recursao sobre o filho
+      putToGraphviz(filho);
+    } else return;
 
-		filho = filho->next;
-	}
+    filho = filho->next;
+  }
 }
 
 /**
@@ -619,22 +619,22 @@ void putToGraphviz(comp_tree_t *pai)
  */
 void freeValue(comp_tree_t* pai)
 {
-	if (pai == NULL) return;
+  if (pai == NULL) return;
 
-	//percorre filhos do nodo
-	comp_tree_t* filho = pai->first;
-	for (int i = 0; i < pai->childnodes; ++i) {
-		if (filho != NULL) {
+  //percorre filhos do nodo
+  comp_tree_t* filho = pai->first;
+  for (int i = 0; i < pai->childnodes; ++i) {
+    if (filho != NULL) {
 
-			if (filho->value != NULL)
-				free(filho->value);
+      if (filho->value != NULL)
+        free(filho->value);
 
-			//recursao sobre o filho
-			freeValue(filho);
-		} else return;
+      //recursao sobre o filho
+      freeValue(filho);
+    } else return;
 
-		filho = filho->next;
-	}
+    filho = filho->next;
+  }
 }
 
 /**
@@ -689,7 +689,7 @@ void main_finalize (void)
   gv_close();
   clearSymbolsTable();
   clearFuncParams();
-	clearAndFreeAST();
+  clearAndFreeAST();
   clearPointerToFreeTable();
   free_stack(stack);
 }
@@ -927,32 +927,32 @@ int get_type_size(int semantic_type)
 
 void set_st_semantic_type_and_size_primitive(int semantic_type, st_value_t* symbols_table_entry)
 {
-	//associa tipo semantico na tabela de simbolos
-	symbols_table_entry->semantic_type = semantic_type;
+  //associa tipo semantico na tabela de simbolos
+  symbols_table_entry->semantic_type = semantic_type;
   //declara como variavel
   symbols_table_entry->var_vec_or_fun = SMTC_VARIABLE;
-	//associa tamanho na tabela de simbolos
-	symbols_table_entry->size = get_type_size(semantic_type);
+  //associa tamanho na tabela de simbolos
+  symbols_table_entry->size = get_type_size(semantic_type);
 }
 
 void set_st_semantic_type_and_size_vector(int semantic_type, int length, st_value_t* symbols_table_entry)
 {
   //associa tipo semantico na tabela de simbolos
-	symbols_table_entry->semantic_type = semantic_type;
+  symbols_table_entry->semantic_type = semantic_type;
   //declara como vetor
   symbols_table_entry->var_vec_or_fun = SMTC_VECTOR;
-	//associa tamanho na tabela de simbolos
-	symbols_table_entry->size = get_type_size(semantic_type) * length;
+  //associa tamanho na tabela de simbolos
+  symbols_table_entry->size = get_type_size(semantic_type) * length;
 }
 
 void set_st_semantic_type_and_size_primitive_function(int semantic_type, st_value_t* symbols_table_entry)
 {
-	//associa tipo semantico na tabela de simbolos
-	symbols_table_entry->semantic_type = semantic_type;
+  //associa tipo semantico na tabela de simbolos
+  symbols_table_entry->semantic_type = semantic_type;
   //declara como variavel
   symbols_table_entry->var_vec_or_fun = SMTC_FUNCTION;
-	//associa tamanho na tabela de simbolos
-	symbols_table_entry->size = get_type_size(semantic_type);
+  //associa tamanho na tabela de simbolos
+  symbols_table_entry->size = get_type_size(semantic_type);
 }
 
 void set_st_semantic_type_and_size_user_type_function(char* type_name, st_value_t* variable_entry)
@@ -999,26 +999,26 @@ void set_st_semantic_type_and_size_vector_user_type(char* type_name, st_value_t*
 
 void set_st_semantic_type_and_size_primitive_field(int semantic_type, st_value_t* symbols_table_entry)
 {
-	//associa tipo semantico na tabela de simbolos
-	symbols_table_entry->semantic_type = semantic_type;
+  //associa tipo semantico na tabela de simbolos
+  symbols_table_entry->semantic_type = semantic_type;
   //declara como variavel
   symbols_table_entry->var_vec_or_fun = SMTC_VARIABLE;
   //associa class do campo
   symbols_table_entry->semantic_user_type = strdup(get_current_type_decl());
   //associa tamanho na tabela de simbolos
-	symbols_table_entry->size = get_type_size(semantic_type);
+  symbols_table_entry->size = get_type_size(semantic_type);
 }
 
 void set_st_semantic_type_and_size_vector_field(int semantic_type, int length, st_value_t* symbols_table_entry)
 {
   //associa tipo semantico na tabela de simbolos
-	symbols_table_entry->semantic_type = semantic_type;
+  symbols_table_entry->semantic_type = semantic_type;
   //declara como vetor
   symbols_table_entry->var_vec_or_fun = SMTC_VECTOR;
   //associa class do campo
   symbols_table_entry->semantic_user_type = current_type_decl;
-	//associa tamanho na tabela de simbolos
-	symbols_table_entry->size = get_type_size(semantic_type) * length;
+  //associa tamanho na tabela de simbolos
+  symbols_table_entry->size = get_type_size(semantic_type) * length;
 }
 
 void verify_shiftable(st_value_t* symbols_table_entry)
@@ -1170,18 +1170,44 @@ st_value_t* putToCurrentST(char* key, int line, int token_type)
 
 st_value_t* search_id_in_current_st(char* key)
 {
+  st_value_t *entry_aux = NULL;
   char* full_key = (char*) malloc((strlen(key)+2)*sizeof(char));
   strcpy(full_key, key);
-	concatTokenType(full_key, POA_IDENT);
-  return dict_get(getCurrentST(), full_key);
+  concatTokenType(full_key, POA_IDENT);
+  entry_aux = dict_get(getCurrentST(), full_key);
+  free(full_key);
+  return entry_aux;
+}
+
+st_value_t* search_id_in_stack_sts(char* key)
+{
+  st_value_t *entry_aux = NULL;
+  char* full_key = (char*) malloc((strlen(key)+2)*sizeof(char));
+  strcpy(full_key, key);
+  concatTokenType(full_key, POA_IDENT);
+  st_stack_item_t *item_aux = stack->data;
+  while(item_aux) {
+    entry_aux = dict_get(item_aux->value, full_key);
+    if(entry_aux) {
+      free(full_key);
+      return entry_aux;
+    }
+    item_aux = item_aux->next;
+  }
+  entry_aux = dict_get(symbolsTable, full_key);
+  free(full_key);
+  return entry_aux;
 }
 
 st_value_t* search_id_in_global_st(char* key)
 {
+  st_value_t *entry_aux = NULL;
   char* full_key = (char*) malloc((strlen(key)+2)*sizeof(char));
   strcpy(full_key, key);
-	concatTokenType(full_key, POA_IDENT);
-  return dict_get(symbolsTable, full_key);
+  concatTokenType(full_key, POA_IDENT);
+  entry_aux = dict_get(symbolsTable, full_key);
+  free(full_key);
+  return entry_aux;
 }
 
 st_value_t* ensure_type_declared(char* type_name)
@@ -1196,7 +1222,7 @@ st_value_t* ensure_type_declared(char* type_name)
   {
     printf("[ERRO SEMANTICO] [Linha %d] ~%s~ não é um tipo, deve ser usado como %s\n",
         comp_get_line_number(), type_name, var_vec_or_fun_to_string(st_tipo));
-		exit(get_semantic_error_var_vec_or_fun(st_tipo));
+    exit(get_semantic_error_var_vec_or_fun(st_tipo));
   }
   return st_tipo;
 }
@@ -1204,39 +1230,39 @@ st_value_t* ensure_type_declared(char* type_name)
 void ensure_type_not_declared(char* id_name)
 {
   st_value_t* st_identificador = search_id_in_current_st(id_name);
-	if (st_identificador)
-	{
-		printf("[ERRO SEMANTICO] [Linha %d] Tipo ~%s~ já declarado na linha %d.\n",
-				comp_get_line_number(), id_name, st_identificador->line);
-		exit(SMTC_ERROR_DECLARED);
-	}
+  if (st_identificador)
+  {
+    printf("[ERRO SEMANTICO] [Linha %d] Tipo ~%s~ já declarado na linha %d.\n",
+        comp_get_line_number(), id_name, st_identificador->line);
+    exit(SMTC_ERROR_DECLARED);
+  }
 }
 
 void ensure_identifier_not_declared(char* id_name)
 {
   st_value_t* st_identificador = search_id_in_current_st(id_name);
-	if (st_identificador)
-	{
-		printf("[ERRO SEMANTICO] [Linha %d] Identificador ~%s~ já declarado na linha %d.\n",
-				comp_get_line_number(), id_name, st_identificador->line);
-		exit(SMTC_ERROR_DECLARED);
-	}
+  if (st_identificador)
+  {
+    printf("[ERRO SEMANTICO] [Linha %d] Identificador ~%s~ já declarado na linha %d.\n",
+        comp_get_line_number(), id_name, st_identificador->line);
+    exit(SMTC_ERROR_DECLARED);
+  }
 }
 
 st_value_t* ensure_variable_declared(char* variable_name)
 {
   //TODO verificar em todo stack de sts
-  st_value_t* st_var = search_id_in_current_st(variable_name);
-	if (!st_var)
-	{
-		printf("[ERRO SEMANTICO] [Linha %d] Variável ~%s~ não declarada\n", comp_get_line_number(), variable_name);
-		exit(SMTC_ERROR_UNDECLARED);
-	}
+  st_value_t* st_var = search_id_in_stack_sts(variable_name);
+  if (!st_var)
+  {
+    printf("[ERRO SEMANTICO] [Linha %d] Variável ~%s~ não declarada\n", comp_get_line_number(), variable_name);
+    exit(SMTC_ERROR_UNDECLARED);
+  }
   else if (st_var->var_vec_or_fun != SMTC_VARIABLE)
   {
     printf("[ERRO SEMANTICO] [Linha %d] ~%s~ não é uma variável, deve ser usado como %s\n",
         comp_get_line_number(), variable_name, var_vec_or_fun_to_string(st_var));
-		exit(get_semantic_error_var_vec_or_fun(st_var));
+    exit(get_semantic_error_var_vec_or_fun(st_var));
   }
   return st_var;
 }
@@ -1244,18 +1270,18 @@ st_value_t* ensure_variable_declared(char* variable_name)
 st_value_t* ensure_field_declared(char* field_name, char* related_user_type)
 {
   st_value_t* st_campo = search_id_in_global_st(field_name);
-	if (!st_campo)
-	{
-		printf("[ERRO SEMANTICO] [Linha %d] Campo ~%s~ não declarado\n", comp_get_line_number(), field_name);
-		exit(SMTC_ERROR_UNDECLARED);
-	}
+  if (!st_campo)
+  {
+    printf("[ERRO SEMANTICO] [Linha %d] Campo ~%s~ não declarado\n", comp_get_line_number(), field_name);
+    exit(SMTC_ERROR_UNDECLARED);
+  }
   else if (related_user_type)
   {
     if (strcmp(st_campo->semantic_user_type, related_user_type) != 0)
     {
       printf("[ERRO SEMANTICO] [Linha %d] ~%s~ não é campo da classe ~%s~, e sim da ~%s~\n",
           comp_get_line_number(), field_name, related_user_type, st_campo->semantic_user_type);
-  		exit(SMTC_ERROR_INVALID_FIELD);
+      exit(SMTC_ERROR_INVALID_FIELD);
     }
   }
   //related_user_type NULL
@@ -1269,33 +1295,33 @@ st_value_t* ensure_field_declared(char* field_name, char* related_user_type)
 st_value_t* ensure_function_declared(char* function_name)
 {
   st_value_t* st_identificador = search_id_in_global_st(function_name);
-	if (!st_identificador)
-	{
-		printf("[ERRO SEMANTICO] [Linha %d] Função ~%s~ não declarada\n", comp_get_line_number(), function_name);
-		exit(SMTC_ERROR_UNDECLARED);
-	}
+  if (!st_identificador)
+  {
+    printf("[ERRO SEMANTICO] [Linha %d] Função ~%s~ não declarada\n", comp_get_line_number(), function_name);
+    exit(SMTC_ERROR_UNDECLARED);
+  }
   else if (st_identificador->var_vec_or_fun != SMTC_FUNCTION)
   {
     printf("[ERRO SEMANTICO] [Linha %d] ~%s~ não é uma função, deve ser usado como %s\n",
         comp_get_line_number(), function_name, var_vec_or_fun_to_string(st_identificador));
-		exit(get_semantic_error_var_vec_or_fun(st_identificador));
+    exit(get_semantic_error_var_vec_or_fun(st_identificador));
   }
   return st_identificador;
 }
 
 st_value_t* ensure_vector_declared(char* vector_name)
 {
-  st_value_t* st_identificador = search_id_in_current_st(vector_name);
-	if (!st_identificador)
-	{
-		printf("[ERRO SEMANTICO] [Linha %d] Vetor ~%s~ não declarado\n", comp_get_line_number(), vector_name);
-		exit(SMTC_ERROR_UNDECLARED);
-	}
+  st_value_t* st_identificador = search_id_in_stack_sts(vector_name);
+  if (!st_identificador)
+  {
+    printf("[ERRO SEMANTICO] [Linha %d] Vetor ~%s~ não declarado\n", comp_get_line_number(), vector_name);
+    exit(SMTC_ERROR_UNDECLARED);
+  }
   else if (st_identificador->var_vec_or_fun != SMTC_VECTOR)
   {
     printf("[ERRO SEMANTICO] [Linha %d] ~%s~ não é um vetor, deve ser usado como %s\n",
         comp_get_line_number(), vector_name, var_vec_or_fun_to_string(st_identificador));
-		exit(get_semantic_error_var_vec_or_fun(st_identificador));
+    exit(get_semantic_error_var_vec_or_fun(st_identificador));
   }
   return st_identificador;
 }

@@ -57,10 +57,14 @@ void remove_collisions_funcs_params(comp_dict_item_t * item);
 void remove_collisions_pointer_to_free(comp_dict_item_t * item);
 void setEntryValue(st_value_t* entryValue, char* value);
 st_value_t* putToSymbolsTable(char* key, int line, int token_type);
+void putToFuncsParams(char *func_name, st_value_t *st_param);
 void main_init (int argc, char **argv);
 void main_finalize (void);
 int comp_set_line_number (char *yytext);
+void stack_print(st_stack_t *stack_aux);
+void stack_print_params(st_stack_t *stack_aux);
 void destroyAST(comp_tree_t* ast);
+st_value_t* search_id_in_stack_sts(char* key);
 
 
 /* -------------------------------------------------------------------------- */
