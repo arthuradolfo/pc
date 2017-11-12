@@ -4,10 +4,12 @@ float floate(){}
 
 int main()
 {
-  int a;
-  foreach(a : 1,2,3)
+  tipo_t tipado;
+
+  string stringao <= "a";
+  for (int stringao, int b : true : b = 1)
   {
-    output a;
+    output stringao;
     int dentro;
   };
   //output dentro;

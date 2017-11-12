@@ -744,8 +744,24 @@ iteration_command: TK_PR_FOREACH '(' TK_IDENTIFICADOR ':' foreach_expression_seq
 	$$ = NULL;
 	if ($7) destroyAST($7);
 }
-iteration_command: TK_PR_FOR '(' for_command_sequence ':' expression ':' for_command_sequence ')' body
-{ $$ = NULL; destroyAST($5); if ($9) destroyAST($9); }
+start_for: TK_PR_FOR '('
+{
+	//empilhar bloco
+	comp_dict_t *func_symbols_table = dict_new();
+	stack_push(func_symbols_table, get_stack());
+}
+iteration_command: start_for for_command_sequence ':' expression ':' for_command_sequence ')' body
+{
+	//desempilhar bloco
+	st_stack_item_t *item;
+	st_stack_t *aux_stack = get_stack();
+	stack_pop(&item, &aux_stack);
+	free(item);
+
+	mark_coercion(SMTC_BOOL, $4->value);	
+	$$ = NULL; destroyAST($4);
+	if ($8) destroyAST($8);
+}
 iteration_command: TK_PR_WHILE '(' expression ')' TK_PR_DO block
 {
 	$$ = tree_make_node(new_ast_node_value(AST_WHILE_DO, SMTC_VOID, NULL, NULL));
