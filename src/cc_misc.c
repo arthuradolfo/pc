@@ -1178,7 +1178,7 @@ st_value_t* ensure_field_declared(char* field_name, char* related_user_type)
 
 st_value_t* ensure_function_declared(char* function_name)
 {
-  st_value_t* st_identificador = search_id_in_current_st(function_name);
+  st_value_t* st_identificador = search_id_in_global_st(function_name);
 	if (!st_identificador)
 	{
 		printf("[ERRO SEMANTICO] [Linha %d] Função ~%s~ não declarada\n", comp_get_line_number(), function_name);

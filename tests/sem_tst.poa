@@ -1,14 +1,17 @@
 class tipo_t [ public int integer ];
 
+float floate(){}
+
 int main()
 {
-  tipo_t tipado;
-  if (tipado) then
+  if (floate()) then
   {
     //
   } else
   {
     //
   };
+
+
 
 }
