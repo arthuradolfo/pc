@@ -333,11 +333,8 @@ parameter: primitive_type TK_IDENTIFICADOR
 	//insere identificador na tabela de simbolos global
 	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_primitive($1, st_identificador);
-<<<<<<< HEAD
-=======
-	putToFuncsParams(get_current_func_decl(), st_identificador);
 
->>>>>>> 1ba2a4085d0c66619a12e0dc5857c97bdbee58e0
+  putToFuncsParams(get_current_func_decl(), st_identificador);
 }
 parameter: TK_PR_CONST primitive_type TK_IDENTIFICADOR
 {
