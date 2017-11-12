@@ -178,6 +178,9 @@ ast_node_value_t* new_ast_node_value(int syntactic_type, int semantic_type, char
 
 /* funcoes de semantica */
 
+st_stack_t* get_stack();
+
+
 void print_semantic_type(int semantic_type);
 
 /**

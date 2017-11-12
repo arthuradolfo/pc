@@ -242,8 +242,6 @@ push_func_stack: %empty
 {
 	comp_dict_t *func_symbols_table = dict_new();
 	stack_push(func_symbols_table, get_stack());
-	printf("Empilha funcao\n");
-	stack_print();
 }
 
 def_function: primitive_type TK_IDENTIFICADOR '(' parameters ')' push_func_stack body
@@ -263,8 +261,6 @@ def_function: primitive_type TK_IDENTIFICADOR '(' parameters ')' push_func_stack
 	st_stack_t *aux_stack = get_stack();
 	stack_pop(&item, &aux_stack);
 	free(item);
-	printf("Desempilha funcao\n");
-	stack_print();
 }
 def_function: TK_PR_STATIC primitive_type TK_IDENTIFICADOR '(' parameters ')' body
 {
@@ -337,7 +333,7 @@ parameter: primitive_type TK_IDENTIFICADOR
 	//insere identificador na tabela de simbolos global
 	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_primitive($1, st_identificador);
-	
+
 }
 parameter: TK_PR_CONST primitive_type TK_IDENTIFICADOR
 {
@@ -397,8 +393,6 @@ push_block_stack: '{'
 {
 	comp_dict_t *func_symbols_table = dict_new();
 	stack_push(func_symbols_table, get_stack());
-	printf("Empilha bloco\n");
-	stack_print();
 }
 
 simple_command: attribution_command { $$ = $1; }
@@ -414,8 +408,6 @@ simple_command: push_block_stack command_sequence '}'
 	st_stack_t *aux_stack = get_stack();
 	stack_pop(&item, &aux_stack);
 	free(item);
-	printf("Desempilha bloco\n");
-	stack_print();
 }
 
 io_command: input_command { $$ = $1; }

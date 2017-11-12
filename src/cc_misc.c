@@ -703,7 +703,7 @@ char* get_current_type_decl()
   return current_type_decl;
 }
 
-char* get_stack()
+st_stack_t* get_stack()
 {
   return stack;
 }
@@ -1013,7 +1013,7 @@ void mark_coercion_where_needed(ast_node_value_t* ast_node_1, ast_node_value_t* 
 comp_dict_t* getCurrentST()
 {
   //TODO usar pilha
-  if(!stack->empty) return stack->data->value; 
+  if(!stack->empty) return stack->data->value;
   else return symbolsTable;
 }
 
