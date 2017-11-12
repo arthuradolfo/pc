@@ -546,10 +546,12 @@ void freeValue(comp_tree_t* pai)
  */
 void clearAndFreeAST()
 {
-	if (abstractSyntaxTree->value != NULL)
-		free(abstractSyntaxTree->value);
-	freeValue(abstractSyntaxTree);
-	tree_free(abstractSyntaxTree);
+  if (abstractSyntaxTree) {
+    if (abstractSyntaxTree->value != NULL)
+    free(abstractSyntaxTree->value);
+    freeValue(abstractSyntaxTree);
+    tree_free(abstractSyntaxTree);
+  }
 }
 
 /**
@@ -819,12 +821,14 @@ void set_st_semantic_type_and_size_primitive_function(int semantic_type, st_valu
 	symbols_table_entry->size = get_type_size(semantic_type);
 }
 
-void set_st_semantic_type_and_size_user_type_function(st_value_t* type_entry, st_value_t* variable_entry)
+void set_st_semantic_type_and_size_user_type_function(char* type_name, st_value_t* variable_entry)
 {
+  st_value_t* type_entry = search_id_in_global_st(type_name);
+
   //associa tipo semantico na tabela de simbolos
   variable_entry->semantic_type = SMTC_USER_TYPE_VAR;
   //associa nome do tipo de usuario
-  variable_entry->semantic_user_type = type_entry->value.s;
+  variable_entry->semantic_user_type = type_name;
   //declara como variavel
   variable_entry->var_vec_or_fun = SMTC_FUNCTION;
   //associa tamanho na tabela de simbolos
@@ -833,20 +837,26 @@ void set_st_semantic_type_and_size_user_type_function(st_value_t* type_entry, st
 
 void set_st_semantic_type_and_size_user_type(char* type_name, st_value_t* variable_entry)
 {
+  st_value_t* type_entry = search_id_in_global_st(type_name);
+
   //associa tipo semantico na tabela de simbolos
   variable_entry->semantic_type = SMTC_USER_TYPE_VAR;
   //associa nome do tipo de usuario
   variable_entry->semantic_user_type = type_name;
   //declara como variavel
   variable_entry->var_vec_or_fun = SMTC_VARIABLE;
+  //associa tamanho na tabela de simbolos
+  variable_entry->size = type_entry->size;
 }
 
-void set_st_semantic_type_and_size_vector_user_type(st_value_t* type_entry, st_value_t* variable_entry, int length)
+void set_st_semantic_type_and_size_vector_user_type(char* type_name, st_value_t* variable_entry, int length)
 {
+  st_value_t* type_entry = search_id_in_global_st(type_name);
+
   //associa tipo semantico na tabela de simbolos
   variable_entry->semantic_type = SMTC_USER_TYPE_VAR;
   //associa nome do tipo de usuario
-  variable_entry->semantic_user_type = type_entry->value.s;
+  variable_entry->semantic_user_type = type_name;
   //declara como variavel
   variable_entry->var_vec_or_fun = SMTC_VECTOR;
   //associa tamanho na tabela de simbolos

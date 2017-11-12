@@ -208,7 +208,7 @@ void set_st_semantic_type_and_size_primitive_function(int semantic_type, st_valu
 /**
  * Seta, num Value de entrada de tabela de simbolos, o tipo semantico, seu tamanho e que é uma funcao user type
  */
-void set_st_semantic_type_and_size_user_type_function(st_value_t* type_entry, st_value_t* variable_entry);
+void set_st_semantic_type_and_size_user_type_function(char* type_name, st_value_t* variable_entry);
 
 /**
  * Seta, num Value de entrada de tabela de simbolos de um vetor, o tipo semantico e seu tamanho
@@ -223,7 +223,7 @@ void set_st_semantic_type_and_size_user_type(char* type_name, st_value_t* variab
 /**
  * Seta, num Value de entrada de tabela de simbolos de um vetor de tipo de usuario, o tipo semantico e seu tamanho
  */
-void set_st_semantic_type_and_size_vector_user_type(st_value_t* type_entry, st_value_t* variable_entry, int length);
+void set_st_semantic_type_and_size_vector_user_type(char* type_name, st_value_t* variable_entry, int length);
 
 /**
  * Seta, num Value de entrada de tabela de simbolos de um campo de tipo de usuario, o tipo semantico e sua classe relacionada
