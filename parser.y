@@ -94,6 +94,7 @@
 %type<tree> unary_operator
 %type<tree> operator
 %type<tree> literal
+%type<tree> block
 %type<semantic_type> primitive_type
 %type<size> type_fields
 %type<size> type_field
@@ -404,7 +405,9 @@ simple_command: function_call { $$ = $1; }
 simple_command: shift_command { $$ = $1; }
 simple_command: def_local_var { $$ = $1; }
 simple_command: flux_command { $$ = $1; }
-simple_command: push_block_stack command_sequence '}'
+simple_command: block { $$ = $1; }
+
+block: push_block_stack command_sequence '}'
 {
 	$$ = tree_make_node(new_ast_node_value(AST_BLOCO, SMTC_VOID, NULL, NULL));
 	if ($2) tree_insert_node($$,$2);
@@ -698,7 +701,7 @@ flux_command: condition_command
 flux_command: iteration_command
 flux_command: selection_command
 
-condition_command: TK_PR_IF '(' expression ')' TK_PR_THEN body
+condition_command: TK_PR_IF '(' expression ')' TK_PR_THEN block
 {
 	$$ = tree_make_node(new_ast_node_value(AST_IF_ELSE, SMTC_VOID, NULL, NULL));
 
@@ -713,7 +716,7 @@ condition_command: TK_PR_IF '(' expression ')' TK_PR_THEN body
 
 	mark_coercion(SMTC_BOOL, $3->value);
 }
-condition_command: TK_PR_IF '(' expression ')' TK_PR_THEN body TK_PR_ELSE body
+condition_command: TK_PR_IF '(' expression ')' TK_PR_THEN block TK_PR_ELSE block
 {
 	$$ = tree_make_node(new_ast_node_value(AST_IF_ELSE, SMTC_VOID, NULL, NULL));
 
