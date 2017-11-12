@@ -5,16 +5,7 @@ tipo1_t t0_v[1];
 tipo1_t t1_v[1];
 tipo2_t t2_v[1];
 
-int main()
+tipo2_t main()
 {
-  tipo1_t t0;
-  tipo1_t t1;
-  tipo2_t t2;
-
-  t0 = t1;
-  t0_v[1] = t1_v[1];
-
-
-  t1 = t2;
-  t1_v[0] = t2_v[0];
+  return t2_v[0]; 
 }

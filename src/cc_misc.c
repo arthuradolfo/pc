@@ -912,6 +912,31 @@ int infere_type(int first_type, int second_type)
   }
 }
 
+int infere_primitive_return_type(int first_type, int second_type)
+{
+  if (first_type == second_type) return first_type;
+
+  if ((first_type == SMTC_FLOAT && second_type == SMTC_INT) || (first_type == SMTC_INT && second_type == SMTC_FLOAT))
+  {
+    return SMTC_FLOAT;
+  }
+  if ((first_type == SMTC_BOOL && second_type == SMTC_INT) || (first_type == SMTC_INT && second_type == SMTC_BOOL))
+  {
+    return SMTC_INT;
+  }
+  if ((first_type == SMTC_FLOAT && second_type == SMTC_BOOL) || (first_type == SMTC_BOOL && second_type == SMTC_FLOAT))
+  {
+    return SMTC_FLOAT;
+  }
+
+  //tipos incompatives
+  printf("[ERRO SEMANTICO] [Linha %d] Retorno deveria ser do tipo ~%s~, mas foi do tipo ~%s~\n",
+      comp_get_line_number(),
+      semantic_type_to_string(first_type),
+      semantic_type_to_string(second_type));
+  exit(SMTC_ERROR_WRONG_PAR_RETURN);
+}
+
 int get_type_size(int semantic_type)
 {
   switch (semantic_type)
@@ -1231,7 +1256,7 @@ st_value_t* search_id_in_global_st(char* key)
   return entry_aux;
 }
 
-char* semantic_type_to_sting(int semantic_type) {
+char* semantic_type_to_string(int semantic_type) {
   switch(semantic_type) {
     case SMTC_VOID:
       return "void";
@@ -1248,38 +1273,49 @@ char* semantic_type_to_sting(int semantic_type) {
   }
 }
 
-st_value_t* ensure_return_type_is_correct(int semantic_type)
+void ensure_return_type_is_correct(ast_node_value_t* ast_expression)
 {
-  st_value_t* st_tipo = search_id_in_global_st(get_current_func_decl());
-  printf("current function %s\n", get_current_func_decl());
-  printf("Semantic type: %d\n", st_tipo->semantic_type);
-  if (st_tipo->semantic_type != semantic_type)
+  st_value_t* st_prevalent = search_id_in_global_st(get_current_func_decl());
+  int type_1 = st_prevalent->semantic_type;
+  int type_2 = is_marked_to_coercion(ast_expression) ?
+      ast_expression->coercion : ast_expression->semantic_type ;
+
+  int resulting_type = infere_primitive_return_type(type_1, type_2);
+
+  bool coercion_happened = false;
+  if (type_1 != resulting_type)
   {
-    printf("[ERRO SEMANTICO] [Linha %d] Retorno deveria ser do tipo ~%s~, mas foi do tipo ~%s~\n",
-        comp_get_line_number(), semantic_type_to_sting(st_tipo->semantic_type), semantic_type_to_sting(semantic_type));
-    exit(SMTC_ERROR_WRONG_PAR_RETURN);
+    ast_expression->coercion = resulting_type;
+    coercion_happened = true;
   }
-  return st_tipo;
+
+  #ifdef DEBUG
+  if (coercion_happened)
+  {
+    printf("[Linha %d] mark_coercion_where_needed --- ", lineNumber);
+    printf(" | type_1: "); print_semantic_type(type_1);
+    printf(" | type_2: "); print_semantic_type(type_2);
+    printf(" => coercion: "); print_semantic_type_ln(resulting_type);
+  }
+  #endif
 }
 
-st_value_t* ensure_return_type_user_is_correct(char *semantic_type)
+void ensure_return_type_user_is_correct(ast_node_value_t* ast_expression)
 {
   st_value_t* st_tipo = search_id_in_global_st(get_current_func_decl());
   if(st_tipo->semantic_type == SMTC_USER_TYPE_VAR) {
-    if (strcmp(st_tipo->semantic_user_type, semantic_type) != 0)
+    if (strcmp(st_tipo->semantic_user_type, ast_expression->semantic_user_type) != 0)
     {
       printf("[ERRO SEMANTICO] [Linha %d] retorno devia ser do tipo ~%s~, mas foi do tipo ~%s~\n",
-          comp_get_line_number(), st_tipo->semantic_user_type, semantic_type);
+          comp_get_line_number(), st_tipo->semantic_user_type, ast_expression->semantic_user_type);
       exit(SMTC_ERROR_WRONG_PAR_RETURN);
     }
   }
   else {
     printf("[ERRO SEMANTICO] [Linha %d] retorno devia ser do tipo ~%s~, mas foi do tipo ~%s~\n",
-          comp_get_line_number(),  semantic_type_to_sting(st_tipo->semantic_type), semantic_type);
+          comp_get_line_number(),  semantic_type_to_string(st_tipo->semantic_type), ast_expression->semantic_user_type);
       exit(SMTC_ERROR_WRONG_PAR_RETURN);
-      
   }
-  return st_tipo;
 }
 
 st_value_t* ensure_type_declared(char* type_name)

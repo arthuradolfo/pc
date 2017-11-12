@@ -809,8 +809,8 @@ action_command: TK_PR_RETURN expression
 {
 	//TODO verificar se expression é compativel com o retorno da funcao (como?)
 	ast_node_value_t* ast_node_value_expression = $2->value;
-	if(ast_node_value_expression->semantic_type != SMTC_USER_TYPE_VAR) ensure_return_type_is_correct(ast_node_value_expression->semantic_type);
-	else ensure_return_type_user_is_correct(ast_node_value_expression->semantic_user_type);
+	if(ast_node_value_expression->semantic_type != SMTC_USER_TYPE_VAR) ensure_return_type_is_correct(ast_node_value_expression);
+	else ensure_return_type_user_is_correct(ast_node_value_expression);
 	$$ = tree_make_unary_node(new_ast_node_value(AST_RETURN, ast_node_value_expression->semantic_type, ast_node_value_expression->semantic_user_type, NULL), $2);
 }
 action_command: TK_PR_CONTINUE { $$ = NULL; }

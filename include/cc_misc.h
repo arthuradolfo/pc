@@ -389,10 +389,15 @@ void set_current_func_decl(char* func_decl);
 
 char* get_current_func_decl();
 
-char* semantic_type_to_sting(int semantic_type);
+char* semantic_type_to_string(int semantic_type);
 
-st_value_t* ensure_return_type_is_correct(int semantic_type);
+void ensure_return_type_is_correct(ast_node_value_t* ast_expression);
 
-st_value_t* ensure_return_type_user_is_correct(char *semantic_type);
+void ensure_return_type_user_is_correct(ast_node_value_t* ast_expression);
+
+/**
+ * Infere um tipo resultante ou da erro, no contexto de um retorno de funcao
+ */
+int infere_primitive_type_return(int first_type, int second_type);
 
 #endif
