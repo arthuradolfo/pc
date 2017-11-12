@@ -1251,7 +1251,6 @@ void ensure_identifier_not_declared(char* id_name)
 
 st_value_t* ensure_variable_declared(char* variable_name)
 {
-  //TODO verificar em todo stack de sts
   st_value_t* st_var = search_id_in_stack_sts(variable_name);
   if (!st_var)
   {
@@ -1311,7 +1310,7 @@ st_value_t* ensure_function_declared(char* function_name)
 
 st_value_t* ensure_vector_declared(char* vector_name)
 {
-  st_value_t* st_identificador = search_id_in_stack_sts(vector_name);
+  st_value_t* st_identificador = search_id_in_global_sts(vector_name);
   if (!st_identificador)
   {
     printf("[ERRO SEMANTICO] [Linha %d] Vetor ~%s~ não declarado\n", comp_get_line_number(), vector_name);
