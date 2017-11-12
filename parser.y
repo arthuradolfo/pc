@@ -333,7 +333,6 @@ parameter: primitive_type TK_IDENTIFICADOR
 	//insere identificador na tabela de simbolos global
 	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_primitive($1, st_identificador);
-
 }
 parameter: TK_PR_CONST primitive_type TK_IDENTIFICADOR
 {
@@ -706,6 +705,8 @@ condition_command: TK_PR_IF '(' expression ')' TK_PR_THEN body
 		tree_insert_node($$, $6);
 	else
 		tree_insert_node($$, tree_make_node(new_ast_node_value(AST_BLOCO, SMTC_VOID, NULL, NULL)));
+
+	mark_coercion(SMTC_BOOL, $3->value);
 }
 condition_command: TK_PR_IF '(' expression ')' TK_PR_THEN body TK_PR_ELSE body
 {
@@ -725,6 +726,8 @@ condition_command: TK_PR_IF '(' expression ')' TK_PR_THEN body TK_PR_ELSE body
 		tree_insert_node($$, $8);
 	else
 		tree_insert_node($$, tree_make_node(new_ast_node_value(AST_BLOCO, SMTC_VOID, NULL, NULL)));
+
+	mark_coercion(SMTC_BOOL, $3->value);
 }
 
 iteration_command: TK_PR_FOREACH '(' TK_IDENTIFICADOR ':' foreach_expression_sequence ')' body

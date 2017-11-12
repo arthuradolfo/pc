@@ -813,6 +813,13 @@ int infere_type(int first_type, int second_type)
     print_semantic_type_ln(second_type);
     exit(SMTC_ERROR_STRING_TO_X);
   }
+  if (first_type == SMTC_USER_TYPE_VAR || second_type == SMTC_USER_TYPE_VAR)
+  {
+    printf("[ERRO SEMANTICO] [Linha %d] Coercao impossivel do tipo user type : ", lineNumber);
+    print_semantic_type(first_type); printf("e ");
+    print_semantic_type_ln(second_type);
+    exit(SMTC_ERROR_STRING_TO_X);
+  }
 }
 
 int get_type_size(int semantic_type)
@@ -955,6 +962,13 @@ bool coercion_possible(int first_type, int second_type)
     print_semantic_type_ln(second_type);
     exit(SMTC_ERROR_STRING_TO_X);
   }
+  if (first_type == SMTC_USER_TYPE_VAR || second_type == SMTC_USER_TYPE_VAR)
+  {
+    printf("[ERRO SEMANTICO] [Linha %d] Coercao impossivel do tipo user type : ", lineNumber);
+    print_semantic_type(first_type); printf("e ");
+    print_semantic_type_ln(second_type);
+    exit(SMTC_ERROR_STRING_TO_X);
+  }
   return true;
 }
 
@@ -1012,7 +1026,6 @@ void mark_coercion_where_needed(ast_node_value_t* ast_node_1, ast_node_value_t* 
 
 comp_dict_t* getCurrentST()
 {
-  //TODO usar pilha
   if(!stack->empty) return stack->data->value;
   else return symbolsTable;
 }

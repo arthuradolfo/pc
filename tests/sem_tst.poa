@@ -1,0 +1,14 @@
+class tipo_t [ public int integer ];
+
+int main()
+{
+  tipo_t tipado;
+  if (tipado) then
+  {
+    //
+  } else
+  {
+    //
+  };
+
+}
