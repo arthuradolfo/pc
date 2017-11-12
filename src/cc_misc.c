@@ -1265,11 +1265,19 @@ st_value_t* ensure_return_type_is_correct(int semantic_type)
 st_value_t* ensure_return_type_user_is_correct(char *semantic_type)
 {
   st_value_t* st_tipo = search_id_in_global_st(get_current_func_decl());
-  if (strcmp(st_tipo->semantic_user_type, semantic_type) != 0)
-  {
-    printf("[ERRO SEMANTICO] [Linha %d] Retorno deveria ser do tipo ~%s~, mas foi do tipo ~%s~\n",
-        comp_get_line_number(), st_tipo->semantic_user_type, semantic_type);
-    exit(SMTC_ERROR_WRONG_PAR_RETURN);
+  if(st_tipo->semantic_type == SMTC_USER_TYPE_VAR) {
+    if (strcmp(st_tipo->semantic_user_type, semantic_type) != 0)
+    {
+      printf("[ERRO SEMANTICO] [Linha %d] retorno devia ser do tipo ~%s~, mas foi do tipo ~%s~\n",
+          comp_get_line_number(), st_tipo->semantic_user_type, semantic_type);
+      exit(SMTC_ERROR_WRONG_PAR_RETURN);
+    }
+  }
+  else {
+    printf("[ERRO SEMANTICO] [Linha %d] retorno devia ser do tipo ~%s~, mas foi do tipo ~%s~\n",
+          comp_get_line_number(),  semantic_type_to_sting(st_tipo->semantic_type), semantic_type);
+      exit(SMTC_ERROR_WRONG_PAR_RETURN);
+      
   }
   return st_tipo;
 }
