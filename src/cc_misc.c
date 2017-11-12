@@ -764,6 +764,8 @@ ast_node_value_t* new_ast_node_value(int syntactic_type, int semantic_type, char
 
   node->inputable = false;
   node->outputable = false;
+
+  node->symbols_table = NULL;
   return node;
 }
 
@@ -1484,5 +1486,28 @@ int get_semantic_error_var_vec_or_fun(st_value_t* st_entry)
     case SMTC_VARIABLE: return SMTC_ERROR_VARIABLE;
     case SMTC_VECTOR: return SMTC_ERROR_VECTOR;
     case SMTC_FUNCTION: return SMTC_ERROR_FUNCTION;
+  }
+}
+
+void print_st(comp_dict_t* st)
+{
+  if (!st)
+  {
+    #ifdef DEBUG
+      printf("Tabela NULL\n");
+    #endif
+    return;
+  }
+  printf("\nTabela:\n");
+
+
+  int i, l;
+  st_value_t* entrada;
+  for (i = 0, l = st->size; i < l; ++i) {
+    if (st->data[i]) {
+      entrada = dict_get(st, st->data[i]->key);
+      //printf("Chave %s Valor %d\n", st->data[i]->key, entrada->line);
+      cc_dict_etapa_2_print_entrada(st->data[i]->key, entrada->line, entrada->token_type);
+    }
   }
 }

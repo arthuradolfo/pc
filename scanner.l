@@ -43,12 +43,12 @@ FLT  {INT}\.{DGT}+
 "private"                     return TK_PR_PRIVATE;
 "public"                      return TK_PR_PUBLIC;
 "protected"                   return TK_PR_PROTECTED;
-"false"						            yylval.valor_lexico = putToSymbolsTable(yytext, comp_get_line_number(), POA_LIT_BOOL); return TK_LIT_FALSE;
-"true"						            yylval.valor_lexico = putToSymbolsTable(yytext, comp_get_line_number(), POA_LIT_BOOL); return TK_LIT_TRUE;
-{INT}          					  	  yylval.valor_lexico = putToSymbolsTable(yytext, comp_get_line_number(),POA_LIT_INT); return TK_LIT_INT;
-{FLT}				                  yylval.valor_lexico = putToSymbolsTable(yytext, comp_get_line_number(), POA_LIT_FLOAT); return TK_LIT_FLOAT;
-'.'						                yylval.valor_lexico = putToSymbolsTable(yytext, comp_get_line_number(), POA_LIT_CHAR); return TK_LIT_CHAR;
-\"(\\.|[^"])*\"				        yylval.valor_lexico = putToSymbolsTable(yytext, comp_get_line_number(), POA_LIT_STRING); return TK_LIT_STRING;
+"false"						            yylval.valor_lexico = putToCurrentST(yytext, comp_get_line_number(), POA_LIT_BOOL); return TK_LIT_FALSE;
+"true"						            yylval.valor_lexico = putToCurrentST(yytext, comp_get_line_number(), POA_LIT_BOOL); return TK_LIT_TRUE;
+{INT}          					  	  yylval.valor_lexico = putToCurrentST(yytext, comp_get_line_number(),POA_LIT_INT); return TK_LIT_INT;
+{FLT}				                  yylval.valor_lexico = putToCurrentST(yytext, comp_get_line_number(), POA_LIT_FLOAT); return TK_LIT_FLOAT;
+'.'						                yylval.valor_lexico = putToCurrentST(yytext, comp_get_line_number(), POA_LIT_CHAR); return TK_LIT_CHAR;
+\"(\\.|[^"])*\"				        yylval.valor_lexico = putToCurrentST(yytext, comp_get_line_number(), POA_LIT_STRING); return TK_LIT_STRING;
 {ESP}						              return yytext[0];
 "<="						              return TK_OC_LE;
 ">="						              return TK_OC_GE;

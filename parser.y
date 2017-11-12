@@ -110,11 +110,19 @@ prime_programa: programa
 {
 	$$ = tree_new();
 	set_ast_root($$);
+	$$->value = new_ast_node_value(AST_PROGRAMA, SMTC_VOID, NULL, NULL);
+
 	if ($1)
 		tree_insert_node($$, $1);
 
 	gv_declare(AST_PROGRAMA, $$, NULL);
 	putToGraphviz($$);
+
+	//associa tabela de simbolos ao nodo AST
+	((ast_node_value_t*)$$->value)->symbols_table = getCurrentST();
+	#ifdef DEBUG
+		print_st(((ast_node_value_t*)$$->value)->symbols_table);
+	#endif
 }
 
 programa: %empty { $$ = NULL; }
@@ -282,6 +290,13 @@ def_function: func_name push_func_stack '(' parameters ')' body
 	$$ = $1;
 	if ($6)
 		tree_insert_node($$,$6);
+
+	//associa tabela de simbolos ao nodo AST
+	((ast_node_value_t*)$$->value)->symbols_table = getCurrentST();
+	#ifdef DEBUG
+		print_st(((ast_node_value_t*)$$->value)->symbols_table);
+	#endif
+
 	st_stack_item_t *item;
 	st_stack_t *aux_stack = get_stack();
 	stack_pop(&item, &aux_stack);
@@ -292,6 +307,13 @@ def_function: TK_PR_STATIC func_name push_func_stack '(' parameters ')' body
 	$$ = $2;
 	if ($7)
 		tree_insert_node($$,$7);
+
+	//associa tabela de simbolos ao nodo AST
+	((ast_node_value_t*)$$->value)->symbols_table = getCurrentST();
+	#ifdef DEBUG
+		print_st(((ast_node_value_t*)$$->value)->symbols_table);
+	#endif
+
 	st_stack_item_t *item;
 	st_stack_t *aux_stack = get_stack();
 	stack_pop(&item, &aux_stack);
@@ -300,14 +322,21 @@ def_function: TK_PR_STATIC func_name push_func_stack '(' parameters ')' body
 
 def_function: func_name_user push_func_stack '(' parameters ')' body
 {
-
 	$$ = $1;
 	if ($6)
 		tree_insert_node($$,$6);
+
+	//associa tabela de simbolos ao nodo AST
+	((ast_node_value_t*)$$->value)->symbols_table = getCurrentST();
+	#ifdef DEBUG
+		print_st(((ast_node_value_t*)$$->value)->symbols_table);
+	#endif
+
 	st_stack_item_t *item;
 	st_stack_t *aux_stack = get_stack();
 	stack_pop(&item, &aux_stack);
 	free(item);
+
 }
 def_function: TK_PR_STATIC func_name_user push_func_stack '(' parameters ')' body
 {
@@ -315,6 +344,13 @@ def_function: TK_PR_STATIC func_name_user push_func_stack '(' parameters ')' bod
 	$$ = $2;
 	if ($7)
 		tree_insert_node($$,$7);
+
+	//associa tabela de simbolos ao nodo AST
+	((ast_node_value_t*)$$->value)->symbols_table = getCurrentST();
+	#ifdef DEBUG
+		print_st(((ast_node_value_t*)$$->value)->symbols_table);
+	#endif
+
 	st_stack_item_t *item;
 	st_stack_t *aux_stack = get_stack();
 	stack_pop(&item, &aux_stack);
@@ -416,6 +452,13 @@ block: push_block_stack command_sequence '}'
 {
 	$$ = tree_make_node(new_ast_node_value(AST_BLOCO, SMTC_VOID, NULL, NULL));
 	if ($2) tree_insert_node($$,$2);
+
+	//associa tabela de simbolos ao nodo AST
+	((ast_node_value_t*)$$->value)->symbols_table = getCurrentST();
+	#ifdef DEBUG
+		print_st(((ast_node_value_t*)$$->value)->symbols_table);
+	#endif
+
 	st_stack_item_t *item;
 	st_stack_t *aux_stack = get_stack();
 	stack_pop(&item, &aux_stack);
@@ -759,6 +802,15 @@ start_for: TK_PR_FOR '('
 }
 iteration_command: start_for for_command_sequence ':' expression ':' for_command_sequence ')' body
 {
+	//	TODO implementar for
+	$$ = tree_make_node(new_ast_node_value(AST_BLOCO, SMTC_VOID, NULL, NULL));
+
+	//associa tabela de simbolos ao nodo AST
+	((ast_node_value_t*)$$->value)->symbols_table = getCurrentST();
+	#ifdef DEBUG
+		print_st(((ast_node_value_t*)$$->value)->symbols_table);
+	#endif
+
 	//desempilhar bloco
 	st_stack_item_t *item;
 	st_stack_t *aux_stack = get_stack();
@@ -807,7 +859,6 @@ foreach_expression_sequence: expression ',' foreach_expression_sequence { destro
 
 action_command: TK_PR_RETURN expression
 {
-	//TODO verificar se expression é compativel com o retorno da funcao (como?)
 	ast_node_value_t* ast_node_value_expression = $2->value;
 	if(ast_node_value_expression->semantic_type != SMTC_USER_TYPE_VAR) ensure_return_type_is_correct(ast_node_value_expression);
 	else ensure_return_type_user_is_correct(ast_node_value_expression);

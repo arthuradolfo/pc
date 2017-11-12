@@ -5,7 +5,44 @@ tipo1_t t0_v[1];
 tipo1_t t1_v[1];
 tipo2_t t2_v[1];
 
-tipo2_t main()
+tipo2_t main(int a)
 {
-  return t2_v[0]; 
+  if (true) then
+  {
+    int dentro_if;
+  };
+
+  if (false) then
+  {
+    int dentro_if_else;
+  };
+
+  while ('a') do
+  {
+    int dentro_while_do;
+  };
+
+  do
+  {
+    int dentro_do_while;
+
+  } while ('b');
+
+  switch ('c')
+  {
+    int dentro_do_switch;
+  };
+
+  for (char d_var <= 'd' : true : d_var = 'e')
+  {
+    int dentro_do_for;
+  };
+
+  int fora_foreach;
+  foreach(fora_foreach : 1,2,3,4)
+  {
+    int dentro_do_foreach;
+  };
+
+  
 }

@@ -109,7 +109,12 @@ typedef struct ast_node_value {
 		*/
 	 bool outputable;
 
-  struct symbolsTable_value* symbols_table_entry;
+	 /**
+	  * Um ponteiro para uma tabela de simbolos caso o nodo seja uma funcao, um bloco ou similar
+		*/
+	 comp_dict_t* symbols_table;
+
+   struct symbolsTable_value* symbols_table_entry;
 
 } ast_node_value_t;
 
@@ -399,5 +404,10 @@ void ensure_return_type_user_is_correct(ast_node_value_t* ast_expression);
  * Infere um tipo resultante ou da erro, no contexto de um retorno de funcao
  */
 int infere_primitive_type_return(int first_type, int second_type);
+
+/**
+ * Imprime tabela de simbolos
+ */
+void print_st(comp_dict_t* st);
 
 #endif
