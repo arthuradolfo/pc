@@ -1,5 +1,5 @@
 int zeta;
-static int a;
+static int a[10];
 float vector[2];
 float vector2[2];
 
@@ -17,7 +17,7 @@ int main(int fly, float fora, bool whiteguy, seibs_t seibel) {
   seibel$myIntField = 1;
   //seibel$myIntField2 = 1;
   {
-  seibs_t seibel;
+  	a[9] = 9;
   	seibel$myIntField = 1;
   };
 }
