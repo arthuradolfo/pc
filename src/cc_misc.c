@@ -1319,7 +1319,7 @@ st_stack_t* ensure_parameters_type(char *func_name, comp_tree_t *parameters_tree
     node_aux = aux->value;
     if(node_aux->semantic_type == SMTC_USER_TYPE_VAR) {
       if(stack_entry_aux->semantic_type != SMTC_USER_TYPE_VAR) {
-        printf("[ERRO SEMANTICO] [Linha %d] Tipo do parâmetro devia ser do tipo ~%s~, mas foi do tipo ~%s~\n",
+        printf("[ERRO SEMANTICO] [Linha %d] Tipo do parâmetro ~%s~ devia ser do tipo ~%s~, mas foi do tipo ~%s~\n",
             comp_get_line_number(), stack_entry_aux->value.s, semantic_type_to_string(stack_entry_aux->semantic_type), node_aux->semantic_user_type);
         exit(SMTC_ERROR_WRONG_TYPE_ARGS);
       }
