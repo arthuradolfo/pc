@@ -238,7 +238,15 @@ def_global_var: TK_PR_STATIC TK_IDENTIFICADOR TK_IDENTIFICADOR '[' TK_LIT_INT ']
 
 // funcoes
 
-def_function: primitive_type TK_IDENTIFICADOR '(' parameters ')' body
+push_func_stack: %empty
+{
+	comp_dict_t *func_symbols_table = dict_new();
+	stack_push(func_symbols_table, get_stack());
+	printf("Empilha funcao\n");
+	stack_print();
+}
+
+def_function: primitive_type TK_IDENTIFICADOR '(' parameters ')' push_func_stack body
 {
 	//verifica declaracao anterior do identificador
 	char* id_name = $2;
@@ -248,10 +256,15 @@ def_function: primitive_type TK_IDENTIFICADOR '(' parameters ')' body
 	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
 
 	$$ = tree_make_node(new_ast_node_value(AST_FUNCAO, SMTC_VOID, NULL, st_identificador));
-	if ($6)
-		tree_insert_node($$,$6);
-
+	if ($7)
+		tree_insert_node($$,$7);
 	set_st_semantic_type_and_size_primitive_function($1, st_identificador);
+	st_stack_item_t *item;
+	st_stack_t *aux_stack = get_stack();
+	stack_pop(&item, &aux_stack);
+	free(item);
+	printf("Desempilha funcao\n");
+	stack_print();
 }
 def_function: TK_PR_STATIC primitive_type TK_IDENTIFICADOR '(' parameters ')' body
 {
@@ -324,6 +337,7 @@ parameter: primitive_type TK_IDENTIFICADOR
 	//insere identificador na tabela de simbolos global
 	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_primitive($1, st_identificador);
+	
 }
 parameter: TK_PR_CONST primitive_type TK_IDENTIFICADOR
 {
@@ -379,15 +393,29 @@ command_in_block: simple_command { $$ = $1; }
 command_in_block: io_command { $$ = $1; }
 command_in_block: action_command { $$ = $1; }
 
+push_block_stack: '{'
+{
+	comp_dict_t *func_symbols_table = dict_new();
+	stack_push(func_symbols_table, get_stack());
+	printf("Empilha bloco\n");
+	stack_print();
+}
+
 simple_command: attribution_command { $$ = $1; }
 simple_command: function_call { $$ = $1; }
 simple_command: shift_command { $$ = $1; }
 simple_command: def_local_var { $$ = $1; }
 simple_command: flux_command { $$ = $1; }
-simple_command: '{' command_sequence '}'
+simple_command: push_block_stack command_sequence '}'
 {
 	$$ = tree_make_node(new_ast_node_value(AST_BLOCO, SMTC_VOID, NULL, NULL));
 	if ($2) tree_insert_node($$,$2);
+	st_stack_item_t *item;
+	st_stack_t *aux_stack = get_stack();
+	stack_pop(&item, &aux_stack);
+	free(item);
+	printf("Desempilha bloco\n");
+	stack_print();
 }
 
 io_command: input_command { $$ = $1; }

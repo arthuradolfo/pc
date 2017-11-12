@@ -288,6 +288,32 @@ void clearSymbolsTable()
 }
 
 /**
+  * Libera os espacos de memoria ocupados pelos ponteiros da tabela de simbolos
+  */
+void clear_general_st(comp_dict_t *st)
+{
+    //remover todas as entradas da tabela antes de libera-la
+    st_value_t* entrada;
+    if (!st) return;
+
+    int i, l;
+    for (i = 0, l = st->size; i < l; i++) {
+      if (st->data[i]) {
+        if(st->data[i]->next) {
+          remove_collisions(st->data[i]->next);
+        }
+        entrada = dict_get(st, st->data[i]->key);
+        if(entrada->token_type == POA_IDENT || entrada->token_type == POA_LIT_STRING) {
+          free(entrada->value.s);
+        }
+        free(st->data[i]->value);
+        dict_remove(st, st->data[i]->key);
+      }
+    }
+    dict_free(st);
+}
+
+/**
   * Libera os espacos de memoria ocupados pelos ponteiros da tabela de ponteiros a serem liberados
   */
 void clearPointerToFreeTable()
@@ -668,6 +694,11 @@ char* get_current_type_decl()
   return current_type_decl;
 }
 
+char* get_stack()
+{
+  return stack;
+}
+
 void print_semantic_type(int semantic_type)
 {
   printf("[type %d] ", semantic_type);
@@ -950,7 +981,8 @@ void mark_coercion_where_needed(ast_node_value_t* ast_node_1, ast_node_value_t* 
 comp_dict_t* getCurrentST()
 {
   //TODO usar pilha
-  return symbolsTable;
+  if(!stack->empty) return stack->data->value; 
+  else return symbolsTable;
 }
 
 st_value_t* putToCurrentST(char* key, int line, int token_type)

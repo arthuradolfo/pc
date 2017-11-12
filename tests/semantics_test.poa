@@ -17,6 +17,9 @@ int main(int fly, float fora, bool whiteguy) {
 
   seibs_t seibel;
   seibel$myIntField = 1;
-  seibel$myIntField2 = 1;
-
+  //seibel$myIntField2 = 1;
+  {
+  seibs_t seibel;
+  	seibel$myIntField = 1;
+  };
 }
