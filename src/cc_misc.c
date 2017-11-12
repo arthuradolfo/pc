@@ -636,13 +636,20 @@ void comp_print_table (void)
 /* ---------------------------------  AST ----------------------------------  */
 /* -------------------------------------------------------------------------- */
 
+
+
+
 ast_node_value_t* new_ast_node_value(int syntactic_type, int semantic_type, char* semantic_user_type, st_value_t* symbols_table_entry) {
+
   ast_node_value_t* node = (ast_node_value_t*) malloc(sizeof(ast_node_value_t));
   node->syntactic_type = syntactic_type;
   node->semantic_type = semantic_type;
   node->semantic_user_type = semantic_user_type;
   node->symbols_table_entry = symbols_table_entry;
   node->coercion = SMTC_NO_COERCION;
+
+  node->inputable = false;
+  node->outputable = false;
   return node;
 }
 
@@ -854,8 +861,7 @@ void set_st_semantic_type_and_size_primitive_field(int semantic_type, st_value_t
   symbols_table_entry->var_vec_or_fun = SMTC_VARIABLE;
   //associa class do campo
   symbols_table_entry->semantic_user_type = strdup(get_current_type_decl());
-  printf("sem type na funcao: %s\n", symbols_table_entry->semantic_user_type);
-	//associa tamanho na tabela de simbolos
+  //associa tamanho na tabela de simbolos
 	symbols_table_entry->size = get_type_size(semantic_type);
 }
 
@@ -916,9 +922,13 @@ void mark_coercion(int prevalent_type, ast_node_value_t* ast_to_coerce)
   {
     ast_to_coerce->coercion = prevalent_type;
 
-    printf("[Linha %d] mark_coercion --- ", lineNumber);
-    printf(" | semantic_type: "); print_semantic_type(ast_to_coerce->semantic_type);
-    printf(" => coercion: "); print_semantic_type_ln(ast_to_coerce->coercion);
+    #ifdef DEBUG
+    {
+      printf("[Linha %d] mark_coercion --- ", lineNumber);
+      printf(" | semantic_type: "); print_semantic_type(ast_to_coerce->semantic_type);
+      printf(" => coercion: "); print_semantic_type_ln(ast_to_coerce->coercion);
+    }
+    #endif
   }
 }
 
@@ -929,16 +939,28 @@ void mark_coercion_where_needed(ast_node_value_t* ast_node_1, ast_node_value_t* 
   int type_2 = is_marked_to_coercion(ast_node_2) ? ast_node_2->coercion : ast_node_2->semantic_type ;
   int resulting_type = infere_type(type_1, type_2);
 
-  printf("[Linha %d] mark_coercion_where_needed --- ", lineNumber);
-  printf(" | type_1: "); print_semantic_type(type_1);
-  printf(" | type_2: "); print_semantic_type(type_2);
-  printf(" => coercion: "); print_semantic_type_ln(resulting_type);
 
-
+  bool coercion_happened = false;
   if (type_1 != resulting_type)
+  {
     ast_node_1->coercion = resulting_type;
+    coercion_happened = true;
+  }
   else if (type_2 != resulting_type)
+  {
     ast_node_2->coercion = resulting_type;
+    coercion_happened = true;
+  }
+
+  #ifdef DEBUG
+  if (coercion_happened)
+  {
+    printf("[Linha %d] mark_coercion_where_needed --- ", lineNumber);
+    printf(" | type_1: "); print_semantic_type(type_1);
+    printf(" | type_2: "); print_semantic_type(type_2);
+    printf(" => coercion: "); print_semantic_type_ln(resulting_type);
+  }
+  #endif
 }
 
 comp_dict_t* getCurrentST()
@@ -1125,6 +1147,42 @@ st_value_t* ensure_vector_declared(char* vector_name)
 		exit(get_semantic_error_var_vec_or_fun(st_identificador));
   }
   return st_identificador;
+}
+
+void ensure_inputable(ast_node_value_t* expression)
+{
+  if (!expression->inputable)
+  {
+    printf("[ERRO SEMANTICO] [Linha %d] Parâmetro de input deve ser um identificador\n", comp_get_line_number());
+    exit(SMTC_ERROR_WRONG_PAR_INPUT);
+  }
+}
+
+void ensure_outputable(ast_node_value_t* expression)
+{
+  if (!expression->outputable)
+  {
+    printf("[ERRO SEMANTICO] [Linha %d] Parâmetro de output deve ser um literal string ou uma expressão aritmética\n",
+        comp_get_line_number());
+    exit(SMTC_ERROR_WRONG_PAR_OUTPUT);
+  }
+}
+
+bool is_arit_expression(ast_node_value_t* ast)
+{
+  int sub_exp_type = is_marked_to_coercion(ast) ?
+      ast->coercion : ast->semantic_type;
+
+  return (sub_exp_type == SMTC_INT || sub_exp_type == SMTC_FLOAT);
+}
+
+bool is_arit_operator(ast_node_value_t* ast)
+{
+  int operator = ast->syntactic_type;
+  return (operator == AST_ARIM_SOMA ||
+          operator == AST_ARIM_SUBTRACAO ||
+          operator == AST_ARIM_MULTIPLICACAO ||
+          operator == AST_ARIM_DIVISAO );
 }
 
 char* var_vec_or_fun_to_string(st_value_t* st_entry)

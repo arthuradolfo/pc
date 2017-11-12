@@ -94,6 +94,16 @@ typedef struct ast_node_value {
 		*/
 	 int coercion;
 
+	 /**
+	  * Marca que é parâmetro válido de um input
+		*/
+	 bool inputable;
+
+	 /**
+	  * Marca que é parâmetro válido de um output
+		*/
+	 bool outputable;
+
   struct symbolsTable_value* symbols_table_entry;
 
 } ast_node_value_t;
@@ -326,6 +336,18 @@ st_value_t* ensure_variable_declared(char* variable_name);
 st_value_t* ensure_vector_declared(char* vector_name);
 
 /**
+ * Verifica se expressao pode ser parametro de um input.
+ * Se não puder, da erro
+ */
+void ensure_inputable(ast_node_value_t* expression);
+
+/**
+ * Verifica se expressao pode ser parametro de um output.
+ * Se não puder, da erro
+ */
+void ensure_outputable(ast_node_value_t* expression);
+
+/**
  * Retorna char* com string correspondente ao var_vec_or_fun do parametro fornecido
  */
 char* var_vec_or_fun_to_string(st_value_t* st_entry);
@@ -335,8 +357,19 @@ char* var_vec_or_fun_to_string(st_value_t* st_entry);
  */
 int get_semantic_error_var_vec_or_fun(st_value_t* st_entry);
 
+/**
+ * avalia se um ast_node_value_t é uma expressao aritmética (valor int ou float)
+ */
+bool is_arit_expression(ast_node_value_t* ast);
+
+/**
+ * Setter pra current_type_decl
+ */
 void set_current_type_decl(char* type_decl);
 
+/**
+ * Getter pra current_type_decl
+ */
 char* get_current_type_decl();
 
 #endif

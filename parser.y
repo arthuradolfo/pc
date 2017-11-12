@@ -616,13 +616,13 @@ attribution_command: TK_IDENTIFICADOR '$' TK_IDENTIFICADOR '=' expression
 
 input_command: TK_PR_INPUT expression
 {
-	//TODO checar semantica
+	ensure_inputable($2->value);
 	$$ = tree_make_unary_node(new_ast_node_value(AST_INPUT, SMTC_VOID, NULL, NULL), $2);
 }
 
-output_command: TK_PR_OUTPUT expression_sequence
+output_command: TK_PR_OUTPUT expression
 {
-	//TODO checar semantica
+	ensure_outputable($2->value);
 	$$ = tree_make_unary_node(new_ast_node_value(AST_OUTPUT, SMTC_VOID, NULL, NULL), $2);
 }
 
@@ -767,10 +767,8 @@ start_type_decl: TK_PR_CLASS TK_IDENTIFICADOR
 	//insere identificador declarado na tabela de simbolos global
 	st_value_t* st_identificador = putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
 
-
 	st_identificador->semantic_user_type = id_name;
 	st_identificador->semantic_type = SMTC_USER_TYPE_NAME;
-	printf("semantic_user_type: %s\n",st_identificador->semantic_user_type);
 
 	set_current_type_decl(strdup(id_name));
 }
@@ -833,15 +831,18 @@ sub_expression_chain: sub_expression operator sub_expression_chain
 	//pendura operandos
 	tree_insert_node($$, $1);
 	tree_insert_node($$, $3);
+
 	//infere tipo semantico baseado nos operandos
 	ast_node_value_head->semantic_type = infere_type(ast_node_value_sub_expression->semantic_type, ast_node_value_sub_expression_chain->semantic_type);
 	mark_coercion_where_needed(ast_node_value_sub_expression, ast_node_value_sub_expression_chain);
+
+	((ast_node_value_t*) $$->value)->outputable = is_arit_expression(ast_node_value_head);
 }
 
 sub_expression: unary_operator sub_expression
 {
-	ast_node_value_t* ast_node_value_sub_expression = $2->value;
-	ast_node_value_t* ast_node_value_head = $$->value;
+	ast_node_value_t* value_sub_expression = $2->value;
+	ast_node_value_t* value_head = $$->value;
 
 	if ($1) {
 		$$ = $1;
@@ -850,7 +851,7 @@ sub_expression: unary_operator sub_expression
 		$$ = $2;
 	}
 	//infere tipo semantico baseado no operando
-	ast_node_value_head->semantic_type = ast_node_value_sub_expression->semantic_type;
+	value_head->semantic_type = value_sub_expression->semantic_type;
 }
 sub_expression: '(' expression ')' { $$ = $2; }
 sub_expression: literal {	$$ = $1; }
@@ -859,6 +860,9 @@ sub_expression: TK_IDENTIFICADOR
 	st_value_t* st_identificador = ensure_variable_declared($1);
 
 	$$ = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, st_identificador));
+
+	((ast_node_value_t*) $$->value)->outputable = is_arit_expression($$->value);
+	((ast_node_value_t*) $$->value)->inputable = true;
 }
 sub_expression: TK_IDENTIFICADOR '[' expression ']'
 {
@@ -870,8 +874,14 @@ sub_expression: TK_IDENTIFICADOR '[' expression ']'
 
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, st_identificador));
 	$$ = tree_make_binary_node(new_ast_node_value(AST_VETOR_INDEXADO, st_identificador->semantic_type, st_identificador->semantic_user_type, NULL), node_identificador, $3);
+
+	((ast_node_value_t*) $$->value)->outputable = is_arit_expression($$->value);
 }
-sub_expression: function_call { $$ = $1; }
+sub_expression: function_call
+{
+	$$ = $1;
+	((ast_node_value_t*) $$->value)->outputable = is_arit_expression($$->value);
+}
 
 
 
@@ -880,7 +890,11 @@ literal: TK_LIT_FLOAT { $$ = tree_make_node(new_ast_node_value(AST_LITERAL, SMTC
 literal: TK_LIT_CHAR { $$ = tree_make_node(new_ast_node_value(AST_LITERAL, SMTC_CHAR, NULL, $1)); }
 literal: TK_LIT_TRUE { $$ = tree_make_node(new_ast_node_value(AST_LITERAL, SMTC_BOOL, NULL, $1)); }
 literal: TK_LIT_FALSE { $$ = tree_make_node(new_ast_node_value(AST_LITERAL, SMTC_BOOL, NULL, $1)); }
-literal: TK_LIT_STRING { $$ = tree_make_node(new_ast_node_value(AST_LITERAL, SMTC_STRING, NULL, $1)); }
+literal: TK_LIT_STRING
+{
+	$$ = tree_make_node(new_ast_node_value(AST_LITERAL, SMTC_STRING, NULL, $1));
+	((ast_node_value_t*) $$->value)->outputable = true;
+}
 
 operator: TK_OC_LE { $$ = tree_make_node(new_ast_node_value(AST_LOGICO_COMP_LE, SMTC_VOID, NULL, NULL)); }
 operator: TK_OC_GE { $$ = tree_make_node(new_ast_node_value(AST_LOGICO_COMP_GE, SMTC_VOID, NULL, NULL)); }
@@ -906,6 +920,8 @@ expression_sequence: expression ',' expression_sequence
 	//pendura proxima
 	tree_insert_node($$, $3);
 }
+
+// producoes de erro para input e output
 
 
 %%
