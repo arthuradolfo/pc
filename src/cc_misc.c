@@ -18,9 +18,11 @@ comp_tree_t* abstractSyntaxTree;
 
 st_stack_t* stack;
 
-st_stack_t* params_stack;
+comp_dict_t* funcs_params;
 
 char* current_type_decl;
+
+char* current_func_decl;
 
 void set_ast_root(comp_tree_t* root)
 {
@@ -52,10 +54,20 @@ void remove_collisions(comp_dict_item_t * item)
   }
 }
 
+void remove_collisions_funcs_params(comp_dict_item_t * item)
+{
+  comp_dict_item_t* ptaux;
+  while (item != NULL) {
+    ptaux = item;
+    free_stack(ptaux->value);
+    item = item->next;
+    dict_remove(funcs_params, ptaux->key);
+  }
+}
+
 void remove_collisions_pointer_to_free(comp_dict_item_t * item)
 {
   comp_dict_item_t* ptaux;
-  st_value_t* entrada;
   while (item != NULL) {
     ptaux = item;
     item = item->next;
@@ -175,6 +187,22 @@ void concatTokenType(char *key, int token_type) {
 }
 
 /**
+  * Coloca parametros no dicionario de parametros das funcoes
+  */
+void putToFuncsParams(char *func_name, st_value_t *st_param) {
+  if(!funcs_params) return;
+  st_stack_t *aux_stack = dict_get(funcs_params, func_name);
+  if(aux_stack) {
+    stack_push(st_param, aux_stack);
+  }
+  else {
+    aux_stack = new_stack();
+    stack_push(st_param, aux_stack);
+    dict_put(funcs_params, func_name, aux_stack);
+  }
+}
+
+/**
  * Coloca o token na tabela de simbolos
  * @param char* key
  * @param int line
@@ -261,6 +289,23 @@ void printSymbolsTable()
   }
 }
 
+void printFuncsParams()
+{
+  printf("\printFuncsParams: \n");
+
+  if (!funcs_params) return;
+
+  int i, l;
+  st_stack_t* entrada;
+  for (i = 0, l = funcs_params->size; i < l; ++i) {
+    if (funcs_params->data[i]) {
+      entrada = dict_get(funcs_params, funcs_params->data[i]->key);
+      printf("Função %s: \n", funcs_params->data[i]->key);
+      stack_print_params(entrada);
+    }
+  }
+}
+
 /**
   * Libera os espacos de memoria ocupados pelos ponteiros da tabela de simbolos
   */
@@ -285,6 +330,29 @@ void clearSymbolsTable()
       }
     }
     dict_free(symbolsTable);
+}
+
+/**
+  * Libera os espacos de memoria ocupados pelos ponteiros da tabela de simbolos
+  */
+void clearFuncParams()
+{
+    //remover todas as entradas da tabela antes de libera-la
+    st_value_t* entrada;
+    if (!funcs_params) return;
+
+    int i, l;
+    for (i = 0, l = funcs_params->size; i < l; i++) {
+      if (funcs_params->data[i]) {
+        if(funcs_params->data[i]->next) {
+          remove_collisions_funcs_params(funcs_params->data[i]->next);
+        }
+        entrada = dict_get(funcs_params, funcs_params->data[i]->key);
+        free_stack(funcs_params->data[i]->value);
+        dict_remove(funcs_params, funcs_params->data[i]->key);
+      }
+    }
+    dict_free(funcs_params);
 }
 
 /**
@@ -601,8 +669,8 @@ void main_init (int argc, char **argv)
   lineNumber = 1;
   pointersToFreeTable = dict_new();
   symbolsTable = dict_new();
+  funcs_params = dict_new();
   stack = new_stack();
-  params_stack = new_stack();
   //abstractSyntaxTree = tree_new();
   gv_init(GRAPHVIZ_FILENAME);
 }
@@ -620,10 +688,10 @@ void main_finalize (void)
   //putToGraphviz(abstractSyntaxTree);
   gv_close();
   clearSymbolsTable();
+  clearFuncParams();
 	clearAndFreeAST();
   clearPointerToFreeTable();
   free_stack(stack);
-  free_stack(params_stack);
 }
 
 void put_items_stack() {
@@ -635,12 +703,24 @@ void put_items_stack() {
   printf("stack_push: %d\n", stack_push(b, stack));
 }
 
-void stack_print() {
-  if(!stack) printf("stack is null\n");
-  st_stack_item_t *aux_item = stack->data;
+void stack_print(st_stack_t *stack_aux) {
+  if(!stack_aux) printf("stack is null\n");
+  st_stack_item_t *aux_item = stack_aux->data;
   printf("Conteudo da pilha:\n");
   while(aux_item) {
     printf("%d\n", *((int*)aux_item->value));
+    aux_item = aux_item->next;
+  }
+}
+
+void stack_print_params(st_stack_t *stack_aux) {
+  if(!stack_aux) printf("stack is null\n");
+  st_stack_item_t *aux_item = stack_aux->data;
+  st_value_t *aux;
+  printf("Conteudo da pilha:\n");
+  while(aux_item) {
+    aux = aux_item->value;
+    printf("%d\n", aux->semantic_type);
     aux_item = aux_item->next;
   }
 }
@@ -701,6 +781,16 @@ void set_current_type_decl(char* type_decl)
 char* get_current_type_decl()
 {
   return current_type_decl;
+}
+
+void set_current_func_decl(char* func_decl)
+{
+  current_func_decl = func_decl;
+}
+
+char* get_current_func_decl()
+{
+  return current_func_decl;
 }
 
 st_stack_t* get_stack()
