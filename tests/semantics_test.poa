@@ -11,16 +11,9 @@ static seibs_t function()
  //something
 }
 
-int integer()
-{
-
-}
-
 string stringer() {}
 
-int main(int fly, float fora, bool whiteguy) {
-
-  seibs_t seibel;
+int main(int fly, float fora, bool whiteguy, seibs_t seibel) {
   seibel$myIntField = 1;
   //seibel$myIntField2 = 1;
   {

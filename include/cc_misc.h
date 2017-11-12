@@ -53,6 +53,7 @@ void clearPointerToFreeTable();
 void clearSymbolsTable();
 void removeQuotes(char *key);
 void remove_collisions(comp_dict_item_t * item);
+void remove_collisions_funcs_params(comp_dict_item_t * item);
 void remove_collisions_pointer_to_free(comp_dict_item_t * item);
 void setEntryValue(st_value_t* entryValue, char* value);
 st_value_t* putToSymbolsTable(char* key, int line, int token_type);
@@ -374,5 +375,9 @@ void set_current_type_decl(char* type_decl);
  * Getter pra current_type_decl
  */
 char* get_current_type_decl();
+
+void set_current_func_decl(char* func_decl);
+
+char* get_current_func_decl();
 
 #endif
