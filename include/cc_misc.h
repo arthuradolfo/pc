@@ -410,4 +410,10 @@ int infere_primitive_type_return(int first_type, int second_type);
  */
 void print_st(comp_dict_t* st);
 
+st_stack_t* ensure_number_of_parameters(char *func_name, comp_tree_t *tree);
+
+st_stack_t* ensure_parameters_type(char *func_name, comp_tree_t *parameters_tree);
+
+st_stack_t* ensure_function_has_no_parameters(char *func_name);
+
 #endif

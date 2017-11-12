@@ -706,14 +706,15 @@ output_command: TK_PR_OUTPUT expression
 function_call: TK_IDENTIFICADOR '(' expression_sequence ')'
 {
 	st_value_t* st_identificador = ensure_function_declared($1);
-
+	ensure_number_of_parameters($1, $3);
+	ensure_parameters_type($1, $3);
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, st_identificador));
 	$$ = tree_make_binary_node(new_ast_node_value(AST_CHAMADA_DE_FUNCAO, st_identificador->semantic_type, st_identificador->semantic_user_type, NULL), node_identificador, $3);
 }
 function_call: TK_IDENTIFICADOR '(' ')'
 {
 	st_value_t* st_identificador = ensure_function_declared($1);
-
+	ensure_function_has_no_parameters($1);
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, st_identificador));
 	$$ = tree_make_unary_node(new_ast_node_value(AST_CHAMADA_DE_FUNCAO, st_identificador->semantic_type, st_identificador->semantic_user_type, NULL), node_identificador);
 }

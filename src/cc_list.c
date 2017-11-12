@@ -11,6 +11,7 @@ st_stack_item_t* new_stack_item(void) {
 	st_stack_item_t *item = (st_stack_item_t*) malloc(sizeof(st_stack_item_t));
 	item->value = NULL;
 	item->next = NULL;
+	item->prev = NULL;
 	return item;
 }
 
@@ -30,6 +31,7 @@ int stack_pop(st_stack_item_t **data, st_stack_t **stack) {
 		else {
 			*data = (*stack)->data;
 			(*stack)->data = (*stack)->data->next;
+			(*stack)->data->prev = NULL;
 			(*data)->next = NULL;
 		}
 		return 0;
@@ -52,6 +54,7 @@ int stack_push(void *value, st_stack_t *stack) {
 		aux_item = stack->data;
 		data->next = aux_item;
 		stack->data = data;
+		aux_item->prev = stack->data;
 	}
 	return 0;
 }

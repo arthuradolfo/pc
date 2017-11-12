@@ -1258,6 +1258,113 @@ st_value_t* search_id_in_global_st(char* key)
   return entry_aux;
 }
 
+st_stack_t* ensure_number_of_parameters(char *func_name, comp_tree_t *tree)
+{
+  st_stack_t* st_stack = dict_get(funcs_params, func_name);
+  st_stack_item_t* aux_item;
+  ast_node_value_t *node_aux;
+  int count_tree = 0;
+  while(tree) {
+    node_aux = tree->value;
+    if(node_aux->syntactic_type != AST_CHAMADA_DE_FUNCAO || tree->childnodes != 1) count_tree++;
+    tree = tree->first;
+  }
+  int count = 0;
+  if(st_stack) {
+    if (st_stack->empty)
+    {
+      printf("[ERRO SEMANTICO] [Linha %d] Função ~%s~ não possui parâmetros, %d fornecido(s)\n",
+          comp_get_line_number(), func_name, count_tree);
+      exit(SMTC_ERROR_EXCESS_ARGS);
+    }
+    else {
+      aux_item = st_stack->data;
+      while(aux_item) {
+        count++;
+        aux_item = aux_item->next;
+      }
+      if(count > count_tree) {
+        printf("[ERRO SEMANTICO] [Linha %d] Função ~%s~ possui %d parâmetros, %d fornecido(s)\n",
+            comp_get_line_number(), func_name, count, count_tree);
+        exit(SMTC_ERROR_MISSING_ARGS);
+      }
+      else if(count < count_tree) {
+        printf("[ERRO SEMANTICO] [Linha %d] Função ~%s~ possui %d parâmetros, %d fornecido(s)\n",
+            comp_get_line_number(), func_name, count, count_tree);
+        exit(SMTC_ERROR_EXCESS_ARGS);
+      }
+    }
+  }
+  else {
+      printf("[ERRO SEMANTICO] [Linha %d] Função ~%s~ não possui parâmetros, %d fornecido(s)\n",
+          comp_get_line_number(), func_name, count_tree);
+      exit(SMTC_ERROR_EXCESS_ARGS);
+  }
+  return st_stack;
+}
+
+st_stack_t* ensure_parameters_type(char *func_name, comp_tree_t *parameters_tree)
+{
+  st_stack_t *st_stack = dict_get(funcs_params, func_name);
+  st_stack_item_t *item_aux;
+  st_value_t *stack_entry_aux;
+  comp_tree_t *aux = parameters_tree;
+  ast_node_value_t *node_aux;
+  item_aux = st_stack->data;
+  while(item_aux->next) {
+    item_aux = item_aux->next;
+  }
+  while(aux && item_aux) {
+    stack_entry_aux = (st_value_t*) item_aux->value;
+    node_aux = aux->value;
+    if(node_aux->semantic_type == SMTC_USER_TYPE_VAR) {
+      if(stack_entry_aux->semantic_type != SMTC_USER_TYPE_VAR) {
+        printf("[ERRO SEMANTICO] [Linha %d] Tipo do parâmetro devia ser do tipo ~%s~, mas foi do tipo ~%s~\n",
+            comp_get_line_number(), stack_entry_aux->value.s, semantic_type_to_string(stack_entry_aux->semantic_type), node_aux->semantic_user_type);
+        exit(SMTC_ERROR_WRONG_TYPE_ARGS);
+      }
+      else {
+        if(strcmp(node_aux->semantic_user_type, stack_entry_aux->semantic_user_type) != 0) {
+          printf("[ERRO SEMANTICO] [Linha %d] Tipo do parâmetro ~%s~ devia ser do tipo ~%s~, mas foi do tipo ~%s~\n",
+              comp_get_line_number(), stack_entry_aux->value.s, stack_entry_aux->semantic_user_type, node_aux->semantic_user_type);
+          exit(SMTC_ERROR_WRONG_TYPE_ARGS);
+        }
+      }
+    }
+    else {
+      if(stack_entry_aux->semantic_type == SMTC_USER_TYPE_VAR) {
+        printf("[ERRO SEMANTICO] [Linha %d] Tipo do parâmetro ~%s~ devia ser do tipo ~%s~, mas foi do tipo ~%s~\n",
+            comp_get_line_number(), stack_entry_aux->value.s, stack_entry_aux->semantic_user_type, semantic_type_to_string(node_aux->semantic_type));
+        exit(SMTC_ERROR_WRONG_TYPE_ARGS);
+      }
+      if(node_aux->semantic_type != stack_entry_aux->semantic_type) {
+        printf("[ERRO SEMANTICO] [Linha %d] Tipo do parâmetro ~%s~ devia ser do tipo ~%s~, mas foi do tipo ~%s~\n",
+            comp_get_line_number(), stack_entry_aux->value.s, semantic_type_to_string(stack_entry_aux->semantic_type), semantic_type_to_string(node_aux->semantic_type));
+        exit(SMTC_ERROR_WRONG_TYPE_ARGS);
+      }
+    }
+
+    if(node_aux->syntactic_type == AST_CHAMADA_DE_FUNCAO) aux = aux->last;
+    else aux = aux->first;
+    item_aux = item_aux->prev;
+  }
+  return st_stack;
+}
+
+st_stack_t* ensure_function_has_no_parameters(char *func_name)
+{
+  st_stack_t* st_stack = dict_get(funcs_params, func_name);
+  if(st_stack) {
+    if (!st_stack->empty)
+    {
+      printf("[ERRO SEMANTICO] [Linha %d] Função ~%s~ possui parâmetros, nenhum fornecido\n",
+          comp_get_line_number(), func_name);
+      exit(SMTC_ERROR_MISSING_ARGS);
+    }
+  }
+  return st_stack;
+}
+
 char* semantic_type_to_string(int semantic_type) {
   switch(semantic_type) {
     case SMTC_VOID:
