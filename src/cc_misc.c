@@ -1310,7 +1310,7 @@ st_value_t* ensure_function_declared(char* function_name)
 
 st_value_t* ensure_vector_declared(char* vector_name)
 {
-  st_value_t* st_identificador = search_id_in_global_sts(vector_name);
+  st_value_t* st_identificador = search_id_in_global_st(vector_name);
   if (!st_identificador)
   {
     printf("[ERRO SEMANTICO] [Linha %d] Vetor ~%s~ não declarado\n", comp_get_line_number(), vector_name);

@@ -738,8 +738,12 @@ condition_command: TK_PR_IF '(' expression ')' TK_PR_THEN block TK_PR_ELSE block
 	mark_coercion(SMTC_BOOL, $3->value);
 }
 
-iteration_command: TK_PR_FOREACH '(' TK_IDENTIFICADOR ':' foreach_expression_sequence ')' body
-{ $$ = NULL; if ($7) destroyAST($7); } //TODO implementar? lidar com TK_IDENTIFICADOR
+iteration_command: TK_PR_FOREACH '(' TK_IDENTIFICADOR ':' foreach_expression_sequence ')' block
+{
+	st_value_t* st_identificador = ensure_variable_declared($3);
+	$$ = NULL;
+	if ($7) destroyAST($7);
+}
 iteration_command: TK_PR_FOR '(' for_command_sequence ':' expression ':' for_command_sequence ')' body
 { $$ = NULL; destroyAST($5); if ($9) destroyAST($9); }
 iteration_command: TK_PR_WHILE '(' expression ')' TK_PR_DO block

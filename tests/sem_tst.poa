@@ -4,15 +4,12 @@ float floate(){}
 
 int main()
 {
-  do
+  int a;
+  foreach(a : 1,2,3)
   {
-    int dentro <= 1;
-    output dentro;
-    {
-    };
-    float a <= 1;
     output a;
-  } while (true);
+    int dentro;
+  };
   //output dentro;
   //output a;
 
