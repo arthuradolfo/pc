@@ -492,6 +492,8 @@ def_local_var: primitive_type TK_IDENTIFICADOR
 	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_primitive($1, st_identificador);
 
+	free(id_name);
+
 	$$ = NULL;
 }
 def_local_var: primitive_type TK_IDENTIFICADOR TK_OC_LE expression
