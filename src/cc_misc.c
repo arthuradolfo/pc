@@ -54,6 +54,26 @@ void remove_collisions(comp_dict_item_t * item)
   }
 }
 
+/**
+  * Da free em ponteiros das entradas da tabela de simbolos que estao no ponteiro next (quando a colisao de entradas)
+  * @param comp_dict_item_t* item
+  */
+void remove_collisions_general_st(comp_dict_t *st, comp_dict_item_t * item)
+{
+  comp_dict_item_t* ptaux;
+  st_value_t* entrada;
+  while (item != NULL) {
+    ptaux = item;
+    entrada = dict_get(st, ptaux->key);
+    if(entrada->token_type == POA_IDENT || entrada->token_type == POA_LIT_STRING) {
+      free(entrada->value.s);
+    }
+    free(ptaux->value);
+    item = item->next;
+    dict_remove(st, ptaux->key);
+  }
+}
+
 void remove_collisions_funcs_params(comp_dict_item_t * item)
 {
   comp_dict_item_t* ptaux;
@@ -330,6 +350,32 @@ void clearSymbolsTable()
       }
     }
     dict_free(symbolsTable);
+}
+
+/**
+  * Libera os espacos de memoria ocupados pelos ponteiros da tabela de simbolos
+  */
+void clearGeneralST(comp_dict_t *st)
+{
+    //remover todas as entradas da tabela antes de libera-la
+    st_value_t* entrada;
+    if (!st) return;
+
+    int i, l;
+    for (i = 0, l = st->size; i < l; i++) {
+      if (st->data[i]) {
+        if(st->data[i]->next) {
+          remove_collisions_general_st(st, st->data[i]->next);
+        }
+        entrada = dict_get(st, st->data[i]->key);
+        if(entrada->token_type == POA_IDENT || entrada->token_type == POA_LIT_STRING) {
+          free(entrada->value.s);
+        }
+        free(st->data[i]->value);
+        dict_remove(st, st->data[i]->key);
+      }
+    }
+    dict_free(st);
 }
 
 /**
@@ -632,10 +678,7 @@ void freeValue(comp_tree_t* pai)
           free(((ast_node_value_t*) filho->value)->semantic_user_type);
 
         if (((ast_node_value_t*) filho->value)->symbols_table != NULL)
-          free(((ast_node_value_t*) filho->value)->semantic_user_type);
-
-        if (((ast_node_value_t*) filho->value)->symbols_table_entry != NULL)
-          free(((ast_node_value_t*) filho->value)->semantic_user_type);
+          clearGeneralST(((ast_node_value_t*) filho->value)->symbols_table);
 
         free(filho->value);
       }

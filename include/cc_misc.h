@@ -416,6 +416,10 @@ st_stack_t* ensure_parameters_type(char *func_name, comp_tree_t *parameters_tree
 
 st_stack_t* ensure_function_has_no_parameters(char *func_name);
 
+void remove_collisions_general_st(comp_dict_t *st, comp_dict_item_t * item);
+
+void clearGeneralST(comp_dict_t *st);
+
 /**
  * Inicializa um st_value_t com tds os campos
  */
