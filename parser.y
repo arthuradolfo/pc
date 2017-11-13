@@ -819,7 +819,9 @@ iteration_command: start_for for_command_sequence ':' expression ':' for_command
 	free(item);
 
 	mark_coercion(SMTC_BOOL, $4->value);
-	$$ = NULL; destroyAST($4);
+	destroyAST($$);
+	$$ = NULL;
+	destroyAST($4);
 	if ($8) destroyAST($8);
 }
 iteration_command: TK_PR_WHILE '(' expression ')' TK_PR_DO block

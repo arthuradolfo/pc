@@ -421,4 +421,9 @@ st_stack_t* ensure_function_has_no_parameters(char *func_name);
  */
 st_value_t* new_st_value();
 
+/**
+ * Limpa um st_value_t
+ */
+st_value_t* clear_st_value();
+
 #endif

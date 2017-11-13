@@ -1651,3 +1651,9 @@ st_value_t* new_st_value()
   st_value->size = 0;
   st_value->value.i = 0;
 }
+
+st_value_t* clear_st_value()
+{
+  st_value_t * st_value = (st_value_t *) malloc(sizeof(st_value_t));
+  free(st_value->semantic_user_type);
+}
