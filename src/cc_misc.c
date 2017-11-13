@@ -1098,7 +1098,7 @@ void set_st_semantic_type_and_size_primitive_field(int semantic_type, st_value_t
   //declara como variavel
   symbols_table_entry->var_vec_or_fun = SMTC_VARIABLE;
   //associa class do campo
-  symbols_table_entry->semantic_user_type = strdup(get_current_type_decl());
+  symbols_table_entry->semantic_user_type = get_current_type_decl();
   //associa tamanho na tabela de simbolos
   symbols_table_entry->size = get_type_size(semantic_type);
 }
@@ -1110,7 +1110,7 @@ void set_st_semantic_type_and_size_vector_field(int semantic_type, int length, s
   //declara como vetor
   symbols_table_entry->var_vec_or_fun = SMTC_VECTOR;
   //associa class do campo
-  symbols_table_entry->semantic_user_type = current_type_decl;
+  symbols_table_entry->semantic_user_type = get_current_type_decl();
   //associa tamanho na tabela de simbolos
   symbols_table_entry->size = get_type_size(semantic_type) * length;
 }
@@ -1161,7 +1161,7 @@ bool coercion_possible(int first_type, int second_type)
     printf("[ERRO SEMANTICO] [Linha %d] Coercao impossível : ", lineNumber);
     print_semantic_type(first_type); printf("e ");
     print_semantic_type_ln(second_type);
-    exit(SMTC_ERROR_WRONG_TYPE);  
+    exit(SMTC_ERROR_WRONG_TYPE);
   }
 
   return true;
