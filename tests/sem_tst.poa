@@ -14,13 +14,9 @@ bool func(bool b1, bool b2, float f1, float f2, int i1, int i2)
 {
   func(true,false,1.1,1.2,0,1);
   func(1,0,1.2,1.1,false,true);
-
-  main(i1);
-  main(b1);
-  main(f1);
 }
 
-tipo2_t main(int a0)
+tipo2_t main(int a0, int a1, int a2)
 {
   tipo1_t a;
   int b;
@@ -28,12 +24,12 @@ tipo2_t main(int a0)
   static tipo1_t d;
   static int e;
   static int f <= 1;
-  const tipo1_t d;
-  const int e;
-  const int f <= 1;
-  static const tipo1_t d;
-  static const int e;
-  static const int f <= 1;
+  const tipo1_t g;
+  const int h;
+  const int i <= 1;
+  static const tipo1_t j;
+  static const int k;
+  static const int l <= 1;
 
 
   if (true) then
@@ -73,5 +69,5 @@ tipo2_t main(int a0)
     int dentro_do_foreach;
   };
 
-
+  main(a0, a1, a2);
 }

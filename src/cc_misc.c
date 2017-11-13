@@ -1156,11 +1156,13 @@ bool coercion_possible(int first_type, int second_type)
     exit(SMTC_ERROR_WRONG_TYPE);
   }
 
-
-  printf("[ERRO SEMANTICO] [Linha %d] Coercao impossível : ", lineNumber);
-  print_semantic_type(first_type); printf("e ");
-  print_semantic_type_ln(second_type);
-  exit(SMTC_ERROR_WRONG_TYPE);
+  if (first_type == SMTC_CHAR || first_type == SMTC_STRING || first_type == SMTC_USER_TYPE_VAR)
+  {
+    printf("[ERRO SEMANTICO] [Linha %d] Coercao impossível : ", lineNumber);
+    print_semantic_type(first_type); printf("e ");
+    print_semantic_type_ln(second_type);
+    exit(SMTC_ERROR_WRONG_TYPE);  
+  }
 
   return true;
 }
@@ -1413,9 +1415,22 @@ st_stack_t* ensure_parameters_type(char *func_name, comp_tree_t *parameters_tree
         exit(SMTC_ERROR_WRONG_TYPE_ARGS);
       }
       if(node_aux->semantic_type != stack_entry_aux->semantic_type) {
-        printf("[ERRO SEMANTICO] [Linha %d] Tipo do parâmetro ~%s~ devia ser do tipo ~%s~, mas foi do tipo ~%s~\n",
+
+        // if (!coercion_possible(stack_entry_aux->semantic_type, node_aux->semantic_type))
+        // {
+          printf("[ERRO SEMANTICO] [Linha %d] Tipo do parâmetro ~%s~ devia ser do tipo ~%s~, mas foi do tipo ~%s~\n",
             comp_get_line_number(), stack_entry_aux->value.s, semantic_type_to_string(stack_entry_aux->semantic_type), semantic_type_to_string(node_aux->semantic_type));
-        exit(SMTC_ERROR_WRONG_TYPE_ARGS);
+          exit(SMTC_ERROR_WRONG_TYPE_ARGS);
+        //}
+        // else
+        // {
+        //   node_aux->coercion = stack_entry_aux->semantic_type;
+        //   #ifdef DEBUG
+        //   printf("[Linha %d] No parâmetro ~%s~ houve coercao de ~%s~ para ~%s~\n",
+        //     comp_get_line_number(), stack_entry_aux->value.s, semantic_type_to_string(node_aux->semantic_type), semantic_type_to_string(node_aux->coercion));
+        //   #endif
+        // }
+
       }
     }
 
