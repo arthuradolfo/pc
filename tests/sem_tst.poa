@@ -5,8 +5,22 @@ tipo1_t t0_v[1];
 tipo1_t t1_v[1];
 tipo2_t t2_v[1];
 
-tipo2_t main(int a)
+tipo2_t main(int a0)
 {
+  tipo1_t a;
+  int b;
+  int c <= 1;
+  static tipo1_t d;
+  static int e;
+  static int f <= 1;
+  const tipo1_t d;
+  const int e;
+  const int f <= 1;
+  static const tipo1_t d;
+  static const int e;
+  static const int f <= 1;
+
+
   if (true) then
   {
     int dentro_if;
@@ -44,5 +58,5 @@ tipo2_t main(int a)
     int dentro_do_foreach;
   };
 
-  
+
 }

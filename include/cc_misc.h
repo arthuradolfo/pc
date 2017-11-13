@@ -428,6 +428,6 @@ st_value_t* new_st_value();
 /**
  * Limpa um st_value_t
  */
-st_value_t* clear_st_value();
+void clear_st_value(st_value_t*);
 
 #endif

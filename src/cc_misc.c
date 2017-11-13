@@ -727,14 +727,18 @@ void main_init (int argc, char **argv)
   symbolsTable = dict_new();
   funcs_params = dict_new();
   stack = new_stack();
+
+  current_type_decl = NULL;
+  current_func_decl = NULL;
+
   //abstractSyntaxTree = tree_new();
   gv_init(GRAPHVIZ_FILENAME);
 }
 
 void main_finalize (void)
 {
-  st_stack_item_t *item;
-  st_stack_item_t *item1;
+  // st_stack_item_t *item;
+  // st_stack_item_t *item1;
   //implemente esta função com rotinas de finalização, se necessário
 
   // printf("Print table:\n");
@@ -748,6 +752,9 @@ void main_finalize (void)
   clearAndFreeAST();
   clearPointerToFreeTable();
   free_stack(stack);
+
+  free(get_current_type_decl());
+  free(get_current_func_decl());
 }
 
 void put_items_stack() {
@@ -833,7 +840,9 @@ ast_node_value_t* new_ast_node_value(int syntactic_type, int semantic_type, char
 
 void set_current_type_decl(char* type_decl)
 {
-  current_type_decl = type_decl;
+  if (current_type_decl != NULL)
+    free(current_type_decl);
+  current_type_decl = strdup(type_decl);
 }
 
 char* get_current_type_decl()
@@ -843,7 +852,9 @@ char* get_current_type_decl()
 
 void set_current_func_decl(char* func_decl)
 {
-  current_func_decl = func_decl;
+  if (current_func_decl != NULL)
+    free(current_func_decl);
+  current_func_decl = strdup(func_decl);
 }
 
 char* get_current_func_decl()
@@ -1695,8 +1706,10 @@ st_value_t* new_st_value()
   st_value->value.i = 0;
 }
 
-st_value_t* clear_st_value()
+void clear_st_value(st_value_t* st_value)
 {
-  st_value_t * st_value = (st_value_t *) malloc(sizeof(st_value_t));
-  free(st_value->semantic_user_type);
+  if (st_value->semantic_user_type)
+    free(st_value->semantic_user_type);
+  if (st_value->value.s)
+    free(st_value->value.s);
 }
