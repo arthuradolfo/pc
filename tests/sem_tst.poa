@@ -5,6 +5,21 @@ tipo1_t t0_v[1];
 tipo1_t t1_v[1];
 tipo2_t t2_v[1];
 
+bool funk(int a)
+{
+  //
+}
+
+bool func(bool b1, bool b2, float f1, float f2, int i1, int i2)
+{
+  func(true,false,1.1,1.2,0,1);
+  func(1,0,1.2,1.1,false,true);
+
+  main(i1);
+  main(b1);
+  main(f1);
+}
+
 tipo2_t main(int a0)
 {
   tipo1_t a;

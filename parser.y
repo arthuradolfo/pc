@@ -403,7 +403,7 @@ parameter: primitive_type TK_IDENTIFICADOR
 
   putToFuncsParams(get_current_func_decl(), st_identificador);
 
-	//free(id_name);
+	free(id_name);
 }
 parameter: TK_PR_CONST primitive_type TK_IDENTIFICADOR
 {
@@ -416,7 +416,7 @@ parameter: TK_PR_CONST primitive_type TK_IDENTIFICADOR
 	set_st_semantic_type_and_size_primitive($2, st_identificador);
 	putToFuncsParams(get_current_func_decl(), st_identificador);
 
-	//free(id_name);
+	free(id_name);
 }
 parameter: TK_IDENTIFICADOR TK_IDENTIFICADOR
 {
@@ -432,8 +432,8 @@ parameter: TK_IDENTIFICADOR TK_IDENTIFICADOR
 	set_st_semantic_type_and_size_user_type($1, st_identificador);
 	putToFuncsParams(get_current_func_decl(), st_identificador);
 
-	//free($1);
-	//free(id_name);
+	free($1);
+	free(id_name);
 }
 parameter: TK_PR_CONST TK_IDENTIFICADOR TK_IDENTIFICADOR
 {
@@ -449,8 +449,8 @@ parameter: TK_PR_CONST TK_IDENTIFICADOR TK_IDENTIFICADOR
 	set_st_semantic_type_and_size_user_type($2, st_identificador);
 	putToFuncsParams(get_current_func_decl(), st_identificador);
 
-	//free($2);
-	//free(id_name);
+	free($2);
+	free(id_name);
 }
 
 command_sequence: %empty { $$ = NULL; }
