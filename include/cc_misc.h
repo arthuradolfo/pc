@@ -416,4 +416,9 @@ st_stack_t* ensure_parameters_type(char *func_name, comp_tree_t *parameters_tree
 
 st_stack_t* ensure_function_has_no_parameters(char *func_name);
 
+/**
+ * Inicializa um st_value_t com tds os campos
+ */
+st_value_t* new_st_value();
+
 #endif

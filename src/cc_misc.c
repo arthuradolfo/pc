@@ -224,7 +224,7 @@ st_value_t* putToSymbolsTable(char* key, int line, int token_type)
 
   concatTokenType(key_aux, token_type);
 
-  st_value_t* entryValue = (st_value_t *) malloc(sizeof(st_value_t));
+  st_value_t* entryValue = new_st_value();
 
   entryValue->line = line;
   entryValue->token_type = token_type;
@@ -626,8 +626,19 @@ void freeValue(comp_tree_t* pai)
   for (int i = 0; i < pai->childnodes; ++i) {
     if (filho != NULL) {
 
-      if (filho->value != NULL)
+      if (filho->value != NULL){
+
+        if (((ast_node_value_t*) filho->value)->semantic_user_type != NULL)
+          free(((ast_node_value_t*) filho->value)->semantic_user_type);
+
+        if (((ast_node_value_t*) filho->value)->symbols_table != NULL)
+          free(((ast_node_value_t*) filho->value)->semantic_user_type);
+
+        if (((ast_node_value_t*) filho->value)->symbols_table_entry != NULL)
+          free(((ast_node_value_t*) filho->value)->semantic_user_type);
+
         free(filho->value);
+      }
 
       //recursao sobre o filho
       freeValue(filho);
@@ -645,7 +656,7 @@ void clearAndFreeAST()
 {
   if (abstractSyntaxTree) {
     if (abstractSyntaxTree->value != NULL)
-    free(abstractSyntaxTree->value);
+      free(abstractSyntaxTree->value);
     freeValue(abstractSyntaxTree);
     tree_free(abstractSyntaxTree);
   }
@@ -657,10 +668,12 @@ void clearAndFreeAST()
  */
 void destroyAST(comp_tree_t* ast)
 {
-  if (ast->value != NULL)
-    free(ast->value);
-  freeValue(ast);
-  tree_free(ast);
+  if (ast) {
+    if (ast->value != NULL)
+      free(ast->value);
+    freeValue(ast);
+    tree_free(ast);
+  }
 }
 
 void main_init (int argc, char **argv)
@@ -1095,8 +1108,6 @@ bool coercion_possible(int first_type, int second_type)
   print_semantic_type_ln(second_type);
   exit(SMTC_ERROR_WRONG_TYPE);
 
-
-
   return true;
 }
 
@@ -1194,7 +1205,7 @@ st_value_t* putToCurrentST(char* key, int line, int token_type)
 
   concatTokenType(key_aux, token_type);
 
-  st_value_t* entryValue = (st_value_t *) malloc(sizeof(st_value_t));
+  st_value_t* entryValue = new_st_value();
 
   entryValue->line = line;
   entryValue->token_type = token_type;
@@ -1627,4 +1638,16 @@ void print_st(comp_dict_t* st)
       cc_dict_etapa_2_print_entrada(st->data[i]->key, entrada->line, entrada->token_type);
     }
   }
+}
+
+st_value_t* new_st_value()
+{
+  st_value_t * st_value = (st_value_t *) malloc(sizeof(st_value_t));
+  st_value->line = 0;
+  st_value->token_type = 0;
+  st_value->semantic_type = SMTC_VOID;
+  st_value->semantic_user_type = NULL;
+  st_value->var_vec_or_fun = SMTC_VARIABLE;
+  st_value->size = 0;
+  st_value->value.i = 0;
 }
