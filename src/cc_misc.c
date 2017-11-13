@@ -1066,27 +1066,37 @@ bool is_marked_to_coercion(ast_node_value_t* ast_node_value)
 //assume tipos diferentes
 bool coercion_possible(int first_type, int second_type)
 {
-  if (first_type == SMTC_CHAR || second_type == SMTC_CHAR)
+
+  if (second_type == SMTC_CHAR)
   {
     printf("[ERRO SEMANTICO] [Linha %d] Coercao impossivel do tipo char : ", lineNumber);
     print_semantic_type(first_type); printf("e ");
     print_semantic_type_ln(second_type);
     exit(SMTC_ERROR_CHAR_TO_X);
   }
-  if (first_type == SMTC_STRING || second_type == SMTC_STRING)
+  if (second_type == SMTC_STRING)
   {
     printf("[ERRO SEMANTICO] [Linha %d] Coercao impossivel do tipo string : ", lineNumber);
     print_semantic_type(first_type); printf("e ");
     print_semantic_type_ln(second_type);
     exit(SMTC_ERROR_STRING_TO_X);
   }
-  if (first_type == SMTC_USER_TYPE_VAR || second_type == SMTC_USER_TYPE_VAR)
+  if (second_type == SMTC_USER_TYPE_VAR)
   {
     printf("[ERRO SEMANTICO] [Linha %d] Coercao impossivel do tipo user type : ", lineNumber);
     print_semantic_type(first_type); printf("e ");
     print_semantic_type_ln(second_type);
     exit(SMTC_ERROR_WRONG_TYPE);
   }
+
+
+  printf("[ERRO SEMANTICO] [Linha %d] Coercao impossível : ", lineNumber);
+  print_semantic_type(first_type); printf("e ");
+  print_semantic_type_ln(second_type);
+  exit(SMTC_ERROR_WRONG_TYPE);
+
+
+
   return true;
 }
 
