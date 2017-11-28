@@ -48,6 +48,7 @@ void remove_collisions(comp_dict_item_t * item)
     if(entrada->token_type == POA_IDENT || entrada->token_type == POA_LIT_STRING) {
       free(entrada->value.s);
     }
+    if (entrada->semantic_user_type) free(entrada->semantic_user_type);
     free(ptaux->value);
     item = item->next;
     dict_remove(symbolsTable, ptaux->key);
@@ -68,6 +69,7 @@ void remove_collisions_general_st(comp_dict_t *st, comp_dict_item_t * item)
     if(entrada->token_type == POA_IDENT || entrada->token_type == POA_LIT_STRING) {
       free(entrada->value.s);
     }
+    if (entrada->semantic_user_type) free(entrada->semantic_user_type);
     free(ptaux->value);
     item = item->next;
     dict_remove(st, ptaux->key);
@@ -345,6 +347,7 @@ void clearSymbolsTable()
         if(entrada->token_type == POA_IDENT || entrada->token_type == POA_LIT_STRING) {
           free(entrada->value.s);
         }
+        if (entrada->semantic_user_type) free(entrada->semantic_user_type);
         free(symbolsTable->data[i]->value);
         dict_remove(symbolsTable, symbolsTable->data[i]->key);
       }
@@ -371,6 +374,7 @@ void clearGeneralST(comp_dict_t *st)
         if(entrada->token_type == POA_IDENT || entrada->token_type == POA_LIT_STRING) {
           free(entrada->value.s);
         }
+        if (entrada->semantic_user_type) free(entrada->semantic_user_type);
         free(st->data[i]->value);
         dict_remove(st, st->data[i]->key);
       }

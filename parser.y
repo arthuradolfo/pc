@@ -974,7 +974,7 @@ start_type_decl: TK_PR_CLASS TK_IDENTIFICADOR
 	//insere identificador declarado na tabela de simbolos global
 	st_value_t* st_identificador = putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
 
-	st_identificador->semantic_user_type = id_name;
+	st_identificador->semantic_user_type = strdup(id_name);
 	st_identificador->semantic_type = SMTC_USER_TYPE_NAME;
 
 	set_current_type_decl(id_name);
