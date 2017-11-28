@@ -402,32 +402,6 @@ void clearFuncParams()
 }
 
 /**
-  * Libera os espacos de memoria ocupados pelos ponteiros da tabela de simbolos
-  */
-void clear_general_st(comp_dict_t *st)
-{
-    //remover todas as entradas da tabela antes de libera-la
-    st_value_t* entrada;
-    if (!st) return;
-
-    int i, l;
-    for (i = 0, l = st->size; i < l; i++) {
-      if (st->data[i]) {
-        if(st->data[i]->next) {
-          remove_collisions(st->data[i]->next);
-        }
-        entrada = dict_get(st, st->data[i]->key);
-        if(entrada->token_type == POA_IDENT || entrada->token_type == POA_LIT_STRING) {
-          free(entrada->value.s);
-        }
-        free(st->data[i]->value);
-        dict_remove(st, st->data[i]->key);
-      }
-    }
-    dict_free(st);
-}
-
-/**
   * Libera os espacos de memoria ocupados pelos ponteiros da tabela de ponteiros a serem liberados
   */
 void clearPointerToFreeTable()
@@ -660,10 +634,10 @@ void putToGraphviz(comp_tree_t *pai)
 
 /**
  * Percorre filhos do nodo,
- * liberando campo value e fazendo recursao em cada um
+ * liberando campos value e fazendo recursao em cada um
  * @param pai nodo considerado pai no nivel atual de recursao
  */
-void freeValue(comp_tree_t* pai)
+void freeValuesOfChilds(comp_tree_t* pai)
 {
   if (pai == NULL) return;
 
@@ -672,19 +646,21 @@ void freeValue(comp_tree_t* pai)
   for (int i = 0; i < pai->childnodes; ++i) {
     if (filho != NULL) {
 
-      if (filho->value != NULL){
+      ast_node_value_t* filho_ast = filho->value;
 
-        if (((ast_node_value_t*) filho->value)->semantic_user_type != NULL)
-          free(((ast_node_value_t*) filho->value)->semantic_user_type);
+      if (filho_ast != NULL) {
 
-        if (((ast_node_value_t*) filho->value)->symbols_table != NULL)
-          clearGeneralST(((ast_node_value_t*) filho->value)->symbols_table);
+        if (filho_ast->semantic_user_type != NULL)
+          free(filho_ast->semantic_user_type);
+
+        if (filho_ast->symbols_table != NULL)
+          clearGeneralST(filho_ast->symbols_table);
 
         free(filho->value);
       }
 
       //recursao sobre o filho
-      freeValue(filho);
+      freeValuesOfChilds(filho);
     } else return;
 
     filho = filho->next;
@@ -700,7 +676,7 @@ void clearAndFreeAST()
   if (abstractSyntaxTree) {
     if (abstractSyntaxTree->value != NULL)
       free(abstractSyntaxTree->value);
-    freeValue(abstractSyntaxTree);
+    freeValuesOfChilds(abstractSyntaxTree);
     tree_free(abstractSyntaxTree);
   }
 }
@@ -714,7 +690,7 @@ void destroyAST(comp_tree_t* ast)
   if (ast) {
     if (ast->value != NULL)
       free(ast->value);
-    freeValue(ast);
+    freeValuesOfChilds(ast);
     tree_free(ast);
   }
 }
@@ -1056,7 +1032,7 @@ void set_st_semantic_type_and_size_user_type_function(char* type_name, st_value_
   //associa tipo semantico na tabela de simbolos
   variable_entry->semantic_type = SMTC_USER_TYPE_VAR;
   //associa nome do tipo de usuario
-  variable_entry->semantic_user_type = type_name;
+  variable_entry->semantic_user_type = strdup(type_name);
   //declara como variavel
   variable_entry->var_vec_or_fun = SMTC_FUNCTION;
   //associa tamanho na tabela de simbolos
@@ -1070,7 +1046,7 @@ void set_st_semantic_type_and_size_user_type(char* type_name, st_value_t* variab
   //associa tipo semantico na tabela de simbolos
   variable_entry->semantic_type = SMTC_USER_TYPE_VAR;
   //associa nome do tipo de usuario
-  variable_entry->semantic_user_type = type_name;
+  variable_entry->semantic_user_type = strdup(type_name);
   //declara como variavel
   variable_entry->var_vec_or_fun = SMTC_VARIABLE;
   //associa tamanho na tabela de simbolos
@@ -1084,7 +1060,7 @@ void set_st_semantic_type_and_size_vector_user_type(char* type_name, st_value_t*
   //associa tipo semantico na tabela de simbolos
   variable_entry->semantic_type = SMTC_USER_TYPE_VAR;
   //associa nome do tipo de usuario
-  variable_entry->semantic_user_type = type_name;
+  variable_entry->semantic_user_type = strdup(type_name);
   //declara como variavel
   variable_entry->var_vec_or_fun = SMTC_VECTOR;
   //associa tamanho na tabela de simbolos
@@ -1098,7 +1074,7 @@ void set_st_semantic_type_and_size_primitive_field(int semantic_type, st_value_t
   //declara como variavel
   symbols_table_entry->var_vec_or_fun = SMTC_VARIABLE;
   //associa class do campo
-  symbols_table_entry->semantic_user_type = get_current_type_decl();
+  symbols_table_entry->semantic_user_type = strdup(get_current_type_decl());
   //associa tamanho na tabela de simbolos
   symbols_table_entry->size = get_type_size(semantic_type);
 }
@@ -1110,7 +1086,7 @@ void set_st_semantic_type_and_size_vector_field(int semantic_type, int length, s
   //declara como vetor
   symbols_table_entry->var_vec_or_fun = SMTC_VECTOR;
   //associa class do campo
-  symbols_table_entry->semantic_user_type = get_current_type_decl();
+  symbols_table_entry->semantic_user_type = strdup(get_current_type_decl());
   //associa tamanho na tabela de simbolos
   symbols_table_entry->size = get_type_size(semantic_type) * length;
 }

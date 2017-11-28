@@ -322,6 +322,7 @@ def_function: func_name push_func_stack '(' parameters ')' body
 		print_st(((ast_node_value_t*)$$->value)->symbols_table);
 	#endif
 
+	//ao sair da declaracao de funcao, da pop na pilha de declaracoes
 	st_stack_item_t *item;
 	st_stack_t *aux_stack = get_stack();
 	stack_pop(&item, &aux_stack);
@@ -339,6 +340,7 @@ def_function: TK_PR_STATIC func_name push_func_stack '(' parameters ')' body
 		print_st(((ast_node_value_t*)$$->value)->symbols_table);
 	#endif
 
+	//ao sair da declaracao de funcao, da pop na pilha de declaracoes
 	st_stack_item_t *item;
 	st_stack_t *aux_stack = get_stack();
 	stack_pop(&item, &aux_stack);
@@ -357,6 +359,7 @@ def_function: func_name_user push_func_stack '(' parameters ')' body
 		print_st(((ast_node_value_t*)$$->value)->symbols_table);
 	#endif
 
+	//ao sair da declaracao de funcao, da pop na pilha de declaracoes
 	st_stack_item_t *item;
 	st_stack_t *aux_stack = get_stack();
 	stack_pop(&item, &aux_stack);
@@ -376,6 +379,7 @@ def_function: TK_PR_STATIC func_name_user push_func_stack '(' parameters ')' bod
 		print_st(((ast_node_value_t*)$$->value)->symbols_table);
 	#endif
 
+	//ao sair da declaracao de funcao, da pop na pilha de declaracoes
 	st_stack_item_t *item;
 	st_stack_t *aux_stack = get_stack();
 	stack_pop(&item, &aux_stack);
@@ -778,8 +782,12 @@ function_call: TK_IDENTIFICADOR '(' expression_sequence ')'
 	st_value_t* st_identificador = ensure_function_declared($1);
 	ensure_number_of_parameters($1, $3);
 	ensure_parameters_type($1, $3);
-	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, st_identificador));
-	$$ = tree_make_binary_node(new_ast_node_value(AST_CHAMADA_DE_FUNCAO, st_identificador->semantic_type, st_identificador->semantic_user_type, NULL), node_identificador, $3);
+
+	char* function_user_type_1 = (st_identificador->semantic_user_type != NULL) ? strdup(st_identificador->semantic_user_type) : NULL;
+	char* function_user_type_2 = (st_identificador->semantic_user_type != NULL) ? strdup(st_identificador->semantic_user_type) : NULL;
+
+	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, function_user_type_1, st_identificador));
+	$$ = tree_make_binary_node(new_ast_node_value(AST_CHAMADA_DE_FUNCAO, st_identificador->semantic_type, function_user_type_2, NULL), node_identificador, $3);
 
 	free($1);
 }
@@ -787,8 +795,13 @@ function_call: TK_IDENTIFICADOR '(' ')'
 {
 	st_value_t* st_identificador = ensure_function_declared($1);
 	ensure_function_has_no_parameters($1);
-	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, st_identificador));
-	$$ = tree_make_unary_node(new_ast_node_value(AST_CHAMADA_DE_FUNCAO, st_identificador->semantic_type, st_identificador->semantic_user_type, NULL), node_identificador);
+
+
+	char* function_user_type_1 = (st_identificador->semantic_user_type != NULL) ? strdup(st_identificador->semantic_user_type) : NULL;
+	char* function_user_type_2 = (st_identificador->semantic_user_type != NULL) ? strdup(st_identificador->semantic_user_type) : NULL;
+
+	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, function_user_type_1, st_identificador));
+	$$ = tree_make_unary_node(new_ast_node_value(AST_CHAMADA_DE_FUNCAO, st_identificador->semantic_type, function_user_type_2, NULL), node_identificador);
 
 	free($1);
 }
