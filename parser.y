@@ -5,6 +5,10 @@
 %code requires{
 #include "parser.h" //arquivo automaticamente gerado pelo bison
 #include "main.h"
+#include "cc_ast.h"
+#include "syntax_tree.h"
+#include "symbols_table.h"
+#include "semantics.h"
 #include "cc_misc.h" //arquivo com funcoes de auto incremento
 }
 
@@ -728,9 +732,13 @@ attribution_command: TK_IDENTIFICADOR '[' expression ']' '=' expression
 	verify_matching_user_types(st_identificador, ast_expression);
 	mark_coercion(st_identificador->semantic_type, ast_expression);
 
-	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, st_identificador));
+	char* user_type_1 = (st_identificador->semantic_user_type != NULL) ? strdup(st_identificador->semantic_user_type) : NULL;
+	char* user_type_2 = (st_identificador->semantic_user_type != NULL) ? strdup(st_identificador->semantic_user_type) : NULL;
+
+	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, user_type_1, st_identificador));
 	comp_tree_t* node_vetor_indexado = tree_make_binary_node(new_ast_node_value(AST_VETOR_INDEXADO, st_identificador->semantic_type,
-	 	st_identificador->semantic_user_type, NULL), node_identificador, $3);
+			user_type_2, NULL), node_identificador, $3);
+
 	$$ = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, SMTC_VOID, NULL, NULL), node_vetor_indexado, $6);
 
 	free($1);
@@ -746,8 +754,12 @@ attribution_command: TK_IDENTIFICADOR '$' TK_IDENTIFICADOR '=' expression
 	//checar se tipos são compativeis
 	mark_coercion(st_campo->semantic_type, ast_expression);
 
-	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, st_identificador));
-	comp_tree_t* node_campo = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_campo->semantic_type, st_campo->semantic_user_type, st_campo));
+	char* id_user_type = (st_identificador->semantic_user_type != NULL) ? strdup(st_identificador->semantic_user_type) : NULL;
+	char* campo_user_type = (st_campo->semantic_user_type != NULL) ? strdup(st_identificador->semantic_user_type) : NULL;
+
+
+	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, id_user_type, st_identificador));
+	comp_tree_t* node_campo = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_campo->semantic_type, campo_user_type, st_campo));
 	$$ = tree_make_ternary_node(new_ast_node_value(AST_ATRIBUICAO, SMTC_VOID, NULL, NULL), node_identificador, $5, node_campo);
 
 	free($1);

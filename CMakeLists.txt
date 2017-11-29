@@ -16,7 +16,9 @@ ADD_EXECUTABLE(main
   src/cc_dict.c
   src/cc_list.c
   src/cc_tree.c
-  ${CUSTOM_HEADER_FILES}
+  src/symbols_table.c
+  src/syntax_tree.c
+  src/semantics.c
 )
 TARGET_LINK_LIBRARIES(main ${FLEX_LIBRARIES})
 

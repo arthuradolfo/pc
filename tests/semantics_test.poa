@@ -17,8 +17,8 @@ string stringao() {}
 seibs_t stringer(int c, char d, string cas, seibs_t casa) {}
 
 seibs_t main(int fly, float fora, bool whiteguy, seibs_t seibel) {
-  seibel$myIntField = 1;
-  //seibel$myIntField2 = 1;
+  // seibel$myIntField = 1;
+  seibel$myIntField2 = 1;
   {
   	a[9] = 9;
   	seibel$myIntField = 1;

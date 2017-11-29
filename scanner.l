@@ -13,6 +13,7 @@ FLT  {INT}\.{DGT}+
 %{
 #include "parser.h" //arquivo automaticamente gerado pelo bison
 #include "cc_misc.h" //arquivo com funcoes de auto incremento
+#include "semantics.h"
 #include "main.h" //arquivo com constantes da main
 %}
 

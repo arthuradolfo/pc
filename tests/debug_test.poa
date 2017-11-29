@@ -1,0 +1,17 @@
+class tipo1_t [ public int integer ];
+
+tipo1_t main(int pum, int pdois, int ptres)
+{
+  int fora_foreach;
+  foreach(fora_foreach : 1)
+  {
+    int dentro_do_foreach;
+  };
+
+  for (int i_var <= 1 : true : i_var = 4)
+  {
+    int dentro_do_for;
+  };
+
+  main(1,2,3);
+}

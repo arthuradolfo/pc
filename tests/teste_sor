@@ -1,0 +1,25 @@
+class sor_t [ private int idade ];
+class aluno_t [ private int idade_aluno ];
+
+int sors[2];
+
+int main()
+{
+
+
+  {
+    int dentro1;
+
+    {
+      {
+        {
+            dentro1 = 2;
+        };
+      };
+    };
+
+  };
+
+  int varint <= true;
+
+}
