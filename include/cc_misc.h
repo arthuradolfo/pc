@@ -48,7 +48,6 @@ void putToGraphviz(comp_tree_t *pai);
 int getLineNumber (void);
 void yyerror (char const *mensagem);
 void pop_and_free_scope();
-void pop_clear_and_free_scope();
 void comp_print_table();
 void concatTokenType(char *key, int token_type);
 void clearPointerToFreeTable();
