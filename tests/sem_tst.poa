@@ -1,9 +1,9 @@
 class tipo1_t [ public int integer ];
 class tipo2_t [ public int integer2 ];
 
-tipo1_t t0_v[1];
-tipo1_t t1_v[1];
-tipo2_t t2_v[1];
+tipo1_t t0_v[40];
+tipo1_t t1_v[40];
+tipo2_t t2_v[40];
 
 bool funk(int a)
 {
@@ -12,8 +12,8 @@ bool funk(int a)
 
 bool func(bool b1, bool b2, float f1, float f2, int i1, int i2)
 {
-  func(true,false,1.1,1.2,0,1);
-  func(1,0,1.2,1.1,false,true);
+  func(true,false,1.1,1.2,0,2);
+  //func(1,0,1.2,1.1,false,true);
 }
 
 tipo2_t main(int a0, int a1, int a2)
@@ -42,7 +42,7 @@ tipo2_t main(int a0, int a1, int a2)
     int dentro_if_else;
   };
 
-  while ('a') do
+  while (1) do
   {
     int dentro_while_do;
   };
@@ -64,10 +64,10 @@ tipo2_t main(int a0, int a1, int a2)
   };
 
   int fora_foreach;
-  foreach(fora_foreach : 1,2,3,4)
+  foreach(fora_foreach : 1)
   {
     int dentro_do_foreach;
   };
 
-  main(a0, a1, a2);
+  main(1,2,3);
 }

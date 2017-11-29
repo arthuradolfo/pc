@@ -16,7 +16,7 @@ comp_dict_t* pointersToFreeTable;
 
 comp_tree_t* abstractSyntaxTree;
 
-st_stack_t* stack;
+st_stack_t* scope_stack;
 
 comp_dict_t* funcs_params;
 
@@ -74,6 +74,25 @@ void remove_collisions_general_st(comp_dict_t *st, comp_dict_item_t * item)
     item = item->next;
     dict_remove(st, ptaux->key);
   }
+}
+
+void pop_and_free_scope()
+{
+	st_stack_item_t *item;
+	st_stack_t *aux_stack = get_scope_stack();
+	stack_pop(&item, &aux_stack);
+	free(item);
+}
+
+void clear_scope_stack_values()
+{
+  st_stack_item_t *item;
+	stack_pop(&item, &scope_stack);
+	while(item) {
+    comp_dict_t* symbols_table = item->value;
+    clearGeneralST(symbols_table);
+		stack_pop(&item, &scope_stack);
+	}
 }
 
 void remove_collisions_funcs_params(comp_dict_item_t * item)
@@ -706,7 +725,7 @@ void main_init (int argc, char **argv)
   pointersToFreeTable = dict_new();
   symbolsTable = dict_new();
   funcs_params = dict_new();
-  stack = new_stack();
+  scope_stack = new_stack();
 
   current_type_decl = NULL;
   current_func_decl = NULL;
@@ -731,7 +750,9 @@ void main_finalize (void)
   clearFuncParams();
   clearAndFreeAST();
   clearPointerToFreeTable();
-  free_stack(stack);
+
+  clear_scope_stack_values(scope_stack);
+  free_stack(scope_stack);
 
   free(get_current_type_decl());
   free(get_current_func_decl());
@@ -742,8 +763,8 @@ void put_items_stack() {
   *a = 10;
   int *b = (int*) malloc(sizeof(int));
   *b = 15;
-  printf("stack_push: %d\n", stack_push(a, stack));
-  printf("stack_push: %d\n", stack_push(b, stack));
+  printf("stack_push: %d\n", stack_push(a, scope_stack));
+  printf("stack_push: %d\n", stack_push(b, scope_stack));
 }
 
 void stack_print(st_stack_t *stack_aux) {
@@ -842,9 +863,9 @@ char* get_current_func_decl()
   return current_func_decl;
 }
 
-st_stack_t* get_stack()
+st_stack_t* get_scope_stack()
 {
-  return stack;
+  return scope_stack;
 }
 
 void print_semantic_type(int semantic_type)
@@ -1221,7 +1242,7 @@ void verify_matching_user_types(st_value_t* st_entry, ast_node_value_t* ast_expr
 
 comp_dict_t* getCurrentST()
 {
-  if(!stack->empty) return stack->data->value;
+  if(!scope_stack->empty) return scope_stack->data->value;
   else return symbolsTable;
 }
 
@@ -1290,7 +1311,7 @@ st_value_t* search_id_in_stack_sts(char* key)
   char* full_key = (char*) malloc((strlen(key)+2)*sizeof(char));
   strcpy(full_key, key);
   concatTokenType(full_key, POA_IDENT);
-  st_stack_item_t *item_aux = stack->data;
+  st_stack_item_t *item_aux = scope_stack->data;
   while(item_aux) {
     entry_aux = dict_get(item_aux->value, full_key);
     if(entry_aux) {

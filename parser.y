@@ -270,7 +270,7 @@ def_global_var: TK_PR_STATIC TK_IDENTIFICADOR TK_IDENTIFICADOR '[' TK_LIT_INT ']
 push_func_stack: %empty
 {
 	comp_dict_t *func_symbols_table = dict_new();
-	stack_push(func_symbols_table, get_stack());
+	stack_push(func_symbols_table, get_scope_stack());
 }
 
 func_name: primitive_type TK_IDENTIFICADOR
@@ -323,10 +323,7 @@ def_function: func_name push_func_stack '(' parameters ')' body
 	#endif
 
 	//ao sair da declaracao de funcao, da pop na pilha de declaracoes
-	st_stack_item_t *item;
-	st_stack_t *aux_stack = get_stack();
-	stack_pop(&item, &aux_stack);
-	free(item);
+	pop_and_free_scope();
 }
 def_function: TK_PR_STATIC func_name push_func_stack '(' parameters ')' body
 {
@@ -341,10 +338,7 @@ def_function: TK_PR_STATIC func_name push_func_stack '(' parameters ')' body
 	#endif
 
 	//ao sair da declaracao de funcao, da pop na pilha de declaracoes
-	st_stack_item_t *item;
-	st_stack_t *aux_stack = get_stack();
-	stack_pop(&item, &aux_stack);
-	free(item);
+	pop_and_free_scope();
 }
 
 def_function: func_name_user push_func_stack '(' parameters ')' body
@@ -360,10 +354,7 @@ def_function: func_name_user push_func_stack '(' parameters ')' body
 	#endif
 
 	//ao sair da declaracao de funcao, da pop na pilha de declaracoes
-	st_stack_item_t *item;
-	st_stack_t *aux_stack = get_stack();
-	stack_pop(&item, &aux_stack);
-	free(item);
+	pop_and_free_scope();
 
 }
 def_function: TK_PR_STATIC func_name_user push_func_stack '(' parameters ')' body
@@ -380,13 +371,14 @@ def_function: TK_PR_STATIC func_name_user push_func_stack '(' parameters ')' bod
 	#endif
 
 	//ao sair da declaracao de funcao, da pop na pilha de declaracoes
-	st_stack_item_t *item;
-	st_stack_t *aux_stack = get_stack();
-	stack_pop(&item, &aux_stack);
-	free(item);
+	pop_and_free_scope();
 }
 
-body: '{' command_sequence '}' { $$ = $2; }
+body: '{' command_sequence '}'
+{
+	$$ = tree_make_node(new_ast_node_value(AST_BLOCO, SMTC_VOID, NULL, NULL));
+	if ($2) tree_insert_node($$,$2);
+}
 
 parameters: %empty
 parameters: parameter
@@ -477,7 +469,7 @@ command_in_block: action_command { $$ = $1; }
 push_block_stack: '{'
 {
 	comp_dict_t *func_symbols_table = dict_new();
-	stack_push(func_symbols_table, get_stack());
+	stack_push(func_symbols_table, get_scope_stack());
 }
 
 simple_command: attribution_command { $$ = $1; }
@@ -498,10 +490,7 @@ block: push_block_stack command_sequence '}'
 		print_st(((ast_node_value_t*)$$->value)->symbols_table);
 	#endif
 
-	st_stack_item_t *item;
-	st_stack_t *aux_stack = get_stack();
-	stack_pop(&item, &aux_stack);
-	free(item);
+	pop_and_free_scope();
 }
 
 io_command: input_command { $$ = $1; }
@@ -880,24 +869,16 @@ condition_command: TK_PR_IF '(' expression ')' TK_PR_THEN block TK_PR_ELSE block
 	mark_coercion(SMTC_BOOL, $3->value);
 }
 
-iteration_command: TK_PR_FOREACH '(' TK_IDENTIFICADOR ':' foreach_expression_sequence ')' block
-{
-	st_value_t* st_identificador = ensure_variable_declared($3);
-	$$ = NULL;
-	if ($7) destroyAST($7);
-
-	free($3);
-}
-start_for: TK_PR_FOR '('
+start_foreach: TK_PR_FOREACH '('
 {
 	//empilhar bloco
 	comp_dict_t *func_symbols_table = dict_new();
-	stack_push(func_symbols_table, get_stack());
+	stack_push(func_symbols_table, get_scope_stack());
 }
-iteration_command: start_for for_command_sequence ':' expression ':' for_command_sequence ')' body
+iteration_command: start_foreach TK_IDENTIFICADOR ':' foreach_expression_sequence ')' body
 {
-	//	TODO implementar for
-	$$ = tree_make_node(new_ast_node_value(AST_BLOCO, SMTC_VOID, NULL, NULL));
+	st_value_t* st_identificador = ensure_variable_declared($2);
+	$$ = $6;
 
 	//associa tabela de simbolos ao nodo AST
 	((ast_node_value_t*)$$->value)->symbols_table = getCurrentST();
@@ -905,17 +886,36 @@ iteration_command: start_for for_command_sequence ':' expression ':' for_command
 		print_st(((ast_node_value_t*)$$->value)->symbols_table);
 	#endif
 
-	//desempilhar bloco
-	st_stack_item_t *item;
-	st_stack_t *aux_stack = get_stack();
-	stack_pop(&item, &aux_stack);
-	free(item);
+	free($2);
+
+	//desempilha bloco e libera sua tabela de simbolos, ja que nao vai ser pendurada
+	//em ast nenhuma (ast do foreach nao foi implementada)
+	pop_and_free_scope();
+}
+
+start_for: TK_PR_FOR '('
+{
+	//empilhar bloco
+	comp_dict_t *func_symbols_table = dict_new();
+	stack_push(func_symbols_table, get_scope_stack());
+}
+iteration_command: start_for for_command_sequence ':' expression ':' for_command_sequence ')' body
+{
+	//TODO implementar for
+	$$ = $8;
+
+	//associa tabela de simbolos ao nodo AST
+	((ast_node_value_t*)$$->value)->symbols_table = getCurrentST();
+	#ifdef DEBUG
+		print_st(((ast_node_value_t*)$$->value)->symbols_table);
+	#endif
 
 	mark_coercion(SMTC_BOOL, $4->value);
-	destroyAST($$);
-	$$ = NULL;
 	destroyAST($4);
-	if ($8) destroyAST($8);
+
+	//desempilha bloco e libera sua tabela de simbolos, ja que nao vai ser pendurada
+	//em ast nenhuma (ast do for nao foi implementada)
+	pop_and_free_scope();
 }
 iteration_command: TK_PR_WHILE '(' expression ')' TK_PR_DO block
 {
@@ -945,7 +945,28 @@ iteration_command: TK_PR_DO block TK_PR_WHILE '(' expression ')'
 	if ($5) tree_insert_node($$, $5);
 }
 
-selection_command: TK_PR_SWITCH '(' expression ')' block { $$ = NULL; destroyAST($3); if ($5) destroyAST($5); }
+start_switch: TK_PR_SWITCH '('
+{
+	//empilhar bloco
+	comp_dict_t *func_symbols_table = dict_new();
+	stack_push(func_symbols_table, get_scope_stack());
+}
+selection_command: start_switch expression ')' body
+{
+	$$ = $4;
+
+	//associa tabela de simbolos ao nodo AST
+	((ast_node_value_t*)$$->value)->symbols_table = getCurrentST();
+	#ifdef DEBUG
+		print_st(((ast_node_value_t*)$$->value)->symbols_table);
+	#endif
+
+	destroyAST($2);
+
+	//desempilha bloco e libera sua tabela de simbolos, ja que nao vai ser pendurada
+	//em ast nenhuma (ast do switch nao foi implementada)
+	pop_and_free_scope();
+}
 
 for_command_sequence: simple_command { if ($1) destroyAST($1); }
 for_command_sequence: simple_command ',' for_command_sequence { if ($1) destroyAST($1); }
@@ -1137,8 +1158,5 @@ expression_sequence: expression ',' expression_sequence
 	//pendura proxima
 	tree_insert_node($$, $3);
 }
-
-// producoes de erro para input e output
-
 
 %%

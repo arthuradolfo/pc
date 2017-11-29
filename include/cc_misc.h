@@ -47,6 +47,8 @@ void putToGraphviz(comp_tree_t *pai);
 
 int getLineNumber (void);
 void yyerror (char const *mensagem);
+void pop_and_free_scope();
+void pop_clear_and_free_scope();
 void comp_print_table();
 void concatTokenType(char *key, int token_type);
 void clearPointerToFreeTable();
@@ -188,7 +190,7 @@ ast_node_value_t* new_ast_node_value(int syntactic_type, int semantic_type, char
 
 /* funcoes de semantica */
 
-st_stack_t* get_stack();
+st_stack_t* get_scope_stack();
 
 
 void print_semantic_type(int semantic_type);
