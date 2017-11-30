@@ -19,8 +19,9 @@ ADD_EXECUTABLE(main
   src/symbols_table.c
   src/syntax_tree.c
   src/semantics.c
+  src/tac.c
 )
-TARGET_LINK_LIBRARIES(main ${FLEX_LIBRARIES})
+TARGET_LINK_LIBRARIES(main ${FLEX_LIBRARIES} m)
 
 ADD_EXECUTABLE(cc_dict_main_example src/cc_dict.c src/cc_dict_main_example.c)
 

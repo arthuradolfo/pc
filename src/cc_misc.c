@@ -3,10 +3,11 @@
 #include "symbols_table.h"
 #include "syntax_tree.h"
 #include "semantics.h"
+#include "tac.h"
 
 
 /**
-  * @var int lineNumber Gerencia o numero de linahs do arquivo processado
+  * @var int lineNumber Gerencia o numero de linhas do arquivo processado
   */
 int lineNumber;
 
@@ -36,32 +37,35 @@ int comp_get_line_number (void)
 
 void yyerror (char const *mensagem)
 {
-  fprintf (stderr, "%s in line %d\n", mensagem, lineNumber); //altere para que apareça a linha
+  fprintf (stderr, "%s in line %d\n", mensagem, lineNumber);
 }
 
 void main_init (int argc, char **argv)
 {
-  //implemente esta função com rotinas de inicialização, se necessário
   lineNumber = 1;
+
+  //inicializacao da estrutura de limpeza
   pointersToFreeTable = dict_new();
+
+  //inicializacao da tabela de simbolos principal
   symbolsTable = dict_new();
+
+  //inicializacao das variaveis de semantica
   funcs_params = dict_new();
   scope_stack = new_stack();
-
   current_type_decl = NULL;
   current_func_decl = NULL;
 
-  //abstractSyntaxTree = tree_new();
+  //inicializacao das variaveis de tac
+  label_counter = 1;
+  register_counter = 1;
+
+  //inicializacao do graphviz (inicializacao da ast está no parser.y - programa:)
   gv_init(GRAPHVIZ_FILENAME);
 }
 
 void main_finalize (void)
 {
-  // st_stack_item_t *item;
-  // st_stack_item_t *item1;
-  //implemente esta função com rotinas de finalização, se necessário
-
-  // printf("Print table:\n");
   // comp_print_table();
 
   gv_close();
