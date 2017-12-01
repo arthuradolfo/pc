@@ -61,7 +61,7 @@ FLT  {INT}\.{DGT}+
 ">>"						              return TK_OC_SR;
 {LTR}({LTR}|{DGT})*           yylval.valor_lexico = strdup(yytext); return TK_IDENTIFICADOR;
 {BCM}(.*)		  			          //nao faz nada
-"/*"((.|\n)*)"*/"		  	      comp_set_line_number(yytext);
+"/*"((.|\n|\r\n)*)"*/"		  	      comp_set_line_number(yytext);
 [ \t]+        				        //nao faz nada
 .                             return TOKEN_ERRO;
 %%

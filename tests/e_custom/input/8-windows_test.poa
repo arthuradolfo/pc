@@ -1,2 +1,9 @@
 int integer;
 int inter;
+
+/*
+comentario multi
+linha
+*/
+
+int main(){}
