@@ -127,8 +127,9 @@ void imediates_test()
 
 char* tac_to_string(tac_t* tac)
 {
-  int code_size_in_bytes;
+  size_t code_size_in_bytes;
   char* code;
+
 
   switch (tac->opcode) {
     //aritmetica
@@ -282,33 +283,69 @@ char* tac_to_string(tac_t* tac)
 
       break;
 
-    //
-    // //shifts
-    // case OP_LSHIFT:
-    //   code_size_in_bytes =
-    //   code = malloc(code_size_in_bytes);
-    //
-    //   break;
-    //
-    // case OP_LSHIFT_I:
-    //   code_size_in_bytes =
-    //   code = malloc(code_size_in_bytes);
-    //
-    //   break;
-    //
-    // case OP_RSHIFT:
-    //   code_size_in_bytes =
-    //   code = malloc(code_size_in_bytes);
-    //
-    //   break;
-    //
-    // case OP_RSHIFT_I:
-    //   code_size_in_bytes =
-    //   code = malloc(code_size_in_bytes);
-    //
-    //   break;
-    //
-    //
+
+     //shifts
+     case OP_LSHIFT:
+       code_size_in_bytes =
+               (strlen("lshift ") +
+                strlen(tac->src_1) +
+                strlen(", ") +
+                strlen(tac->src_2) +
+                strlen(" => ") +
+                strlen(tac->dst_1) +
+                1 /*para o \0*/) * sizeof(char);
+
+        code = malloc(code_size_in_bytes);
+        sprintf(code, "lshift %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+
+        break;
+
+      case OP_LSHIFT_I:
+        code_size_in_bytes =
+                (strlen("lshiftI ") +
+                 strlen(tac->src_1) +
+                 strlen(", ") +
+                 strlen(tac->src_2) +
+                 strlen(" => ") +
+                 strlen(tac->dst_1) +
+                 1 /*para o \0*/) * sizeof(char);
+
+        code = malloc(code_size_in_bytes);
+        sprintf(code, "lshiftI %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+
+        break;
+
+     case OP_RSHIFT:
+       code_size_in_bytes =
+               (strlen("rshift ") +
+                strlen(tac->src_1) +
+                strlen(", ") +
+                strlen(tac->src_2) +
+                strlen(" => ") +
+                strlen(tac->dst_1) +
+                1 /*para o \0*/) * sizeof(char);
+
+        code = malloc(code_size_in_bytes);
+        sprintf(code, "rshift %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+
+        break;
+
+      case OP_RSHIFT_I:
+        code_size_in_bytes =
+                (strlen("rshiftI ") +
+                 strlen(tac->src_1) +
+                 strlen(", ") +
+                 strlen(tac->src_2) +
+                 strlen(" => ") +
+                 strlen(tac->dst_1) +
+                 1 /*para o \0*/) * sizeof(char);
+
+        code = malloc(code_size_in_bytes);
+        sprintf(code, "rshiftI %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+
+        break;
+
+
     // //memoria - leitura
     // case OP_LOAD:
     //   code_size_in_bytes =
@@ -481,9 +518,9 @@ char* tac_to_string(tac_t* tac)
   return code;
 }
 
-void tac_to_string_test()
+void tac_to_string_arit_test()
 {
-  int opcode;
+  int opcode = 0;
   tac_t* tac;
   char* code;
 
@@ -518,4 +555,56 @@ void tac_to_string_test()
     destroy_tac(tac);
     free(code);
   }
+}
+
+void tac_to_string_shifts_test()
+{
+  int i;
+  int opcode = 0;
+  tac_t* tac;
+  char* code;
+
+  //shifts
+  for (i = 0; i < 2; ++i) {
+    if      (i == 0) opcode = OP_LSHIFT;
+    else if (i == 1) opcode = OP_RSHIFT;
+
+    char* reg_1 = new_register();
+    char* reg_2 = new_register();
+    char* reg_3 = new_register();
+
+    tac = new_tac(opcode, reg_1, reg_2, reg_3, NULL);
+    code = tac_to_string(tac);
+    printf("%s\n", code);
+
+    free(reg_1);
+    free(reg_2);
+    free(reg_3);
+    destroy_tac(tac);
+    free(code);
+  }
+  for (i = 0; i < 2; ++i) {
+    if      (i == 0) opcode = OP_LSHIFT_I;
+    else if (i == 1) opcode = OP_RSHIFT_I;
+
+    char* reg_1 = new_register();
+    char* imed = new_imediate(42);
+    char* reg_2 = new_register();
+
+    tac = new_tac(opcode, reg_1, imed, reg_2, NULL);
+    code = tac_to_string(tac);
+    printf("%s\n", code);
+
+    free(reg_1);
+    free(imed);
+    free(reg_2);
+    destroy_tac(tac);
+    free(code);
+  }
+}
+
+void tac_to_string_test()
+{
+  tac_to_string_arit_test();
+  tac_to_string_shifts_test();
 }

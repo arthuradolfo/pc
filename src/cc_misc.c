@@ -68,7 +68,7 @@ void main_init (int argc, char **argv)
   //registers_labels_test();
   //imediates_test();
   //create_and_destroy_tac_test();
-  //tac_to_string_test();
+  tac_to_string_test();
 }
 
 void main_finalize (void)
@@ -81,7 +81,7 @@ void main_finalize (void)
   clearAndFreeAST();
   clearPointerToFreeTable();
 
-  clear_scope_stack_values(scope_stack);
+  clear_scope_stack_values();
   free_stack(scope_stack);
 
   free(get_current_type_decl());
