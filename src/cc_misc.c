@@ -62,6 +62,13 @@ void main_init (int argc, char **argv)
 
   //inicializacao do graphviz (inicializacao da ast está no parser.y - programa:)
   gv_init(GRAPHVIZ_FILENAME);
+
+
+  //TODO remove
+  //registers_labels_test();
+  //imediates_test();
+  //create_and_destroy_tac_test();
+  //tac_to_string_test();
 }
 
 void main_finalize (void)
