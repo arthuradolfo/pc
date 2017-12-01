@@ -123,4 +123,12 @@ char* new_imediate(int constant);
  */
 char* tac_to_string(tac_t* tac);
 
+//testes
+
+void imediates_test();
+
+void registers_labels_test();
+
+void tac_to_string_test();
+
 #endif
