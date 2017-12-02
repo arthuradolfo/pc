@@ -723,6 +723,7 @@ char* tac_to_string(tac_t *tac)
 
     default:
       printf("Opcode de tac_t deve ser uma das constantes OP_* de tac.h\n");
+      exit(EXIT_FAILURE);
       return NULL;
   }
   return code;
