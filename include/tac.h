@@ -121,14 +121,18 @@ char* new_imediate(int constant);
 /**
  * Transforma um tac_t em string (o codigo em si)
  */
-char* tac_to_string(tac_t* tac);
+char* tac_to_string(tac_t *tac);
 
 //testes
+
+void create_and_destroy_tac_test();
 
 void imediates_test();
 
 void registers_labels_test();
 
 void tac_to_string_test();
+
+void tac_basic_tests();
 
 #endif

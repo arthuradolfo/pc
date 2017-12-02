@@ -65,10 +65,7 @@ void main_init (int argc, char **argv)
 
 
   //TODO remove
-  //registers_labels_test();
-  //imediates_test();
-  //create_and_destroy_tac_test();
-  tac_to_string_test();
+  tac_basic_tests();
 }
 
 void main_finalize (void)
