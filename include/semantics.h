@@ -145,7 +145,7 @@ void set_st_semantic_type_and_size_primitive_field(int semantic_type, st_value_t
 /**
  * Seta, num Value de entrada de tabela de simbolos de um campo de vetor, o tamanho, o tipo semantico e sua classe relacionada
  */
-void set_st_semantic_type_and_size_vector_field(int semantic_type, int length, st_value_t* symbols_table_entry);
+void set_st_semantic_type_and_size_vector_field(int semantic_type, int length, int vector_dimension, st_value_t* symbols_table_entry);
 
 /**
 * Retorna o tipo semantico de um elemento de um vetor
@@ -191,7 +191,9 @@ comp_dict_t* getCurrentST();
 /**
  * Retorna o ultimo offset da tabela de símbolos "atual" (do topo da pilha)
  */
-comp_dict_t* getCurrentSTEndOffset();
+int getCurrentSTEndOffset();
+
+void setCurrentSTEndOffset(int offset);
 
 /**
  * Coloca o token na tabela de simbolos "atual" (do topo da pilha)
@@ -320,5 +322,7 @@ void stack_print(stack_t *stack_aux);
 void stack_print_params(stack_t *stack_aux);
 
 st_value_t* search_id_in_stack_sts(char* key);
+
+void ensure_vector_dimension(int vector_dimension_call, int vector_dimension_var, char *name);
 
 #endif

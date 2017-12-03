@@ -150,7 +150,7 @@ programa: def_function programa
 
 vector_declaration: '[' TK_LIT_INT ']' vector_declaration_loop
 {	
-	st_vector_size *vector_size = new_st_value();
+	st_vector_size *vector_size = (st_vector_size*) malloc(sizeof(vector_size));
 	st_value_t* st_entry_lit_int = $2;
 	vector_size->size = st_entry_lit_int->value.i*$4->size;
 	vector_size->vector_dimension = $4->vector_dimension+1;
@@ -161,7 +161,7 @@ vector_declaration: '[' TK_LIT_INT ']' vector_declaration_loop
 
 vector_declaration_loop: '[' TK_LIT_INT ']' vector_declaration_loop
 {
-	st_vector_size *vector_size = new_st_value();
+	st_vector_size *vector_size = (st_vector_size*) malloc(sizeof(vector_size));
 	st_value_t* st_entry_lit_int = $2;
 	vector_size->size = st_entry_lit_int->value.i*$4->size;
 	vector_size->vector_dimension = $4->vector_dimension+1;
@@ -170,7 +170,7 @@ vector_declaration_loop: '[' TK_LIT_INT ']' vector_declaration_loop
 }
 vector_declaration_loop: %empty
 {
-	st_vector_size *vector_size = new_st_value();
+	st_vector_size *vector_size = (st_vector_size*) malloc(sizeof(vector_size));
 	vector_size->size = 1;
 	vector_size->vector_dimension = 0;
 	$$ = vector_size;
@@ -1239,7 +1239,7 @@ type_field: encapsulation primitive_type TK_IDENTIFICADOR
 
 	free(id_name);
 }
-type_field: encapsulation primitive_type TK_IDENTIFICADOR '[' TK_LIT_INT ']'
+type_field: encapsulation primitive_type TK_IDENTIFICADOR vector_declaration
 {
 	char* id_name = $3;
 	ensure_identifier_not_declared(id_name);
@@ -1247,9 +1247,10 @@ type_field: encapsulation primitive_type TK_IDENTIFICADOR '[' TK_LIT_INT ']'
 	//insere identificador declarado na tabela de simbolos global
 	st_value_t* st_identificador = putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
 
-	st_value_t* st_entry_lit_int = $5;
-	int size = st_entry_lit_int->value.i;
-	set_st_semantic_type_and_size_vector_field($2, size, st_identificador);
+	int size = $4->size;
+	int vector_dimension = $4->vector_dimension;
+
+	set_st_semantic_type_and_size_vector_field($2, size, vector_dimension, st_identificador);
 
 	free(id_name);
 }

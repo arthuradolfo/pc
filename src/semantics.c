@@ -374,7 +374,7 @@ void set_st_semantic_type_and_size_primitive_field(int semantic_type, st_value_t
   symbols_table_entry->size = get_type_size(semantic_type);
 }
 
-void set_st_semantic_type_and_size_vector_field(int semantic_type, int length, st_value_t* symbols_table_entry)
+void set_st_semantic_type_and_size_vector_field(int semantic_type, int length, int vector_dimension, st_value_t* symbols_table_entry)
 {
   //associa tipo semantico na tabela de simbolos
   symbols_table_entry->semantic_type = semantic_type;
@@ -384,6 +384,8 @@ void set_st_semantic_type_and_size_vector_field(int semantic_type, int length, s
   symbols_table_entry->semantic_user_type = strdup(get_current_type_decl());
   //associa tamanho na tabela de simbolos
   symbols_table_entry->size = get_type_size(semantic_type) * length;
+  //associa dimensao do vetor na tabela de simbolos
+  symbols_table_entry->vector_dimension = vector_dimension;
 }
 
 void verify_shiftable(st_value_t* symbols_table_entry)
@@ -516,7 +518,7 @@ comp_dict_t* getCurrentST()
   else return symbolsTable;
 }
 
-comp_dict_t* getCurrentSTEndOffset()
+int getCurrentSTEndOffset()
 {
   if(!scope_stack->empty) return scope_stack->data->endOffsetSymbolsTable;
   else return endOffsetGlobalSymbolsTable;
