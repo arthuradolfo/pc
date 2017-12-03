@@ -4,41 +4,25 @@
 
 #include "cc_list.h"
 #include "tac.h"
-#include <stdlib.h>
-#include <stdio.h>
 #include <math.h>
-#include <string.h>
 
-tac_t* new_tac(int opcode, char* src_1, char* src_2, char* dst_1, char* dst_2)
+tac_t* new_tac(char* label, int opcode, char* src_1, char* src_2, char* dst_1, char* dst_2)
 {
   tac_t* tac = (tac_t*) malloc(sizeof(tac_t));
+
+  tac->label = label ? strdup(label) : NULL;
   tac->opcode = opcode;
-
-  if (src_1)
-    tac->src_1 = strdup(src_1);
-  else
-    tac->src_1 = NULL;
-
-  if (src_2)
-    tac->src_2 = strdup(src_2);
-  else
-    tac->src_2 = NULL;
-
-  if (dst_1)
-    tac->dst_1 = strdup(dst_1);
-  else
-    tac->dst_1 = NULL;
-
-  if (dst_2)
-    tac->dst_2 = strdup(dst_2);
-  else
-    tac->dst_2 = NULL;
+  tac->src_1 = src_1 ? strdup(src_1) : NULL;
+  tac->src_2 = src_2 ? strdup(src_2) : NULL;
+  tac->dst_1 = dst_1 ? strdup(dst_1) : NULL;
+  tac->dst_2 = dst_2 ? strdup(dst_2) : NULL;
 
   return tac;
 }
 
 void destroy_tac(tac_t* tac)
 {
+  if (tac->label) free(tac->label);
   if (tac->src_1) free(tac->src_1);
   if (tac->src_2) free(tac->src_2);
   if (tac->dst_1) free(tac->dst_1);
@@ -48,7 +32,7 @@ void destroy_tac(tac_t* tac)
 
 tac_t* copy_tac(tac_t* copied)
 {
-  return new_tac(copied->opcode, copied->src_1, copied->src_2, copied->dst_1, copied->dst_2);
+  return new_tac(copied->label, copied->opcode, copied->src_1, copied->src_2, copied->dst_1, copied->dst_2);
 }
 
 void create_and_destroy_tac_test()
@@ -56,7 +40,7 @@ void create_and_destroy_tac_test()
   char* reg_1 = new_register();
   char* reg_2 = new_register();
   char* reg_3 = new_register();
-  tac_t* tac = new_tac(OP_ADD, reg_1, reg_2, reg_3, NULL);
+  tac_t* tac = new_tac(NULL, OP_ADD, reg_1, reg_2, reg_3, NULL);
   destroy_tac(tac);
   free(reg_1);
   free(reg_2);
@@ -67,8 +51,8 @@ char* new_label()
 {
   size_t number_of_digits = (size_t) floor(log(label_counter) + 1);
 
-  char* label_name = (char*) malloc((sizeof(char) * (1/*para o 'l'*/ + number_of_digits + 1/*para o '\0'*/)));
-  sprintf(label_name, "l%d", label_counter);
+  char* label_name = (char*) malloc((sizeof(char) * (3/*para o 'l', ':' e ' '*/ + number_of_digits + 1/*para o '\0'*/)));
+  sprintf(label_name, "l%d: ", label_counter);
 
   label_counter++;
 
@@ -90,7 +74,7 @@ char* new_register()
 void registers_labels_test()
 {
   int i = 0;
-  for (i = 0; i < 2001; i++)
+  for (i = 0; i < 201; i++)
   {
     char* label = new_label();
     printf("%s\n", label);
@@ -134,20 +118,26 @@ char* tac_to_string(tac_t *tac)
 {
   size_t code_size_in_bytes;
   char* code;
+  size_t label_size = (tac->label) ? strlen(tac->label) : 0;
+  char* label = (tac->label) ? strdup(tac->label) : "";
 
   switch (tac->opcode) {
 
     case OP_NOP:
-      code_size_in_bytes = (strlen("nop") + 1 /*para o \0*/) * sizeof(char);
-      code = malloc(code_size_in_bytes);
+      code_size_in_bytes =
+              (label_size +
+              strlen("nop") +
+              1 /*para o \0*/) * sizeof(char);
 
-      sprintf(code, "nop");
+      code = malloc(code_size_in_bytes);
+      sprintf(code, "%snop", label);
       break;
 
     //aritmetica
     case OP_ADD:
       code_size_in_bytes =
-          (strlen("add ") +
+          (label_size +
+          strlen("add ") +
           strlen(tac->src_1) +
           strlen(", ") +
           strlen(tac->src_2) +
@@ -156,12 +146,13 @@ char* tac_to_string(tac_t *tac)
           1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "add %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+      sprintf(code, "%sadd %s, %s => %s", label, tac->src_1, tac->src_2, tac->dst_1);
       break;
 
     case OP_SUB:
       code_size_in_bytes =
-          (strlen("sub ") +
+          (label_size +
+          strlen("sub ") +
           strlen(tac->src_1) +
           strlen(", ") +
           strlen(tac->src_2) +
@@ -170,12 +161,13 @@ char* tac_to_string(tac_t *tac)
           1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "sub %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+      sprintf(code, "%ssub %s, %s => %s", label, tac->src_1, tac->src_2, tac->dst_1);
       break;
 
     case OP_MULT:
       code_size_in_bytes =
-          (strlen("mult ") +
+          (label_size +
+          strlen("mult ") +
           strlen(tac->src_1) +
           strlen(", ") +
           strlen(tac->src_2) +
@@ -184,12 +176,13 @@ char* tac_to_string(tac_t *tac)
           1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "mult %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+      sprintf(code, "%smult %s, %s => %s", label, tac->src_1, tac->src_2, tac->dst_1);
       break;
 
     case OP_DIV:
       code_size_in_bytes =
-          (strlen("div ") +
+          (label_size +
+          strlen("div ") +
           strlen(tac->src_1) +
           strlen(", ") +
           strlen(tac->src_2) +
@@ -198,12 +191,13 @@ char* tac_to_string(tac_t *tac)
           1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "div %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+      sprintf(code, "%sdiv %s, %s => %s", label, tac->src_1, tac->src_2, tac->dst_1);
       break;
 
     case OP_ADD_I:
       code_size_in_bytes =
-          (strlen("addI ") +
+          (label_size +
+          strlen("addI ") +
           strlen(tac->src_1) +
           strlen(", ") +
           strlen(tac->src_2) +
@@ -212,12 +206,13 @@ char* tac_to_string(tac_t *tac)
           1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "addI %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+      sprintf(code, "%saddI %s, %s => %s", label, tac->src_1, tac->src_2, tac->dst_1);
       break;
 
     case OP_SUB_I:
       code_size_in_bytes =
-          (strlen("subI ") +
+          (label_size +
+          strlen("subI ") +
           strlen(tac->src_1) +
           strlen(", ") +
           strlen(tac->src_2) +
@@ -226,12 +221,13 @@ char* tac_to_string(tac_t *tac)
           1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "subI %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+      sprintf(code, "%ssubI %s, %s => %s", label, tac->src_1, tac->src_2, tac->dst_1);
       break;
 
     case OP_RSUB_I:
       code_size_in_bytes =
-          (strlen("rsubI ") +
+          (label_size +
+          strlen("rsubI ") +
           strlen(tac->src_1) +
           strlen(", ") +
           strlen(tac->src_2) +
@@ -240,12 +236,13 @@ char* tac_to_string(tac_t *tac)
           1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "rsubI %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+      sprintf(code, "%srsubI %s, %s => %s", label, tac->src_1, tac->src_2, tac->dst_1);
       break;
 
     case OP_MULT_I:
       code_size_in_bytes =
-          (strlen("multI ") +
+          (label_size +
+          strlen("multI ") +
           strlen(tac->src_1) +
           strlen(", ") +
           strlen(tac->src_2) +
@@ -254,12 +251,13 @@ char* tac_to_string(tac_t *tac)
           1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "multI %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+      sprintf(code, "%smultI %s, %s => %s", label, tac->src_1, tac->src_2, tac->dst_1);
       break;
 
     case OP_DIV_I:
       code_size_in_bytes =
-          (strlen("divI ") +
+          (label_size +
+          strlen("divI ") +
           strlen(tac->src_1) +
           strlen(", ") +
           strlen(tac->src_2) +
@@ -268,12 +266,13 @@ char* tac_to_string(tac_t *tac)
           1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "divI %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+      sprintf(code, "%sdivI %s, %s => %s", label, tac->src_1, tac->src_2, tac->dst_1);
       break;
 
     case OP_RDIV_I:
       code_size_in_bytes =
-          (strlen("rdivI ") +
+          (label_size +
+          strlen("rdivI ") +
           strlen(tac->src_1) +
           strlen(", ") +
           strlen(tac->src_2) +
@@ -282,13 +281,14 @@ char* tac_to_string(tac_t *tac)
           1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "rdivI %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+      sprintf(code, "%srdivI %s, %s => %s", label, tac->src_1, tac->src_2, tac->dst_1);
       break;
 
      //shifts
      case OP_LSHIFT:
        code_size_in_bytes =
-               (strlen("lshift ") +
+               (label_size +
+                strlen("lshift ") +
                 strlen(tac->src_1) +
                 strlen(", ") +
                 strlen(tac->src_2) +
@@ -297,12 +297,13 @@ char* tac_to_string(tac_t *tac)
                 1 /*para o \0*/) * sizeof(char);
 
         code = malloc(code_size_in_bytes);
-        sprintf(code, "lshift %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+        sprintf(code, "%slshift %s, %s => %s", label, tac->src_1, tac->src_2, tac->dst_1);
         break;
 
       case OP_LSHIFT_I:
         code_size_in_bytes =
-                (strlen("lshiftI ") +
+                (label_size +
+                 strlen("lshiftI ") +
                  strlen(tac->src_1) +
                  strlen(", ") +
                  strlen(tac->src_2) +
@@ -311,12 +312,13 @@ char* tac_to_string(tac_t *tac)
                  1 /*para o \0*/) * sizeof(char);
 
         code = malloc(code_size_in_bytes);
-        sprintf(code, "lshiftI %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+        sprintf(code, "%slshiftI %s, %s => %s", label, tac->src_1, tac->src_2, tac->dst_1);
         break;
 
      case OP_RSHIFT:
        code_size_in_bytes =
-               (strlen("rshift ") +
+               (label_size +
+                strlen("rshift ") +
                 strlen(tac->src_1) +
                 strlen(", ") +
                 strlen(tac->src_2) +
@@ -325,12 +327,13 @@ char* tac_to_string(tac_t *tac)
                 1 /*para o \0*/) * sizeof(char);
 
         code = malloc(code_size_in_bytes);
-        sprintf(code, "rshift %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+        sprintf(code, "%srshift %s, %s => %s", label, tac->src_1, tac->src_2, tac->dst_1);
         break;
 
       case OP_RSHIFT_I:
         code_size_in_bytes =
-                (strlen("rshiftI ") +
+                (label_size +
+                 strlen("rshiftI ") +
                  strlen(tac->src_1) +
                  strlen(", ") +
                  strlen(tac->src_2) +
@@ -339,14 +342,15 @@ char* tac_to_string(tac_t *tac)
                  1 /*para o \0*/) * sizeof(char);
 
         code = malloc(code_size_in_bytes);
-        sprintf(code, "rshiftI %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+        sprintf(code, "%srshiftI %s, %s => %s", label, tac->src_1, tac->src_2, tac->dst_1);
         break;
 
 
     //logicos
     case OP_AND:
       code_size_in_bytes =
-              (strlen("and ") +
+              (label_size +
+               strlen("and ") +
                strlen(tac->src_1) +
                strlen(", ") +
                strlen(tac->src_2) +
@@ -355,12 +359,13 @@ char* tac_to_string(tac_t *tac)
                1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "and %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+      sprintf(code, "%sand %s, %s => %s", label, tac->src_1, tac->src_2, tac->dst_1);
       break;
 
     case OP_AND_I:
       code_size_in_bytes =
-              (strlen("andI ") +
+              (label_size +
+               strlen("andI ") +
                strlen(tac->src_1) +
                strlen(", ") +
                strlen(tac->src_2) +
@@ -369,12 +374,13 @@ char* tac_to_string(tac_t *tac)
                1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "andI %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+      sprintf(code, "%sandI %s, %s => %s", label, tac->src_1, tac->src_2, tac->dst_1);
       break;
 
     case OP_OR:
       code_size_in_bytes =
-              (strlen("or ") +
+              (label_size +
+               strlen("or ") +
                strlen(tac->src_1) +
                strlen(", ") +
                strlen(tac->src_2) +
@@ -383,12 +389,13 @@ char* tac_to_string(tac_t *tac)
                1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "or %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+      sprintf(code, "%sor %s, %s => %s", label, tac->src_1, tac->src_2, tac->dst_1);
       break;
 
     case OP_OR_I:
       code_size_in_bytes =
-              (strlen("orI ") +
+              (label_size +
+               strlen("orI ") +
                strlen(tac->src_1) +
                strlen(", ") +
                strlen(tac->src_2) +
@@ -397,12 +404,13 @@ char* tac_to_string(tac_t *tac)
                1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "orI %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+      sprintf(code, "%sorI %s, %s => %s", label, tac->src_1, tac->src_2, tac->dst_1);
       break;
 
     case OP_XOR:
       code_size_in_bytes =
-              (strlen("xor ") +
+              (label_size +
+               strlen("xor ") +
                strlen(tac->src_1) +
                strlen(", ") +
                strlen(tac->src_2) +
@@ -411,12 +419,13 @@ char* tac_to_string(tac_t *tac)
                1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "xor %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+      sprintf(code, "%sxor %s, %s => %s", label, tac->src_1, tac->src_2, tac->dst_1);
       break;
 
     case OP_XOR_I:
       code_size_in_bytes =
-              (strlen("xorI ") +
+              (label_size +
+               strlen("xorI ") +
                strlen(tac->src_1) +
                strlen(", ") +
                strlen(tac->src_2) +
@@ -425,25 +434,27 @@ char* tac_to_string(tac_t *tac)
                1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "xorI %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+      sprintf(code, "%sxorI %s, %s => %s", label, tac->src_1, tac->src_2, tac->dst_1);
       break;
 
     //memoria - leitura
     case OP_LOAD:
       code_size_in_bytes =
-              (strlen("load ") +
+              (label_size +
+               strlen("load ") +
                strlen(tac->src_1) +
                strlen(" => ") +
                strlen(tac->dst_1) +
                1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "load %s => %s", tac->src_1, tac->dst_1);
+      sprintf(code, "%sload %s => %s", label, tac->src_1, tac->dst_1);
       break;
 
     case OP_LOAD_AI:
       code_size_in_bytes =
-              (strlen("loadAI ") +
+              (label_size +
+               strlen("loadAI ") +
                strlen(tac->src_1) +
                strlen(", ") +
                strlen(tac->src_2) +
@@ -452,12 +463,13 @@ char* tac_to_string(tac_t *tac)
                1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "loadAI %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+      sprintf(code, "%sloadAI %s, %s => %s", label, tac->src_1, tac->src_2, tac->dst_1);
       break;
 
     case OP_LOAD_A0:
       code_size_in_bytes =
-              (strlen("loadA0 ") +
+              (label_size +
+               strlen("loadA0 ") +
                strlen(tac->src_1) +
                strlen(", ") +
                strlen(tac->src_2) +
@@ -466,24 +478,26 @@ char* tac_to_string(tac_t *tac)
                1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "loadA0 %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+      sprintf(code, "%sloadA0 %s, %s => %s", label, tac->src_1, tac->src_2, tac->dst_1);
       break;
 
     case OP_CLOAD:
       code_size_in_bytes =
-              (strlen("cload ") +
+              (label_size +
+               strlen("cload ") +
                strlen(tac->src_1) +
                strlen(" => ") +
                strlen(tac->dst_1) +
                1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "cload %s => %s", tac->src_1, tac->dst_1);
+      sprintf(code, "%scload %s => %s", label, tac->src_1, tac->dst_1);
       break;
 
     case OP_CLOAD_AI:
       code_size_in_bytes =
-              (strlen("cloadAI ") +
+              (label_size +
+               strlen("cloadAI ") +
                strlen(tac->src_1) +
                strlen(", ") +
                strlen(tac->src_2) +
@@ -492,12 +506,13 @@ char* tac_to_string(tac_t *tac)
                1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "cloadAI %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+      sprintf(code, "%scloadAI %s, %s => %s", label, tac->src_1, tac->src_2, tac->dst_1);
       break;
 
      case OP_CLOAD_A0:
        code_size_in_bytes =
-               (strlen("cloadA0 ") +
+               (label_size +
+                strlen("cloadA0 ") +
                 strlen(tac->src_1) +
                 strlen(", ") +
                 strlen(tac->src_2) +
@@ -506,38 +521,41 @@ char* tac_to_string(tac_t *tac)
                 1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "cloadA0 %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+      sprintf(code, "%scloadA0 %s, %s => %s", label, tac->src_1, tac->src_2, tac->dst_1);
       break;
 
     case OP_LOAD_I:
       code_size_in_bytes =
-              (strlen("loadI ") +
+              (label_size +
+               strlen("loadI ") +
                strlen(tac->src_1) +
                strlen(" => ") +
                strlen(tac->dst_1) +
                1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "loadI %s => %s", tac->src_1, tac->dst_1);
+      sprintf(code, "%sloadI %s => %s", label, tac->src_1, tac->dst_1);
       break;
 
 
      //memoria - escrita
      case OP_STORE:
        code_size_in_bytes =
-               (strlen("store ") +
+               (label_size +
+                strlen("store ") +
                 strlen(tac->src_1) +
                 strlen(" => ") +
                 strlen(tac->dst_1) +
                 1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "store %s => %s", tac->src_1, tac->dst_1);
+      sprintf(code, "%sstore %s => %s", label, tac->src_1, tac->dst_1);
       break;
 
     case OP_STORE_AI:
       code_size_in_bytes =
-              (strlen("storeAI ") +
+              (label_size +
+               strlen("storeAI ") +
                strlen(tac->src_1) +
                strlen(" => ") +
                strlen(tac->dst_1) +
@@ -546,12 +564,13 @@ char* tac_to_string(tac_t *tac)
                1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "storeAI %s => %s, %s", tac->src_1, tac->dst_1, tac->dst_2);
+      sprintf(code, "%sstoreAI %s => %s, %s", label, tac->src_1, tac->dst_1, tac->dst_2);
       break;
 
     case OP_STORE_A0:
       code_size_in_bytes =
-              (strlen("storeA0 ") +
+              (label_size +
+               strlen("storeA0 ") +
                strlen(tac->src_1) +
                strlen(" => ") +
                strlen(tac->dst_1) +
@@ -560,24 +579,26 @@ char* tac_to_string(tac_t *tac)
                1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "storeA0 %s => %s, %s", tac->src_1, tac->dst_1, tac->dst_2);
+      sprintf(code, "%sstoreA0 %s => %s, %s", label, tac->src_1, tac->dst_1, tac->dst_2);
       break;
 
     case OP_CSTORE:
       code_size_in_bytes =
-              (strlen("cstore ") +
+              (label_size +
+               strlen("cstore ") +
                strlen(tac->src_1) +
                strlen(" => ") +
                strlen(tac->dst_1) +
                1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "cstore %s => %s", tac->src_1, tac->dst_1);
+      sprintf(code, "%scstore %s => %s", label, tac->src_1, tac->dst_1);
       break;
 
     case OP_CSTORE_AI:
       code_size_in_bytes =
-              (strlen("cstoreAI ") +
+              (label_size +
+               strlen("cstoreAI ") +
                strlen(tac->src_1) +
                strlen(" => ") +
                strlen(tac->dst_1) +
@@ -586,12 +607,13 @@ char* tac_to_string(tac_t *tac)
                1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "cstoreAI %s => %s, %s", tac->src_1, tac->dst_1, tac->dst_2);
+      sprintf(code, "%scstoreAI %s => %s, %s", label, tac->src_1, tac->dst_1, tac->dst_2);
       break;
 
     case OP_CSTORE_A0:
       code_size_in_bytes =
-              (strlen("cstoreA0 ") +
+              (label_size +
+               strlen("cstoreA0 ") +
                strlen(tac->src_1) +
                strlen(" => ") +
                strlen(tac->dst_1) +
@@ -600,64 +622,69 @@ char* tac_to_string(tac_t *tac)
                1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "cstoreA0 %s => %s, %s", tac->src_1, tac->dst_1, tac->dst_2);
+      sprintf(code, "%scstoreA0 %s => %s, %s", label, tac->src_1, tac->dst_1, tac->dst_2);
       break;
 
 
      //copia entre registradores
      case OP_I2I:
        code_size_in_bytes =
-               (strlen("i2i ") +
+               (label_size +
+                strlen("i2i ") +
                 strlen(tac->src_1) +
                 strlen(" => ") +
                 strlen(tac->dst_1) +
                 1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "i2i %s => %s", tac->src_1, tac->dst_1);
+      sprintf(code, "%si2i %s => %s", label, tac->src_1, tac->dst_1);
       break;
 
     case OP_C2C:
       code_size_in_bytes =
-              (strlen("c2c ") +
+              (label_size +
+               strlen("c2c ") +
                strlen(tac->src_1) +
                strlen(" => ") +
                strlen(tac->dst_1) +
                1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "c2c %s => %s", tac->src_1, tac->dst_1);
+      sprintf(code, "%sc2c %s => %s", label, tac->src_1, tac->dst_1);
       break;
 
     case OP_C2I:
       code_size_in_bytes =
-              (strlen("c2i ") +
+              (label_size +
+               strlen("c2i ") +
                strlen(tac->src_1) +
                strlen(" => ") +
                strlen(tac->dst_1) +
                1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "c2i %s => %s", tac->src_1, tac->dst_1);
+      sprintf(code, "%sc2i %s => %s", label, tac->src_1, tac->dst_1);
       break;
 
     case OP_I2C:
       code_size_in_bytes =
-              (strlen("i2c ") +
+              (label_size +
+               strlen("i2c ") +
                strlen(tac->src_1) +
                strlen(" => ") +
                strlen(tac->dst_1) +
                1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "i2c %s => %s", tac->src_1, tac->dst_1);
+      sprintf(code, "%si2c %s => %s", label, tac->src_1, tac->dst_1);
       break;
 
 
     //controle de fluxo
      case OP_CMP_LT:
        code_size_in_bytes =
-               (strlen("cmp_LT ") +
+               (label_size +
+                strlen("cmp_LT ") +
                 strlen(tac->src_1) +
                 strlen(", ") +
                 strlen(tac->src_2) +
@@ -666,12 +693,13 @@ char* tac_to_string(tac_t *tac)
                 1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "cmp_LT %s, %s -> %s", tac->src_1, tac->src_2, tac->dst_1);
+      sprintf(code, "%smp_LT %s, %s -> %s", label, tac->src_1, tac->src_2, tac->dst_1);
       break;
 
     case OP_CMP_LE:
       code_size_in_bytes =
-              (strlen("cmp_LE ") +
+              (label_size +
+               strlen("cmp_LE ") +
                strlen(tac->src_1) +
                strlen(", ") +
                strlen(tac->src_2) +
@@ -680,12 +708,13 @@ char* tac_to_string(tac_t *tac)
                1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "cmp_LE %s, %s -> %s", tac->src_1, tac->src_2, tac->dst_1);
+      sprintf(code, "%scmp_LE %s, %s -> %s", label, tac->src_1, tac->src_2, tac->dst_1);
       break;
 
     case OP_CMP_EQ:
       code_size_in_bytes =
-              (strlen("cmp_EQ ") +
+              (label_size +
+               strlen("cmp_EQ ") +
                strlen(tac->src_1) +
                strlen(", ") +
                strlen(tac->src_2) +
@@ -694,12 +723,13 @@ char* tac_to_string(tac_t *tac)
                1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "cmp_EQ %s, %s -> %s", tac->src_1, tac->src_2, tac->dst_1);
+      sprintf(code, "%scmp_EQ %s, %s -> %s", label, tac->src_1, tac->src_2, tac->dst_1);
       break;
 
     case OP_CMP_GE:
       code_size_in_bytes =
-              (strlen("cmp_GE ") +
+              (label_size +
+               strlen("cmp_GE ") +
                strlen(tac->src_1) +
                strlen(", ") +
                strlen(tac->src_2) +
@@ -708,12 +738,13 @@ char* tac_to_string(tac_t *tac)
                1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "cmp_GE %s, %s -> %s", tac->src_1, tac->src_2, tac->dst_1);
+      sprintf(code, "%scmp_GE %s, %s -> %s", label, tac->src_1, tac->src_2, tac->dst_1);
       break;
 
     case OP_CMP_GT:
       code_size_in_bytes =
-              (strlen("cmp_GT ") +
+              (label_size +
+               strlen("cmp_GT ") +
                strlen(tac->src_1) +
                strlen(", ") +
                strlen(tac->src_2) +
@@ -722,12 +753,13 @@ char* tac_to_string(tac_t *tac)
                1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "cmp_GT %s, %s -> %s", tac->src_1, tac->src_2, tac->dst_1);
+      sprintf(code, "%scmp_GT %s, %s -> %s", label, tac->src_1, tac->src_2, tac->dst_1);
       break;
 
     case OP_CMP_NE:
       code_size_in_bytes =
-              (strlen("cmp_NE ") +
+              (label_size +
+               strlen("cmp_NE ") +
                strlen(tac->src_1) +
                strlen(", ") +
                strlen(tac->src_2) +
@@ -736,12 +768,13 @@ char* tac_to_string(tac_t *tac)
                1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "cmp_NE %s, %s -> %s", tac->src_1, tac->src_2, tac->dst_1);
+      sprintf(code, "%scmp_NE %s, %s -> %s", label, tac->src_1, tac->src_2, tac->dst_1);
       break;
 
     case OP_CBR:
       code_size_in_bytes =
-              (strlen("cbr ") +
+              (label_size +
+               strlen("cbr ") +
                strlen(tac->src_1) +
                strlen(" -> ") +
                strlen(tac->dst_1) +
@@ -750,31 +783,33 @@ char* tac_to_string(tac_t *tac)
                1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "cbr %s -> %s, %s", tac->src_1, tac->dst_1, tac->dst_2);
+      sprintf(code, "%scbr %s -> %s, %s", label, tac->src_1, tac->dst_1, tac->dst_2);
       break;
 
 
      //saltos
      case OP_JUMP_I:
        code_size_in_bytes =
-               (strlen("jumpI") +
+               (label_size +
+                strlen("jumpI") +
                 strlen(" -> ") +
                 strlen(tac->dst_1) +
                 1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "jumpI -> %s", tac->dst_1);
+      sprintf(code, "%sjumpI -> %s", label, tac->dst_1);
       break;
 
     case OP_JUMP:
       code_size_in_bytes =
-              (strlen("jump") +
+              (label_size +
+               strlen("jump") +
                strlen(" -> ") +
                strlen(tac->dst_1) +
                1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "jump -> %s", tac->dst_1);
+      sprintf(code, "%sjump -> %s", label, tac->dst_1);
       break;
 
 
@@ -783,24 +818,27 @@ char* tac_to_string(tac_t *tac)
       exit(EXIT_FAILURE);
       return NULL;
   }
+  if (tac->label) free(label);
   return code;
 }
 
-void tac_to_string_nop_test()
+void tac_to_string_nop_test(bool use_label)
 {
   int opcode = 0;
   tac_t* tac;
   char* code;
+  char* label = use_label ? new_label() : NULL;
 
-  tac = new_tac(opcode, NULL, NULL, NULL, NULL);
+  tac = new_tac(label, opcode, NULL, NULL, NULL, NULL);
   code = tac_to_string(tac);
   printf("%s\n", code);
 
   destroy_tac(tac);
   free(code);
+  if (use_label)  free(label);
 }
 
-void tac_to_string_arit_test()
+void tac_to_string_arit_test(bool use_label)
 {
   int opcode = 0;
   tac_t* tac;
@@ -808,11 +846,13 @@ void tac_to_string_arit_test()
 
   //aritmetica
   for (opcode = OP_ADD; opcode <= OP_DIV; opcode++) {
+
+    char* label = use_label ? new_label() : NULL;
     char* reg_1 = new_register();
     char* reg_2 = new_register();
     char* reg_3 = new_register();
 
-    tac = new_tac(opcode, reg_1, reg_2, reg_3, NULL);
+    tac = new_tac(label, opcode, reg_1, reg_2, reg_3, NULL);
     code = tac_to_string(tac);
     printf("%s\n", code);
 
@@ -821,13 +861,16 @@ void tac_to_string_arit_test()
     free(reg_3);
     destroy_tac(tac);
     free(code);
+    if (use_label) free(label);
   }
   for (opcode = OP_ADD_I; opcode <= OP_RDIV_I; opcode++) {
+
+    char* label = use_label ? new_label() : NULL;
     char* reg_1 = new_register();
     char* imed = new_imediate(42);
     char* reg_2 = new_register();
 
-    tac = new_tac(opcode, reg_1, imed, reg_2, NULL);
+    tac = new_tac(label, opcode, reg_1, imed, reg_2, NULL);
     code = tac_to_string(tac);
     printf("%s\n", code);
 
@@ -836,10 +879,11 @@ void tac_to_string_arit_test()
     free(reg_2);
     destroy_tac(tac);
     free(code);
+    if (use_label) free(label);
   }
 }
 
-void tac_to_string_shifts_test()
+void tac_to_string_shifts_test(bool use_label)
 {
   int i;
   int opcode = 0;
@@ -850,11 +894,12 @@ void tac_to_string_shifts_test()
     if      (i == 0) opcode = OP_LSHIFT;
     else if (i == 1) opcode = OP_RSHIFT;
 
+    char* label = use_label ? new_label() : NULL;
     char* reg_1 = new_register();
     char* reg_2 = new_register();
     char* reg_3 = new_register();
 
-    tac = new_tac(opcode, reg_1, reg_2, reg_3, NULL);
+    tac = new_tac(label, opcode, reg_1, reg_2, reg_3, NULL);
     code = tac_to_string(tac);
     printf("%s\n", code);
 
@@ -863,16 +908,18 @@ void tac_to_string_shifts_test()
     free(reg_3);
     destroy_tac(tac);
     free(code);
+    if (use_label) free(label);
   }
   for (i = 0; i < 2; ++i) {
     if      (i == 0) opcode = OP_LSHIFT_I;
     else if (i == 1) opcode = OP_RSHIFT_I;
 
+    char* label = use_label ? new_label() : NULL;
     char* reg_1 = new_register();
     char* imed = new_imediate(42);
     char* reg_2 = new_register();
 
-    tac = new_tac(opcode, reg_1, imed, reg_2, NULL);
+    tac = new_tac(label, opcode, reg_1, imed, reg_2, NULL);
     code = tac_to_string(tac);
     printf("%s\n", code);
 
@@ -881,10 +928,11 @@ void tac_to_string_shifts_test()
     free(reg_2);
     destroy_tac(tac);
     free(code);
+    if (use_label) free(label);
   }
 }
 
-void tac_to_string_logics_test()
+void tac_to_string_logics_test(bool use_label)
 {
   int i;
   int opcode = 0;
@@ -897,11 +945,12 @@ void tac_to_string_logics_test()
     else if (i == 1) opcode = OP_OR;
     else if (i == 2) opcode = OP_XOR;
 
+    char* label = use_label ? new_label() : NULL;
     char* reg_1 = new_register();
     char* reg_2 = new_register();
     char* reg_3 = new_register();
 
-    tac = new_tac(opcode, reg_1, reg_2, reg_3, NULL);
+    tac = new_tac(label, opcode, reg_1, reg_2, reg_3, NULL);
     code = tac_to_string(tac);
     printf("%s\n", code);
 
@@ -910,6 +959,7 @@ void tac_to_string_logics_test()
     free(reg_3);
     destroy_tac(tac);
     free(code);
+    if (use_label) free(label);
   }
   for (i = 0; i < 3; i++) {
 
@@ -917,11 +967,12 @@ void tac_to_string_logics_test()
     else if (i == 1) opcode = OP_OR_I;
     else if (i == 2) opcode = OP_XOR_I;
 
+    char* label = use_label ? new_label() : NULL;
     char* reg_1 = new_register();
     char* imed = new_imediate(42);
     char* reg_3 = new_register();
 
-    tac = new_tac(opcode, reg_1, imed, reg_3, NULL);
+    tac = new_tac(label, opcode, reg_1, imed, reg_3, NULL);
     code = tac_to_string(tac);
     printf("%s\n", code);
 
@@ -930,10 +981,11 @@ void tac_to_string_logics_test()
     free(reg_3);
     destroy_tac(tac);
     free(code);
+    if (use_label) free(label);
   }
 }
 
-void tac_to_string_loads_test()
+void tac_to_string_loads_test(bool use_label)
 {
   int i;
   int opcode = 0;
@@ -944,10 +996,11 @@ void tac_to_string_loads_test()
     if (i == 0) opcode = OP_LOAD;
     else if (i == 1) opcode = OP_CLOAD;
 
+    char* label = use_label ? new_label() : NULL;
     char *reg_1 = new_register();
     char *reg_2 = new_register();
 
-    tac = new_tac(opcode, reg_1, NULL, reg_2, NULL);
+    tac = new_tac(label, opcode, reg_1, NULL, reg_2, NULL);
     code = tac_to_string(tac);
     printf("%s\n", code);
 
@@ -955,16 +1008,18 @@ void tac_to_string_loads_test()
     free(reg_2);
     destroy_tac(tac);
     free(code);
+    if (use_label) free(label);
   }
   for (i = 0; i < 2; ++i) {
     if (i == 0) opcode = OP_LOAD_AI;
     else if (i == 1) opcode = OP_CLOAD_AI;
 
+    char* label = use_label ? new_label() : NULL;
     char *reg_1 = new_register();
     char *imed = new_imediate(42);
     char *reg_2 = new_register();
 
-    tac = new_tac(opcode, reg_1, imed, reg_2, NULL);
+    tac = new_tac(label, opcode, reg_1, imed, reg_2, NULL);
     code = tac_to_string(tac);
     printf("%s\n", code);
 
@@ -973,16 +1028,18 @@ void tac_to_string_loads_test()
     free(reg_2);
     destroy_tac(tac);
     free(code);
+    if (use_label) free(label);
   }
   for (i = 0; i < 2; ++i) {
     if (i == 0) opcode = OP_LOAD_A0;
     else if (i == 1) opcode = OP_CLOAD_A0;
 
+    char* label = use_label ? new_label() : NULL;
     char *reg_1 = new_register();
     char *reg_2 = new_register();
     char *reg_3 = new_register();
 
-    tac = new_tac(opcode, reg_1, reg_2, reg_3, NULL);
+    tac = new_tac(label, opcode, reg_1, reg_2, reg_3, NULL);
     code = tac_to_string(tac);
     printf("%s\n", code);
 
@@ -991,15 +1048,17 @@ void tac_to_string_loads_test()
     free(reg_3);
     destroy_tac(tac);
     free(code);
+    if (use_label) free(label);
   }
 
   {
     opcode = OP_LOAD_I;
 
+    char* label = use_label ? new_label() : NULL;
     char *reg_1 = new_register();
     char *reg_2 = new_register();
 
-    tac = new_tac(opcode, reg_1, NULL, reg_2, NULL);
+    tac = new_tac(label, opcode, reg_1, NULL, reg_2, NULL);
     code = tac_to_string(tac);
     printf("%s\n", code);
 
@@ -1007,10 +1066,11 @@ void tac_to_string_loads_test()
     free(reg_2);
     destroy_tac(tac);
     free(code);
+    if (use_label) free(label);
   }
 }
 
-void tac_to_string_stores_test()
+void tac_to_string_stores_test(bool use_label)
 {
   int i;
   int opcode = 0;
@@ -1021,10 +1081,11 @@ void tac_to_string_stores_test()
     if (i == 0) opcode = OP_STORE;
     else if (i == 1) opcode = OP_CSTORE;
 
+    char* label = use_label ? new_label() : NULL;
     char *reg_1 = new_register();
     char *reg_2 = new_register();
 
-    tac = new_tac(opcode, reg_1, NULL, reg_2, NULL);
+    tac = new_tac(label, opcode, reg_1, NULL, reg_2, NULL);
     code = tac_to_string(tac);
     printf("%s\n", code);
 
@@ -1032,16 +1093,18 @@ void tac_to_string_stores_test()
     free(reg_2);
     destroy_tac(tac);
     free(code);
+    if (use_label) free(label);
   }
   for (i = 0; i < 2; ++i) {
     if (i == 0) opcode = OP_STORE_AI;
     else if (i == 1) opcode = OP_CSTORE_AI;
 
+    char* label = use_label ? new_label() : NULL;
     char *reg_1 = new_register();
     char *imed = new_imediate(42);
     char *reg_2 = new_register();
 
-    tac = new_tac(opcode, reg_1, NULL, reg_2, imed);
+    tac = new_tac(label, opcode, reg_1, NULL, reg_2, imed);
     code = tac_to_string(tac);
     printf("%s\n", code);
 
@@ -1050,16 +1113,18 @@ void tac_to_string_stores_test()
     free(reg_2);
     destroy_tac(tac);
     free(code);
+    if (use_label) free(label);
   }
   for (i = 0; i < 2; ++i) {
     if (i == 0) opcode = OP_STORE_A0;
     else if (i == 1) opcode = OP_CSTORE_A0;
 
+    char* label = use_label ? new_label() : NULL;
     char *reg_1 = new_register();
     char *reg_2 = new_register();
     char *reg_3 = new_register();
 
-    tac = new_tac(opcode, reg_1, NULL, reg_2, reg_3);
+    tac = new_tac(label, opcode, reg_1, NULL, reg_2, reg_3);
     code = tac_to_string(tac);
     printf("%s\n", code);
 
@@ -1068,20 +1133,23 @@ void tac_to_string_stores_test()
     free(reg_3);
     destroy_tac(tac);
     free(code);
+    if (use_label) free(label);
   }
 }
 
-void tac_to_string_reg_copy_test()
+void tac_to_string_reg_copy_test(bool use_label)
 {
   int opcode = 0;
   tac_t *tac;
   char *code;
 
   for (opcode = OP_I2I; opcode <= OP_I2C; ++opcode) {
+
+    char* label = use_label ? new_label() : NULL;
     char *reg_1 = new_register();
     char *reg_2 = new_register();
 
-    tac = new_tac(opcode, reg_1, NULL, reg_2, NULL);
+    tac = new_tac(label, opcode, reg_1, NULL, reg_2, NULL);
     code = tac_to_string(tac);
     printf("%s\n", code);
 
@@ -1089,21 +1157,24 @@ void tac_to_string_reg_copy_test()
     free(reg_2);
     destroy_tac(tac);
     free(code);
+    if (use_label) free(label);
   }
 }
 
-void tac_to_string_flux_control_test()
+void tac_to_string_flux_control_test(bool use_label)
 {
   int opcode = 0;
   tac_t* tac;
   char* code;
 
   for (opcode = OP_CMP_LT; opcode <= OP_CMP_NE; opcode++) {
+
+    char* label = use_label ? new_label() : NULL;
     char* reg_1 = new_register();
     char* reg_2 = new_register();
     char* reg_3 = new_register();
 
-    tac = new_tac(opcode, reg_1, reg_2, reg_3, NULL);
+    tac = new_tac(label, opcode, reg_1, reg_2, reg_3, NULL);
     code = tac_to_string(tac);
     printf("%s\n", code);
 
@@ -1112,14 +1183,17 @@ void tac_to_string_flux_control_test()
     free(reg_3);
     destroy_tac(tac);
     free(code);
+    if (use_label) free(label);
   }
   {
     opcode = OP_CBR;
+
+    char* label = use_label ? new_label() : NULL;
     char* reg_1 = new_register();
     char* label_1 = new_label();
     char* label_2 = new_label();
 
-    tac = new_tac(opcode, reg_1, NULL, label_1, label_2);
+    tac = new_tac(label, opcode, reg_1, NULL, label_1, label_2);
     code = tac_to_string(tac);
     printf("%s\n", code);
 
@@ -1128,10 +1202,11 @@ void tac_to_string_flux_control_test()
     free(label_2);
     destroy_tac(tac);
     free(code);
+    if (use_label) free(label);
   }
 }
 
-void tac_to_string_jumps_test()
+void tac_to_string_jumps_test(bool use_label)
 {
   int opcode = 0;
   tac_t* tac;
@@ -1139,50 +1214,64 @@ void tac_to_string_jumps_test()
 
   {
     opcode = OP_JUMP_I;
-    char* label = new_label();
 
-    tac = new_tac(opcode, NULL, NULL, label, NULL);
+    char* label_1 = use_label ? new_label() : NULL;
+    char* label_2 = new_label();
+
+    tac = new_tac(label_1, opcode, NULL, NULL, label_2, NULL);
     code = tac_to_string(tac);
     printf("%s\n", code);
 
-    free(label);
+    free(label_2);
     destroy_tac(tac);
     free(code);
+    if (use_label) free(label_1);
   }
   {
     opcode = OP_JUMP;
+
+    char* label = use_label ? new_label() : NULL;
     char* reg = new_register();
 
-    tac = new_tac(opcode, NULL, NULL, reg, NULL);
+    tac = new_tac(label, opcode, NULL, NULL, reg, NULL);
     code = tac_to_string(tac);
     printf("%s\n", code);
 
     free(reg);
     destroy_tac(tac);
     free(code);
+    if (use_label) free(label);
   }
 }
 
 void tac_to_string_test()
 {
-  printf("\n____  Nop  ____\n");
-  tac_to_string_nop_test();
-  printf("\n____  Arits  ____\n");
-  tac_to_string_arit_test();
-  printf("\n____  Shifts  ____\n");
-  tac_to_string_shifts_test();
-  printf("\n____  Logics  ____\n");
-  tac_to_string_logics_test();
-  printf("\n____  Loads  ____\n");
-  tac_to_string_loads_test();
-  printf("\n____  Stores  ____\n");
-  tac_to_string_stores_test();
-  printf("\n____  RegCopies  ____\n");
-  tac_to_string_reg_copy_test();
-  printf("\n____  FluxCtrl  ____\n");
-  tac_to_string_flux_control_test();
-  printf("\n____  Jumps  ____\n");
-  tac_to_string_jumps_test();
+  int i;
+  bool use_label;
+  for (i = 0; i < 2; ++i) {
+
+    if (i == 0) use_label = true;
+    if (i == 1) use_label = false;
+
+    printf("\n____  Nop  ____\n");
+    tac_to_string_nop_test(use_label);
+    printf("\n____  Arits  ____\n");
+    tac_to_string_arit_test(use_label);
+    printf("\n____  Shifts  ____\n");
+    tac_to_string_shifts_test(use_label);
+    printf("\n____  Logics  ____\n");
+    tac_to_string_logics_test(use_label);
+    printf("\n____  Loads  ____\n");
+    tac_to_string_loads_test(use_label);
+    printf("\n____  Stores  ____\n");
+    tac_to_string_stores_test(use_label);
+    printf("\n____  RegCopies  ____\n");
+    tac_to_string_reg_copy_test(use_label);
+    printf("\n____  FluxCtrl  ____\n");
+    tac_to_string_flux_control_test(use_label);
+    printf("\n____  Jumps  ____\n");
+    tac_to_string_jumps_test(use_label);
+  }
 }
 
 void tac_basic_tests()
@@ -1271,7 +1360,7 @@ void tac_stack_test_2()
     char* reg_2 = new_register();
     char* reg_3 = new_register();
 
-    tac = new_tac(opcode, reg_1, reg_2, reg_3, NULL);
+    tac = new_tac(NULL, opcode, reg_1, reg_2, reg_3, NULL);
     code = tac_to_string(tac);
     printf("%s\n", code);
     stack_push(tac, stack_1);
@@ -1320,7 +1409,7 @@ void tac_stack_test()
     char* reg_2 = new_register();
     char* reg_3 = new_register();
 
-    tac = new_tac(opcode, reg_1, reg_2, reg_3, NULL);
+    tac = new_tac(NULL, opcode, reg_1, reg_2, reg_3, NULL);
     code = tac_to_string(tac);
     printf("%s\n", code);
     stack_push(tac, stack_1);
@@ -1337,7 +1426,7 @@ void tac_stack_test()
     char* imed = new_imediate(42);
     char* reg_2 = new_register();
 
-    tac = new_tac(opcode, reg_1, imed, reg_2, NULL);
+    tac = new_tac(NULL, opcode, reg_1, imed, reg_2, NULL);
     code = tac_to_string(tac);
     printf("%s\n", code);
     stack_push(tac, stack_2);

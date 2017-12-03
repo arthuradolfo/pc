@@ -76,6 +76,11 @@ int register_counter;
 typedef struct tac
 {
   /**
+   * Se não NULL, é o label que imediatamente precede a operacao
+   */
+  char* label;
+
+  /**
    * Uma das constantes de opcode
    */
   int opcode;
@@ -105,7 +110,7 @@ typedef struct tac
 /**
  * Inicializa um tac_t e retorna um ponteiro pra ele
  */
-tac_t* new_tac(int opcode, char* src_1, char* src_2, char* dst_1, char* dst_2);
+tac_t* new_tac(char* label, int opcode, char* src_1, char* src_2, char* dst_1, char* dst_2);
 
 /**
  * Libera toda memoria alocada de um tac_t
