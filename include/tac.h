@@ -11,6 +11,7 @@ int register_counter;
 /* Opcodes */
 
 //aritmetica
+#define OP_NOP 0
 #define OP_ADD 1
 #define OP_SUB 2
 #define OP_MULT 3

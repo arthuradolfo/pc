@@ -137,6 +137,13 @@ char* tac_to_string(tac_t *tac)
 
   switch (tac->opcode) {
 
+    case OP_NOP:
+      code_size_in_bytes = (strlen("nop") + 1 /*para o \0*/) * sizeof(char);
+      code = malloc(code_size_in_bytes);
+
+      sprintf(code, "nop");
+      break;
+
     //aritmetica
     case OP_ADD:
       code_size_in_bytes =
@@ -150,7 +157,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "add %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
-
       break;
 
     case OP_SUB:
@@ -165,7 +171,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "sub %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
-
       break;
 
     case OP_MULT:
@@ -180,7 +185,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "mult %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
-
       break;
 
     case OP_DIV:
@@ -195,7 +199,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "div %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
-
       break;
 
     case OP_ADD_I:
@@ -210,7 +213,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "addI %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
-
       break;
 
     case OP_SUB_I:
@@ -225,7 +227,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "subI %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
-
       break;
 
     case OP_RSUB_I:
@@ -240,7 +241,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "rsubI %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
-
       break;
 
     case OP_MULT_I:
@@ -255,7 +255,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "multI %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
-
       break;
 
     case OP_DIV_I:
@@ -270,7 +269,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "divI %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
-
       break;
 
     case OP_RDIV_I:
@@ -285,7 +283,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "rdivI %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
-
       break;
 
 
@@ -302,7 +299,6 @@ char* tac_to_string(tac_t *tac)
 
         code = malloc(code_size_in_bytes);
         sprintf(code, "lshift %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
-
         break;
 
       case OP_LSHIFT_I:
@@ -317,7 +313,6 @@ char* tac_to_string(tac_t *tac)
 
         code = malloc(code_size_in_bytes);
         sprintf(code, "lshiftI %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
-
         break;
 
      case OP_RSHIFT:
@@ -332,7 +327,6 @@ char* tac_to_string(tac_t *tac)
 
         code = malloc(code_size_in_bytes);
         sprintf(code, "rshift %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
-
         break;
 
       case OP_RSHIFT_I:
@@ -347,7 +341,6 @@ char* tac_to_string(tac_t *tac)
 
         code = malloc(code_size_in_bytes);
         sprintf(code, "rshiftI %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
-
         break;
 
 
@@ -362,7 +355,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "load %s => %s", tac->src_1, tac->dst_1);
-
       break;
 
     case OP_LOAD_AI:
@@ -377,7 +369,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "loadAI %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
-
       break;
 
     case OP_LOAD_A0:
@@ -392,7 +383,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "loadA0 %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
-
       break;
 
     case OP_CLOAD:
@@ -405,7 +395,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "cload %s => %s", tac->src_1, tac->dst_1);
-
       break;
 
     case OP_CLOAD_AI:
@@ -420,7 +409,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "cloadAI %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
-
       break;
 
      case OP_CLOAD_A0:
@@ -435,7 +423,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "cloadA0 %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
-
       break;
 
     case OP_LOAD_I:
@@ -448,7 +435,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "loadI %s => %s", tac->src_1, tac->dst_1);
-
       break;
 
 
@@ -463,7 +449,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "store %s => %s", tac->src_1, tac->dst_1);
-
       break;
 
     case OP_STORE_AI:
@@ -478,7 +463,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "storeAI %s => %s, %s", tac->src_1, tac->dst_1, tac->dst_2);
-
       break;
 
     case OP_STORE_A0:
@@ -493,7 +477,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "storeA0 %s => %s, %s", tac->src_1, tac->dst_1, tac->dst_2);
-
       break;
 
     case OP_CSTORE:
@@ -506,7 +489,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "cstore %s => %s", tac->src_1, tac->dst_1);
-
       break;
 
     case OP_CSTORE_AI:
@@ -521,7 +503,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "cstoreAI %s => %s, %s", tac->src_1, tac->dst_1, tac->dst_2);
-
       break;
 
     case OP_CSTORE_A0:
@@ -536,7 +517,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "cstoreA0 %s => %s, %s", tac->src_1, tac->dst_1, tac->dst_2);
-
       break;
 
 
@@ -551,7 +531,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "i2i %s => %s", tac->src_1, tac->dst_1);
-
       break;
 
     case OP_C2C:
@@ -564,7 +543,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "c2c %s => %s", tac->src_1, tac->dst_1);
-
       break;
 
     case OP_C2I:
@@ -577,7 +555,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "c2i %s => %s", tac->src_1, tac->dst_1);
-
       break;
 
     case OP_I2C:
@@ -590,7 +567,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "i2c %s => %s", tac->src_1, tac->dst_1);
-
       break;
 
 
@@ -607,7 +583,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "cmp_LT %s, %s -> %s", tac->src_1, tac->src_2, tac->dst_1);
-
       break;
 
     case OP_CMP_LE:
@@ -622,7 +597,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "cmp_LE %s, %s -> %s", tac->src_1, tac->src_2, tac->dst_1);
-
       break;
 
     case OP_CMP_EQ:
@@ -637,7 +611,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "cmp_EQ %s, %s -> %s", tac->src_1, tac->src_2, tac->dst_1);
-
       break;
 
     case OP_CMP_GE:
@@ -652,7 +625,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "cmp_GE %s, %s -> %s", tac->src_1, tac->src_2, tac->dst_1);
-
       break;
 
     case OP_CMP_GT:
@@ -667,7 +639,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "cmp_GT %s, %s -> %s", tac->src_1, tac->src_2, tac->dst_1);
-
       break;
 
     case OP_CMP_NE:
@@ -682,7 +653,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "cmp_NE %s, %s -> %s", tac->src_1, tac->src_2, tac->dst_1);
-
       break;
 
     case OP_CBR:
@@ -697,7 +667,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "cbr %s -> %s, %s", tac->src_1, tac->dst_1, tac->dst_2);
-
       break;
 
 
@@ -711,7 +680,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "jumpI -> %s", tac->dst_1);
-
       break;
 
     case OP_JUMP:
@@ -723,7 +691,6 @@ char* tac_to_string(tac_t *tac)
 
       code = malloc(code_size_in_bytes);
       sprintf(code, "jump -> %s", tac->dst_1);
-
       break;
 
 
@@ -733,6 +700,20 @@ char* tac_to_string(tac_t *tac)
       return NULL;
   }
   return code;
+}
+
+void tac_to_string_nop_test()
+{
+  int opcode = 0;
+  tac_t* tac;
+  char* code;
+
+  tac = new_tac(opcode, NULL, NULL, NULL, NULL);
+  code = tac_to_string(tac);
+  printf("%s\n", code);
+
+  destroy_tac(tac);
+  free(code);
 }
 
 void tac_to_string_arit_test()
@@ -1051,6 +1032,8 @@ void tac_to_string_jumps_test()
 
 void tac_to_string_test()
 {
+  printf("\n____  Nop  ____\n");
+  tac_to_string_nop_test();
   printf("\n____  Arits  ____\n");
   tac_to_string_arit_test();
   printf("\n____  Shifts  ____\n");
