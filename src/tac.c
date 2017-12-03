@@ -67,8 +67,8 @@ char* new_label()
 {
   size_t number_of_digits = (size_t) floor(log(label_counter) + 1);
 
-  char* label_name = (char*) malloc((sizeof(char) * (1/*para o 'L'*/ + number_of_digits + 1/*para o '\0'*/)));
-  sprintf(label_name, "L%d", label_counter);
+  char* label_name = (char*) malloc((sizeof(char) * (1/*para o 'l'*/ + number_of_digits + 1/*para o '\0'*/)));
+  sprintf(label_name, "l%d", label_counter);
 
   label_counter++;
 
