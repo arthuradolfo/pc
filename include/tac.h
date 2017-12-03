@@ -104,6 +104,11 @@ tac_t* new_tac(int opcode, char* src_1, char* src_2, char* dst_1, char* dst_2);
 void destroy_tac(tac_t* tac);
 
 /**
+ * Retorna uma copia do tac fornecido por parametro
+ */
+tac_t* copy_tac(tac_t* copied);
+
+/**
  * Retorna um nome de rótulo novo
  */
 char* new_label();
@@ -134,5 +139,24 @@ void registers_labels_test();
 void tac_to_string_test();
 
 void tac_basic_tests();
+
+/**************** TAC STACK ****************/
+
+/**
+ * Imprime na tela uma pilha de tacs (do fundo para o topo)
+ */
+void print_tac_stack(stack_t** stack);
+
+/**
+ * Retorna uma pilha que é a concatenacao das duas pilhas fornecidas por parametro
+ */
+stack_t* cat_stacks(stack_t** stack_1, stack_t** stack_2);
+
+/**
+ * Destroi os tacs de um pilha (em data->value)
+ */
+void clear_tac_stack(stack_t** stack);
+
+void tac_stack_test();
 
 #endif

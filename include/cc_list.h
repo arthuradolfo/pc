@@ -5,20 +5,31 @@
 
 #define STACK_ERROR_NULL_PARAM -1
 
-typedef struct st_stack_item {
+typedef struct stack_item {
 	void *value;
-	struct st_stack_item *next;
-	struct st_stack_item *prev;
-} st_stack_item_t;
+	struct stack_item *next;
+	struct stack_item *prev;
+} stack_item_t;
 
 
-typedef struct st_stack {
+typedef struct stack {
 	int empty;
-	struct st_stack_item *data;
-} st_stack_t;
+	struct stack_item *data;
+} stack_t;
 
-st_stack_t* new_stack(void);
-st_stack_item_t* new_stack_item(void);
-int stack_pop(st_stack_item_t **data, st_stack_t **stack);
-int stack_push(void *value, st_stack_t *stack);
-void free_stack(st_stack_t *stack);
+stack_t* new_stack(void);
+stack_item_t* new_stack_item(void);
+int stack_pop(stack_item_t **data, stack_t **stack);
+int stack_push(void *value, stack_t *stack);
+void free_stack(stack_t *stack);
+void stack_print(stack_t *stack_aux);
+
+/**
+ * Retorna o campo void* value do item stack_item_t do topo de stack
+ */
+void* pop_value(stack_t** stack);
+
+/**
+ * Inverte uma pilha
+ */
+void reverse_stack(stack_t** stack);

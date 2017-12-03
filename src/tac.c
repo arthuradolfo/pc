@@ -2,6 +2,7 @@
  * Arquivo com funções de tratamento de TAC (three adresses code)
  */
 
+#include "cc_list.h"
 #include "tac.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -43,6 +44,11 @@ void destroy_tac(tac_t* tac)
   if (tac->dst_1) free(tac->dst_1);
   if (tac->dst_2) free(tac->dst_2);
   free(tac);
+}
+
+tac_t* copy_tac(tac_t* copied)
+{
+  return new_tac(copied->opcode, copied->src_1, copied->src_2, copied->dst_1, copied->dst_2);
 }
 
 void create_and_destroy_tac_test()
@@ -1067,4 +1073,195 @@ void tac_basic_tests()
   imediates_test();
   create_and_destroy_tac_test();
   tac_to_string_test();
+}
+
+
+/**************** TAC STACK ****************/
+
+void clear_tac_stack(stack_t** stack)
+{
+  stack_item_t* item;
+  item = (*stack)->data;
+
+  do {
+    if (item && item->value) {
+      destroy_tac(item->value);
+      item = item->next;
+    }
+  } while (item);
+}
+
+void reverse_stack(stack_t** stack)
+{
+  stack_t* reversed = new_stack();
+  stack_item_t* item = (*stack)->data;
+
+  while (item) {
+    stack_push(item->value, reversed);
+    item = item->next;
+  }
+
+  free_stack(*stack);
+  *stack = reversed;
+}
+
+void print_tac_stack(stack_t** stack)
+{
+  tac_t* tac;
+  stack_item_t* item = (*stack)->data;
+
+  printf("TOPO\n");
+  while (item) {
+    tac = item->value;
+    if (tac) {
+      char *code = tac_to_string(tac);
+      printf("%s\n", code);
+      free(code);
+    }
+    item = item->next;
+  }
+  printf("FUNDO\n");
+}
+
+stack_t* cat_stacks(stack_t** stack_1, stack_t** stack_2)
+{
+  stack_t* stack_3 = new_stack();
+  stack_item_t* item;
+
+  //pegar todos os elementos da stack 2
+  item = (*stack_2)->data;
+  do {
+    if (item && item->value) {
+      stack_push(copy_tac(item->value), stack_3);
+      item = item->next;
+    }
+  } while (item != NULL);
+
+  //pegar todos os elementos da stack 1
+  item = (*stack_1)->data;
+  do {
+    if (item && item->value) {
+      stack_push(copy_tac(item->value), stack_3);
+      item = item->next;
+    }
+  } while (item != NULL);
+
+  reverse_stack(&stack_3);
+
+  return stack_3;
+}
+
+void tac_stack_test_2()
+{
+  int opcode;
+  tac_t* tac;
+  char* code;
+  stack_t* stack_1 = new_stack();
+  stack_t* stack_2 = new_stack();
+
+  printf("____ inserções ____\n");
+
+  //preencher stack 1
+  for (opcode = OP_ADD; opcode <= OP_DIV; opcode++) {
+    char* reg_1 = new_register();
+    char* reg_2 = new_register();
+    char* reg_3 = new_register();
+
+    tac = new_tac(opcode, reg_1, reg_2, reg_3, NULL);
+    code = tac_to_string(tac);
+    printf("%s\n", code);
+    stack_push(tac, stack_1);
+
+    free(reg_1);
+    free(reg_2);
+    free(reg_3);
+    free(code);
+  }
+
+  stack_t* stack_3 = cat_stacks(&stack_1, &stack_2);
+
+  printf("\n\n____ stack_1 ____\n");
+  print_tac_stack(&stack_1);
+
+  printf("\n\n____ stack_2 ____\n");
+  print_tac_stack(&stack_2);
+
+  printf("\n\n____ stack_3 ____\n");
+  print_tac_stack(&stack_3);
+
+  clear_tac_stack(&stack_1);
+  clear_tac_stack(&stack_2);
+  clear_tac_stack(&stack_3);
+  free_stack(stack_1);
+  free_stack(stack_2);
+  free_stack(stack_3);
+
+  printf("\nFim do teste 2!\n\n");
+}
+
+void tac_stack_test()
+{
+  stack_t* stack_1 = new_stack();
+  stack_t* stack_2 = new_stack();
+
+  int opcode = 0;
+  tac_t* tac;
+  char* code;
+
+  printf("____ inserções ____\n");
+
+  //preencher stack 1
+  for (opcode = OP_ADD; opcode <= OP_DIV; opcode++) {
+    char* reg_1 = new_register();
+    char* reg_2 = new_register();
+    char* reg_3 = new_register();
+
+    tac = new_tac(opcode, reg_1, reg_2, reg_3, NULL);
+    code = tac_to_string(tac);
+    printf("%s\n", code);
+    stack_push(tac, stack_1);
+
+    free(reg_1);
+    free(reg_2);
+    free(reg_3);
+    free(code);
+  }
+
+  //preencher stack 2
+  for (opcode = OP_ADD_I; opcode <= OP_RDIV_I; opcode++) {
+    char* reg_1 = new_register();
+    char* imed = new_imediate(42);
+    char* reg_2 = new_register();
+
+    tac = new_tac(opcode, reg_1, imed, reg_2, NULL);
+    code = tac_to_string(tac);
+    printf("%s\n", code);
+    stack_push(tac, stack_2);
+
+    free(reg_1);
+    free(imed);
+    free(reg_2);
+    free(code);
+  }
+
+  stack_t* stack_3 = cat_stacks(&stack_1, &stack_2);
+
+  printf("\n\n____ stack_1 ____\n");
+  print_tac_stack(&stack_1);
+
+  printf("\n\n____ stack_2 ____\n");
+  print_tac_stack(&stack_2);
+
+  printf("\n\n____ stack_3 ____\n");
+  print_tac_stack(&stack_3);
+
+  printf("\nFim do teste 1!\n\n");
+  clear_tac_stack(&stack_1);
+  clear_tac_stack(&stack_2);
+  clear_tac_stack(&stack_3);
+  free_stack(stack_1);
+  free_stack(stack_2);
+  free_stack(stack_3);
+
+  tac_stack_test_2();
 }

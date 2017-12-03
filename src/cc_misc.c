@@ -1,8 +1,4 @@
 #include "cc_misc.h"
-#include "cc_dict.h"
-#include "symbols_table.h"
-#include "syntax_tree.h"
-#include "semantics.h"
 #include "tac.h"
 
 
@@ -65,7 +61,8 @@ void main_init (int argc, char **argv)
 
 
   //TODO remove
-  tac_basic_tests();
+  //tac_basic_tests();
+  tac_stack_test();
 }
 
 void main_finalize (void)

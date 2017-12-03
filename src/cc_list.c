@@ -1,22 +1,32 @@
 #include "cc_list.h"
-st_stack_t* new_stack(void) {
-	st_stack_t *stack = (st_stack_t*) malloc(sizeof(st_stack_t));
+stack_t* new_stack(void) {
+	stack_t *stack = (stack_t*) malloc(sizeof(stack_t));
 	stack->empty = 1;
 	stack->data = NULL;
 	return stack;
 }
 
 
-st_stack_item_t* new_stack_item(void) {
-	st_stack_item_t *item = (st_stack_item_t*) malloc(sizeof(st_stack_item_t));
+stack_item_t* new_stack_item(void) {
+	stack_item_t *item = (stack_item_t*) malloc(sizeof(stack_item_t));
 	item->value = NULL;
 	item->next = NULL;
 	item->prev = NULL;
 	return item;
 }
 
+void* pop_value(stack_t** stack)
+{
+  stack_item_t* item = new_stack_item();
+  if (stack_pop(&item, stack) != 0)
+  {
+    printf("Erro de stack_pop()\n");
+    exit(EXIT_FAILURE);
+  }
+  return (item) ? item->value : NULL;
+}
 
-int stack_pop(st_stack_item_t **data, st_stack_t **stack) {
+int stack_pop(stack_item_t **data, stack_t **stack) {
 	if(!data || !stack) return STACK_ERROR_NULL_PARAM;
 	if((*stack)->empty) {
 		*data = NULL;
@@ -39,9 +49,9 @@ int stack_pop(st_stack_item_t **data, st_stack_t **stack) {
 }
 
 
-int stack_push(void *value, st_stack_t *stack) {
-	st_stack_item_t *aux_item;
-	st_stack_item_t *data;
+int stack_push(void *value, stack_t *stack) {
+	stack_item_t *aux_item;
+	stack_item_t *data;
 	if(!value || !stack) return STACK_ERROR_NULL_PARAM;
 	data = new_stack_item();
 	data->value = value;
@@ -60,12 +70,26 @@ int stack_push(void *value, st_stack_t *stack) {
 }
 
 
-void free_stack(st_stack_t *stack) {
-	st_stack_item_t *aux_item;
+void free_stack(stack_t *stack) {
+	stack_item_t *aux_item;
 	stack_pop(&aux_item, &stack);
 	while(aux_item) {
 		free(aux_item);
 		stack_pop(&aux_item, &stack);
 	}
 	free(stack);
+}
+
+void stack_print(stack_t *stack_aux)
+{
+  if (!stack_aux) {
+    printf("stack is null\n");
+    return;
+  }
+  stack_item_t *aux_item = stack_aux->data;
+  printf("Conteudo da pilha:\n");
+  while(aux_item) {
+    printf("%d\n", *((int*)aux_item->value));
+    aux_item = aux_item->next;
+  }
 }

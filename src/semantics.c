@@ -40,7 +40,7 @@ void printFuncsParams()
   if (!funcs_params) return;
 
   int i, l;
-  st_stack_t* entrada;
+  stack_t* entrada;
   for (i = 0, l = funcs_params->size; i < l; ++i) {
     if (funcs_params->data[i]) {
       entrada = dict_get(funcs_params, funcs_params->data[i]->key);
@@ -53,7 +53,7 @@ void printFuncsParams()
 void putToFuncsParams(char *func_name, st_value_t *st_param)
 {
   if(!funcs_params) return;
-  st_stack_t *aux_stack = dict_get(funcs_params, func_name);
+  stack_t *aux_stack = dict_get(funcs_params, func_name);
   if(aux_stack) {
     stack_push(st_param, aux_stack);
   }
@@ -64,7 +64,7 @@ void putToFuncsParams(char *func_name, st_value_t *st_param)
   }
 }
 
-void put_items_stack(st_stack_t* stack) {
+void put_items_stack(stack_t* stack) {
   int *a = (int*) malloc(sizeof(int));
   *a = 10;
   int *b = (int*) malloc(sizeof(int));
@@ -73,19 +73,9 @@ void put_items_stack(st_stack_t* stack) {
   printf("stack_push: %d\n", stack_push(b, stack));
 }
 
-void stack_print(st_stack_t *stack_aux) {
+void stack_print_params(stack_t *stack_aux) {
   if(!stack_aux) printf("stack is null\n");
-  st_stack_item_t *aux_item = stack_aux->data;
-  printf("Conteudo da pilha:\n");
-  while(aux_item) {
-    printf("%d\n", *((int*)aux_item->value));
-    aux_item = aux_item->next;
-  }
-}
-
-void stack_print_params(st_stack_t *stack_aux) {
-  if(!stack_aux) printf("stack is null\n");
-  st_stack_item_t *aux_item = stack_aux->data;
+  stack_item_t *aux_item = stack_aux->data;
   st_value_t *aux;
   printf("Conteudo da pilha:\n");
   while(aux_item) {
@@ -97,15 +87,15 @@ void stack_print_params(st_stack_t *stack_aux) {
 
 void pop_and_free_scope()
 {
-	st_stack_item_t *item;
-	st_stack_t *aux_stack = get_scope_stack();
+	stack_item_t *item;
+	stack_t *aux_stack = get_scope_stack();
 	stack_pop(&item, &aux_stack);
 	free(item);
 }
 
 void clear_scope_stack_values()
 {
-  st_stack_item_t *item;
+  stack_item_t *item;
 	stack_pop(&item, &scope_stack);
 	while(item) {
     comp_dict_t* symbols_table = item->value;
@@ -138,7 +128,7 @@ char* get_current_func_decl()
   return current_func_decl;
 }
 
-st_stack_t* get_scope_stack()
+stack_t* get_scope_stack()
 {
   return scope_stack;
 }
@@ -586,7 +576,7 @@ st_value_t* search_id_in_stack_sts(char* key)
   char* full_key = (char*) malloc((strlen(key)+2)*sizeof(char));
   strcpy(full_key, key);
   concatTokenType(full_key, POA_IDENT);
-  st_stack_item_t *item_aux = scope_stack->data;
+  stack_item_t *item_aux = scope_stack->data;
   while(item_aux) {
     entry_aux = dict_get(item_aux->value, full_key);
     if(entry_aux) {
@@ -611,10 +601,10 @@ st_value_t* search_id_in_global_st(char* key)
   return entry_aux;
 }
 
-st_stack_t* ensure_number_of_parameters(char *func_name, comp_tree_t *tree)
+stack_t* ensure_number_of_parameters(char *func_name, comp_tree_t *tree)
 {
-  st_stack_t* st_stack = dict_get(funcs_params, func_name);
-  st_stack_item_t* aux_item;
+  stack_t* stack = dict_get(funcs_params, func_name);
+  stack_item_t* aux_item;
   ast_node_value_t *node_aux;
   int count_tree = 0;
   while(tree) {
@@ -623,15 +613,15 @@ st_stack_t* ensure_number_of_parameters(char *func_name, comp_tree_t *tree)
     tree = tree->first;
   }
   int count = 0;
-  if(st_stack) {
-    if (st_stack->empty)
+  if(stack) {
+    if (stack->empty)
     {
       printf("[ERRO SEMANTICO] [Linha %d] Função ~%s~ não possui parâmetros, %d fornecido(s)\n",
           comp_get_line_number(), func_name, count_tree);
       exit(SMTC_ERROR_EXCESS_ARGS);
     }
     else {
-      aux_item = st_stack->data;
+      aux_item = stack->data;
       while(aux_item) {
         count++;
         aux_item = aux_item->next;
@@ -653,17 +643,17 @@ st_stack_t* ensure_number_of_parameters(char *func_name, comp_tree_t *tree)
           comp_get_line_number(), func_name, count_tree);
       exit(SMTC_ERROR_EXCESS_ARGS);
   }
-  return st_stack;
+  return stack;
 }
 
-st_stack_t* ensure_parameters_type(char *func_name, comp_tree_t *parameters_tree)
+stack_t* ensure_parameters_type(char *func_name, comp_tree_t *parameters_tree)
 {
-  st_stack_t *st_stack = dict_get(funcs_params, func_name);
-  st_stack_item_t *item_aux;
+  stack_t *stack = dict_get(funcs_params, func_name);
+  stack_item_t *item_aux;
   st_value_t *stack_entry_aux;
   comp_tree_t *aux = parameters_tree;
   ast_node_value_t *node_aux;
-  item_aux = st_stack->data;
+  item_aux = stack->data;
   while(item_aux->next) {
     item_aux = item_aux->next;
   }
@@ -714,21 +704,21 @@ st_stack_t* ensure_parameters_type(char *func_name, comp_tree_t *parameters_tree
     else aux = aux->first;
     item_aux = item_aux->prev;
   }
-  return st_stack;
+  return stack;
 }
 
-st_stack_t* ensure_function_has_no_parameters(char *func_name)
+stack_t* ensure_function_has_no_parameters(char *func_name)
 {
-  st_stack_t* st_stack = dict_get(funcs_params, func_name);
-  if(st_stack) {
-    if (!st_stack->empty)
+  stack_t* stack = dict_get(funcs_params, func_name);
+  if(stack) {
+    if (!stack->empty)
     {
       printf("[ERRO SEMANTICO] [Linha %d] Função ~%s~ possui parâmetros, nenhum fornecido\n",
           comp_get_line_number(), func_name);
       exit(SMTC_ERROR_MISSING_ARGS);
     }
   }
-  return st_stack;
+  return stack;
 }
 
 char* semantic_type_to_string(int semantic_type) {

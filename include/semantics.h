@@ -6,7 +6,7 @@
 #include "symbols_table.h"
 #include "syntax_tree.h"
 
-st_stack_t* scope_stack;
+stack_t* scope_stack;
 
 comp_dict_t* funcs_params;
 
@@ -83,7 +83,7 @@ void clearFuncParams();
   */
 void putToFuncsParams(char *func_name, st_value_t *st_param);
 
-st_stack_t* get_scope_stack();
+stack_t* get_scope_stack();
 
 void pop_and_free_scope();
 
@@ -303,15 +303,15 @@ void ensure_return_type_user_is_correct(ast_node_value_t* ast_expression);
  */
 int infere_primitive_type_return(int first_type, int second_type);
 
-st_stack_t* ensure_number_of_parameters(char *func_name, comp_tree_t *tree);
+stack_t* ensure_number_of_parameters(char *func_name, comp_tree_t *tree);
 
-st_stack_t* ensure_parameters_type(char *func_name, comp_tree_t *parameters_tree);
+stack_t* ensure_parameters_type(char *func_name, comp_tree_t *parameters_tree);
 
-st_stack_t* ensure_function_has_no_parameters(char *func_name);
+stack_t* ensure_function_has_no_parameters(char *func_name);
 
-void stack_print(st_stack_t *stack_aux);
+void stack_print(stack_t *stack_aux);
 
-void stack_print_params(st_stack_t *stack_aux);
+void stack_print_params(stack_t *stack_aux);
 
 st_value_t* search_id_in_stack_sts(char* key);
 
