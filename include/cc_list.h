@@ -1,3 +1,6 @@
+#ifndef CC_LIST_H
+#define CC_LIST_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -33,3 +36,5 @@ void* pop_value(stack_t** stack);
  * Inverte uma pilha
  */
 void reverse_stack(stack_t** stack);
+
+#endif

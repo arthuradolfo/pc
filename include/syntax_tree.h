@@ -1,6 +1,7 @@
 #ifndef SYNTAX_TREE_H
 #define SYNTAX_TREE_H
 
+#include "cc_list.h"
 #include "symbols_table.h"
 #include "cc_tree.h"
 #include "cc_dict.h"
@@ -51,7 +52,16 @@ typedef struct ast_node_value {
 		*/
 	 comp_dict_t* symbols_table;
 
+   /**
+    * Um ponteiro para uma entrada de tabela de simbolos, caso o nodo seja
+    * um identificador, literal ou similar
+    */
    struct symbolsTable_value* symbols_table_entry;
+
+   /**
+    * Pilha de tacs - o código do nodo
+    */
+   stack_t* tac_stack;
 
 } ast_node_value_t;
 

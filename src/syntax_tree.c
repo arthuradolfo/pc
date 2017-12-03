@@ -1,8 +1,6 @@
 #include "syntax_tree.h"
 #include "cc_ast.h"
 #include "main.h"
-#include "semantics.h"
-#include <stdlib.h>
 
 void set_ast_root(comp_tree_t* root)
 {
@@ -27,6 +25,8 @@ ast_node_value_t* new_ast_node_value(int syntactic_type, int semantic_type, char
   node->outputable = false;
 
   node->symbols_table = NULL;
+
+  node->tac_stack = NULL;
   return node;
 }
 

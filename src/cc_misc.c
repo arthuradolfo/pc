@@ -61,7 +61,7 @@ void main_init (int argc, char **argv)
 
 
   //TODO remove
-  tac_basic_tests();
+  //tac_basic_tests();
   //tac_stack_test();
 }
 
