@@ -377,6 +377,7 @@ st_value_t* new_st_value()
   st_value->semantic_user_type = NULL;
   st_value->var_vec_or_fun = SMTC_VARIABLE;
   st_value->size = 0;
+  st_value->vector_dimension = 0;
   st_value->value.i = 0;
 }
 

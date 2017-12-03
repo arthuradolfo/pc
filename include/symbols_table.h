@@ -12,6 +12,11 @@ union Value {
 	char *s;
 };
 
+typedef struct vector_size_t {
+	int size;
+	int vector_dimension;
+} st_vector_size;
+
 typedef struct symbolsTable_value {
     int line;
     int token_type;
@@ -33,6 +38,11 @@ typedef struct symbolsTable_value {
 		 int var_vec_or_fun;
 
 		 int size;
+
+		 /**
+		  * Define quantas dimensões um vetor possui
+		  */
+		 int vector_dimension;
     union Value value;
 } st_value_t;
 
