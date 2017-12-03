@@ -388,3 +388,16 @@ void clear_st_value(st_value_t* st_value)
   if (st_value->value.s)
     free(st_value->value.s);
 }
+
+int calculateGlobalAddress(int size)
+{
+  int offset_return = endOffsetGlobalSymbolsTable;
+  endOffsetGlobalSymbolsTable+=size;
+  return offset_return;
+}
+
+int calculateLocalAddress(int size) {
+  int offset_return = getCurrentSTEndOffset();
+  setCurrentSTEndOffset(getCurrentSTEndOffset()+size);
+  return offset_return;
+}

@@ -1244,18 +1244,6 @@ void tac_to_string_jumps_test(bool use_label)
   }
 }
 
-int calculateGlobalAddress(int size) {
-  int offset_return = endOffsetGlobalSymbolsTable;
-  endOffsetGlobalSymbolsTable+=size;
-  return offset_return;
-}
-
-int calculateLocalAddress(int size) {
-  int offset_return = getCurrentSTEndOffset();
-  setCurrentSTEndOffset(getCurrentSTEndOffset(endOffsetGlobalSymbolsTable)+size);
-  return offset_return;
-}
-
 void tac_to_string_test()
 {
   int i;

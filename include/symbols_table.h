@@ -100,4 +100,8 @@ st_value_t* new_st_value();
  */
 void clear_st_value(st_value_t*);
 
+int calculateGlobalAddress(int size);
+
+int calculateLocalAddress(int size);
+
 #endif
