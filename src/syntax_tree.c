@@ -20,6 +20,7 @@ ast_node_value_t* new_ast_node_value(int syntactic_type, int semantic_type, char
   node->semantic_user_type = semantic_user_type;
   node->symbols_table_entry = symbols_table_entry;
   node->coercion = SMTC_NO_COERCION;
+  node->vector_dimension = 0;
 
   node->inputable = false;
   node->outputable = false;

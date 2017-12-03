@@ -12,6 +12,11 @@ union Value {
 	char *s;
 };
 
+typedef struct vector_size_t {
+	int size;
+	int vector_dimension;
+} st_vector_size;
+
 typedef struct symbolsTable_value {
     int line;
     int token_type;
@@ -28,11 +33,29 @@ typedef struct symbolsTable_value {
 	   char* semantic_user_type;
 
 		 /**
+		  * Deslocamento relativo
+		  */
+		 int offset_address;
+
+		 /**
 		  * Define se representa uma variavel, um vetor ou uma funcao
 			*/
 		 int var_vec_or_fun;
 
+		 /**
+		  * Tamanho em bytes da variável
+		  */
 		 int size;
+
+		 /**
+		  * Tamanho em bytes da string (se for string), pode ser menor ou igual a size
+		  */
+		 int count_char;
+
+		 /**
+		  * Define quantas dimensões um vetor possui
+		  */
+		 int vector_dimension;
     union Value value;
 } st_value_t;
 
@@ -40,6 +63,8 @@ typedef struct symbolsTable_value {
   * @var comp_dict_t symbolsTable Gerencia a tabela de simbolos
   */
 comp_dict_t* symbolsTable;
+
+int endOffsetGlobalSymbolsTable;
 
 comp_dict_t* pointersToFreeTable;
 

@@ -48,6 +48,11 @@ typedef struct ast_node_value {
 	 bool outputable;
 
 	 /**
+	  * Define quantas dimensões um vetor possui
+	  */
+	 int vector_dimension;
+
+	 /**
 	  * Um ponteiro para uma tabela de simbolos caso o nodo seja uma funcao, um bloco ou similar
 		*/
 	 comp_dict_t* symbols_table;

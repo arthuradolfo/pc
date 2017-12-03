@@ -282,6 +282,7 @@ int get_type_size(int semantic_type)
     case SMTC_FLOAT: return SMTC_FLOAT_SIZE;
     case SMTC_CHAR: return SMTC_CHAR_SIZE;
     case SMTC_BOOL: return SMTC_BOOL_SIZE;
+    case SMTC_STRING: return SMTC_STRING_SIZE;
   }
 }
 
@@ -295,7 +296,7 @@ void set_st_semantic_type_and_size_primitive(int semantic_type, st_value_t* symb
   symbols_table_entry->size = get_type_size(semantic_type);
 }
 
-void set_st_semantic_type_and_size_vector(int semantic_type, int length, st_value_t* symbols_table_entry)
+void set_st_semantic_type_and_size_vector(int semantic_type, int length, int vector_dimension, st_value_t* symbols_table_entry)
 {
   //associa tipo semantico na tabela de simbolos
   symbols_table_entry->semantic_type = semantic_type;
@@ -303,6 +304,8 @@ void set_st_semantic_type_and_size_vector(int semantic_type, int length, st_valu
   symbols_table_entry->var_vec_or_fun = SMTC_VECTOR;
   //associa tamanho na tabela de simbolos
   symbols_table_entry->size = get_type_size(semantic_type) * length;
+  //associa dimensao do vetor na tabela de simbolos
+  symbols_table_entry->vector_dimension = vector_dimension;
 }
 
 void set_st_semantic_type_and_size_primitive_function(int semantic_type, st_value_t* symbols_table_entry)
@@ -343,7 +346,7 @@ void set_st_semantic_type_and_size_user_type(char* type_name, st_value_t* variab
   variable_entry->size = type_entry->size;
 }
 
-void set_st_semantic_type_and_size_vector_user_type(char* type_name, st_value_t* variable_entry, int length)
+void set_st_semantic_type_and_size_vector_user_type(char* type_name, st_value_t* variable_entry, int length, int vector_dimension)
 {
   st_value_t* type_entry = search_id_in_global_st(type_name);
 
@@ -355,6 +358,8 @@ void set_st_semantic_type_and_size_vector_user_type(char* type_name, st_value_t*
   variable_entry->var_vec_or_fun = SMTC_VECTOR;
   //associa tamanho na tabela de simbolos
   variable_entry->size = type_entry->size * length;
+  //associa dimensao do vetor na tabela de simbolos
+  variable_entry->vector_dimension = vector_dimension;
 }
 
 void set_st_semantic_type_and_size_primitive_field(int semantic_type, st_value_t* symbols_table_entry)
@@ -369,7 +374,7 @@ void set_st_semantic_type_and_size_primitive_field(int semantic_type, st_value_t
   symbols_table_entry->size = get_type_size(semantic_type);
 }
 
-void set_st_semantic_type_and_size_vector_field(int semantic_type, int length, st_value_t* symbols_table_entry)
+void set_st_semantic_type_and_size_vector_field(int semantic_type, int length, int vector_dimension, st_value_t* symbols_table_entry)
 {
   //associa tipo semantico na tabela de simbolos
   symbols_table_entry->semantic_type = semantic_type;
@@ -379,6 +384,8 @@ void set_st_semantic_type_and_size_vector_field(int semantic_type, int length, s
   symbols_table_entry->semantic_user_type = strdup(get_current_type_decl());
   //associa tamanho na tabela de simbolos
   symbols_table_entry->size = get_type_size(semantic_type) * length;
+  //associa dimensao do vetor na tabela de simbolos
+  symbols_table_entry->vector_dimension = vector_dimension;
 }
 
 void verify_shiftable(st_value_t* symbols_table_entry)
@@ -509,6 +516,17 @@ comp_dict_t* getCurrentST()
 {
   if(!scope_stack->empty) return scope_stack->data->value;
   else return symbolsTable;
+}
+
+int getCurrentSTEndOffset()
+{
+  if(!scope_stack->empty) return scope_stack->data->endOffsetSymbolsTable;
+  else return endOffsetGlobalSymbolsTable;
+}
+
+void setCurrentSTEndOffset(int offset) {
+  if(!scope_stack->empty) scope_stack->data->endOffsetSymbolsTable = offset;
+  else endOffsetGlobalSymbolsTable = offset;
 }
 
 st_value_t* putToCurrentST(char* key, int line, int token_type)
@@ -735,6 +753,14 @@ char* semantic_type_to_string(int semantic_type) {
       return "string";
     case SMTC_BOOL:
       return "bool";
+  }
+}
+
+void ensure_vector_dimension(int vector_dimension_call, int vector_dimension_var, char *name) {
+  if(vector_dimension_call != vector_dimension_var) {
+    printf("[ERRO SEMANTICO] [Linha %d] dimensões dos arrays não batem. Dimensão do array ~%s~ é de %d, mas foi usada uma dimensão de %d\n",
+          comp_get_line_number(), name, vector_dimension_var, vector_dimension_call);
+      exit(SMTC_ERROR_VECTOR);
   }
 }
 

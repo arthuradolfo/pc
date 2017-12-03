@@ -10,6 +10,7 @@ stack_t* new_stack(void) {
 stack_item_t* new_stack_item(void) {
 	stack_item_t *item = (stack_item_t*) malloc(sizeof(stack_item_t));
 	item->value = NULL;
+	item->endOffsetSymbolsTable = 0;
 	item->next = NULL;
 	item->prev = NULL;
 	return item;

@@ -39,6 +39,7 @@ char* current_func_decl;
 #define SMTC_FLOAT_SIZE 8
 #define SMTC_CHAR_SIZE 1
 #define SMTC_BOOL_SIZE 1
+#define SMTC_STRING_SIZE 150
 
 /* erros semanticos */
 
@@ -124,7 +125,7 @@ void set_st_semantic_type_and_size_user_type_function(char* type_name, st_value_
 /**
  * Seta, num Value de entrada de tabela de simbolos de um vetor, o tipo semantico e seu tamanho
  */
-void set_st_semantic_type_and_size_vector(int semantic_type, int length, st_value_t* symbols_table_entry);
+void set_st_semantic_type_and_size_vector(int semantic_type, int length, int vector_dimension, st_value_t* symbols_table_entry);
 
 /**
  * Seta, num Value de entrada de tabela de simbolos de uma variavel de tipo de usuario, o tipo semantico e seu tamanho
@@ -134,7 +135,7 @@ void set_st_semantic_type_and_size_user_type(char* type_name, st_value_t* variab
 /**
  * Seta, num Value de entrada de tabela de simbolos de um vetor de tipo de usuario, o tipo semantico e seu tamanho
  */
-void set_st_semantic_type_and_size_vector_user_type(char* type_name, st_value_t* variable_entry, int length);
+void set_st_semantic_type_and_size_vector_user_type(char* type_name, st_value_t* variable_entry, int length, int vector_dimension);
 
 /**
  * Seta, num Value de entrada de tabela de simbolos de um campo de tipo de usuario, o tipo semantico e sua classe relacionada
@@ -144,7 +145,7 @@ void set_st_semantic_type_and_size_primitive_field(int semantic_type, st_value_t
 /**
  * Seta, num Value de entrada de tabela de simbolos de um campo de vetor, o tamanho, o tipo semantico e sua classe relacionada
  */
-void set_st_semantic_type_and_size_vector_field(int semantic_type, int length, st_value_t* symbols_table_entry);
+void set_st_semantic_type_and_size_vector_field(int semantic_type, int length, int vector_dimension, st_value_t* symbols_table_entry);
 
 /**
 * Retorna o tipo semantico de um elemento de um vetor
@@ -186,6 +187,13 @@ void verify_matching_user_types(st_value_t* st_entry, ast_node_value_t* ast_expr
  * Retorna a tabela de símbolos "atual" (do topo da pilha)
  */
 comp_dict_t* getCurrentST();
+
+/**
+ * Retorna o ultimo offset da tabela de símbolos "atual" (do topo da pilha)
+ */
+int getCurrentSTEndOffset();
+
+void setCurrentSTEndOffset(int offset);
 
 /**
  * Coloca o token na tabela de simbolos "atual" (do topo da pilha)
@@ -314,5 +322,7 @@ void stack_print(stack_t *stack_aux);
 void stack_print_params(stack_t *stack_aux);
 
 st_value_t* search_id_in_stack_sts(char* key);
+
+void ensure_vector_dimension(int vector_dimension_call, int vector_dimension_var, char *name);
 
 #endif

@@ -4,6 +4,7 @@
 
 #ifndef TAC_H
 #define TAC_H
+#include "symbols_table.h"
 
 int label_counter;
 int register_counter;
@@ -172,5 +173,9 @@ stack_t* cat_stacks(stack_t** stack_1, stack_t** stack_2);
 void clear_tac_stack(stack_t** stack);
 
 void tac_stack_test();
+
+int calculateGlobalAddress(int size);
+
+int calculateLocalAddress(int size);
 
 #endif
