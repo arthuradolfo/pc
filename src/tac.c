@@ -1074,20 +1074,6 @@ void clear_tac_stack(stack_t** stack)
   } while (item);
 }
 
-void reverse_stack(stack_t** stack)
-{
-  stack_t* reversed = new_stack();
-  stack_item_t* item = (*stack)->data;
-
-  while (item) {
-    stack_push(item->value, reversed);
-    item = item->next;
-  }
-
-  free_stack(*stack);
-  *stack = reversed;
-}
-
 void print_tac_stack(stack_t** stack)
 {
   tac_t* tac;

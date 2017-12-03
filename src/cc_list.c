@@ -80,6 +80,20 @@ void free_stack(stack_t *stack) {
 	free(stack);
 }
 
+void reverse_stack(stack_t** stack)
+{
+  stack_t* reversed = new_stack();
+  stack_item_t* item = (*stack)->data;
+
+  while (item) {
+    stack_push(item->value, reversed);
+    item = item->next;
+  }
+
+  free_stack(*stack);
+  *stack = reversed;
+}
+
 void stack_print(stack_t *stack_aux)
 {
   if (!stack_aux) {
