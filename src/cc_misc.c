@@ -46,6 +46,8 @@ void main_init (int argc, char **argv)
   //inicializacao da tabela de simbolos principal
   symbolsTable = dict_new();
 
+  endOffsetGlobalSymbolsTable = 0;
+
   //inicializacao das variaveis de semantica
   funcs_params = dict_new();
   scope_stack = new_stack();

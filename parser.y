@@ -152,7 +152,7 @@ vector_declaration: '[' TK_LIT_INT ']' vector_declaration_loop
 {	
 	st_vector_size *vector_size = new_st_value();
 	st_value_t* st_entry_lit_int = $2;
-	vector_size->size = st_entry_lit_int->value.i+$4->size;
+	vector_size->size = st_entry_lit_int->value.i*$4->size;
 	vector_size->vector_dimension = $4->vector_dimension+1;
 	free($4);
 	$$ = vector_size;
@@ -163,7 +163,7 @@ vector_declaration_loop: '[' TK_LIT_INT ']' vector_declaration_loop
 {
 	st_vector_size *vector_size = new_st_value();
 	st_value_t* st_entry_lit_int = $2;
-	vector_size->size = st_entry_lit_int->value.i+$4->size;
+	vector_size->size = st_entry_lit_int->value.i*$4->size;
 	vector_size->vector_dimension = $4->vector_dimension+1;
 	free($4);
 	$$ = vector_size;
@@ -171,7 +171,7 @@ vector_declaration_loop: '[' TK_LIT_INT ']' vector_declaration_loop
 vector_declaration_loop: %empty
 {
 	st_vector_size *vector_size = new_st_value();
-	vector_size->size = 0;
+	vector_size->size = 1;
 	vector_size->vector_dimension = 0;
 	$$ = vector_size;
 }
@@ -187,6 +187,9 @@ def_global_var: primitive_type TK_IDENTIFICADOR ';'
 	st_value_t* st_identificador = putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_primitive($1, st_identificador);
 
+	//Calcula endereço da variável global
+	st_identificador->offset_address = calculateGlobalAddress(st_identificador->size);
+	printf("offset: %d\n", st_identificador->offset_address);
 	free(id_name);
 }
 def_global_var: primitive_type TK_IDENTIFICADOR vector_declaration ';'
@@ -203,6 +206,10 @@ def_global_var: primitive_type TK_IDENTIFICADOR vector_declaration ';'
 	int vector_dimension = $3->vector_dimension;
 	set_st_semantic_type_and_size_vector($1, size, vector_dimension, st_identificador);
 
+	//Calcula endereço da variável global
+	st_identificador->offset_address = calculateGlobalAddress(st_identificador->size);
+	printf("offset: %d\n", st_identificador->offset_address);
+
 	free($3);
 	free(id_name);
 }
@@ -216,6 +223,9 @@ def_global_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR ';'
 	//insere identificador na tabela de simbolos global
 	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_primitive($2, st_identificador);
+
+	//Calcula endereço da variável global
+	st_identificador->offset_address = calculateGlobalAddress(st_identificador->size);
 
 	free(id_name);
 }
@@ -233,6 +243,10 @@ def_global_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR vector_declaration 
 	int vector_dimension = $4->vector_dimension;
 	set_st_semantic_type_and_size_vector($2, size, vector_dimension, st_identificador);
 
+	//Calcula endereço da variável global
+	st_identificador->offset_address = calculateGlobalAddress(st_identificador->size);
+	printf("offset: %d\n", st_identificador->offset_address);
+
 	free($4);
 	free(id_name);
 }
@@ -249,6 +263,10 @@ def_global_var: TK_IDENTIFICADOR TK_IDENTIFICADOR ';'
 	//insere identificador na tabela de simbolos global
 	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_user_type($1, st_identificador);
+
+	//Calcula endereço da variável global
+	st_identificador->offset_address = calculateGlobalAddress(st_identificador->size);
+	printf("offset: %d\n", st_identificador->offset_address);
 
 	free($1);
 	free(id_name);
@@ -269,6 +287,10 @@ def_global_var: TK_IDENTIFICADOR TK_IDENTIFICADOR vector_declaration ';'
 	int vector_dimension = $3->vector_dimension;
 	set_st_semantic_type_and_size_vector_user_type($1, st_identificador, size, vector_dimension);
 
+	//Calcula endereço da variável global
+	st_identificador->offset_address = calculateGlobalAddress(st_identificador->size);
+	printf("offset: %d\n", st_identificador->offset_address);
+
 	free($3);
 	free($1);
 	free(id_name);
@@ -285,6 +307,10 @@ def_global_var: TK_PR_STATIC TK_IDENTIFICADOR TK_IDENTIFICADOR ';'
 	//insere identificador na tabela de simbolos global
 	st_value_t* st_identificador =	putToSymbolsTable(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_user_type($2, st_identificador);
+
+	//Calcula endereço da variável global
+	st_identificador->offset_address = calculateGlobalAddress(st_identificador->size);
+	printf("offset: %d\n", st_identificador->offset_address);
 
 	free($2);
 	free(id_name);
@@ -304,6 +330,10 @@ def_global_var: TK_PR_STATIC TK_IDENTIFICADOR TK_IDENTIFICADOR vector_declaratio
 	int size = $4->size;
 	int vector_dimension = $4->vector_dimension;
 	set_st_semantic_type_and_size_vector_user_type($2, st_identificador, size, vector_dimension);
+
+	//Calcula endereço da variável global
+	st_identificador->offset_address = calculateGlobalAddress(st_identificador->size);
+	printf("offset: %d\n", st_identificador->offset_address);
 
 	free($4);
 	free($2);
@@ -441,7 +471,11 @@ parameter: primitive_type TK_IDENTIFICADOR
 	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_primitive($1, st_identificador);
 
-  putToFuncsParams(get_current_func_decl(), st_identificador);
+    putToFuncsParams(get_current_func_decl(), st_identificador);
+
+	//Calcula endereço da variável global
+	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
+	printf("local offset: %d\n", st_identificador->offset_address);
 
 	free(id_name);
 }
@@ -455,6 +489,10 @@ parameter: TK_PR_CONST primitive_type TK_IDENTIFICADOR
 	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_primitive($2, st_identificador);
 	putToFuncsParams(get_current_func_decl(), st_identificador);
+
+	//Calcula endereço da variável global
+	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
+	printf("local offset: %d\n", st_identificador->offset_address);
 
 	free(id_name);
 }
@@ -472,6 +510,10 @@ parameter: TK_IDENTIFICADOR TK_IDENTIFICADOR
 	set_st_semantic_type_and_size_user_type($1, st_identificador);
 	putToFuncsParams(get_current_func_decl(), st_identificador);
 
+	//Calcula endereço da variável global
+	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
+	printf("local offset: %d\n", st_identificador->offset_address);
+
 	free($1);
 	free(id_name);
 }
@@ -488,6 +530,10 @@ parameter: TK_PR_CONST TK_IDENTIFICADOR TK_IDENTIFICADOR
 	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_user_type($2, st_identificador);
 	putToFuncsParams(get_current_func_decl(), st_identificador);
+
+	//Calcula endereço da variável global
+	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
+	printf("local offset: %d\n", st_identificador->offset_address);
 
 	free($2);
 	free(id_name);
@@ -553,6 +599,10 @@ def_local_var: TK_IDENTIFICADOR TK_IDENTIFICADOR
 	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_user_type($1, st_identificador);
 
+	//Calcula endereço da variável local
+	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
+	printf("local offset: %d\n", st_identificador->offset_address);
+
 	free($1);
 	free(id_name);
 
@@ -566,6 +616,10 @@ def_local_var: primitive_type TK_IDENTIFICADOR
 	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
 	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_primitive($1, st_identificador);
+
+	//Calcula endereço da variável local
+	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
+	printf("local offset: %d\n", st_identificador->offset_address);
 
 	free(id_name);
 
@@ -582,11 +636,19 @@ def_local_var: primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 
 	ast_node_value_t* ast_expression = $4->value;
 
+	st_value_t* entry_expression = ast_expression->symbols_table_entry;
+	st_identificador->count_char = entry_expression->count_char;
+	printf("count char: %d\n", st_identificador->count_char);
+
 	//checar se tipos são compativeis
 	mark_coercion(st_identificador->semantic_type, ast_expression);
 
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, $1, NULL, st_identificador));
 	$$ = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, SMTC_VOID, NULL, NULL), node_identificador, $4);
+
+	//Calcula endereço da variável local
+	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
+	printf("local offset: %d\n", st_identificador->offset_address);
 
 	free(id_name);
 }
@@ -603,6 +665,10 @@ def_local_var: TK_PR_STATIC TK_IDENTIFICADOR TK_IDENTIFICADOR
 	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_user_type($2, st_identificador);
 
+	//Calcula endereço da variável local
+	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
+	printf("local offset: %d\n", st_identificador->offset_address);
+
 	$$ = NULL;
 
 	free($2);
@@ -616,6 +682,10 @@ def_local_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR
 	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
 	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_primitive($2, st_identificador);
+
+	//Calcula endereço da variável local
+	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
+	printf("local offset: %d\n", st_identificador->offset_address);
 
 	$$ = NULL;
 
@@ -632,11 +702,19 @@ def_local_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 
 	ast_node_value_t* ast_expression = $5->value;
 
+	st_value_t* entry_expression = ast_expression->symbols_table_entry;
+	st_identificador->count_char = entry_expression->count_char;
+	printf("count char: %d\n", st_identificador->count_char);
+
 	//checar se tipos são compativeis
 	mark_coercion(st_identificador->semantic_type, ast_expression);
 
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, $2, NULL, st_identificador));
 	$$ = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, SMTC_VOID, NULL, NULL), node_identificador, $5);
+
+	//Calcula endereço da variável local
+	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
+	printf("local offset: %d\n", st_identificador->offset_address);
 
 	free(id_name);
 }
@@ -653,6 +731,10 @@ def_local_var: TK_PR_CONST TK_IDENTIFICADOR TK_IDENTIFICADOR
 	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_user_type($2, st_identificador);
 
+	//Calcula endereço da variável local
+	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
+	printf("local offset: %d\n", st_identificador->offset_address);
+
 	$$ = NULL;
 
 	free($2);
@@ -666,6 +748,10 @@ def_local_var: TK_PR_CONST primitive_type TK_IDENTIFICADOR
 	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
 	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_primitive($2, st_identificador);
+
+	//Calcula endereço da variável local
+	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
+	printf("local offset: %d\n", st_identificador->offset_address);
 
 	$$ = NULL;
 
@@ -682,11 +768,19 @@ def_local_var: TK_PR_CONST primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 
 	ast_node_value_t* ast_expression = $5->value;
 
+	st_value_t* entry_expression = ast_expression->symbols_table_entry;
+	st_identificador->count_char = entry_expression->count_char;
+	printf("count char: %d\n", st_identificador->count_char);
+
 	//checar se tipos são compativeis
 	mark_coercion(st_identificador->semantic_type, ast_expression);
 
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, $2, NULL, st_identificador));
 	$$ = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, SMTC_VOID, NULL, NULL), node_identificador, $5);
+
+	//Calcula endereço da variável local
+	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
+	printf("local offset: %d\n", st_identificador->offset_address);
 
 	free(id_name);
 }
@@ -703,6 +797,10 @@ def_local_var: TK_PR_STATIC TK_PR_CONST TK_IDENTIFICADOR TK_IDENTIFICADOR
 	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_user_type($3, st_identificador);
 
+	//Calcula endereço da variável local
+	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
+	printf("local offset: %d\n", st_identificador->offset_address);
+
 	$$ = NULL;
 
 	free($3);
@@ -716,6 +814,10 @@ def_local_var: TK_PR_STATIC TK_PR_CONST primitive_type TK_IDENTIFICADOR
 	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
 	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
 	set_st_semantic_type_and_size_primitive($3, st_identificador);
+
+	//Calcula endereço da variável local
+	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
+	printf("local offset: %d\n", st_identificador->offset_address);
 
 	$$ = NULL;
 
@@ -732,11 +834,19 @@ def_local_var: TK_PR_STATIC TK_PR_CONST primitive_type TK_IDENTIFICADOR TK_OC_LE
 
 	ast_node_value_t* ast_expression = $6->value;
 
+	st_value_t* entry_expression = ast_expression->symbols_table_entry;
+	st_identificador->count_char = entry_expression->count_char;
+	printf("count char: %d\n", st_identificador->count_char);
+
 	//checar se tipos são compativeis
 	mark_coercion(st_identificador->semantic_type, ast_expression);
 
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, $3, NULL, st_identificador));
 	$$ = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, SMTC_VOID, NULL, NULL), node_identificador, $6);
+
+	//Calcula endereço da variável local
+	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
+	printf("local offset: %d\n", st_identificador->offset_address);
 
 	free(id_name);
 }
@@ -791,6 +901,10 @@ attribution_command: TK_IDENTIFICADOR '=' expression
 
 	ast_node_value_t* ast_expression = $3->value;
 
+	st_value_t* entry_expression = ast_expression->symbols_table_entry;
+	st_identificador->count_char = entry_expression->count_char;
+	printf("count char: %d\n", st_identificador->count_char);
+
 	//checar se tipos são compativeis
 	verify_matching_user_types(st_identificador, ast_expression);
 	mark_coercion(st_identificador->semantic_type, ast_expression);
@@ -809,6 +923,10 @@ attribution_command: TK_IDENTIFICADOR attribution_vector '=' expression
 	ensure_vector_dimension(ast_vector->vector_dimension, st_identificador->vector_dimension, st_identificador->value.s);
 
 	ast_node_value_t* ast_expression = $4->value;
+
+	st_value_t* entry_expression = ast_expression->symbols_table_entry;
+	st_identificador->count_char = entry_expression->count_char;
+	printf("count char: %d\n", st_identificador->count_char);
 
 	//checar se tipos são compativeis
 	verify_matching_user_types(st_identificador, ast_expression);
@@ -832,6 +950,10 @@ attribution_command: TK_IDENTIFICADOR '$' TK_IDENTIFICADOR '=' expression
 	st_value_t* st_campo = ensure_field_declared($3, st_identificador->semantic_user_type);
 
 	ast_node_value_t* ast_expression = $5->value;
+
+	st_value_t* entry_expression = ast_expression->symbols_table_entry;
+	st_identificador->count_char = entry_expression->count_char;
+	printf("count char: %d\n", st_identificador->count_char);
 
 	//checar se tipos são compativeis
 	mark_coercion(st_campo->semantic_type, ast_expression);
@@ -1226,6 +1348,7 @@ literal: TK_LIT_STRING
 {
 	$$ = tree_make_node(new_ast_node_value(AST_LITERAL, SMTC_STRING, NULL, $1));
 	((ast_node_value_t*) $$->value)->outputable = true;
+	((st_value_t*) ((ast_node_value_t*) $$->value)->symbols_table_entry)->count_char = strlen(((st_value_t*) $1)->value.s);
 }
 
 operator: TK_OC_LE { $$ = tree_make_node(new_ast_node_value(AST_LOGICO_COMP_LE, SMTC_VOID, NULL, NULL)); }

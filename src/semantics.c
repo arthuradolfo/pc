@@ -282,6 +282,7 @@ int get_type_size(int semantic_type)
     case SMTC_FLOAT: return SMTC_FLOAT_SIZE;
     case SMTC_CHAR: return SMTC_CHAR_SIZE;
     case SMTC_BOOL: return SMTC_BOOL_SIZE;
+    case SMTC_STRING: return SMTC_STRING_SIZE;
   }
 }
 
@@ -513,6 +514,17 @@ comp_dict_t* getCurrentST()
 {
   if(!scope_stack->empty) return scope_stack->data->value;
   else return symbolsTable;
+}
+
+comp_dict_t* getCurrentSTEndOffset()
+{
+  if(!scope_stack->empty) return scope_stack->data->endOffsetSymbolsTable;
+  else return endOffsetGlobalSymbolsTable;
+}
+
+void setCurrentSTEndOffset(int offset) {
+  if(!scope_stack->empty) scope_stack->data->endOffsetSymbolsTable = offset;
+  else endOffsetGlobalSymbolsTable = offset;
 }
 
 st_value_t* putToCurrentST(char* key, int line, int token_type)

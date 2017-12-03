@@ -39,6 +39,7 @@ char* current_func_decl;
 #define SMTC_FLOAT_SIZE 8
 #define SMTC_CHAR_SIZE 1
 #define SMTC_BOOL_SIZE 1
+#define SMTC_STRING_SIZE 150
 
 /* erros semanticos */
 
@@ -186,6 +187,11 @@ void verify_matching_user_types(st_value_t* st_entry, ast_node_value_t* ast_expr
  * Retorna a tabela de símbolos "atual" (do topo da pilha)
  */
 comp_dict_t* getCurrentST();
+
+/**
+ * Retorna o ultimo offset da tabela de símbolos "atual" (do topo da pilha)
+ */
+comp_dict_t* getCurrentSTEndOffset();
 
 /**
  * Coloca o token na tabela de simbolos "atual" (do topo da pilha)

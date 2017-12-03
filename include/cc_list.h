@@ -7,6 +7,7 @@
 
 typedef struct stack_item {
 	void *value;
+	int endOffsetSymbolsTable;
 	struct stack_item *next;
 	struct stack_item *prev;
 } stack_item_t;

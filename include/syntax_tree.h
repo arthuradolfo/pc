@@ -46,8 +46,6 @@ typedef struct ast_node_value {
 		*/
 	 bool outputable;
 
-	 
-
 	 /**
 	  * Define quantas dimensões um vetor possui
 	  */
