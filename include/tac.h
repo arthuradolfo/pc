@@ -29,41 +29,49 @@ int register_counter;
 #define OP_RSHIFT 13
 #define OP_RSHIFT_I 14
 
+//logicos
+#define OP_AND 15
+#define OP_AND_I 16
+#define OP_OR 17
+#define OP_OR_I 18
+#define OP_XOR 19
+#define OP_XOR_I 20
+
 //memoria - leitura
-#define OP_LOAD 15
-#define OP_LOAD_AI 16
-#define OP_LOAD_A0 17
-#define OP_CLOAD 18
-#define OP_CLOAD_AI 19
-#define OP_CLOAD_A0 20
-#define OP_LOAD_I 21
+#define OP_LOAD 21
+#define OP_LOAD_AI 22
+#define OP_LOAD_A0 23
+#define OP_CLOAD 24
+#define OP_CLOAD_AI 25
+#define OP_CLOAD_A0 26
+#define OP_LOAD_I 27
 
 //memoria - escrita
-#define OP_STORE 22
-#define OP_STORE_AI 23
-#define OP_STORE_A0 24
-#define OP_CSTORE 25
-#define OP_CSTORE_AI 26
-#define OP_CSTORE_A0 27
+#define OP_STORE 28
+#define OP_STORE_AI 29
+#define OP_STORE_A0 30
+#define OP_CSTORE 31
+#define OP_CSTORE_AI 32
+#define OP_CSTORE_A0 33
 
 //copia entre registradores
-#define OP_I2I 28
-#define OP_C2C 29
-#define OP_C2I 30
-#define OP_I2C 31
+#define OP_I2I 34
+#define OP_C2C 35
+#define OP_C2I 36
+#define OP_I2C 37
 
 //controle de fluxo
-#define OP_CMP_LT 32
-#define OP_CMP_LE 33
-#define OP_CMP_EQ 34
-#define OP_CMP_GE 35
-#define OP_CMP_GT 36
-#define OP_CMP_NE 37
-#define OP_CBR 38
+#define OP_CMP_LT 38
+#define OP_CMP_LE 39
+#define OP_CMP_EQ 40
+#define OP_CMP_GE 41
+#define OP_CMP_GT 42
+#define OP_CMP_NE 43
+#define OP_CBR 44
 
 //saltos
-#define OP_JUMP_I 39
-#define OP_JUMP 40
+#define OP_JUMP_I 45
+#define OP_JUMP 46
 
 typedef struct tac
 {

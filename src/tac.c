@@ -285,7 +285,6 @@ char* tac_to_string(tac_t *tac)
       sprintf(code, "rdivI %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
       break;
 
-
      //shifts
      case OP_LSHIFT:
        code_size_in_bytes =
@@ -343,6 +342,91 @@ char* tac_to_string(tac_t *tac)
         sprintf(code, "rshiftI %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
         break;
 
+
+    //logicos
+    case OP_AND:
+      code_size_in_bytes =
+              (strlen("and ") +
+               strlen(tac->src_1) +
+               strlen(", ") +
+               strlen(tac->src_2) +
+               strlen(" => ") +
+               strlen(tac->dst_1) +
+               1 /*para o \0*/) * sizeof(char);
+
+      code = malloc(code_size_in_bytes);
+      sprintf(code, "and %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+      break;
+
+    case OP_AND_I:
+      code_size_in_bytes =
+              (strlen("andI ") +
+               strlen(tac->src_1) +
+               strlen(", ") +
+               strlen(tac->src_2) +
+               strlen(" => ") +
+               strlen(tac->dst_1) +
+               1 /*para o \0*/) * sizeof(char);
+
+      code = malloc(code_size_in_bytes);
+      sprintf(code, "andI %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+      break;
+
+    case OP_OR:
+      code_size_in_bytes =
+              (strlen("or ") +
+               strlen(tac->src_1) +
+               strlen(", ") +
+               strlen(tac->src_2) +
+               strlen(" => ") +
+               strlen(tac->dst_1) +
+               1 /*para o \0*/) * sizeof(char);
+
+      code = malloc(code_size_in_bytes);
+      sprintf(code, "or %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+      break;
+
+    case OP_OR_I:
+      code_size_in_bytes =
+              (strlen("orI ") +
+               strlen(tac->src_1) +
+               strlen(", ") +
+               strlen(tac->src_2) +
+               strlen(" => ") +
+               strlen(tac->dst_1) +
+               1 /*para o \0*/) * sizeof(char);
+
+      code = malloc(code_size_in_bytes);
+      sprintf(code, "orI %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+      break;
+
+    case OP_XOR:
+      code_size_in_bytes =
+              (strlen("xor ") +
+               strlen(tac->src_1) +
+               strlen(", ") +
+               strlen(tac->src_2) +
+               strlen(" => ") +
+               strlen(tac->dst_1) +
+               1 /*para o \0*/) * sizeof(char);
+
+      code = malloc(code_size_in_bytes);
+      sprintf(code, "xor %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+      break;
+
+    case OP_XOR_I:
+      code_size_in_bytes =
+              (strlen("xorI ") +
+               strlen(tac->src_1) +
+               strlen(", ") +
+               strlen(tac->src_2) +
+               strlen(" => ") +
+               strlen(tac->dst_1) +
+               1 /*para o \0*/) * sizeof(char);
+
+      code = malloc(code_size_in_bytes);
+      sprintf(code, "xorI %s, %s => %s", tac->src_1, tac->src_2, tac->dst_1);
+      break;
 
     //memoria - leitura
     case OP_LOAD:
@@ -800,6 +884,55 @@ void tac_to_string_shifts_test()
   }
 }
 
+void tac_to_string_logics_test()
+{
+  int i;
+  int opcode = 0;
+  tac_t* tac;
+  char* code;
+
+  for (i = 0; i < 3; i++) {
+
+    if (i == 0) opcode = OP_AND;
+    else if (i == 1) opcode = OP_OR;
+    else if (i == 2) opcode = OP_XOR;
+
+    char* reg_1 = new_register();
+    char* reg_2 = new_register();
+    char* reg_3 = new_register();
+
+    tac = new_tac(opcode, reg_1, reg_2, reg_3, NULL);
+    code = tac_to_string(tac);
+    printf("%s\n", code);
+
+    free(reg_1);
+    free(reg_2);
+    free(reg_3);
+    destroy_tac(tac);
+    free(code);
+  }
+  for (i = 0; i < 3; i++) {
+
+    if (i == 0) opcode = OP_AND_I;
+    else if (i == 1) opcode = OP_OR_I;
+    else if (i == 2) opcode = OP_XOR_I;
+
+    char* reg_1 = new_register();
+    char* imed = new_imediate(42);
+    char* reg_3 = new_register();
+
+    tac = new_tac(opcode, reg_1, imed, reg_3, NULL);
+    code = tac_to_string(tac);
+    printf("%s\n", code);
+
+    free(reg_1);
+    free(imed);
+    free(reg_3);
+    destroy_tac(tac);
+    free(code);
+  }
+}
+
 void tac_to_string_loads_test()
 {
   int i;
@@ -1038,6 +1171,8 @@ void tac_to_string_test()
   tac_to_string_arit_test();
   printf("\n____  Shifts  ____\n");
   tac_to_string_shifts_test();
+  printf("\n____  Logics  ____\n");
+  tac_to_string_logics_test();
   printf("\n____  Loads  ____\n");
   tac_to_string_loads_test();
   printf("\n____  Stores  ____\n");
