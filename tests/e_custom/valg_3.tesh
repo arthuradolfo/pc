@@ -1,4 +1,4 @@
 #! ./tesh
 ! timeout 15
 ! output ignore
-$ ./tests/scripts/valgrindtest ./main tests/custom/3-debug_test.poa
+$ ./tests/scripts/valgrindtest ./main tests/e_custom/input/3-debug_test.poa
