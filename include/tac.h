@@ -239,6 +239,8 @@ void clear_tac_stack(stack_t** stack);
 
 void tac_stack_test();
 
+char* new_hole();
+
 /**
  * Remenda os buracos com o label fornecido
  * @param buracos ponteiro para uma pilha de ponteiros para ponteiros de char (stack_t** de char**)
