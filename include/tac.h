@@ -121,19 +121,123 @@ tac_t* new_tac(char* label, int opcode, char* src_1, char* src_2, char* dst_1, c
  */
 void destroy_tac(tac_t* tac);
 
-//construtores práticos
+//construtores práticos, alocam e liberam registradores, imediatos e labels se necessario
+
+/**
+ * Uso em tacs do tipo r1, r2 => r3 (RegisterRegisterEqualsRegister)
+ * @param use_label se chamador quer usar label na operacao
+ * @param label se use_label é true, usa essa label (se essa label for NULL, cria nova label)
+ * @param opcode código de operacao, deve ser um que corresponda ao padrao de uso da funcao
+ * @param src_1 r1
+ * @param src_2 r2
+ * @param dst r3
+ * @return tac alocado
+ */
 tac_t* new_tac_rrer(bool use_label, char* label, int opcode, char* src_1, char* src_2, char* dst);
+
+/**
+ * Uso em tacs do tipo r1, i => r2 (RegisterImediateEqualsRegister)
+ * @param use_label se chamador quer usar label na operacao
+ * @param label se use_label é true, usa essa label (se essa label for NULL, cria nova label)
+ * @param opcode código de operacao, deve ser um que corresponda ao padrao de uso da funcao
+ * @param src_1 r1
+ * @param cnst i (um inteiro)
+ * @param dst r2
+ * @return tac alocado
+ */
 tac_t* new_tac_rier_int(bool use_label, char* label, int opcode, char* src_1, int cnst, char* dst);
+/**
+ * Uso em tacs do tipo r1, i => r2 (RegisterImediateEqualsRegister)
+ * @param use_label se chamador quer usar label na operacao
+ * @param label se use_label é true, usa essa label (se essa label for NULL, cria nova label)
+ * @param opcode código de operacao, deve ser um que corresponda ao padrao de uso da funcao
+ * @param src_1 r1
+ * @param imed i (uma string)
+ * @param dst r2
+ * @return tac alocado
+ */
 tac_t* new_tac_rier_str(bool use_label, char* label, int opcode, char* src_1, char* imed, char* dst);
+
+/**
+ * Uso em tacs do tipo i => r (ImediateEqualsRegister)
+ * @param use_label se chamador quer usar label na operacao
+ * @param label se use_label é true, usa essa label (se essa label for NULL, cria nova label)
+ * @param opcode código de operacao, deve ser um que corresponda ao padrao de uso da funcao
+ * @param cnst i (um inteiro)
+ * @param dst r
+ * @return tac alocado
+ */
 tac_t* new_tac_ier_int(bool use_label, char* label, int opcode, int cnst, char* dst);
+/**
+ * Uso em tacs do tipo i => r (ImediateEqualsRegister)
+ * @param use_label se chamador quer usar label na operacao
+ * @param label se use_label é true, usa essa label (se essa label for NULL, cria nova label)
+ * @param opcode código de operacao, deve ser um que corresponda ao padrao de uso da funcao
+ * @param cnst i (uma string)
+ * @param dst r
+ * @return tac alocado
+ */
 tac_t* new_tac_ier_str(bool use_label, char* label, int opcode, char* imed, char* dst);
+/**
+ * Uso em tacs do tipo r1 => r2 (RegisterEqualsRegister)
+ * @param use_label se chamador quer usar label na operacao
+ * @param label se use_label é true, usa essa label (se essa label for NULL, cria nova label)
+ * @param opcode código de operacao, deve ser um que corresponda ao padrao de uso da funcao
+ * @param src r1
+ * @param dst r2
+ * @return tac alocado
+ */
 tac_t* new_tac_rer(bool use_label, char* label, int opcode, char* src, char* dst);
+
+/**
+ * Uso em tacs do tipo r1 => r2, r3 (RegisterEqualsRegisterRegister)
+ * @param use_label se chamador quer usar label na operacao
+ * @param label se use_label é true, usa essa label (se essa label for NULL, cria nova label)
+ * @param opcode código de operacao, deve ser um que corresponda ao padrao de uso da funcao
+ * @param src r1
+ * @param dst_1 r2
+ * @param dst_2 r3
+ * @return tac alocado
+ */
 tac_t* new_tac_rerr(bool use_label, char* label, int opcode, char* src, char* dst_1, char* dst_2);
+
+/**
+ * Uso em tacs do tipo r1 => r2, i (RegisterEqualsRegisterImediate)
+ * @param use_label se chamador quer usar label na operacao
+ * @param label se use_label é true, usa essa label (se essa label for NULL, cria nova label)
+ * @param opcode código de operacao, deve ser um que corresponda ao padrao de uso da funcao
+ * @param src r1
+ * @param dst_1 r2
+ * @param cnst i (um inteiro)
+ * @return tac alocado
+ */
 tac_t* new_tac_reri_int(bool use_label, char* label, int opcode, char* src, char* dst_1, int cnst);
+/**
+ * Uso em tacs do tipo r1 => r2, i (RegisterEqualsRegisterImediate)
+ * @param use_label se chamador quer usar label na operacao
+ * @param label se use_label é true, usa essa label (se essa label for NULL, cria nova label)
+ * @param opcode código de operacao, deve ser um que corresponda ao padrao de uso da funcao
+ * @param src r1
+ * @param dst_1 r2
+ * @param cnst i (uma string)
+ * @return tac alocado
+ */
 tac_t* new_tac_reri_str(bool use_label, char* label, int opcode, char* src, char* dst_1, char* imed);
+
 tac_t* new_tac_jump_i(bool use_label, char* label, char* dst_label);
 tac_t* new_tac_jump(bool use_label, char* label, char* dst_reg);
 tac_t* new_tac_cbr  (bool use_label, char* label, char* src, char* lbl_true, char* lbl_false);
+
+/**
+ * Uso em tacs do tipo cmp_x r1, r2 -> r3
+ * @param use_label se chamador quer usar label na operacao
+ * @param label se use_label é true, usa essa label (se essa label for NULL, cria nova label)
+ * @param opcode código de operacao, deve ser um que corresponda ao padrao de uso da funcao
+ * @param src_1 r1
+ * @param src_2 r3
+ * @param dst r3
+ * @return
+ */
 tac_t* new_tac_cmps(bool use_label, char* label, int opcode, char* src_1, char* src_2, char* dst);
 
 /**
