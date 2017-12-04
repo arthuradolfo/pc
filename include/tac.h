@@ -215,9 +215,9 @@ void tac_basic_tests();
 void new_tac_ssed_test();
 void new_tac_sed_test();
 void new_tac_sedd_test();
-void new_tac_jump_tests();
-void new_tac_jump_i_tests();
-
+void new_tac_jump_test();
+void new_tac_jump_i_test();
+void new_tac_cbr_test();
 void custom_constructors_tests();
 
 /**************** TAC STACK ****************/

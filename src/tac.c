@@ -153,7 +153,7 @@ void new_tac_sedd_test()
 
   free(reg_1); free(reg_2); free(reg_3); free(imed);
 }
-void new_tac_jump_tests()
+void new_tac_jump_test()
 {
   char* code;
   tac_t* tac;
@@ -180,7 +180,7 @@ void new_tac_jump_tests()
 
   free(reg);
 }
-void new_tac_jump_i_tests()
+void new_tac_jump_i_test()
 {
   char* code;
   tac_t* tac;
@@ -200,12 +200,36 @@ void new_tac_jump_i_tests()
   destroy_tac(tac);
 
   //teste com label
-  char* label = new_label();
-  tac = new_tac_jump_i(true, "l42", label);
+  tac = new_tac_jump_i(true, "l42", "l43");
+  code = tac_to_string(tac); printf("%s\n", code); free(code);
+  destroy_tac(tac);
+}
+void new_tac_cbr_test()
+{
+  char* code;
+  tac_t* tac;
+
+  //teste sem nada
+  tac = new_tac_cbr(false, NULL, NULL, NULL, NULL);
   code = tac_to_string(tac); printf("%s\n", code); free(code);
   destroy_tac(tac);
 
-  free(label);
+  //teste com label
+  tac = new_tac_cbr(true, NULL, NULL, NULL, NULL);
+  code = tac_to_string(tac); printf("%s\n", code); free(code);
+  destroy_tac(tac);
+
+  tac = new_tac_cbr(true, "l42", NULL, NULL, NULL);
+  code = tac_to_string(tac); printf("%s\n", code); free(code);
+  destroy_tac(tac);
+
+  //teste com registradores
+  char* reg = new_register();
+  tac = new_tac_cbr(false, NULL, reg, "l42", "l43");
+  code = tac_to_string(tac); printf("%s\n", code); free(code);
+  destroy_tac(tac);
+
+  free(reg);
 }
 
 void custom_constructors_tests()
@@ -216,10 +240,12 @@ void custom_constructors_tests()
   new_tac_sed_test();
   printf("\nnew_tac_sedd_test: \n");
   new_tac_sedd_test();
-  printf("\nnew_tac_jump_i_tests:\n");
-  new_tac_jump_i_tests();
-  printf("\nnew_tac_jump_tests:\n");
-  new_tac_jump_tests();
+  printf("\nnew_tac_jump_i_test:\n");
+  new_tac_jump_i_test();
+  printf("\nnew_tac_jump_test:\n");
+  new_tac_jump_test();
+  printf("\nnew_tac_cbr_test:\n");
+  new_tac_cbr_test();
   printf("\nFim de custom_constructors_tests().\n\n");
 }
 
@@ -328,7 +354,29 @@ tac_t* new_tac_jump(bool use_label, char* label, char* dst_reg) {
 
   return tac;
 }
-tac_t* new_tac_cbr  (bool use_label, char* label, char* src, char* lbl_true, char* lbl_false);
+tac_t* new_tac_cbr  (bool use_label, char* label, char* src, char* lbl_true, char* lbl_false) {
+  char* lbl;
+  if (use_label) {
+    lbl = label ? label : new_label();
+  } else {
+    lbl = NULL;
+  }
+
+  //se parametros sao NULL, chamador da funcao quer que crie novos registradores
+  char* s = src ? src : new_register();
+  char* d1 = lbl_true ? lbl_true : new_label();
+  char* d2 = lbl_false ? lbl_false : new_label();
+
+  tac_t* tac = new_tac(lbl, OP_CBR, s, NULL, d1, d2);
+
+  //depois de construtor coletar dados, pode liberar memoria alocada
+  if (!src)   free(s);
+  if (!lbl_true) free(d1);
+  if (!lbl_false) free(d2);
+  if (use_label && (label == NULL)) free(lbl);
+
+  return tac;
+}
 
 
 char* base_register_name(int base_register)
@@ -1586,11 +1634,11 @@ void tac_to_string_test()
 
 void tac_basic_tests()
 {
-  //base_register_test();
+  base_register_test();
   registers_labels_test();
-  //imediates_test();
-  //create_and_destroy_tac_test();
-  //tac_to_string_test();
+  imediates_test();
+  create_and_destroy_tac_test();
+  tac_to_string_test();
 }
 
 
