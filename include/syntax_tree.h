@@ -15,58 +15,73 @@ comp_tree_t* abstractSyntaxTree;
  */
 typedef struct ast_node_value {
 
-  /**
-   * Uma das constantes de cc_ast.h
-   */
-  int syntactic_type;
+    /**
+    * Uma das constantes de cc_ast.h
+    */
+    int syntactic_type;
 
-  /**
-   * Uma das constantes de tipo de semantic.h
-   */
-  int semantic_type;
+    /**
+    * Uma das constantes de tipo de semantic.h
+    */
+    int semantic_type;
 
-  /**
-   * Quando semantic_type for IKS_USER_TYPE_VAR,
-   * esse campo tem o nome do tipo de usuario.
-   * Senão, deve ser NULL.
-   */
-   char* semantic_user_type;
+    /**
+    * Quando semantic_type for IKS_USER_TYPE_VAR,
+    * esse campo tem o nome do tipo de usuario.
+    * Senão, deve ser NULL.
+    */
+    char* semantic_user_type;
 
-	 /**
-	  * Diferente de SMTC_NO_COERCION quando é necessaria coercao
-		*/
-	 int coercion;
+    /**
+    * Diferente de SMTC_NO_COERCION quando é necessaria coercao
+    */
+    int coercion;
 
-	 /**
-	  * Marca que é parâmetro válido de um input
-		*/
-	 bool inputable;
+    /**
+    * Marca que é parâmetro válido de um input
+    */
+    bool inputable;
 
-	 /**
-	  * Marca que é parâmetro válido de um output
-		*/
-	 bool outputable;
+    /**
+    * Marca que é parâmetro válido de um output
+    */
+    bool outputable;
 
-	 /**
-	  * Define quantas dimensões um vetor possui
-	  */
-	 int vector_dimension;
+    /**
+    * Define quantas dimensões um vetor possui
+    */
+    int vector_dimension;
 
-	 /**
-	  * Um ponteiro para uma tabela de simbolos caso o nodo seja uma funcao, um bloco ou similar
-		*/
-	 comp_dict_t* symbols_table;
+    /**
+    * Um ponteiro para uma tabela de simbolos caso o nodo seja uma funcao, um bloco ou similar
+    */
+    comp_dict_t* symbols_table;
 
-   /**
+    /**
     * Um ponteiro para uma entrada de tabela de simbolos, caso o nodo seja
     * um identificador, literal ou similar
     */
-   struct symbolsTable_value* symbols_table_entry;
+    struct symbolsTable_value* symbols_table_entry;
 
-   /**
+    /**
     * Pilha de tacs - o código do nodo
     */
-   stack_t* tac_stack;
+    stack_t* tac_stack;
+
+    /**
+     * Pilha de ponteiros para ponteiros de char (buracos) a serem remendados com labels para "true cases"
+     */
+    stack_t* t_holes;
+
+    /**
+     * Pilha de ponteiros para ponteiros de char (buracos) a serem remendados com labels para "false cases"
+     */
+    stack_t* f_holes;
+
+    /**
+     * Nome do registrador onde o resultado da expressao (ou outra coisa que tenha um resultado) fica
+     */
+    char* result_reg;
 
 } ast_node_value_t;
 
@@ -97,5 +112,9 @@ int getASTtype(comp_tree_t* node);
  * @param pai nodo considerado pai no nivel atual de recursao
  */
 void freeValuesOfChilds(comp_tree_t* pai);
+
+void clear_ast_node_value(ast_node_value_t* value);
+
+void clear_ast_node_value_skip_st(ast_node_value_t* value);
 
 #endif

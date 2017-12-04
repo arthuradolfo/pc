@@ -1864,4 +1864,9 @@ void remenda_test()
   for (i = 0; i < 5 ; ++i) {
     printf("%d - %s\n", i, holes[i]);
   }
+
+  for (i = 0; i < 5 ; ++i) {
+    free(holes[i]);
+  }
+  free_stack(stack);
 }

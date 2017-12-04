@@ -1,4 +1,5 @@
 #include "syntax_tree.h"
+#include "tac.h"
 #include "cc_ast.h"
 #include "main.h"
 
@@ -27,7 +28,11 @@ ast_node_value_t* new_ast_node_value(int syntactic_type, int semantic_type, char
 
   node->symbols_table = NULL;
 
-  node->tac_stack = NULL;
+  node->tac_stack = new_stack();
+  node->t_holes = new_stack();
+  node->f_holes = new_stack();
+  node->result_reg = NULL;
+
   return node;
 }
 
@@ -38,8 +43,10 @@ ast_node_value_t* new_ast_node_value(int syntactic_type, int semantic_type, char
 void clearAndFreeAST()
 {
   if (abstractSyntaxTree) {
-    if (abstractSyntaxTree->value != NULL)
+    if (abstractSyntaxTree->value) {
+      clear_ast_node_value_skip_st(abstractSyntaxTree->value);
       free(abstractSyntaxTree->value);
+    }
     freeValuesOfChilds(abstractSyntaxTree);
     tree_free(abstractSyntaxTree);
   }
@@ -52,8 +59,10 @@ void clearAndFreeAST()
 void destroyAST(comp_tree_t* ast)
 {
   if (ast) {
-    if (ast->value != NULL)
+    if (ast->value != NULL) {
+      clear_ast_node_value(ast->value);
       free(ast->value);
+    }
     freeValuesOfChilds(ast);
     tree_free(ast);
   }
@@ -258,11 +267,7 @@ void freeValuesOfChilds(comp_tree_t* pai)
 
       if (filho_ast != NULL) {
 
-        if (filho_ast->semantic_user_type != NULL)
-          free(filho_ast->semantic_user_type);
-
-        if (filho_ast->symbols_table != NULL)
-          clearGeneralST(filho_ast->symbols_table);
+        clear_ast_node_value(filho_ast);
 
         free(filho->value);
       }
@@ -273,4 +278,55 @@ void freeValuesOfChilds(comp_tree_t* pai)
 
     filho = filho->next;
   }
+}
+
+void clear_ast_node_value(ast_node_value_t* value)
+{
+  if (value->semantic_user_type != NULL)
+    free(value->semantic_user_type);
+
+  if (value->symbols_table != NULL)
+    clearGeneralST(value->symbols_table);
+
+  if (value->tac_stack != NULL) {
+    clear_tac_stack(&value->tac_stack);
+    free_stack(value->tac_stack);
+  }
+
+  if (value->t_holes != NULL) {
+    //TODO limpar ponteiros da pilha? provavelmente double free, analisar melhor
+    free_stack(value->t_holes);
+  }
+
+  if (value->f_holes != NULL) {
+    //TODO limpar ponteiros da pilha? provavelmente double free, analisar melhor
+    free_stack(value->f_holes);
+  }
+
+  if (value->result_reg != NULL)
+    free(value->result_reg);
+}
+
+void clear_ast_node_value_skip_st(ast_node_value_t* value)
+{
+  if (value->semantic_user_type != NULL)
+    free(value->semantic_user_type);
+
+  if (value->tac_stack != NULL) {
+    clear_tac_stack(&value->tac_stack);
+    free_stack(value->tac_stack);
+  }
+
+  if (value->t_holes != NULL) {
+    //TODO limpar ponteiros da pilha? provavelmente double free, analisar melhor
+    free_stack(value->t_holes);
+  }
+
+  if (value->f_holes != NULL) {
+    //TODO limpar ponteiros da pilha? provavelmente double free, analisar melhor
+    free_stack(value->f_holes);
+  }
+
+  if (value->result_reg != NULL)
+    free(value->result_reg);
 }
