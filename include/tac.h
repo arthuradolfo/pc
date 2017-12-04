@@ -8,6 +8,10 @@
 int label_counter;
 int register_counter;
 
+/* Registradores de base */
+#define RBSS 0
+#define RARP 1
+
 /* Opcodes */
 
 //aritmetica
@@ -117,10 +121,31 @@ tac_t* new_tac(char* label, int opcode, char* src_1, char* src_2, char* dst_1, c
  */
 void destroy_tac(tac_t* tac);
 
+//construtores práticos
+tac_t* new_tac_rrer(bool use_label, char* label, int opcode, char* src_1, char* src_2, char* dst);
+tac_t* new_tac_rier_int(bool use_label, char* label, int opcode, char* src_1, int cnst, char* dst);
+tac_t* new_tac_rier_str(bool use_label, char* label, int opcode, char* src_1, char* imed, char* dst);
+tac_t* new_tac_ier_int(bool use_label, char* label, int opcode, int cnst, char* dst);
+tac_t* new_tac_ier_str(bool use_label, char* label, int opcode, char* imed, char* dst);
+tac_t* new_tac_rer(bool use_label, char* label, int opcode, char* src, char* dst);
+tac_t* new_tac_rerr(bool use_label, char* label, int opcode, char* src, char* dst_1, char* dst_2);
+tac_t* new_tac_reri_int(bool use_label, char* label, int opcode, char* src, char* dst_1, int cnst);
+tac_t* new_tac_reri_str(bool use_label, char* label, int opcode, char* src, char* dst_1, char* imed);
+tac_t* new_tac_jump_i(bool use_label, char* label, char* dst_label);
+tac_t* new_tac_jump(bool use_label, char* label, char* dst_reg);
+tac_t* new_tac_cbr  (bool use_label, char* label, char* src, char* lbl_true, char* lbl_false);
+tac_t* new_tac_cmps(bool use_label, char* label, int opcode, char* src_1, char* src_2, char* dst);
+
 /**
  * Retorna uma copia do tac fornecido por parametro
  */
 tac_t* copy_tac(tac_t* copied);
+
+/**
+ * Retorna o nome do registrador passado por parametro
+ * @param base_register deve ser RBSS ou RARP
+ */
+char* base_register_name(int base_register);
 
 /**
  * Retorna um nome de rótulo novo
@@ -153,6 +178,14 @@ void registers_labels_test();
 void tac_to_string_test();
 
 void tac_basic_tests();
+
+void new_tac_rrer_test();
+
+void new_tac_rier_int_test();
+
+void new_tac_rier_str_test();
+
+void custom_constructors_tests();
 
 /**************** TAC STACK ****************/
 

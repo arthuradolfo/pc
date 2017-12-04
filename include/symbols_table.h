@@ -21,41 +21,48 @@ typedef struct symbolsTable_value {
     int line;
     int token_type;
 
-		/**
-		 * Uma das constantes de semantic.h
-		 */
+    /**
+     * Uma das constantes de semantic.h
+     */
 		int semantic_type;
-		/**
+
+    /**
 	   * Quando semantic_type for SMTC_USER_TYPE_VAR,
 	   * esse campo tem o nome do tipo de usuario.
 	   * Senão, deve ser NULL.
 	   */
-	   char* semantic_user_type;
+    char* semantic_user_type;
 
-		 /**
-		  * Deslocamento relativo
-		  */
-		 int offset_address;
+		/**
+		 * Deslocamento relativo de rbss ou rarp
+		 */
+    int offset_address;
 
-		 /**
-		  * Define se representa uma variavel, um vetor ou uma funcao
-			*/
-		 int var_vec_or_fun;
+    /**
+     * Base do deslocamento relativo do calculo do endereco: rbss ou rarp
+     */
+    int address_base;
 
-		 /**
-		  * Tamanho em bytes da variável
-		  */
-		 int size;
+    /**
+     * Define se representa uma variavel, um vetor ou uma funcao
+     */
+    int var_vec_or_fun;
 
-		 /**
-		  * Tamanho em bytes da string (se for string), pode ser menor ou igual a size
-		  */
-		 int count_char;
+    /**
+		 * Tamanho em bytes da variável
+		 */
+    int size;
 
-		 /**
-		  * Define quantas dimensões um vetor possui
-		  */
-		 int vector_dimension;
+    /**
+     * Tamanho em bytes da string (se for string), pode ser menor ou igual a size
+		 */
+		int count_char;
+
+    /**
+     * Define quantas dimensões um vetor possui
+     */
+    int vector_dimension;
+
     union Value value;
 } st_value_t;
 
