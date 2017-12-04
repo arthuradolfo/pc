@@ -48,23 +48,22 @@ void create_and_destroy_tac_test()
 }
 
 
-void new_tac_rrer_test()
+void new_tac_ssed_test()
 {
   char* code;
   tac_t* tac;
 
   //teste sem nada
-  tac= new_tac_rrer(false, NULL, OP_ADD, NULL, NULL, NULL);
+  tac= new_tac_ssed(false, NULL, OP_ADD, NULL, NULL, NULL);
   code = tac_to_string(tac); printf("%s\n", code); free(code);
   destroy_tac(tac);
 
   //teste com label
-  tac = new_tac_rrer(true, NULL, OP_ADD, NULL, NULL, NULL);
+  tac = new_tac_ssed(true, NULL, OP_ADD, NULL, NULL, NULL);
   code = tac_to_string(tac); printf("%s\n", code); free(code);
   destroy_tac(tac);
 
-  char* label = new_label();
-  tac = new_tac_rrer(true, label, OP_ADD, NULL, NULL, NULL);
+  tac = new_tac_ssed(true, "l42: ", OP_ADD, NULL, NULL, NULL);
   code = tac_to_string(tac); printf("%s\n", code); free(code);
   destroy_tac(tac);
 
@@ -72,58 +71,101 @@ void new_tac_rrer_test()
   char* reg_1 = new_register();
   char* reg_2 = new_register();
   char* reg_3 = new_register();
-  tac= new_tac_rrer(false, NULL, OP_ADD, reg_1, reg_2, reg_3);
-  code = tac_to_string(tac); printf("%s\n", code); free(code);
-  destroy_tac(tac);
-  tac = new_tac_rrer(true, label, OP_ADD, reg_1, reg_2, reg_3);
+  tac= new_tac_ssed(false, NULL, OP_ADD, reg_1, reg_2, reg_3);
   code = tac_to_string(tac); printf("%s\n", code); free(code);
   destroy_tac(tac);
 
-  free(reg_1); free(reg_2); free(reg_3); free(label);
+  //teste com imediato
+  char* imed = new_imediate(42);
+  tac= new_tac_ssed(false, NULL, OP_ADD_I, reg_1, imed, reg_3);
+  code = tac_to_string(tac); printf("%s\n", code); free(code);
+  destroy_tac(tac);
+
+  free(reg_1); free(reg_2); free(reg_3); free(imed);
 }
-void new_tac_rier_test()
+void new_tac_sed_test()
 {
   char* code;
   tac_t* tac;
 
   //teste sem nada
-  tac= new_tac_rier(false, NULL, OP_ADD_I, NULL, NULL, NULL);
+  tac= new_tac_sed(false, NULL, OP_I2I, NULL, NULL);
   code = tac_to_string(tac); printf("%s\n", code); free(code);
   destroy_tac(tac);
 
   //teste com label
-  tac = new_tac_rier(true, NULL, OP_ADD_I, NULL, NULL, NULL);
+  tac = new_tac_sed(true, NULL, OP_I2I, NULL, NULL);
   code = tac_to_string(tac); printf("%s\n", code); free(code);
   destroy_tac(tac);
 
-  char* label = new_label();
-  tac = new_tac_rier(true, label, OP_ADD_I, NULL, NULL, NULL);
+  tac = new_tac_sed(true, "l42: ", OP_I2I, NULL, NULL);
   code = tac_to_string(tac); printf("%s\n", code); free(code);
   destroy_tac(tac);
 
-  //teste com registradores (com e sem label)
+  //teste com registradores
   char* reg_1 = new_register();
-  char* imed = new_imediate(42);
-  char* reg_3 = new_register();
-  tac= new_tac_rier(false, NULL, OP_ADD_I, reg_1, imed, reg_3);
-  code = tac_to_string(tac); printf("%s\n", code); free(code);
-  destroy_tac(tac);
-  tac = new_tac_rier(true, label, OP_ADD, reg_1, imed, reg_3);
+  char* reg_2 = new_register();
+  tac= new_tac_sed(false, NULL, OP_I2I, reg_1, reg_2);
   code = tac_to_string(tac); printf("%s\n", code); free(code);
   destroy_tac(tac);
 
-  free(reg_1); free(imed); free(reg_3); free(label);
+  //teste com imediato
+  char* imed = new_imediate(42);
+  tac= new_tac_sed(false, NULL, OP_LOAD_I, imed, reg_2);
+  code = tac_to_string(tac); printf("%s\n", code); free(code);
+  destroy_tac(tac);
+
+  free(imed); free(reg_1); free(reg_2);
 }
+void new_tac_sedd_test()
+{
+  char* code;
+  tac_t* tac;
+
+  //teste sem nada
+  tac= new_tac_sedd(false, NULL, OP_STORE_A0, NULL, NULL, NULL);
+  code = tac_to_string(tac); printf("%s\n", code); free(code);
+  destroy_tac(tac);
+
+  //teste com label
+  tac = new_tac_sedd(true, NULL, OP_STORE_A0, NULL, NULL, NULL);
+  code = tac_to_string(tac); printf("%s\n", code); free(code);
+  destroy_tac(tac);
+
+  tac = new_tac_sedd(true, "l42: ", OP_STORE_A0, NULL, NULL, NULL);
+  code = tac_to_string(tac); printf("%s\n", code); free(code);
+  destroy_tac(tac);
+
+  //teste com registradores
+  char* reg_1 = new_register();
+  char* reg_2 = new_register();
+  char* reg_3 = new_register();
+  tac= new_tac_sedd(false, NULL, OP_STORE_A0, reg_1, reg_2, reg_3);
+  code = tac_to_string(tac); printf("%s\n", code); free(code);
+  destroy_tac(tac);
+
+  //teste com imediato
+  char* imed = new_imediate(42);
+  tac= new_tac_sedd(false, NULL, OP_STORE_AI, reg_1, reg_2, imed);
+  code = tac_to_string(tac); printf("%s\n", code); free(code);
+  destroy_tac(tac);
+
+
+  free(reg_1); free(reg_2); free(reg_3); free(imed);
+}
+
 void custom_constructors_tests()
 {
-  printf("\nnew_tac_rrer_test: \n");
-  new_tac_rrer_test();
-  printf("\nnew_tac_rier_test: \n");
-  new_tac_rier_test();
+  printf("\nnew_tac_ssed_test: \n");
+  new_tac_ssed_test();
+  printf("\nnew_tac_sed_test: \n");
+  new_tac_sed_test();
+  printf("\nnew_tac_sedd_test: \n");
+  new_tac_sedd_test();
+  printf("\nFim de custom_constructors_tests().\n\n");
 }
 
-tac_t* new_tac_rrer(bool use_label, char* label, int opcode, char* src_1, char* src_2, char* dst) {
-
+tac_t* new_tac_ssed(bool use_label, char* label, int opcode, char* src_1, char* src_2, char* dst) {
   char* lbl;
   if (use_label) {
     lbl = label ? label : new_label();
@@ -131,23 +173,22 @@ tac_t* new_tac_rrer(bool use_label, char* label, int opcode, char* src_1, char* 
     lbl = NULL;
   }
 
-  //se parametros sao NULL, chamador da funcao que que crie novos registradores
-  char* reg_1 = src_1 ? src_1 : new_register();
-  char* reg_2 = src_2 ? src_2 : new_register();
-  char* reg_3 = dst   ?   dst : new_register();
+  //se parametros sao NULL, chamador da funcao quer que crie novos registradores
+  char* s1 = src_1 ? src_1 : new_register();
+  char* s2 = src_2 ? src_2 : new_register();
+  char* s3 = dst   ?   dst : new_register();
 
-  tac_t* tac = new_tac(lbl, opcode, reg_1, reg_2, reg_3, NULL);
+  tac_t* tac = new_tac(lbl, opcode, s1, s2, s3, NULL);
 
   //depois de construtor coletar dados, pode liberar memoria alocada
-  if (!src_1) free(reg_1);
-  if (!src_2) free(reg_2);
-  if (!dst)   free(reg_3);
+  if (!src_1) free(s1);
+  if (!src_2) free(s2);
+  if (!dst)   free(s3);
   if (use_label && (label == NULL)) free(lbl);
 
   return tac;
 }
-tac_t* new_tac_rier(bool use_label, char* label, int opcode, char* src_1, char* imed, char* dst) {
-
+tac_t* new_tac_sed(bool use_label, char* label, int opcode, char* src, char* dst) {
   char* lbl;
   if (use_label) {
     lbl = label ? label : new_label();
@@ -155,17 +196,38 @@ tac_t* new_tac_rier(bool use_label, char* label, int opcode, char* src_1, char* 
     lbl = NULL;
   }
 
-  //se parametros sao NULL, chamador da funcao que que crie novos registradores
-  char* reg_1 = src_1 ? src_1 : new_register();
-  char* imd = imed ? imed : new_imediate(0);
-  char* reg_3 = dst   ?   dst : new_register();
+  //se parametros sao NULL, chamador da funcao quer que crie novos registradores
+  char* s = src ? src : new_register();
+  char* d = dst  ? dst  : new_register();
 
-  tac_t* tac = new_tac(lbl, opcode, reg_1, imd, reg_3, NULL);
+  tac_t* tac = new_tac(lbl, opcode, s, NULL, d, NULL);
 
   //depois de construtor coletar dados, pode liberar memoria alocada
-  if (!src_1) free(reg_1);
-  if (!imed) free(imd);
-  if (!dst)   free(reg_3);
+  if (!src) free(s);
+  if (!dst)   free(d);
+  if (use_label && (label == NULL)) free(lbl);
+
+  return tac;
+}
+tac_t* new_tac_sedd(bool use_label, char* label, int opcode, char* src, char* dst_1, char* dst_2) {
+  char* lbl;
+  if (use_label) {
+    lbl = label ? label : new_label();
+  } else {
+    lbl = NULL;
+  }
+
+  //se parametros sao NULL, chamador da funcao quer que crie novos registradores
+  char* s = src ? src : new_register();
+  char* d1 = dst_1 ? dst_1 : new_register();
+  char* d2 = dst_2 ? dst_2 : new_register();
+
+  tac_t* tac = new_tac(lbl, opcode, s, NULL, d1, d2);
+
+  //depois de construtor coletar dados, pode liberar memoria alocada
+  if (!src)   free(s);
+  if (!dst_1) free(d1);
+  if (!dst_2) free(d2);
   if (use_label && (label == NULL)) free(lbl);
 
   return tac;
@@ -1419,10 +1481,10 @@ void tac_to_string_test()
 void tac_basic_tests()
 {
   base_register_test();
-  //registers_labels_test();
-  //imediates_test();
-  //create_and_destroy_tac_test();
-  //tac_to_string_test();
+  registers_labels_test();
+  imediates_test();
+  create_and_destroy_tac_test();
+  tac_to_string_test();
 }
 
 

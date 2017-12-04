@@ -63,9 +63,9 @@ void main_init (int argc, char **argv)
 
 
   //TODO remove
-  //tac_basic_tests();
+  tac_basic_tests();
   custom_constructors_tests();
-  //tac_stack_test();
+  tac_stack_test();
 }
 
 void main_finalize (void)
