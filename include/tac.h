@@ -238,6 +238,21 @@ stack_t* cat_stacks(stack_t** stack_1, stack_t** stack_2);
 void clear_tac_stack(stack_t** stack);
 
 void tac_stack_test();
+void tac_stack_test_2();
+void tac_stack_test_3();
+void reversed_stack_test();
+
+/**
+ * Retorna uma pilha que é a mesma que a fornecida, porem invertida
+ */
+stack_t* reversed_tac_stack(stack_t* stack);
+
+/**
+ * Pusha todos os tacs de uma pilha para outra
+ * @param dst a pilha que recebe os push
+ * @param pushed a pilha cujos tacs sao pushados para a outra
+ */
+void stack_push_all_tacs(stack_t* dst, stack_t* pushed);
 
 char* new_hole();
 

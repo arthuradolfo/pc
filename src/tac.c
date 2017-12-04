@@ -1821,6 +1821,139 @@ void tac_stack_test()
   tac_stack_test_2();
 }
 
+void tac_stack_test_3()
+{
+  stack_t* stack_1 = new_stack();
+  stack_t* stack_2 = new_stack();
+
+  int opcode = 0;
+  tac_t* tac;
+  char* code;
+
+  printf("____ inserções ____\n");
+
+  //preencher stack 1
+  for (opcode = OP_ADD; opcode <= OP_DIV; opcode++) {
+    char* reg_1 = new_register();
+    char* reg_2 = new_register();
+    char* reg_3 = new_register();
+
+    tac = new_tac(NULL, opcode, reg_1, reg_2, reg_3, NULL);
+    code = tac_to_string(tac);
+    printf("%s\n", code);
+    stack_push(tac, stack_1);
+
+    free(reg_1);
+    free(reg_2);
+    free(reg_3);
+    free(code);
+  }
+
+  //preencher stack 2
+  for (opcode = OP_ADD_I; opcode <= OP_RDIV_I; opcode++) {
+    char* reg_1 = new_register();
+    char* imed = new_imediate(42);
+    char* reg_2 = new_register();
+
+    tac = new_tac(NULL, opcode, reg_1, imed, reg_2, NULL);
+    code = tac_to_string(tac);
+    printf("%s\n", code);
+    stack_push(tac, stack_2);
+
+    free(reg_1);
+    free(imed);
+    free(reg_2);
+    free(code);
+  }
+
+  stack_t* stack_3 = new_stack();
+  stack_push_all_tacs(stack_3, stack_1);
+  stack_push(new_tac_jump_i(true, "l_middle", "l_end"), stack_3);
+  stack_push_all_tacs(stack_3, stack_2);
+
+  printf("\n\n____ stack_1 ____\n");
+  print_tac_stack(&stack_1);
+
+  printf("\n\n____ stack_2 ____\n");
+  print_tac_stack(&stack_2);
+
+  printf("\n\n____ stack_3 ____\n");
+  reverse_stack(&stack_3);
+  print_tac_stack(&stack_3);
+
+  printf("\nFim do teste 3!\n\n");
+  clear_tac_stack(&stack_1);
+  clear_tac_stack(&stack_2);
+  clear_tac_stack(&stack_3);
+  free_stack(stack_1);
+  free_stack(stack_2);
+  free_stack(stack_3);
+}
+
+stack_t* reversed_tac_stack(stack_t* stack)
+{
+  stack_t* reversed = new_stack();
+  stack_item_t* item = stack->data;
+
+  while (item) {
+    stack_push(copy_tac(item->value), reversed);
+    item = item->next;
+  }
+
+  return reversed;
+}
+
+void reversed_stack_test()
+{
+  stack_t* stack = new_stack();
+
+  tac_t* tac;
+  char* code;
+  int opcode;
+  printf("\ninsercoes:\n");
+  for (opcode = OP_ADD_I; opcode <= OP_RDIV_I; opcode++) {
+    char* reg_1 = new_register();
+    char* imed = new_imediate(42);
+    char* reg_2 = new_register();
+
+    tac = new_tac(NULL, opcode, reg_1, imed, reg_2, NULL);
+    code = tac_to_string(tac);
+    printf("%s\n", code);
+    stack_push(tac, stack);
+
+    free(reg_1);
+    free(imed);
+    free(reg_2);
+    free(code);
+  }
+
+  stack_t* reversed = reversed_tac_stack(stack);
+
+  printf("\n\n____ stack ____\n");
+  print_tac_stack(&stack);
+
+  printf("\n\n____ reversed ____\n");
+  print_tac_stack(&reversed);
+
+  clear_tac_stack(&stack);
+  clear_tac_stack(&reversed);
+  free_stack(stack);
+  free_stack(reversed);
+}
+
+void stack_push_all_tacs(stack_t* dst, stack_t* pushed)
+{
+  stack_t* reversed = reversed_tac_stack(pushed);
+  stack_item_t* item = reversed->data;
+
+  while (item) {
+    stack_push(copy_tac(item->value), dst);
+    item = item->next;
+  }
+  clear_tac_stack(&reversed);
+  free_stack(reversed);
+}
+
 char* new_hole()
 {
   return NULL;

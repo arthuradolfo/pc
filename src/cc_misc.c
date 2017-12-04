@@ -66,7 +66,9 @@ void main_init (int argc, char **argv)
   //tac_basic_tests();
   //custom_constructors_tests();
   //tac_stack_test();
-  remenda_test();
+  //remenda_test();
+  //reversed_stack_test();
+  //tac_stack_test_3();
 }
 
 void main_finalize (void)
