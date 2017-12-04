@@ -47,6 +47,7 @@ void create_and_destroy_tac_test()
   free(reg_3);
 }
 
+//construtores praticos
 
 void new_tac_ssed_test()
 {
@@ -231,7 +232,6 @@ void new_tac_cbr_test()
 
   free(reg);
 }
-
 void custom_constructors_tests()
 {
   printf("\nnew_tac_ssed_test: \n");
@@ -378,6 +378,7 @@ tac_t* new_tac_cbr  (bool use_label, char* label, char* src, char* lbl_true, cha
   return tac;
 }
 
+//registradores, labels e imediatos
 
 char* base_register_name(int base_register)
 {
@@ -462,6 +463,8 @@ void imediates_test()
     free(imediate);
   }
 }
+
+//codigo em string
 
 char* tac_to_string(tac_t* tac)
 {
@@ -1816,4 +1819,49 @@ void tac_stack_test()
   free_stack(stack_3);
 
   tac_stack_test_2();
+}
+
+char* new_hole()
+{
+  return NULL;
+}
+
+void remenda(stack_t** holes, char* label)
+{
+  char** buraco;
+  stack_item_t* item = (*holes)->data;
+
+  while (item) {
+    buraco = item->value;
+    if (buraco) {
+      *buraco = strdup(label);
+    }
+    item = item->next;
+  }
+}
+
+void remenda_test()
+{
+  int i;
+  //representa o campo t_buracos de um ast_node
+  stack_t* stack = new_stack();
+  //representa alguns campos de tacs a serem remendados
+  char* holes[5] = { new_hole(), new_hole(), new_hole(), new_hole(), new_hole() };
+
+  printf("\nBuracos:\n");
+  for (i = 0; i < 5 ; ++i) {
+    printf("%d - %s\n", i, holes[i]);
+  }
+
+  //coloca numa lista de buracos
+  for (i = 0; i < 5 ; ++i) {
+    stack_push(&(holes[i]), stack);
+  }
+  //remenda lista
+  remenda(&stack, "Remendo");
+
+  printf("\nBuracos remendados:\n");
+  for (i = 0; i < 5 ; ++i) {
+    printf("%d - %s\n", i, holes[i]);
+  }
 }

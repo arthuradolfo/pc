@@ -239,4 +239,13 @@ void clear_tac_stack(stack_t** stack);
 
 void tac_stack_test();
 
+/**
+ * Remenda os buracos com o label fornecido
+ * @param buracos ponteiro para uma pilha de ponteiros para ponteiros de char (stack_t** de char**)
+ * @param label o que deve ser usado para tapar os buracos
+ */
+void remenda(stack_t** buracos, char* label);
+
+void remenda_test();
+
 #endif
