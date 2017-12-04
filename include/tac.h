@@ -165,7 +165,6 @@ tac_t* new_tac_sedd(bool use_label, char* label, int opcode, char* src, char* ds
  * @param dst r3
  * @return
  */
-tac_t* new_tac_cmps(bool use_label, char* label, int opcode, char* src_1, char* src_2, char* dst);
 tac_t* new_tac_jump_i(bool use_label, char* label, char* dst_label);
 tac_t* new_tac_jump(bool use_label, char* label, char* dst_reg);
 tac_t* new_tac_cbr  (bool use_label, char* label, char* src, char* lbl_true, char* lbl_false);
@@ -216,6 +215,8 @@ void tac_basic_tests();
 void new_tac_ssed_test();
 void new_tac_sed_test();
 void new_tac_sedd_test();
+void new_tac_jump_tests();
+void new_tac_jump_i_tests();
 
 void custom_constructors_tests();
 
