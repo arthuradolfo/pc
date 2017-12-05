@@ -1989,6 +1989,28 @@ void stack_push_all_tacs_and(stack_t* dst, stack_t* pushed, stack_t* t_holes, st
   free_stack(reversed);
 }
 
+void stack_push_all_tacs_or(stack_t* dst, stack_t* pushed, stack_t* t_holes, stack_t* f_holes, bool op1)
+{
+  stack_t* reversed = reversed_tac_stack(pushed);
+  stack_item_t* item = reversed->data;
+  int count = 0;
+  while (item) {
+    stack_push(copy_tac(item->value), dst);
+    if(((tac_t*)dst->data->value)->opcode == OP_CBR) {
+      if(op1) {
+        stack_push(&(((tac_t*)dst->data->value)->dst_1), t_holes);
+      }
+      else {
+        stack_push(&(((tac_t*)dst->data->value)->dst_1), t_holes); 
+        stack_push(&(((tac_t*)dst->data->value)->dst_2), f_holes);
+      }
+    }
+    item = item->next;
+  }
+  clear_tac_stack(&reversed);
+  free_stack(reversed);
+}
+
 char* new_hole()
 {
   return "BURACO";
@@ -2163,6 +2185,25 @@ void generate_code_expression(ast_node_value_t* expression, ast_node_value_t* op
       print_tac_stack(&operand_1->tac_stack);
       free(label_check_B2);
     }
+    else {
+      char* label_check_B2 = new_label();
+      
+      remenda(&(operand_1->f_holes), label_check_B2);
+      print_stack_holes(operand_1->t_holes);
+      printf("OPERANDO 1 LOGIC:\n");
+      print_tac_stack(&operand_1->tac_stack);
+      printf("OPERANDO 2 LOGIC:\n");
+      print_tac_stack(&operand_2->tac_stack);
+
+      stack_push_all_tacs_or(expression->tac_stack, operand_1->tac_stack, expression->t_holes, expression->f_holes, true);
+      stack_push(new_tac_nop(true, label_check_B2), expression->tac_stack);
+      stack_push_all_tacs_or(expression->tac_stack, operand_2->tac_stack, expression->t_holes, expression->f_holes, false);
+      //guarda referencias para buracos a serem remendados
+      printf("HOLES TO PASS:\n");
+      print_stack_holes(expression->f_holes);
+      print_tac_stack(&operand_1->tac_stack);
+      free(label_check_B2);
+    }
   }
   else if (is_arit(opcode)) {
       //concatenacao de codigo
@@ -2207,6 +2248,7 @@ void generate_code_if_else(ast_node_value_t *cabeca, ast_node_value_t *condicao,
   remenda(&(condicao->f_holes), label_false);
 
   stack_push_all_tacs(cabeca->tac_stack, condicao->tac_stack);
+  stack_push(new_tac_nop(true, label_true), cabeca->tac_stack);
   stack_push_all_tacs(cabeca->tac_stack, codigo_true->tac_stack);
   stack_push(new_tac_jump(false, NULL, label_end), cabeca->tac_stack);
   stack_push(new_tac_nop(true, label_false), cabeca->tac_stack);

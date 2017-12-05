@@ -1123,6 +1123,9 @@ condition_command: TK_PR_IF '(' expression ')' TK_PR_THEN block TK_PR_ELSE block
 	mark_coercion(SMTC_BOOL, $3->value);
 
 	generate_code_if_else($$->value, $3->value, $6->value, $8->value);
+
+	ast_node_value_t *node = $$->value;
+	print_tac_stack(&(node->tac_stack));
 }
 
 start_foreach: TK_PR_FOREACH '('
