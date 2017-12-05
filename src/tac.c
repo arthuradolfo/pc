@@ -5,6 +5,7 @@
 #include "cc_list.h"
 #include "tac.h"
 #include <math.h>
+#include <cc_ast.h>
 
 tac_t* new_tac(char* label, int opcode, char* src_1, char* src_2, char* dst_1, char* dst_2)
 {
@@ -1665,7 +1666,7 @@ void print_tac_stack(stack_t** stack)
   tac_t* tac;
   stack_item_t* item = (*stack)->data;
 
-  printf("TOPO\n");
+  printf("\nTOPO\n");
   while (item) {
     tac = item->value;
     if (tac) {
@@ -1675,7 +1676,7 @@ void print_tac_stack(stack_t** stack)
     }
     item = item->next;
   }
-  printf("FUNDO\n");
+  printf("FUNDO\n\n");
 }
 
 stack_t* cat_stacks(stack_t** stack_1, stack_t** stack_2)
@@ -1956,7 +1957,7 @@ void stack_push_all_tacs(stack_t* dst, stack_t* pushed)
 
 char* new_hole()
 {
-  return NULL;
+  return "BURACO";
 }
 
 void remenda(stack_t** holes, char* label)
@@ -2002,4 +2003,89 @@ void remenda_test()
     free(holes[i]);
   }
   free_stack(stack);
+}
+
+//geracao de codigo de facto
+
+int opcode_from_operator(ast_node_value_t* operator) {
+  switch (operator->syntactic_type) {
+    case AST_LOGICO_COMP_LE: return OP_CMP_LE;
+    case AST_LOGICO_COMP_GE: return OP_CMP_GE;
+    case AST_LOGICO_COMP_IGUAL: return OP_CMP_EQ;
+    case AST_LOGICO_COMP_DIF: return OP_CMP_NE;
+    case AST_LOGICO_E: return OP_AND;
+    case AST_LOGICO_OU: return OP_OR;
+    case AST_ARIM_SOMA: return OP_ADD;
+    case AST_ARIM_SUBTRACAO: return OP_SUB;
+    case AST_ARIM_DIVISAO: return OP_DIV;
+    case AST_ARIM_MULTIPLICACAO:return OP_MULT;
+
+    default:
+      printf("Operador não encontrado!\n");
+      exit(EXIT_FAILURE);
+  }
+}
+bool is_relop(int opcode) {
+  switch (opcode) {
+    case OP_CMP_LE: return true;
+    case OP_CMP_GE: return true;
+    case OP_CMP_EQ: return true;
+    case OP_CMP_NE: return true;
+    default: return false;
+  }
+}
+bool is_logic(int opcode) {
+  switch (opcode) {
+    case OP_AND: return true;
+    case OP_OR: return true;
+    default: return false;
+  }
+}
+bool is_arit(int opcode) {
+  switch (opcode) {
+    case OP_ADD: return true;
+    case OP_SUB: return true;
+    case OP_DIV: return true;
+    case OP_MULT: return true;
+    default: return false;
+  }
+}
+
+void generate_code_literal(ast_node_value_t* literal) {
+  literal->result_reg = new_register();
+  st_value_t* st_entry = literal->symbols_table_entry;
+  char* imediate = new_imediate(st_entry->value.i);
+
+  tac_t* loadi = new_tac_sed(false, NULL, OP_LOAD_I, imediate, literal->result_reg);
+  stack_push(loadi, literal->tac_stack);
+
+  free(imediate);
+}
+
+void generate_code_expression(ast_node_value_t* expression, ast_node_value_t* operand_1, ast_node_value_t* operator, ast_node_value_t* operand_2) {
+  expression->result_reg = new_register();
+  int opcode = opcode_from_operator(operator);
+
+  if (is_relop(opcode)) {
+
+    char* x = new_hole();
+    char* y = new_hole();
+
+    //concatenacao de codigo
+    stack_push_all_tacs(expression->tac_stack, operand_1->tac_stack);
+    stack_push_all_tacs(expression->tac_stack, operand_2->tac_stack);
+    tac_t* comparison = new_tac(NULL, opcode, operand_1->result_reg, operand_2->result_reg, expression->result_reg, NULL);
+    stack_push(comparison, expression->tac_stack);
+    tac_t* cbr = new_tac(NULL, OP_CBR, expression->result_reg, NULL, x, y);
+    stack_push(cbr, expression->tac_stack);
+
+    //guarda referencias para buracos a serem remendados
+    char** x_address = &x;
+    char** y_address = &y;
+    stack_push(x_address, expression->t_holes);
+    stack_push(y_address, expression->f_holes);
+  }
+  /*else if (is_logic(opcode)) {
+
+  }*/
 }

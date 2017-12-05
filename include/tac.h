@@ -5,6 +5,8 @@
 #ifndef TAC_H
 #define TAC_H
 
+#include "syntax_tree.h"
+
 int label_counter;
 int register_counter;
 
@@ -264,5 +266,13 @@ char* new_hole();
 void remenda(stack_t** buracos, char* label);
 
 void remenda_test();
+
+int opcode_from_operator(ast_node_value_t* operator);
+bool is_relop(int opcode);
+bool is_logic(int opcode);
+bool is_arit(int opcode);
+
+void generate_code_literal(ast_node_value_t* literal);
+void generate_code_expression(ast_node_value_t* expression, ast_node_value_t* operand_1, ast_node_value_t* operator, ast_node_value_t* operand_2);
 
 #endif

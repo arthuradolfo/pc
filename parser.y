@@ -9,6 +9,7 @@
 #include "syntax_tree.h"
 #include "symbols_table.h"
 #include "semantics.h"
+#include "tac.h"
 #include "cc_misc.h" //arquivo com funcoes de auto incremento
 }
 
@@ -149,7 +150,7 @@ programa: def_function programa
 //declaracao de globais
 
 vector_declaration: '[' TK_LIT_INT ']' vector_declaration_loop
-{	
+{
 	st_vector_size *vector_size = (st_vector_size*) malloc(sizeof(vector_size));
 	st_value_t* st_entry_lit_int = $2;
 	vector_size->size = st_entry_lit_int->value.i*$4->size;
@@ -636,9 +637,9 @@ def_local_var: primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 
 	ast_node_value_t* ast_expression = $4->value;
 
-	st_value_t* entry_expression = ast_expression->symbols_table_entry;
-	st_identificador->count_char = entry_expression->count_char;
-	printf("count char: %d\n", st_identificador->count_char);
+	//st_value_t* entry_expression = ast_expression->symbols_table_entry;
+	//st_identificador->count_char = entry_expression->count_char;
+	//printf("count char: %d\n", st_identificador->count_char);
 
 	//checar se tipos são compativeis
 	mark_coercion(st_identificador->semantic_type, ast_expression);
@@ -702,9 +703,9 @@ def_local_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 
 	ast_node_value_t* ast_expression = $5->value;
 
-	st_value_t* entry_expression = ast_expression->symbols_table_entry;
-	st_identificador->count_char = entry_expression->count_char;
-	printf("count char: %d\n", st_identificador->count_char);
+	//st_value_t* entry_expression = ast_expression->symbols_table_entry;
+	//st_identificador->count_char = entry_expression->count_char;
+	//printf("count char: %d\n", st_identificador->count_char);
 
 	//checar se tipos são compativeis
 	mark_coercion(st_identificador->semantic_type, ast_expression);
@@ -768,9 +769,9 @@ def_local_var: TK_PR_CONST primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 
 	ast_node_value_t* ast_expression = $5->value;
 
-	st_value_t* entry_expression = ast_expression->symbols_table_entry;
-	st_identificador->count_char = entry_expression->count_char;
-	printf("count char: %d\n", st_identificador->count_char);
+	//st_value_t* entry_expression = ast_expression->symbols_table_entry;
+	//st_identificador->count_char = entry_expression->count_char;
+	//printf("count char: %d\n", st_identificador->count_char);
 
 	//checar se tipos são compativeis
 	mark_coercion(st_identificador->semantic_type, ast_expression);
@@ -834,9 +835,9 @@ def_local_var: TK_PR_STATIC TK_PR_CONST primitive_type TK_IDENTIFICADOR TK_OC_LE
 
 	ast_node_value_t* ast_expression = $6->value;
 
-	st_value_t* entry_expression = ast_expression->symbols_table_entry;
-	st_identificador->count_char = entry_expression->count_char;
-	printf("count char: %d\n", st_identificador->count_char);
+	//st_value_t* entry_expression = ast_expression->symbols_table_entry;
+	//st_identificador->count_char = entry_expression->count_char;
+	//printf("count char: %d\n", st_identificador->count_char);
 
 	//checar se tipos são compativeis
 	mark_coercion(st_identificador->semantic_type, ast_expression);
@@ -851,7 +852,7 @@ def_local_var: TK_PR_STATIC TK_PR_CONST primitive_type TK_IDENTIFICADOR TK_OC_LE
 	free(id_name);
 }
 
-attribution_vector: '[' expression ']' attribution_vector_loop 
+attribution_vector: '[' expression ']' attribution_vector_loop
 {
 	//verifica se indice é int
 	ast_node_value_t* ast_index = $2->value;
@@ -901,9 +902,9 @@ attribution_command: TK_IDENTIFICADOR '=' expression
 
 	ast_node_value_t* ast_expression = $3->value;
 
-	st_value_t* entry_expression = ast_expression->symbols_table_entry;
-	st_identificador->count_char = entry_expression->count_char;
-	printf("count char: %d\n", st_identificador->count_char);
+	//st_value_t* entry_expression = ast_expression->symbols_table_entry;
+	//st_identificador->count_char = entry_expression->count_char;
+	//printf("count char: %d\n", st_identificador->count_char);
 
 	//checar se tipos são compativeis
 	verify_matching_user_types(st_identificador, ast_expression);
@@ -924,9 +925,9 @@ attribution_command: TK_IDENTIFICADOR attribution_vector '=' expression
 
 	ast_node_value_t* ast_expression = $4->value;
 
-	st_value_t* entry_expression = ast_expression->symbols_table_entry;
-	st_identificador->count_char = entry_expression->count_char;
-	printf("count char: %d\n", st_identificador->count_char);
+	//st_value_t* entry_expression = ast_expression->symbols_table_entry;
+	//st_identificador->count_char = entry_expression->count_char;
+	//printf("count char: %d\n", st_identificador->count_char);
 
 	//checar se tipos são compativeis
 	verify_matching_user_types(st_identificador, ast_expression);
@@ -951,9 +952,9 @@ attribution_command: TK_IDENTIFICADOR '$' TK_IDENTIFICADOR '=' expression
 
 	ast_node_value_t* ast_expression = $5->value;
 
-	st_value_t* entry_expression = ast_expression->symbols_table_entry;
-	st_identificador->count_char = entry_expression->count_char;
-	printf("count char: %d\n", st_identificador->count_char);
+	//st_value_t* entry_expression = ast_expression->symbols_table_entry;
+	//st_identificador->count_char = entry_expression->count_char;
+	//printf("count char: %d\n", st_identificador->count_char);
 
 	//checar se tipos são compativeis
 	mark_coercion(st_campo->semantic_type, ast_expression);
@@ -1268,7 +1269,11 @@ primitive_type: TK_PR_STRING { $$ = SMTC_STRING; }
 
 //expressions e expressions sequences
 
-expression: sub_expression_chain { $$ = $1; }
+expression: sub_expression_chain {
+	$$ = $1;
+	ast_node_value_t* ast_node_value_head = $$->value;
+	print_tac_stack(&(ast_node_value_head->tac_stack));
+}
 sub_expression_chain: sub_expression { $$ = $1; }
 sub_expression_chain: sub_expression operator sub_expression_chain
 {
@@ -1288,6 +1293,10 @@ sub_expression_chain: sub_expression operator sub_expression_chain
 	mark_coercion_where_needed(ast_node_value_sub_expression, ast_node_value_sub_expression_chain);
 
 	((ast_node_value_t*) $$->value)->outputable = is_arit_expression(ast_node_value_head);
+
+	generate_code_expression($$->value, $1->value, $2->value, $3->value);
+
+	//print_tac_stack(&(ast_node_value_head->tac_stack));
 }
 
 sub_expression: unary_operator sub_expression
@@ -1340,7 +1349,14 @@ sub_expression: function_call
 
 
 
-literal: TK_LIT_INT { $$ = tree_make_node(new_ast_node_value(AST_LITERAL, SMTC_INT, NULL, $1)); }
+literal: TK_LIT_INT {
+	$$ = tree_make_node(new_ast_node_value(AST_LITERAL, SMTC_INT, NULL, $1));
+
+	ast_node_value_t* ast_node_value_head = $$->value;
+
+	generate_code_literal(ast_node_value_head);
+	//print_tac_stack(&(ast_node_value_head->tac_stack));
+}
 literal: TK_LIT_FLOAT { $$ = tree_make_node(new_ast_node_value(AST_LITERAL, SMTC_FLOAT, NULL, $1)); }
 literal: TK_LIT_CHAR { $$ = tree_make_node(new_ast_node_value(AST_LITERAL, SMTC_CHAR, NULL, $1)); }
 literal: TK_LIT_TRUE { $$ = tree_make_node(new_ast_node_value(AST_LITERAL, SMTC_BOOL, NULL, $1)); }
