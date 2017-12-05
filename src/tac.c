@@ -2151,7 +2151,7 @@ void generate_code_expression(ast_node_value_t* expression, ast_node_value_t* op
       print_tac_stack(&operand_1->tac_stack);
       free(label_check_B2);
     }
-    else if (is_arit(opcode)) {
+      else if (is_arit(opcode)) {
       //concatenacao de codigo
       stack_push_all_tacs(expression->tac_stack, operand_1->tac_stack);
       stack_push_all_tacs(expression->tac_stack, operand_2->tac_stack);
