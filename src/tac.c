@@ -2205,3 +2205,16 @@ void generate_code_if_else(ast_node_value_t *cabeca, ast_node_value_t *condicao,
   free(label_false);
   free(label_end);
 }
+
+void generate_code_attribution_var(ast_node_value_t* var, ast_node_value_t* expression) {
+  st_value_t* var_st_entry = var->symbols_table_entry;
+  char* imediate = new_imediate(var_st_entry->offset_address);
+  char* base_register = base_register_name(var_st_entry->address_base);
+
+  //concatenacao de codigo
+  stack_push_all_tacs(var->tac_stack, expression->tac_stack);
+  tac_t* store_ai = new_tac(NULL, OP_STORE_AI, expression->result_reg, NULL, base_register, imediate);
+  stack_push(store_ai, var->tac_stack);
+
+  free(imediate); free(base_register);
+}

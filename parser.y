@@ -192,6 +192,9 @@ def_global_var: primitive_type TK_IDENTIFICADOR ';'
 	st_identificador->offset_address = calculateGlobalAddress(st_identificador->size);
 	printf("offset: %d\n", st_identificador->offset_address);
 	free(id_name);
+
+	//setar base register
+	st_identificador->address_base = RBSS;
 }
 def_global_var: primitive_type TK_IDENTIFICADOR vector_declaration ';'
 {
@@ -213,6 +216,9 @@ def_global_var: primitive_type TK_IDENTIFICADOR vector_declaration ';'
 
 	free($3);
 	free(id_name);
+
+	//setar base register
+	st_identificador->address_base = RBSS;
 }
 def_global_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR ';'
 {
@@ -229,6 +235,9 @@ def_global_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR ';'
 	st_identificador->offset_address = calculateGlobalAddress(st_identificador->size);
 
 	free(id_name);
+
+	//setar base register
+	st_identificador->address_base = RBSS;
 }
 def_global_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR vector_declaration ';'
 {
@@ -250,6 +259,9 @@ def_global_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR vector_declaration 
 
 	free($4);
 	free(id_name);
+
+	//setar base register
+	st_identificador->address_base = RBSS;
 }
 
 def_global_var: TK_IDENTIFICADOR TK_IDENTIFICADOR ';'
@@ -271,6 +283,9 @@ def_global_var: TK_IDENTIFICADOR TK_IDENTIFICADOR ';'
 
 	free($1);
 	free(id_name);
+
+	//setar base register
+	st_identificador->address_base = RBSS;
 }
 def_global_var: TK_IDENTIFICADOR TK_IDENTIFICADOR vector_declaration ';'
 {
@@ -295,6 +310,9 @@ def_global_var: TK_IDENTIFICADOR TK_IDENTIFICADOR vector_declaration ';'
 	free($3);
 	free($1);
 	free(id_name);
+
+	//setar base register
+	st_identificador->address_base = RBSS;
 }
 def_global_var: TK_PR_STATIC TK_IDENTIFICADOR TK_IDENTIFICADOR ';'
 {
@@ -315,6 +333,9 @@ def_global_var: TK_PR_STATIC TK_IDENTIFICADOR TK_IDENTIFICADOR ';'
 
 	free($2);
 	free(id_name);
+
+	//setar base register
+	st_identificador->address_base = RBSS;
 }
 def_global_var: TK_PR_STATIC TK_IDENTIFICADOR TK_IDENTIFICADOR vector_declaration ';'
 {
@@ -339,6 +360,9 @@ def_global_var: TK_PR_STATIC TK_IDENTIFICADOR TK_IDENTIFICADOR vector_declaratio
 	free($4);
 	free($2);
 	free(id_name);
+
+	//setar base register
+	st_identificador->address_base = RBSS;
 }
 
 
@@ -563,7 +587,11 @@ push_block_stack: '{'
 	stack_push(func_symbols_table, get_scope_stack());
 }
 
-simple_command: attribution_command { $$ = $1; }
+simple_command: attribution_command {
+	$$ = $1;
+	ast_node_value_t* ast_node_value_head = $$->value;
+	print_tac_stack(&(ast_node_value_head->tac_stack));
+}
 simple_command: function_call { $$ = $1; }
 simple_command: shift_command { $$ = $1; }
 simple_command: def_local_var { $$ = $1; }
@@ -912,8 +940,12 @@ attribution_command: TK_IDENTIFICADOR '=' expression
 
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, st_identificador));
 	$$ = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, SMTC_VOID, NULL, NULL), node_identificador, $3);
+	ast_node_value_t* ast_head_value = $$->value;
+	ast_head_value->symbols_table_entry = st_identificador;
 
 	free($1);
+
+	generate_code_attribution_var($$->value, ast_expression);
 }
 attribution_command: TK_IDENTIFICADOR attribution_vector '=' expression
 {
