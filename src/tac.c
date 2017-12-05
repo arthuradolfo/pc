@@ -155,6 +155,7 @@ void new_tac_sedd_test()
 
   free(reg_1); free(reg_2); free(reg_3); free(imed);
 }
+
 void new_tac_jump_test()
 {
   char* code;
@@ -355,6 +356,17 @@ tac_t* new_tac_jump(bool use_label, char* label, char* dst_reg) {
 
   return tac;
 }
+
+tac_t* new_tac_nop(bool use_label, char *label) {
+  char* lbl;
+  if (use_label) {
+    lbl = label ? label : new_label();
+  } else {
+    lbl = NULL;
+  }
+  return new_tac(lbl, OP_NOP, NULL, NULL, NULL, NULL);
+}
+
 tac_t* new_tac_cbr  (bool use_label, char* label, char* src, char* lbl_true, char* lbl_false) {
   char* lbl;
   if (use_label) {
@@ -1955,6 +1967,28 @@ void stack_push_all_tacs(stack_t* dst, stack_t* pushed)
   free_stack(reversed);
 }
 
+void stack_push_all_tacs_and(stack_t* dst, stack_t* pushed, stack_t* t_holes, stack_t* f_holes, bool op1)
+{
+  stack_t* reversed = reversed_tac_stack(pushed);
+  stack_item_t* item = reversed->data;
+  int count = 0;
+  while (item) {
+    stack_push(copy_tac(item->value), dst);
+    if(((tac_t*)dst->data->value)->opcode == OP_CBR) {
+      if(op1) {
+        stack_push(&(((tac_t*)dst->data->value)->dst_2), f_holes);
+      }
+      else {
+        stack_push(&(((tac_t*)dst->data->value)->dst_1), t_holes); 
+        stack_push(&(((tac_t*)dst->data->value)->dst_2), f_holes);
+      }
+    }
+    item = item->next;
+  }
+  clear_tac_stack(&reversed);
+  free_stack(reversed);
+}
+
 char* new_hole()
 {
   return "BURACO";
@@ -1964,10 +1998,10 @@ void remenda(stack_t** holes, char* label)
 {
   char** buraco;
   stack_item_t* item = (*holes)->data;
-
   while (item) {
     buraco = item->value;
     if (buraco) {
+      free(*buraco);
       *buraco = strdup(label);
     }
     item = item->next;
@@ -1993,7 +2027,6 @@ void remenda_test()
   }
   //remenda lista
   remenda(&stack, "Remendo");
-
   printf("\nBuracos remendados:\n");
   for (i = 0; i < 5 ; ++i) {
     printf("%d - %s\n", i, holes[i]);
@@ -2003,6 +2036,14 @@ void remenda_test()
     free(holes[i]);
   }
   free_stack(stack);
+}
+
+void print_stack_holes(stack_t *stack) {
+  stack_item_t *item = stack->data;
+  while(item) {
+    printf("%s\n", *((char**)item->value));
+    item = item->next;
+  }
 }
 
 //geracao de codigo de facto
@@ -2050,6 +2091,12 @@ bool is_arit(int opcode) {
     default: return false;
   }
 }
+bool is_and(int opcode) {
+  return (opcode == OP_AND);
+}
+bool is_or(int opcode) {
+  return (opcode == OP_OR);
+}
 
 void generate_code_literal(ast_node_value_t* literal) {
   literal->result_reg = new_register();
@@ -2078,14 +2125,75 @@ void generate_code_expression(ast_node_value_t* expression, ast_node_value_t* op
     stack_push(comparison, expression->tac_stack);
     tac_t* cbr = new_tac(NULL, OP_CBR, expression->result_reg, NULL, x, y);
     stack_push(cbr, expression->tac_stack);
-
     //guarda referencias para buracos a serem remendados
-    char** x_address = &x;
-    char** y_address = &y;
+    char** x_address = &cbr->dst_1;
+    char** y_address = &cbr->dst_2;
     stack_push(x_address, expression->t_holes);
     stack_push(y_address, expression->f_holes);
   }
-  /*else if (is_logic(opcode)) {
+  else if (is_logic(opcode)) {
+    if(is_and(opcode)) {
+      char* label_check_B2 = new_label();
+      
+      remenda(&(operand_1->t_holes), label_check_B2);
+      print_stack_holes(operand_1->t_holes);
+      printf("OPERANDO 1 LOGIC:\n");
+      print_tac_stack(&operand_1->tac_stack);
+      printf("OPERANDO 2 LOGIC:\n");
+      print_tac_stack(&operand_2->tac_stack);
 
-  }*/
+      stack_push_all_tacs_and(expression->tac_stack, operand_1->tac_stack, expression->t_holes, expression->f_holes, true);
+      stack_push(new_tac_nop(true, label_check_B2), expression->tac_stack);
+      stack_push_all_tacs_and(expression->tac_stack, operand_2->tac_stack, expression->t_holes, expression->f_holes, false);
+      //guarda referencias para buracos a serem remendados
+      printf("HOLES TO PASS:\n");
+      print_stack_holes(expression->f_holes);
+      print_tac_stack(&operand_1->tac_stack);
+      free(label_check_B2);
+    }
+  }
+}
+
+void generate_code_if(ast_node_value_t *cabeca, ast_node_value_t *condicao, ast_node_value_t *codigo) {
+  char* label_true = new_label();
+  char* label_end = new_label();
+
+  //stack_print(condicao->t_holes);
+  printf("oi\n");
+  print_stack_holes(condicao->t_holes);
+  print_stack_holes(condicao->f_holes);
+  remenda(&(condicao->t_holes), label_true);
+  remenda(&(condicao->f_holes), label_end);
+  print_stack_holes(condicao->t_holes);
+  print_stack_holes(condicao->f_holes);
+
+  printf("CONDICAO:\n");
+  print_tac_stack(&condicao->tac_stack);
+  stack_push_all_tacs(cabeca->tac_stack, condicao->tac_stack);
+  stack_push(new_tac_nop(true, label_true), cabeca->tac_stack);
+  stack_push_all_tacs(cabeca->tac_stack, codigo->tac_stack);
+  stack_push(new_tac_nop(true, label_end), cabeca->tac_stack);
+
+  free(label_true);
+  free(label_end);
+}
+
+void generate_code_if_else(ast_node_value_t *cabeca, ast_node_value_t *condicao, ast_node_value_t *codigo_true, ast_node_value_t *codigo_false) {
+  char* label_true = new_label();
+  char* label_false = new_label();
+  char* label_end = new_label();
+
+  remenda(&(condicao->t_holes), label_true);
+  remenda(&(condicao->f_holes), label_false);
+
+  stack_push_all_tacs(cabeca->tac_stack, condicao->tac_stack);
+  stack_push_all_tacs(cabeca->tac_stack, codigo_true->tac_stack);
+  stack_push(new_tac_jump(false, NULL, label_end), cabeca->tac_stack);
+  stack_push(new_tac_nop(true, label_false), cabeca->tac_stack);
+  stack_push_all_tacs(cabeca->tac_stack, codigo_false->tac_stack);
+  stack_push(new_tac_nop(true, label_end), cabeca->tac_stack);
+
+  free(label_true);
+  free(label_false);
+  free(label_end);
 }

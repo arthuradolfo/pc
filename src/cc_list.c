@@ -49,6 +49,24 @@ int stack_pop(stack_item_t **data, stack_t **stack) {
 	}
 }
 
+void stack_push_stacks(stack_t *stack_1, stack_t *stack_2, stack_t *stack_dst) {
+	stack_item_t *aux_item;
+	if(stack_1) {
+		aux_item = stack_1->data;
+		while(aux_item) {
+			stack_push(aux_item->value, stack_dst);
+			aux_item = aux_item->next;
+		}
+	}
+
+	if(stack_2) {
+		aux_item = stack_2->data;
+		while(aux_item) {
+			stack_push(aux_item->value, stack_dst);
+			aux_item = aux_item->next;
+		}
+	}
+}
 
 int stack_push(void *value, stack_t *stack) {
 	stack_item_t *aux_item;

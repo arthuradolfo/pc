@@ -25,6 +25,7 @@ stack_t* new_stack(void);
 stack_item_t* new_stack_item(void);
 int stack_pop(stack_item_t **data, stack_t **stack);
 int stack_push(void *value, stack_t *stack);
+void stack_push_stacks(stack_t *stack_1, stack_t *stack_2, stack_t *stack_dst);
 void free_stack(stack_t *stack);
 void stack_print(stack_t *stack_aux);
 

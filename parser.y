@@ -1063,6 +1063,11 @@ condition_command: TK_PR_IF '(' expression ')' TK_PR_THEN block
 		tree_insert_node($$, tree_make_node(new_ast_node_value(AST_BLOCO, SMTC_VOID, NULL, NULL)));
 
 	mark_coercion(SMTC_BOOL, $3->value);
+
+	generate_code_if($$->value, $3->value, $6->value);
+
+	ast_node_value_t *node = $$->value;
+	print_tac_stack(&(node->tac_stack));
 }
 condition_command: TK_PR_IF '(' expression ')' TK_PR_THEN block TK_PR_ELSE block
 {
@@ -1084,6 +1089,8 @@ condition_command: TK_PR_IF '(' expression ')' TK_PR_THEN block TK_PR_ELSE block
 		tree_insert_node($$, tree_make_node(new_ast_node_value(AST_BLOCO, SMTC_VOID, NULL, NULL)));
 
 	mark_coercion(SMTC_BOOL, $3->value);
+
+	generate_code_if_else($$->value, $3->value, $6->value, $8->value);
 }
 
 start_foreach: TK_PR_FOREACH '('
@@ -1295,8 +1302,6 @@ sub_expression_chain: sub_expression operator sub_expression_chain
 	((ast_node_value_t*) $$->value)->outputable = is_arit_expression(ast_node_value_head);
 
 	generate_code_expression($$->value, $1->value, $2->value, $3->value);
-
-	//print_tac_stack(&(ast_node_value_head->tac_stack));
 }
 
 sub_expression: unary_operator sub_expression
