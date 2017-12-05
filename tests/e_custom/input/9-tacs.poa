@@ -1,7 +1,9 @@
+int a;
 int glob;
 
 int main() {
-   glob = 1;
+   //glob = 1;
+   //glob = a;
 
    //relops
    //bool a;

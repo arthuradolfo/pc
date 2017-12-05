@@ -272,7 +272,8 @@ bool is_relop(int opcode);
 bool is_logic(int opcode);
 bool is_arit(int opcode);
 
-void generate_code_literal(ast_node_value_t* literal);
+void generate_code_load_var(ast_node_value_t *variable);
+void generate_code_load_literal(ast_node_value_t *literal);
 void generate_code_expression(ast_node_value_t* expression, ast_node_value_t* operand_1, ast_node_value_t* operator, ast_node_value_t* operand_2);
 void generate_code_if(ast_node_value_t* cabeca, ast_node_value_t* condicao, ast_node_value_t* codigo);
 void generate_code_if_else(ast_node_value_t* cabeca, ast_node_value_t* condicao, ast_node_value_t* codigo_true, ast_node_value_t* codigo_false);

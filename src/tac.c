@@ -2098,7 +2098,19 @@ bool is_or(int opcode) {
   return (opcode == OP_OR);
 }
 
-void generate_code_literal(ast_node_value_t* literal) {
+void generate_code_load_var(ast_node_value_t *variable) {
+  variable->result_reg = new_register();
+  st_value_t* st_entry = variable->symbols_table_entry;
+  char* imediate = new_imediate(st_entry->offset_address);
+  char* base_register = base_register_name(st_entry->address_base);
+
+  tac_t* loadai = new_tac_ssed(false, NULL, OP_LOAD_AI, base_register, imediate, variable->result_reg);
+  stack_push(loadai, variable->tac_stack);
+
+  free(imediate); free(base_register);
+}
+
+void generate_code_load_literal(ast_node_value_t *literal) {
   literal->result_reg = new_register();
   st_value_t* st_entry = literal->symbols_table_entry;
   char* imediate = new_imediate(st_entry->value.i);

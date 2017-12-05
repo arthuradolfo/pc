@@ -1362,6 +1362,8 @@ sub_expression: TK_IDENTIFICADOR
 	((ast_node_value_t*) $$->value)->inputable = true;
 
 	free($1);
+
+	generate_code_load_var($$->value);
 }
 sub_expression: TK_IDENTIFICADOR attribution_vector
 {
@@ -1391,7 +1393,7 @@ literal: TK_LIT_INT {
 
 	ast_node_value_t* ast_node_value_head = $$->value;
 
-	generate_code_literal(ast_node_value_head);
+	generate_code_load_literal(ast_node_value_head);
 	//print_tac_stack(&(ast_node_value_head->tac_stack));
 }
 literal: TK_LIT_FLOAT { $$ = tree_make_node(new_ast_node_value(AST_LITERAL, SMTC_FLOAT, NULL, $1)); }
