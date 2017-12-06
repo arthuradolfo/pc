@@ -282,5 +282,7 @@ void generate_code_expression(ast_node_value_t* expression, ast_node_value_t* op
 void generate_code_if(ast_node_value_t* cabeca, ast_node_value_t* condicao, ast_node_value_t* codigo);
 void generate_code_if_else(ast_node_value_t* cabeca, ast_node_value_t* condicao, ast_node_value_t* codigo_true, ast_node_value_t* codigo_false);
 void generate_code_attribution_var(ast_node_value_t* var, ast_node_value_t* expression);
-
+void generate_code_unary_op(ast_node_value_t *cabeca, ast_node_value_t *unary_op, ast_node_value_t *expressao);
+void generate_code_while(ast_node_value_t *cabeca, ast_node_value_t *condicao, ast_node_value_t *codigo);
+void generate_code_do_while(ast_node_value_t *cabeca, ast_node_value_t *condicao, ast_node_value_t *codigo);
 #endif
