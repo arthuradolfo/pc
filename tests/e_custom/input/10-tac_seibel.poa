@@ -1,4 +1,14 @@
 int main() {
-    int a <= 1;
-    int b <= a;
+    int a <= 42;
+
+    {
+        a = 1;
+        a = 2*2;
+    };
+
+    static int b <= a;
+
+    {
+        static const bool c <= true;
+    };
 }

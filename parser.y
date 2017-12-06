@@ -476,7 +476,19 @@ def_function: TK_PR_STATIC func_name_user push_func_stack '(' parameters ')' bod
 body: '{' command_sequence '}'
 {
 	$$ = tree_make_node(new_ast_node_value(AST_BLOCO, SMTC_VOID, NULL, NULL));
-	if ($2) tree_insert_node($$,$2);
+	ast_node_value_t* head = $$->value;
+
+	if ($2) {
+		tree_insert_node($$,$2);
+		//concatena codigo
+		ast_node_value_t* cmd_seq = $2->value;
+		stack_push_all_tacs(head->tac_stack, cmd_seq->tac_stack);
+	}
+
+	if (!head->tac_stack->empty) {
+		printf("\n\n_____ CÓDIGO BODY [linha %d]_____", comp_get_line_number());
+		print_tac_stack(&head->tac_stack);
+	}
 }
 
 parameters: %empty
@@ -569,7 +581,13 @@ command_sequence: command_in_block ';' command_sequence
 {
 	if ($1) {
 		$$ = $1;
-		if ($3) tree_insert_node($$,$3);
+		if ($3) {
+			tree_insert_node($$,$3);
+			//concatenar codigo
+			ast_node_value_t* head = $$->value;
+			ast_node_value_t* cmd_list = $3->value;
+  		stack_push_all_tacs(head->tac_stack, cmd_list->tac_stack);
+		}
 	} else {
 		$$ = $3;
 	}
@@ -580,8 +598,8 @@ case_command: TK_PR_CASE TK_LIT_INT
 command_in_block: simple_command
 {
 	$$ = $1;
-	ast_node_value_t* ast_node_value_head = $$->value;
-	print_tac_stack(&(ast_node_value_head->tac_stack));
+	//ast_node_value_t* ast_node_value_head = $$->value;
+	//print_tac_stack(&(ast_node_value_head->tac_stack));
 }
 command_in_block: io_command { $$ = $1; }
 command_in_block: action_command { $$ = $1; }
@@ -602,7 +620,19 @@ simple_command: block { $$ = $1; }
 block: push_block_stack command_sequence '}'
 {
 	$$ = tree_make_node(new_ast_node_value(AST_BLOCO, SMTC_VOID, NULL, NULL));
-	if ($2) tree_insert_node($$,$2);
+	ast_node_value_t* head = $$->value;
+
+	if ($2) {
+		tree_insert_node($$,$2);
+		//concatenar de codigo
+		ast_node_value_t* cmd_seq = $2->value;
+		stack_push_all_tacs(head->tac_stack, cmd_seq->tac_stack);
+	}
+
+	if (!head->tac_stack->empty) {
+		printf("\n\n_____ CÓDIGO BLOCK [linha %d]_____", comp_get_line_number());
+		print_tac_stack(&head->tac_stack);
+	}
 
 	//associa tabela de simbolos ao nodo AST
 	((ast_node_value_t*)$$->value)->symbols_table = getCurrentST();
