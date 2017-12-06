@@ -577,7 +577,12 @@ command_sequence: command_in_block ';' command_sequence
 command_sequence: case_command ':' command_sequence { $$ = $3; }
 case_command: TK_PR_CASE TK_LIT_INT
 
-command_in_block: simple_command { $$ = $1; }
+command_in_block: simple_command
+{
+	$$ = $1;
+	ast_node_value_t* ast_node_value_head = $$->value;
+	print_tac_stack(&(ast_node_value_head->tac_stack));
+}
 command_in_block: io_command { $$ = $1; }
 command_in_block: action_command { $$ = $1; }
 
@@ -587,11 +592,7 @@ push_block_stack: '{'
 	stack_push(func_symbols_table, get_scope_stack());
 }
 
-simple_command: attribution_command {
-	$$ = $1;
-	ast_node_value_t* ast_node_value_head = $$->value;
-	print_tac_stack(&(ast_node_value_head->tac_stack));
-}
+simple_command: attribution_command { $$ = $1; }
 simple_command: function_call { $$ = $1; }
 simple_command: shift_command { $$ = $1; }
 simple_command: def_local_var { $$ = $1; }
@@ -686,6 +687,10 @@ def_local_var: primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 	st_identificador->address_base = RARP;
 
 	free(id_name);
+
+	ast_node_value_t* ast_head_value = $$->value;
+	ast_head_value->symbols_table_entry = st_identificador;
+	generate_code_attribution_var(ast_head_value, ast_expression);
 }
 def_local_var: TK_PR_STATIC TK_IDENTIFICADOR TK_IDENTIFICADOR
 {
@@ -758,6 +763,10 @@ def_local_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 	st_identificador->address_base = RBSS;
 
 	free(id_name);
+
+	ast_node_value_t* ast_head_value = $$->value;
+	ast_head_value->symbols_table_entry = st_identificador;
+	generate_code_attribution_var(ast_head_value, ast_expression);
 }
 def_local_var: TK_PR_CONST TK_IDENTIFICADOR TK_IDENTIFICADOR
 {
@@ -830,6 +839,10 @@ def_local_var: TK_PR_CONST primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 	st_identificador->address_base = RARP;
 
 	free(id_name);
+
+	ast_node_value_t* ast_head_value = $$->value;
+	ast_head_value->symbols_table_entry = st_identificador;
+	generate_code_attribution_var(ast_head_value, ast_expression);
 }
 def_local_var: TK_PR_STATIC TK_PR_CONST TK_IDENTIFICADOR TK_IDENTIFICADOR
 {
@@ -902,6 +915,10 @@ def_local_var: TK_PR_STATIC TK_PR_CONST primitive_type TK_IDENTIFICADOR TK_OC_LE
 	st_identificador->address_base = RBSS;
 
 	free(id_name);
+
+	ast_node_value_t* ast_head_value = $$->value;
+	ast_head_value->symbols_table_entry = st_identificador;
+	generate_code_attribution_var(ast_head_value, ast_expression);
 }
 
 attribution_vector: '[' expression ']' attribution_vector_loop
@@ -964,12 +981,12 @@ attribution_command: TK_IDENTIFICADOR '=' expression
 
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, st_identificador));
 	$$ = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, SMTC_VOID, NULL, NULL), node_identificador, $3);
-	ast_node_value_t* ast_head_value = $$->value;
-	ast_head_value->symbols_table_entry = st_identificador;
 
 	free($1);
 
-	generate_code_attribution_var($$->value, ast_expression);
+	ast_node_value_t* ast_head_value = $$->value;
+	ast_head_value->symbols_table_entry = st_identificador;
+	generate_code_attribution_var(ast_head_value, ast_expression);
 }
 attribution_command: TK_IDENTIFICADOR attribution_vector '=' expression
 {
@@ -1121,9 +1138,6 @@ condition_command: TK_PR_IF '(' expression ')' TK_PR_THEN block
 	mark_coercion(SMTC_BOOL, $3->value);
 
 	generate_code_if($$->value, $3->value, $6->value);
-
-	ast_node_value_t *node = $$->value;
-	print_tac_stack(&(node->tac_stack));
 }
 condition_command: TK_PR_IF '(' expression ')' TK_PR_THEN block TK_PR_ELSE block
 {
@@ -1147,9 +1161,6 @@ condition_command: TK_PR_IF '(' expression ')' TK_PR_THEN block TK_PR_ELSE block
 	mark_coercion(SMTC_BOOL, $3->value);
 
 	generate_code_if_else($$->value, $3->value, $6->value, $8->value);
-
-	ast_node_value_t *node = $$->value;
-	print_tac_stack(&(node->tac_stack));
 }
 
 start_foreach: TK_PR_FOREACH '('
@@ -1214,10 +1225,6 @@ iteration_command: TK_PR_WHILE '(' expression ')' TK_PR_DO block
 		tree_insert_node($$, tree_make_node(new_ast_node_value(AST_BLOCO, SMTC_VOID, NULL, NULL)));
 
 	generate_code_while($$->value, $3->value, $6->value);
-
-	ast_node_value_t *node = $$->value;
-	print_tac_stack(&(node->tac_stack));
-
 }
 iteration_command: TK_PR_DO block TK_PR_WHILE '(' expression ')'
 {
@@ -1233,9 +1240,6 @@ iteration_command: TK_PR_DO block TK_PR_WHILE '(' expression ')'
 	if ($5) tree_insert_node($$, $5);
 
 	generate_code_do_while($$->value, $5->value, $2->value);
-
-	ast_node_value_t *node = $$->value;
-	print_tac_stack(&(node->tac_stack));
 }
 
 start_switch: TK_PR_SWITCH '('
@@ -1345,11 +1349,7 @@ primitive_type: TK_PR_STRING { $$ = SMTC_STRING; }
 
 //expressions e expressions sequences
 
-expression: sub_expression_chain {
-	$$ = $1;
-	ast_node_value_t* ast_node_value_head = $$->value;
-	print_tac_stack(&(ast_node_value_head->tac_stack));
-}
+expression: sub_expression_chain { $$ = $1; }
 sub_expression_chain: sub_expression { $$ = $1; }
 sub_expression_chain: sub_expression operator sub_expression_chain
 {

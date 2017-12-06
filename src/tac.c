@@ -2180,6 +2180,7 @@ void generate_code_unary_op(ast_node_value_t *cabeca, ast_node_value_t *unary_op
 
     free(imediate);
   }
+    //TODO simplificar esses branches de if abaixo e "implementar de fato"
   else if(unary_op->semantic_type == AST_LOGICO_COMP_NEGACAO) {
     stack_push_all_tacs(cabeca->tac_stack, expressao->tac_stack);
   }
@@ -2217,38 +2218,38 @@ void generate_code_expression(ast_node_value_t* expression, ast_node_value_t* op
       //TODO colocar um cbrs com result regs de operandos se eles nao forem bools
 
       remenda(&(operand_1->t_holes), label_check_B2);
-      print_stack_holes(operand_1->t_holes);
-      printf("OPERANDO 1 LOGIC:\n");
-      print_tac_stack(&operand_1->tac_stack);
-      printf("OPERANDO 2 LOGIC:\n");
-      print_tac_stack(&operand_2->tac_stack);
+      //print_stack_holes(operand_1->t_holes);
+      //printf("OPERANDO 1 LOGIC:\n");
+      //print_tac_stack(&operand_1->tac_stack);
+      //printf("OPERANDO 2 LOGIC:\n");
+      //print_tac_stack(&operand_2->tac_stack);
 
       stack_push_all_tacs_and(expression->tac_stack, operand_1->tac_stack, expression->t_holes, expression->f_holes, true);
       stack_push(new_tac_nop(true, label_check_B2), expression->tac_stack);
       stack_push_all_tacs_and(expression->tac_stack, operand_2->tac_stack, expression->t_holes, expression->f_holes, false);
       //guarda referencias para buracos a serem remendados
-      printf("HOLES TO PASS:\n");
-      print_stack_holes(expression->f_holes);
-      print_tac_stack(&operand_1->tac_stack);
+      //printf("HOLES TO PASS:\n");
+      //print_stack_holes(expression->f_holes);
+      //print_tac_stack(&operand_1->tac_stack);
       free(label_check_B2);
     }
     else {
       char* label_check_B2 = new_label();
 
       remenda(&(operand_1->f_holes), label_check_B2);
-      print_stack_holes(operand_1->t_holes);
-      printf("OPERANDO 1 LOGIC:\n");
-      print_tac_stack(&operand_1->tac_stack);
-      printf("OPERANDO 2 LOGIC:\n");
-      print_tac_stack(&operand_2->tac_stack);
+      //print_stack_holes(operand_1->t_holes);
+      //printf("OPERANDO 1 LOGIC:\n");
+      //print_tac_stack(&operand_1->tac_stack);
+      //printf("OPERANDO 2 LOGIC:\n");
+      //print_tac_stack(&operand_2->tac_stack);
 
       stack_push_all_tacs_or(expression->tac_stack, operand_1->tac_stack, expression->t_holes, expression->f_holes, true);
       stack_push(new_tac_nop(true, label_check_B2), expression->tac_stack);
       stack_push_all_tacs_or(expression->tac_stack, operand_2->tac_stack, expression->t_holes, expression->f_holes, false);
       //guarda referencias para buracos a serem remendados
-      printf("HOLES TO PASS:\n");
-      print_stack_holes(expression->f_holes);
-      print_tac_stack(&operand_1->tac_stack);
+      //printf("HOLES TO PASS:\n");
+      //print_stack_holes(expression->f_holes);
+      //print_tac_stack(&operand_1->tac_stack);
       free(label_check_B2);
     }
   }
@@ -2336,16 +2337,15 @@ void generate_code_if(ast_node_value_t *cabeca, ast_node_value_t *condicao, ast_
   char* label_end = new_label();
 
   //stack_print(condicao->t_holes);
-  printf("oi\n");
-  print_stack_holes(condicao->t_holes);
-  print_stack_holes(condicao->f_holes);
+  //print_stack_holes(condicao->t_holes);
+  //print_stack_holes(condicao->f_holes);
   remenda(&(condicao->t_holes), label_true);
   remenda(&(condicao->f_holes), label_end);
-  print_stack_holes(condicao->t_holes);
-  print_stack_holes(condicao->f_holes);
+  //print_stack_holes(condicao->t_holes);
+  //print_stack_holes(condicao->f_holes);
 
-  printf("CONDICAO:\n");
-  print_tac_stack(&condicao->tac_stack);
+  //printf("CONDICAO:\n");
+  //print_tac_stack(&condicao->tac_stack);
   stack_push_all_tacs(cabeca->tac_stack, condicao->tac_stack);
   stack_push(new_tac_nop(true, label_true), cabeca->tac_stack);
   stack_push_all_tacs(cabeca->tac_stack, codigo->tac_stack);
@@ -2361,16 +2361,15 @@ void generate_code_while(ast_node_value_t *cabeca, ast_node_value_t *condicao, a
   char* label_end = new_label();
 
   //stack_print(condicao->t_holes);
-  printf("oi\n");
-  print_stack_holes(condicao->t_holes);
-  print_stack_holes(condicao->f_holes);
+  //print_stack_holes(condicao->t_holes);
+  //print_stack_holes(condicao->f_holes);
   remenda(&(condicao->t_holes), label_true);
   remenda(&(condicao->f_holes), label_end);
-  print_stack_holes(condicao->t_holes);
-  print_stack_holes(condicao->f_holes);
+  //print_stack_holes(condicao->t_holes);
+  //print_stack_holes(condicao->f_holes);
 
-  printf("CONDICAO:\n");
-  print_tac_stack(&condicao->tac_stack);
+  //printf("CONDICAO:\n");
+  //print_tac_stack(&condicao->tac_stack);
   stack_push(new_tac_nop(true, label_begin), cabeca->tac_stack);
   stack_push_all_tacs(cabeca->tac_stack, condicao->tac_stack);
   stack_push(new_tac_nop(true, label_true), cabeca->tac_stack);
@@ -2388,16 +2387,15 @@ void generate_code_do_while(ast_node_value_t *cabeca, ast_node_value_t *condicao
   char* label_end = new_label();
 
   //stack_print(condicao->t_holes);
-  printf("oi\n");
-  print_stack_holes(condicao->t_holes);
-  print_stack_holes(condicao->f_holes);
+  //print_stack_holes(condicao->t_holes);
+  //print_stack_holes(condicao->f_holes);
   remenda(&(condicao->t_holes), label_true);
   remenda(&(condicao->f_holes), label_end);
-  print_stack_holes(condicao->t_holes);
-  print_stack_holes(condicao->f_holes);
+  //print_stack_holes(condicao->t_holes);
+  //print_stack_holes(condicao->f_holes);
 
-  printf("CONDICAO:\n");
-  print_tac_stack(&condicao->tac_stack);
+  //printf("CONDICAO:\n");
+  //print_tac_stack(&condicao->tac_stack);
   stack_push(new_tac_nop(true, label_true), cabeca->tac_stack);
   stack_push_all_tacs(cabeca->tac_stack, codigo->tac_stack);
   stack_push_all_tacs(cabeca->tac_stack, condicao->tac_stack);
