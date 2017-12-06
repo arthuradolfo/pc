@@ -122,8 +122,13 @@ prime_programa: programa
 	set_ast_root($$);
 	$$->value = new_ast_node_value(AST_PROGRAMA, SMTC_VOID, NULL, NULL);
 
-	if ($1)
+	if ($1) {
 		tree_insert_node($$, $1);
+		//concatena codigo
+		ast_node_value_t* program = $1->value;
+		ast_node_value_t* head = $$->value;
+		stack_push_all_tacs(head->tac_stack, program->tac_stack);
+	}
 
 	gv_declare(AST_PROGRAMA, $$, NULL);
 	putToGraphviz($$);
@@ -142,6 +147,10 @@ programa: def_function programa
 {
 	if ($2) {
 		tree_insert_node($1,$2);
+		//concatena codigo
+		ast_node_value_t* more_program = $2->value;
+		ast_node_value_t* head = $$->value;
+		stack_push_all_tacs(head->tac_stack, more_program->tac_stack);
 	}
 	$$ = $1;
 }
@@ -412,8 +421,15 @@ func_name_user: TK_IDENTIFICADOR TK_IDENTIFICADOR
 def_function: func_name push_func_stack '(' parameters ')' body
 {
 	$$ = $1;
-	if ($6)
+
+	ast_node_value_t* head = $$->value;
+
+	if ($6) {
 		tree_insert_node($$,$6);
+		//concatena codigo
+		ast_node_value_t* cmd_seq = $6->value;
+		stack_push_all_tacs(head->tac_stack, cmd_seq->tac_stack);
+	}
 
 	//associa tabela de simbolos ao nodo AST
 	((ast_node_value_t*)$$->value)->symbols_table = getCurrentST();
@@ -423,12 +439,24 @@ def_function: func_name push_func_stack '(' parameters ')' body
 
 	//ao sair da declaracao de funcao, da pop na pilha de declaracoes
 	pop_and_free_scope();
+
+	// if (!head->tac_stack->empty) {
+	// 	printf("\n\n_____ CÓDIGO FUNÇÃO [linha %d]_____", comp_get_line_number());
+	// 	print_tac_stack(&head->tac_stack);
+	// }
 }
 def_function: TK_PR_STATIC func_name push_func_stack '(' parameters ')' body
 {
 	$$ = $2;
-	if ($7)
+
+	ast_node_value_t* head = $$->value;
+
+	if ($7) {
 		tree_insert_node($$,$7);
+		//concatena codigo
+		ast_node_value_t* cmd_seq = $7->value;
+		stack_push_all_tacs(head->tac_stack, cmd_seq->tac_stack);
+	}
 
 	//associa tabela de simbolos ao nodo AST
 	((ast_node_value_t*)$$->value)->symbols_table = getCurrentST();
@@ -438,13 +466,25 @@ def_function: TK_PR_STATIC func_name push_func_stack '(' parameters ')' body
 
 	//ao sair da declaracao de funcao, da pop na pilha de declaracoes
 	pop_and_free_scope();
+
+	// if (!head->tac_stack->empty) {
+	// 	printf("\n\n_____ CÓDIGO FUNÇÃO [linha %d]_____", comp_get_line_number());
+	// 	print_tac_stack(&head->tac_stack);
+	// }
 }
 
 def_function: func_name_user push_func_stack '(' parameters ')' body
 {
 	$$ = $1;
-	if ($6)
+
+	ast_node_value_t* head = $$->value;
+
+	if ($6) {
 		tree_insert_node($$,$6);
+		//concatena codigo
+		ast_node_value_t* cmd_seq = $6->value;
+		stack_push_all_tacs(head->tac_stack, cmd_seq->tac_stack);
+	}
 
 	//associa tabela de simbolos ao nodo AST
 	((ast_node_value_t*)$$->value)->symbols_table = getCurrentST();
@@ -454,14 +494,25 @@ def_function: func_name_user push_func_stack '(' parameters ')' body
 
 	//ao sair da declaracao de funcao, da pop na pilha de declaracoes
 	pop_and_free_scope();
+
+	// if (!head->tac_stack->empty) {
+	// 	printf("\n\n_____ CÓDIGO FUNÇÃO [linha %d]_____", comp_get_line_number());
+	// 	print_tac_stack(&head->tac_stack);
+	// }
 
 }
 def_function: TK_PR_STATIC func_name_user push_func_stack '(' parameters ')' body
 {
-
 	$$ = $2;
-	if ($7)
+
+	ast_node_value_t* head = $$->value;
+
+	if ($7) {
 		tree_insert_node($$,$7);
+		//concatena codigo
+		ast_node_value_t* cmd_seq = $7->value;
+		stack_push_all_tacs(head->tac_stack, cmd_seq->tac_stack);
+	}
 
 	//associa tabela de simbolos ao nodo AST
 	((ast_node_value_t*)$$->value)->symbols_table = getCurrentST();
@@ -471,6 +522,11 @@ def_function: TK_PR_STATIC func_name_user push_func_stack '(' parameters ')' bod
 
 	//ao sair da declaracao de funcao, da pop na pilha de declaracoes
 	pop_and_free_scope();
+
+	// if (!head->tac_stack->empty) {
+	// 	printf("\n\n_____ CÓDIGO FUNÇÃO [linha %d]_____", comp_get_line_number());
+	// 	print_tac_stack(&head->tac_stack);
+	// }
 }
 
 body: '{' command_sequence '}'
@@ -485,10 +541,10 @@ body: '{' command_sequence '}'
 		stack_push_all_tacs(head->tac_stack, cmd_seq->tac_stack);
 	}
 
-	if (!head->tac_stack->empty) {
-		printf("\n\n_____ CÓDIGO BODY [linha %d]_____", comp_get_line_number());
-		print_tac_stack(&head->tac_stack);
-	}
+	// if (!head->tac_stack->empty) {
+	// 	printf("\n\n_____ CÓDIGO BODY [linha %d]_____", comp_get_line_number());
+	// 	print_tac_stack(&head->tac_stack);
+	// }
 }
 
 parameters: %empty
@@ -629,10 +685,10 @@ block: push_block_stack command_sequence '}'
 		stack_push_all_tacs(head->tac_stack, cmd_seq->tac_stack);
 	}
 
-	if (!head->tac_stack->empty) {
-		printf("\n\n_____ CÓDIGO BLOCK [linha %d]_____", comp_get_line_number());
-		print_tac_stack(&head->tac_stack);
-	}
+	// if (!head->tac_stack->empty) {
+	// 	printf("\n\n_____ CÓDIGO BLOCK [linha %d]_____", comp_get_line_number());
+	// 	print_tac_stack(&head->tac_stack);
+	// }
 
 	//associa tabela de simbolos ao nodo AST
 	((ast_node_value_t*)$$->value)->symbols_table = getCurrentST();

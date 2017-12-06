@@ -9,6 +9,7 @@
 int getLineNumber (void);
 void yyerror (char const *mensagem);
 void comp_print_table();
+void print_final_iloc();
 void main_init (int argc, char **argv);
 void main_finalize (void);
 int comp_get_line_number (void);

@@ -1691,6 +1691,22 @@ void print_tac_stack(stack_t** stack)
   printf("FUNDO\n\n");
 }
 
+void print_tac_stack_clean(stack_t** stack)
+{
+  tac_t* tac;
+  stack_item_t* item = (*stack)->data;
+
+  while (item) {
+    tac = item->value;
+    if (tac) {
+      char *code = tac_to_string(tac);
+      printf("%s\n", code);
+      free(code);
+    }
+    item = item->next;
+  }
+}
+
 stack_t* cat_stacks(stack_t** stack_1, stack_t** stack_2)
 {
   stack_t* stack_3 = new_stack();

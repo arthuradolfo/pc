@@ -36,6 +36,17 @@ void yyerror (char const *mensagem)
   fprintf (stderr, "%s in line %d\n", mensagem, lineNumber);
 }
 
+void print_final_iloc()
+{
+  printf("\n\n_____ CÓDIGO ILOC _____\n\n");
+  ast_node_value_t* ast_root = abstractSyntaxTree->value;
+  stack_t* printable_tacs = reversed_tac_stack(ast_root->tac_stack);
+  print_tac_stack_clean(&printable_tacs);
+  clear_tac_stack(&printable_tacs);
+  free_stack(printable_tacs);
+  printf("_______________________\n\n");
+}
+
 void main_init (int argc, char **argv)
 {
   lineNumber = 1;
@@ -60,20 +71,11 @@ void main_init (int argc, char **argv)
 
   //inicializacao do graphviz (inicializacao da ast está no parser.y - programa:)
   gv_init(GRAPHVIZ_FILENAME);
-
-
-  //TODO remove
-  //tac_basic_tests();
-  //custom_constructors_tests();
-  //tac_stack_test();
-  //remenda_test();
-  //reversed_stack_test();
-  //tac_stack_test_3();
 }
 
 void main_finalize (void)
 {
-  // comp_print_table();
+  print_final_iloc();
 
   gv_close();
   clearSymbolsTable();

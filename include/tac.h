@@ -230,6 +230,11 @@ void custom_constructors_tests();
 void print_tac_stack(stack_t** stack);
 
 /**
+ * Imprime na tela uma pilha de tacs (do fundo para o topo) sem os identificadores de fundo e topo
+ */
+void print_tac_stack_clean(stack_t** stack);
+
+/**
  * Retorna uma pilha que é a concatenacao das duas pilhas fornecidas por parametro
  */
 stack_t* cat_stacks(stack_t** stack_1, stack_t** stack_2);

@@ -1,14 +1,7 @@
 int main() {
-    int a <= 42;
-
-    {
-        a = 1;
-        a = 2*2;
-    };
-
-    static int b <= a;
-
-    {
-        static const bool c <= true;
-    };
+   int a;
+   if((7<=9) || (1>=0)) then {
+      a = 8742;
+   } else {
+   };
 }
