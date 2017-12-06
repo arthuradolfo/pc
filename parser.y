@@ -1189,6 +1189,11 @@ iteration_command: TK_PR_WHILE '(' expression ')' TK_PR_DO block
 	else
 		tree_insert_node($$, tree_make_node(new_ast_node_value(AST_BLOCO, SMTC_VOID, NULL, NULL)));
 
+	generate_code_while($$->value, $3->value, $6->value);
+
+	ast_node_value_t *node = $$->value;
+	print_tac_stack(&(node->tac_stack));
+
 }
 iteration_command: TK_PR_DO block TK_PR_WHILE '(' expression ')'
 {
@@ -1202,6 +1207,11 @@ iteration_command: TK_PR_DO block TK_PR_WHILE '(' expression ')'
 
 	//pendura expression
 	if ($5) tree_insert_node($$, $5);
+
+	generate_code_do_while($$->value, $5->value, $2->value);
+
+	ast_node_value_t *node = $$->value;
+	print_tac_stack(&(node->tac_stack));
 }
 
 start_switch: TK_PR_SWITCH '('
@@ -1352,6 +1362,7 @@ sub_expression: unary_operator sub_expression
 	}
 	//infere tipo semantico baseado no operando
 	value_head->semantic_type = value_sub_expression->semantic_type;
+	generate_code_unary_op($$->value, $1->value, $2->value);
 }
 sub_expression: '(' expression ')' { $$ = $2; }
 sub_expression: literal {	$$ = $1; }
