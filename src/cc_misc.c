@@ -75,7 +75,10 @@ void main_init (int argc, char **argv)
 
 void main_finalize (void)
 {
-  print_final_iloc();
+  #ifdef DEBUG
+    printf("\nFim da Análise.\r\n\n");
+  #endif
+  iloc_to_stdout(((ast_node_value_t*) abstractSyntaxTree->value)->tac_stack);
 
   gv_close();
   clearSymbolsTable();

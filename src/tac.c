@@ -2506,3 +2506,18 @@ void generate_code_attribution_var(ast_node_value_t* var, ast_node_value_t* expr
 
   free(imediate); free(base_register);
 }
+
+
+void iloc_to_stdout(stack_t *tac_stack) {
+  stack_t* inv_stack = reversed_tac_stack(tac_stack);
+
+  stack_item_t* item = inv_stack->data;
+  while (item) {
+    if (item->value)
+      fprintf(stdout, "%s\r\n", tac_to_string(item->value));
+    item = item->next;
+  }
+
+  clear_tac_stack(&inv_stack);
+  free_stack(inv_stack);
+}

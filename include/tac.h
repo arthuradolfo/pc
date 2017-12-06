@@ -290,4 +290,10 @@ void generate_code_attribution_var(ast_node_value_t* var, ast_node_value_t* expr
 void generate_code_unary_op(ast_node_value_t *cabeca, ast_node_value_t *unary_op, ast_node_value_t *expressao);
 void generate_code_while(ast_node_value_t *cabeca, ast_node_value_t *condicao, ast_node_value_t *codigo);
 void generate_code_do_while(ast_node_value_t *cabeca, ast_node_value_t *condicao, ast_node_value_t *codigo);
+
+/**
+ * Imprime uma pilha de tacs (invertida) na saida padrao
+ */
+void iloc_to_stdout(stack_t* tac_stack);
+
 #endif

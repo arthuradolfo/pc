@@ -199,7 +199,7 @@ def_global_var: primitive_type TK_IDENTIFICADOR ';'
 
 	//Calcula endereço da variável global
 	st_identificador->offset_address = calculateGlobalAddress(st_identificador->size);
-	printf("offset: %d\n", st_identificador->offset_address);
+	//printf("offset: %d\n", st_identificador->offset_address);
 	free(id_name);
 
 	//setar base register
@@ -221,7 +221,7 @@ def_global_var: primitive_type TK_IDENTIFICADOR vector_declaration ';'
 
 	//Calcula endereço da variável global
 	st_identificador->offset_address = calculateGlobalAddress(st_identificador->size);
-	printf("offset: %d\n", st_identificador->offset_address);
+	//printf("offset: %d\n", st_identificador->offset_address);
 
 	free($3);
 	free(id_name);
@@ -264,7 +264,7 @@ def_global_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR vector_declaration 
 
 	//Calcula endereço da variável global
 	st_identificador->offset_address = calculateGlobalAddress(st_identificador->size);
-	printf("offset: %d\n", st_identificador->offset_address);
+	//printf("offset: %d\n", st_identificador->offset_address);
 
 	free($4);
 	free(id_name);
@@ -288,7 +288,7 @@ def_global_var: TK_IDENTIFICADOR TK_IDENTIFICADOR ';'
 
 	//Calcula endereço da variável global
 	st_identificador->offset_address = calculateGlobalAddress(st_identificador->size);
-	printf("offset: %d\n", st_identificador->offset_address);
+	//printf("offset: %d\n", st_identificador->offset_address);
 
 	free($1);
 	free(id_name);
@@ -314,7 +314,7 @@ def_global_var: TK_IDENTIFICADOR TK_IDENTIFICADOR vector_declaration ';'
 
 	//Calcula endereço da variável global
 	st_identificador->offset_address = calculateGlobalAddress(st_identificador->size);
-	printf("offset: %d\n", st_identificador->offset_address);
+	//printf("offset: %d\n", st_identificador->offset_address);
 
 	free($3);
 	free($1);
@@ -338,7 +338,7 @@ def_global_var: TK_PR_STATIC TK_IDENTIFICADOR TK_IDENTIFICADOR ';'
 
 	//Calcula endereço da variável global
 	st_identificador->offset_address = calculateGlobalAddress(st_identificador->size);
-	printf("offset: %d\n", st_identificador->offset_address);
+	//printf("offset: %d\n", st_identificador->offset_address);
 
 	free($2);
 	free(id_name);
@@ -364,7 +364,7 @@ def_global_var: TK_PR_STATIC TK_IDENTIFICADOR TK_IDENTIFICADOR vector_declaratio
 
 	//Calcula endereço da variável global
 	st_identificador->offset_address = calculateGlobalAddress(st_identificador->size);
-	printf("offset: %d\n", st_identificador->offset_address);
+	//printf("offset: %d\n", st_identificador->offset_address);
 
 	free($4);
 	free($2);
@@ -568,7 +568,7 @@ parameter: primitive_type TK_IDENTIFICADOR
 
 	//Calcula endereço da variável global
 	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
-	printf("local offset: %d\n", st_identificador->offset_address);
+	//printf("local offset: %d\n", st_identificador->offset_address);
 
 	free(id_name);
 }
@@ -585,7 +585,7 @@ parameter: TK_PR_CONST primitive_type TK_IDENTIFICADOR
 
 	//Calcula endereço da variável global
 	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
-	printf("local offset: %d\n", st_identificador->offset_address);
+	//printf("local offset: %d\n", st_identificador->offset_address);
 
 	free(id_name);
 }
@@ -605,7 +605,7 @@ parameter: TK_IDENTIFICADOR TK_IDENTIFICADOR
 
 	//Calcula endereço da variável global
 	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
-	printf("local offset: %d\n", st_identificador->offset_address);
+	//printf("local offset: %d\n", st_identificador->offset_address);
 
 	free($1);
 	free(id_name);
@@ -626,7 +626,7 @@ parameter: TK_PR_CONST TK_IDENTIFICADOR TK_IDENTIFICADOR
 
 	//Calcula endereço da variável global
 	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
-	printf("local offset: %d\n", st_identificador->offset_address);
+	//printf("local offset: %d\n", st_identificador->offset_address);
 
 	free($2);
 	free(id_name);
@@ -717,7 +717,7 @@ def_local_var: TK_IDENTIFICADOR TK_IDENTIFICADOR
 
 	//Calcula endereço da variável local
 	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
-	printf("local offset: %d\n", st_identificador->offset_address);
+	//printf("local offset: %d\n", st_identificador->offset_address);
 	//seta base do endereco da variavel
 	st_identificador->address_base = RARP;
 
@@ -737,7 +737,7 @@ def_local_var: primitive_type TK_IDENTIFICADOR
 
 	//Calcula endereço da variável local
 	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
-	printf("local offset: %d\n", st_identificador->offset_address);
+	//printf("local offset: %d\n", st_identificador->offset_address);
 	//seta base do endereco da variavel
 	st_identificador->address_base = RARP;
 
@@ -768,7 +768,7 @@ def_local_var: primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 
 	//Calcula endereço da variável local
 	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
-	printf("local offset: %d\n", st_identificador->offset_address);
+	//printf("local offset: %d\n", st_identificador->offset_address);
 	//seta base do endereco da variavel
 	st_identificador->address_base = RARP;
 
@@ -793,7 +793,7 @@ def_local_var: TK_PR_STATIC TK_IDENTIFICADOR TK_IDENTIFICADOR
 
 	//Calcula endereço da variável local
 	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
-	printf("local offset: %d\n", st_identificador->offset_address);
+	//printf("local offset: %d\n", st_identificador->offset_address);
 	//seta base do endereco da variavel
 	st_identificador->address_base = RBSS;
 
@@ -813,7 +813,7 @@ def_local_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR
 
 	//Calcula endereço da variável local
 	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
-	printf("local offset: %d\n", st_identificador->offset_address);
+	//printf("local offset: %d\n", st_identificador->offset_address);
 	//seta base do endereco da variavel
 	st_identificador->address_base = RBSS;
 
@@ -844,7 +844,7 @@ def_local_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 
 	//Calcula endereço da variável local
 	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
-	printf("local offset: %d\n", st_identificador->offset_address);
+	//printf("local offset: %d\n", st_identificador->offset_address);
 	//seta base do endereco da variavel
 	st_identificador->address_base = RBSS;
 
@@ -869,7 +869,7 @@ def_local_var: TK_PR_CONST TK_IDENTIFICADOR TK_IDENTIFICADOR
 
 	//Calcula endereço da variável local
 	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
-	printf("local offset: %d\n", st_identificador->offset_address);
+	//printf("local offset: %d\n", st_identificador->offset_address);
 	//seta base do endereco da variavel
 	st_identificador->address_base = RARP;
 
@@ -889,7 +889,7 @@ def_local_var: TK_PR_CONST primitive_type TK_IDENTIFICADOR
 
 	//Calcula endereço da variável local
 	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
-	printf("local offset: %d\n", st_identificador->offset_address);
+	//printf("local offset: %d\n", st_identificador->offset_address);
 	//seta base do endereco da variavel
 	st_identificador->address_base = RARP;
 
@@ -920,7 +920,7 @@ def_local_var: TK_PR_CONST primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 
 	//Calcula endereço da variável local
 	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
-	printf("local offset: %d\n", st_identificador->offset_address);
+	//printf("local offset: %d\n", st_identificador->offset_address);
 	//seta base do endereco da variavel
 	st_identificador->address_base = RARP;
 
@@ -945,7 +945,7 @@ def_local_var: TK_PR_STATIC TK_PR_CONST TK_IDENTIFICADOR TK_IDENTIFICADOR
 
 	//Calcula endereço da variável local
 	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
-	printf("local offset: %d\n", st_identificador->offset_address);
+	//printf("local offset: %d\n", st_identificador->offset_address);
 	//seta base do endereco da variavel
 	st_identificador->address_base = RBSS;
 
@@ -965,7 +965,7 @@ def_local_var: TK_PR_STATIC TK_PR_CONST primitive_type TK_IDENTIFICADOR
 
 	//Calcula endereço da variável local
 	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
-	printf("local offset: %d\n", st_identificador->offset_address);
+	//printf("local offset: %d\n", st_identificador->offset_address);
 	//seta base do endereco da variavel
 	st_identificador->address_base = RBSS;
 
@@ -996,7 +996,7 @@ def_local_var: TK_PR_STATIC TK_PR_CONST primitive_type TK_IDENTIFICADOR TK_OC_LE
 
 	//Calcula endereço da variável local
 	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
-	printf("local offset: %d\n", st_identificador->offset_address);
+	//printf("local offset: %d\n", st_identificador->offset_address);
 	//seta base do endereco da variavel
 	st_identificador->address_base = RBSS;
 

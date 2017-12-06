@@ -47,7 +47,7 @@ OPTION(ETAPA_4 "The Etapa 4 compilation" OFF)
 OPTION(ETAPA_5 "The Etapa 5 compilation" ON)
 OPTION(ETAPA_6 "The Etapa 6 compilation" OFF)
 OPTION(ETAPA_7 "The Etapa 7 compilation" OFF)
-OPTION(DEBUG "Enables debug-logging" ON)
+OPTION(DEBUG "Enables debug-logging" OFF)
 
 IF(ETAPA_1)
   add_definitions(-DAVALIACAO_ETAPA_1=1)
