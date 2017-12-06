@@ -88,6 +88,8 @@
 %type<tree> attribution_command
 %type<tree> flux_command
 %type<tree> iteration_command
+%type<tree> for_command_sequence
+%type<tree> foreach_expression_sequence
 %type<tree> condition_command
 %type<tree> selection_command
 %type<tree> shift_command
@@ -1283,8 +1285,11 @@ start_for: TK_PR_FOR '('
 }
 iteration_command: start_for for_command_sequence ':' expression ':' for_command_sequence ')' body
 {
-	//TODO implementar for
-	$$ = $8;
+	$$ = tree_make_node(new_ast_node_value(AST_FOR, SMTC_VOID, NULL, NULL));
+	tree_insert_node($$, $2);
+	tree_insert_node($$, $4);
+	tree_insert_node($$, $6);
+	tree_insert_node($$, $8);
 
 	//associa tabela de simbolos ao nodo AST
 	((ast_node_value_t*)$$->value)->symbols_table = getCurrentST();
@@ -1293,11 +1298,12 @@ iteration_command: start_for for_command_sequence ':' expression ':' for_command
 	#endif
 
 	mark_coercion(SMTC_BOOL, $4->value);
-	destroyAST($4);
 
 	//desempilha bloco e libera sua tabela de simbolos, ja que nao vai ser pendurada
 	//em ast nenhuma (ast do for nao foi implementada)
 	pop_and_free_scope();
+
+	generate_code_for($$->value, $2->value, $4->value, $6->value, $8->value);
 }
 iteration_command: TK_PR_WHILE '(' expression ')' TK_PR_DO block
 {
@@ -1353,8 +1359,15 @@ selection_command: start_switch expression ')' body
 	pop_and_free_scope();
 }
 
-for_command_sequence: simple_command { if ($1) destroyAST($1); }
-for_command_sequence: simple_command ',' for_command_sequence { if ($1) destroyAST($1); }
+for_command_sequence: simple_command { $$ = $1; }
+for_command_sequence: simple_command ',' for_command_sequence {
+	$$ = $1;
+	tree_insert_node($$,$3);
+	//concatenar codigo
+	ast_node_value_t* head = $$->value;
+	ast_node_value_t* cmd_list = $3->value;
+	stack_push_all_tacs(head->tac_stack, cmd_list->tac_stack);
+}
 
 foreach_expression_sequence: expression { destroyAST($1); }
 foreach_expression_sequence: expression ',' foreach_expression_sequence { destroyAST($1); }

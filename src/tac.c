@@ -2507,14 +2507,48 @@ void generate_code_attribution_var(ast_node_value_t* var, ast_node_value_t* expr
   free(imediate); free(base_register);
 }
 
+void generate_code_for(ast_node_value_t* head, ast_node_value_t* first_cmds, ast_node_value_t* condition, ast_node_value_t* scnd_cmds, ast_node_value_t* body) {
+  char* label_condition = new_label();
+  char* label_body = new_label();
+  char* label_break = new_label();
+
+  //controle de iterar ou sair do for
+  remenda(&condition->t_holes, label_body);
+  remenda(&condition->f_holes, label_break);
+
+  //código de inicializacao
+  stack_push_all_tacs(head->tac_stack, first_cmds->tac_stack);
+  //código da condicao, com label para reiteracao
+  tac_t* nop_label_condition = new_tac_nop(true, label_condition);
+  stack_push(nop_label_condition, head->tac_stack);
+  stack_push_all_tacs(head->tac_stack, condition->tac_stack);
+  //codigo do corpo, com label para onde condition = true pula
+  tac_t* nop_label_body= new_tac_nop(true, label_body);
+  stack_push(nop_label_body, head->tac_stack);
+  stack_push_all_tacs(head->tac_stack, body->tac_stack);
+  //codigo dos comandos finais do laço
+  stack_push_all_tacs(head->tac_stack, scnd_cmds->tac_stack);
+  //salto para recomeço do loop
+  tac_t* jump_condition = new_tac_jump(false, NULL, label_condition);
+  stack_push(jump_condition, head->tac_stack);
+  //label de final de loop, para salto de break/saida do for
+  tac_t* nop_label_break = new_tac_nop(true, label_break);
+  stack_push(nop_label_break, head->tac_stack);
+
+  //libera alocacoes nao mais necessarias
+  free(label_body); free(label_break); free(label_condition);
+}
 
 void iloc_to_stdout(stack_t *tac_stack) {
   stack_t* inv_stack = reversed_tac_stack(tac_stack);
 
   stack_item_t* item = inv_stack->data;
   while (item) {
-    if (item->value)
-      fprintf(stdout, "%s;\r\n", tac_to_string(item->value));
+    if (item->value) {
+      char* code = tac_to_string(item->value);
+      fprintf(stdout, "%s;\r\n", code);
+      free(code);
+    }
     item = item->next;
   }
 

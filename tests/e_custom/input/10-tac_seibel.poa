@@ -1,8 +1,7 @@
 int main() {
    int a;
-   if((7<=9) || (1>=0)) then {
-      a = 8742;
-   } else {
-      a = 4287;
+   int b;
+   for (a = 1, b = 0 : true : a = a + 1, b = b - 1) {
+        b = a;
    };
 }

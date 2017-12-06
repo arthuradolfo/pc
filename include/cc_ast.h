@@ -16,6 +16,11 @@
 #define AST_ATRIBUICAO           7
 #define AST_RETURN               8
 #define AST_BLOCO                9
+
+#define AST_FOR                 30
+#define AST_FOREACH             31
+#define AST_SWITCH              32
+
 //Condição, Saída, Expressão
 #define AST_IDENTIFICADOR       10
 #define AST_LITERAL             11
