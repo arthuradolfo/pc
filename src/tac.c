@@ -2514,7 +2514,7 @@ void iloc_to_stdout(stack_t *tac_stack) {
   stack_item_t* item = inv_stack->data;
   while (item) {
     if (item->value)
-      fprintf(stdout, "%s\r\n", tac_to_string(item->value));
+      fprintf(stdout, "%s;\r\n", tac_to_string(item->value));
     item = item->next;
   }
 

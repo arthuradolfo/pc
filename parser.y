@@ -440,10 +440,12 @@ def_function: func_name push_func_stack '(' parameters ')' body
 	//ao sair da declaracao de funcao, da pop na pilha de declaracoes
 	pop_and_free_scope();
 
-	// if (!head->tac_stack->empty) {
-	// 	printf("\n\n_____ CÓDIGO FUNÇÃO [linha %d]_____", comp_get_line_number());
-	// 	print_tac_stack(&head->tac_stack);
-	// }
+	#ifdef DEBUG
+		if (!head->tac_stack->empty) {
+			printf("\n\n_____ CÓDIGO FUNÇÃO [linha %d]_____", comp_get_line_number());
+			print_tac_stack(&head->tac_stack);
+		}
+	#endif
 }
 def_function: TK_PR_STATIC func_name push_func_stack '(' parameters ')' body
 {
