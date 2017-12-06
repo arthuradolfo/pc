@@ -2119,13 +2119,8 @@ bool is_and(int opcode) {
 bool is_or(int opcode) {
   return (opcode == OP_OR);
 }
-bool syntactic_type_is_bool_operator(int syntactic_type) {
-  return (syntactic_type == AST_LOGICO_COMP_LE) ||
-         (syntactic_type == AST_LOGICO_COMP_GE) ||
-         (syntactic_type == AST_LOGICO_COMP_IGUAL) ||
-         (syntactic_type == AST_LOGICO_COMP_DIF) ||
-         (syntactic_type ==AST_LOGICO_E) ||
-         (syntactic_type == AST_LOGICO_OU);
+bool has_holes_to_patch(ast_node_value_t* ast_node) {
+  return (!ast_node->t_holes->empty) || (!ast_node->f_holes->empty);
 }
 
 void generate_code_load_var(ast_node_value_t *variable) {
@@ -2140,13 +2135,36 @@ void generate_code_load_var(ast_node_value_t *variable) {
   free(imediate); free(base_register);
 }
 
-void generate_code_load_literal(ast_node_value_t *literal) {
+void generate_code_load_literal_int(ast_node_value_t *literal) {
   literal->result_reg = new_register();
   st_value_t* st_entry = literal->symbols_table_entry;
   char* imediate = new_imediate(st_entry->value.i);
 
   tac_t* loadi = new_tac_sed(false, NULL, OP_LOAD_I, imediate, literal->result_reg);
   stack_push(loadi, literal->tac_stack);
+
+  free(imediate);
+}
+
+void generate_code_load_literal_bool(ast_node_value_t *literal) {
+  literal->result_reg = new_register();
+  st_value_t* st_entry = literal->symbols_table_entry;
+  char* imediate = new_imediate(st_entry->value.b);
+
+  //TODO oportunidade de melhora: deixar só um jump e um buraco na t ou f holes dependendo de value.b
+  //TODO para isso é preciso que o and e o or tratem jumpi alem de cbr...
+
+  //carga
+  tac_t* loadi = new_tac_sed(false, NULL, OP_LOAD_I, imediate, literal->result_reg);
+  stack_push(loadi, literal->tac_stack);
+  //buracos para remendo
+  tac_t* cbr = new_tac(NULL, OP_CBR, literal->result_reg, NULL, new_hole(), new_hole());
+  stack_push(cbr, literal->tac_stack);
+  //guarda referencias para buracos a serem remendados
+  char** x_address = &cbr->dst_1;
+  char** y_address = &cbr->dst_2;
+  stack_push(x_address, literal->t_holes);
+  stack_push(y_address, literal->f_holes);
 
   free(imediate);
 }
@@ -2177,39 +2195,25 @@ void generate_code_expression(ast_node_value_t* expression, ast_node_value_t* op
     if(is_and(opcode)) {
       char* label_check_B2 = new_label();
 
+      //TODO colocar um cbrs com result regs de operandos se eles nao forem bools
+
       remenda(&(operand_1->t_holes), label_check_B2);
-      print_stack_holes(operand_1->t_holes);
-      printf("OPERANDO 1 LOGIC:\n");
-      print_tac_stack(&operand_1->tac_stack);
-      printf("OPERANDO 2 LOGIC:\n");
-      print_tac_stack(&operand_2->tac_stack);
 
       stack_push_all_tacs_and(expression->tac_stack, operand_1->tac_stack, expression->t_holes, expression->f_holes, true);
       stack_push(new_tac_nop(true, label_check_B2), expression->tac_stack);
       stack_push_all_tacs_and(expression->tac_stack, operand_2->tac_stack, expression->t_holes, expression->f_holes, false);
-      //guarda referencias para buracos a serem remendados
-      printf("HOLES TO PASS:\n");
-      print_stack_holes(expression->f_holes);
-      print_tac_stack(&operand_1->tac_stack);
+
       free(label_check_B2);
     }
     else {
       char* label_check_B2 = new_label();
 
       remenda(&(operand_1->f_holes), label_check_B2);
-      print_stack_holes(operand_1->t_holes);
-      printf("OPERANDO 1 LOGIC:\n");
-      print_tac_stack(&operand_1->tac_stack);
-      printf("OPERANDO 2 LOGIC:\n");
-      print_tac_stack(&operand_2->tac_stack);
 
       stack_push_all_tacs_or(expression->tac_stack, operand_1->tac_stack, expression->t_holes, expression->f_holes, true);
       stack_push(new_tac_nop(true, label_check_B2), expression->tac_stack);
       stack_push_all_tacs_or(expression->tac_stack, operand_2->tac_stack, expression->t_holes, expression->f_holes, false);
-      //guarda referencias para buracos a serem remendados
-      printf("HOLES TO PASS:\n");
-      print_stack_holes(expression->f_holes);
-      print_tac_stack(&operand_1->tac_stack);
+
       free(label_check_B2);
     }
   }
@@ -2219,13 +2223,13 @@ void generate_code_expression(ast_node_value_t* expression, ast_node_value_t* op
     //geramos o codigo dessa obtencao de valores, com os labels remendados, mas guardamos em um cache para ser
     //pushado em expression->tac_stack só depois da concatenacao do codigo dos operandos, ficando na ordem correta
     stack_t* cache_stack_1;
-    if (syntactic_type_is_bool_operator(operand_1->syntactic_type)) {
+    if (has_holes_to_patch(operand_1)) {
       cache_stack_1 = new_stack();
     } else {
       cache_stack_1 = NULL;
     }
     stack_t* cache_stack_2;
-    if (syntactic_type_is_bool_operator(operand_2->syntactic_type)) {
+    if (has_holes_to_patch(operand_2)) {
       cache_stack_2 = new_stack();
     } else {
       cache_stack_2 = NULL;
@@ -2238,7 +2242,7 @@ void generate_code_expression(ast_node_value_t* expression, ast_node_value_t* op
     for (i = 0; i < 2; ++i) {
       ast_node_value_t* operand = (i == 0)? operand_1 : operand_2;
       stack_t* cache_stack = (i == 0)? cache_stack_1 : cache_stack_2;
-      if (syntactic_type_is_bool_operator(operand->syntactic_type)) {
+      if (has_holes_to_patch(operand)) {
 
         //criamos duas labels. a (true/false) refere ao codigo que se carrega (1/0) no result reg do operando
         char *label_true = new_label();
@@ -2338,12 +2342,64 @@ void generate_code_if_else(ast_node_value_t *cabeca, ast_node_value_t *condicao,
 }
 
 void generate_code_attribution_var(ast_node_value_t* var, ast_node_value_t* expression) {
+
+  //a ideia é que concatenemos os codigos dos operandos e depois é possivel que concatenemos os codigos
+  //de obtencao de valor numerico de bool_ops. os bool_ops tem buracos a serem remendados, entao primeiro
+  //geramos o codigo dessa obtencao de valores, com os labels remendados, mas guardamos em um cache para ser
+  //pushado em var->tac_stack só depois da concatenacao do codigo dos operandos, ficando na ordem correta
+  stack_t* cache_stack;
+  if (has_holes_to_patch(expression)) {
+    cache_stack = new_stack();
+  } else {
+    cache_stack = NULL;
+  }
+
+  //se os operandos forem operadores logicos ou relacionais, há buracos a serem remendados neles, e precisamos
+  //obter um valor numerico (1 ou 0) da expressao em algum registrador para poder realizar a atribuicao
+  if (has_holes_to_patch(expression)) {
+
+    //criamos duas labels. a (true/false) refere ao codigo que se carrega (1/0) no result reg do operando
+    char *label_true = new_label();
+    char *label_false = new_label();
+    //criamos uma label que é o fim dessa atribuicao de 1 ou 0, para continuar o codigo depois disso
+    char *label_continue = new_label();
+
+    //colocamos a label true e a atribuicao do 1 (true)
+    char* imed_true = new_imediate(1);
+    tac_t* loadi_true = new_tac_sed(true, label_true, OP_LOAD_I, imed_true, expression->result_reg);
+    stack_push(loadi_true, cache_stack);
+    //colocamos um jump para a label de continue, para pular a atribuicao do 0 (false)
+    tac_t* skip_false = new_tac_jump(false, NULL, label_continue);
+    stack_push(skip_false, cache_stack);
+
+    //colocamos a label false e a atribuicao do 0 (false)
+    char* imed_false = new_imediate(0);
+    tac_t* loadi_false = new_tac_sed(true, label_false, OP_LOAD_I, imed_false, expression->result_reg);
+    stack_push(loadi_false, cache_stack);
+
+    //colocamos a label de continue
+    tac_t* nop_continue_label = new_tac_nop(true, label_continue);
+    stack_push(nop_continue_label, cache_stack);
+
+    //finalmente, remendamos os buracos do operando com as labels que criamos
+    remenda(&(expression->t_holes), label_true);
+    remenda(&(expression->f_holes), label_false);
+
+    free(label_true); free(label_false); free(label_continue); free(imed_true); free(imed_false);
+  }
+  //concatenacao do codigo final
+
+  //codigo do operando 1 e obtencao de seu valor se ele for booleano
+  stack_push_all_tacs(var->tac_stack, expression->tac_stack);
+  if (cache_stack) {
+    stack_push_all_tacs(var->tac_stack, cache_stack);
+    clear_tac_stack(&cache_stack);
+    free_stack(cache_stack);
+  }
+
   st_value_t* var_st_entry = var->symbols_table_entry;
   char* imediate = new_imediate(var_st_entry->offset_address);
   char* base_register = base_register_name(var_st_entry->address_base);
-
-  //concatenacao de codigo
-  stack_push_all_tacs(var->tac_stack, expression->tac_stack);
   tac_t* store_ai = new_tac(NULL, OP_STORE_AI, expression->result_reg, NULL, base_register, imediate);
   stack_push(store_ai, var->tac_stack);
 

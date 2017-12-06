@@ -1393,16 +1393,18 @@ sub_expression: function_call
 
 literal: TK_LIT_INT {
 	$$ = tree_make_node(new_ast_node_value(AST_LITERAL, SMTC_INT, NULL, $1));
-
-	ast_node_value_t* ast_node_value_head = $$->value;
-
-	generate_code_load_literal(ast_node_value_head);
-	//print_tac_stack(&(ast_node_value_head->tac_stack));
+	generate_code_load_literal_int($$->value);
 }
 literal: TK_LIT_FLOAT { $$ = tree_make_node(new_ast_node_value(AST_LITERAL, SMTC_FLOAT, NULL, $1)); }
 literal: TK_LIT_CHAR { $$ = tree_make_node(new_ast_node_value(AST_LITERAL, SMTC_CHAR, NULL, $1)); }
-literal: TK_LIT_TRUE { $$ = tree_make_node(new_ast_node_value(AST_LITERAL, SMTC_BOOL, NULL, $1)); }
-literal: TK_LIT_FALSE { $$ = tree_make_node(new_ast_node_value(AST_LITERAL, SMTC_BOOL, NULL, $1)); }
+literal: TK_LIT_TRUE {
+	$$ = tree_make_node(new_ast_node_value(AST_LITERAL, SMTC_BOOL, NULL, $1));
+	generate_code_load_literal_bool($$->value);
+}
+literal: TK_LIT_FALSE {
+	$$ = tree_make_node(new_ast_node_value(AST_LITERAL, SMTC_BOOL, NULL, $1));
+	generate_code_load_literal_bool($$->value);
+}
 literal: TK_LIT_STRING
 {
 	$$ = tree_make_node(new_ast_node_value(AST_LITERAL, SMTC_STRING, NULL, $1));

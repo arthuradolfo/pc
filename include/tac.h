@@ -267,7 +267,7 @@ void remenda(stack_t** buracos, char* label);
 
 void remenda_test();
 
-bool syntactic_type_is_bool_operator(int syntactic_type);
+bool has_holes_to_patch(ast_node_value_t* ast_node);
 int opcode_from_operator(ast_node_value_t* operator);
 bool is_relop(int opcode);
 bool is_logic(int opcode);
@@ -276,7 +276,8 @@ bool is_or(int opcode);
 bool is_and(int opcode);
 
 void generate_code_load_var(ast_node_value_t *variable);
-void generate_code_load_literal(ast_node_value_t *literal);
+void generate_code_load_literal_int(ast_node_value_t *literal);
+void generate_code_load_literal_bool(ast_node_value_t *literal);
 void generate_code_expression(ast_node_value_t* expression, ast_node_value_t* operand_1, ast_node_value_t* operator, ast_node_value_t* operand_2);
 void generate_code_if(ast_node_value_t* cabeca, ast_node_value_t* condicao, ast_node_value_t* codigo);
 void generate_code_if_else(ast_node_value_t* cabeca, ast_node_value_t* condicao, ast_node_value_t* codigo_true, ast_node_value_t* codigo_false);
