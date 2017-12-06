@@ -1979,7 +1979,7 @@ void stack_push_all_tacs_and(stack_t* dst, stack_t* pushed, stack_t* t_holes, st
         stack_push(&(((tac_t*)dst->data->value)->dst_2), f_holes);
       }
       else {
-        stack_push(&(((tac_t*)dst->data->value)->dst_1), t_holes); 
+        stack_push(&(((tac_t*)dst->data->value)->dst_1), t_holes);
         stack_push(&(((tac_t*)dst->data->value)->dst_2), f_holes);
       }
     }
@@ -2001,7 +2001,7 @@ void stack_push_all_tacs_or(stack_t* dst, stack_t* pushed, stack_t* t_holes, sta
         stack_push(&(((tac_t*)dst->data->value)->dst_1), t_holes);
       }
       else {
-        stack_push(&(((tac_t*)dst->data->value)->dst_1), t_holes); 
+        stack_push(&(((tac_t*)dst->data->value)->dst_1), t_holes);
         stack_push(&(((tac_t*)dst->data->value)->dst_2), f_holes);
       }
     }
@@ -2119,6 +2119,14 @@ bool is_and(int opcode) {
 bool is_or(int opcode) {
   return (opcode == OP_OR);
 }
+bool syntactic_type_is_bool_operator(int syntactic_type) {
+  return (syntactic_type == AST_LOGICO_COMP_LE) ||
+         (syntactic_type == AST_LOGICO_COMP_GE) ||
+         (syntactic_type == AST_LOGICO_COMP_IGUAL) ||
+         (syntactic_type == AST_LOGICO_COMP_DIF) ||
+         (syntactic_type ==AST_LOGICO_E) ||
+         (syntactic_type == AST_LOGICO_OU);
+}
 
 void generate_code_load_var(ast_node_value_t *variable) {
   variable->result_reg = new_register();
@@ -2187,7 +2195,7 @@ void generate_code_expression(ast_node_value_t* expression, ast_node_value_t* op
   else if (is_logic(opcode)) {
     if(is_and(opcode)) {
       char* label_check_B2 = new_label();
-      
+
       remenda(&(operand_1->t_holes), label_check_B2);
       print_stack_holes(operand_1->t_holes);
       printf("OPERANDO 1 LOGIC:\n");
@@ -2206,7 +2214,7 @@ void generate_code_expression(ast_node_value_t* expression, ast_node_value_t* op
     }
     else {
       char* label_check_B2 = new_label();
-      
+
       remenda(&(operand_1->f_holes), label_check_B2);
       print_stack_holes(operand_1->t_holes);
       printf("OPERANDO 1 LOGIC:\n");
@@ -2225,13 +2233,82 @@ void generate_code_expression(ast_node_value_t* expression, ast_node_value_t* op
     }
   }
   else if (is_arit(opcode)) {
-      //concatenacao de codigo
-      stack_push_all_tacs(expression->tac_stack, operand_1->tac_stack);
-      stack_push_all_tacs(expression->tac_stack, operand_2->tac_stack);
-      //operacao aritmetica
-      tac_t* arit_op = new_tac(NULL, opcode, operand_1->result_reg, operand_2->result_reg, expression->result_reg, NULL);
-      stack_push(arit_op, expression->tac_stack);
+    //a ideia é que concatenemos os codigos dos operandos e depois é possivel que concatenemos os codigos
+    //de obtencao de valor numerico de bool_ops. os bool_ops tem buracos a serem remendados, entao primeiro
+    //geramos o codigo dessa obtencao de valores, com os labels remendados, mas guardamos em um cache para ser
+    //pushado em expression->tac_stack só depois da concatenacao do codigo dos operandos, ficando na ordem correta
+    stack_t* cache_stack_1;
+    if (syntactic_type_is_bool_operator(operand_1->syntactic_type)) {
+      cache_stack_1 = new_stack();
+    } else {
+      cache_stack_1 = NULL;
     }
+    stack_t* cache_stack_2;
+    if (syntactic_type_is_bool_operator(operand_2->syntactic_type)) {
+      cache_stack_2 = new_stack();
+    } else {
+      cache_stack_2 = NULL;
+    }
+
+    //se os operandos forem operadores logicos ou relacionais, há buracos a serem remendados neles, e precisamos
+    //obter um valor numerico (1 ou 0) da expressao em algum registrador para poder realizar a arit op
+    //fazer analise para ambos os operandos (for de duas iteracoes apenas)
+    int i;
+    for (i = 0; i < 2; ++i) {
+      ast_node_value_t* operand = (i == 0)? operand_1 : operand_2;
+      stack_t* cache_stack = (i == 0)? cache_stack_1 : cache_stack_2;
+      if (syntactic_type_is_bool_operator(operand->syntactic_type)) {
+
+        //criamos duas labels. a (true/false) refere ao codigo que se carrega (1/0) no result reg do operando
+        char *label_true = new_label();
+        char *label_false = new_label();
+        //criamos uma label que é o fim dessa atribuicao de 1 ou 0, para continuar o codigo depois disso
+        char *label_continue = new_label();
+
+        //colocamos a label true e a atribuicao do 1 (true)
+        char* imed_true = new_imediate(1);
+        tac_t* loadi_true = new_tac_sed(true, label_true, OP_LOAD_I, imed_true, operand->result_reg);
+        stack_push(loadi_true, cache_stack);
+        //colocamos um jump para a label de continue, para pular a atribuicao do 0 (false)
+        tac_t* skip_false = new_tac_jump(false, NULL, label_continue);
+        stack_push(skip_false, cache_stack);
+
+        //colocamos a label false e a atribuicao do 0 (false)
+        char* imed_false = new_imediate(0);
+        tac_t* loadi_false = new_tac_sed(true, label_false, OP_LOAD_I, imed_false, operand->result_reg);
+        stack_push(loadi_false, cache_stack);
+
+        //colocamos a label de continue
+        tac_t* nop_continue_label = new_tac_nop(true, label_continue);
+        stack_push(nop_continue_label, cache_stack);
+
+        //finalmente, remendamos os buracos do operando com as labels que criamos
+        remenda(&(operand->t_holes), label_true);
+        remenda(&(operand->f_holes), label_false);
+
+        free(label_true); free(label_false); free(label_continue); free(imed_true); free(imed_false);
+      }
+    }
+    //concatenacao do codigo final
+
+    //codigo do operando 1 e obtencao de seu valor se ele for booleano
+    stack_push_all_tacs(expression->tac_stack, operand_1->tac_stack);
+    if (cache_stack_1) {
+      stack_push_all_tacs(expression->tac_stack, cache_stack_1);
+      clear_tac_stack(&cache_stack_1);
+      free_stack(cache_stack_1);
+    }
+    //codigo do operando 2 e obtencao de seu valor se ele for booleano
+    stack_push_all_tacs(expression->tac_stack, operand_2->tac_stack);
+    if (cache_stack_2) {
+      stack_push_all_tacs(expression->tac_stack, cache_stack_2);
+      clear_tac_stack(&cache_stack_2);
+      free_stack(cache_stack_2);
+    }
+    //operacao aritmetica
+    tac_t* arit_op = new_tac(NULL, opcode, operand_1->result_reg, operand_2->result_reg, expression->result_reg, NULL);
+    stack_push(arit_op, expression->tac_stack);
+  }
 }
 
 void generate_code_if(ast_node_value_t *cabeca, ast_node_value_t *condicao, ast_node_value_t *codigo) {

@@ -267,10 +267,13 @@ void remenda(stack_t** buracos, char* label);
 
 void remenda_test();
 
+bool syntactic_type_is_bool_operator(int syntactic_type);
 int opcode_from_operator(ast_node_value_t* operator);
 bool is_relop(int opcode);
 bool is_logic(int opcode);
 bool is_arit(int opcode);
+bool is_or(int opcode);
+bool is_and(int opcode);
 
 void generate_code_load_var(ast_node_value_t *variable);
 void generate_code_load_literal(ast_node_value_t *literal);
