@@ -2549,10 +2549,24 @@ void generate_code_for(ast_node_value_t* head, ast_node_value_t* first_cmds, ast
   free(label_body); free(label_break); free(label_condition);
 }
 
-void generate_code_foreach(ast_node_value_t* head, st_value_t* identifier, ast_node_value_t* params, ast_node_value_t* body) {
-  
-}
+void generate_code_foreach(ast_node_value_t* head, st_value_t* identifier, comp_tree_t* params, ast_node_value_t* body) {
+  ast_node_value_t *param_node;
 
+  char* imediate = new_imediate(identifier->offset_address);
+  char* base_register = base_register_name(identifier->address_base);
+  char* reg_identifier = new_register();
+
+  while(params) {
+    param_node = params->value;
+    stack_push_all_tacs(head->tac_stack, param_node->tac_stack);
+    tac_t* store_ai = new_tac(NULL, OP_STORE_AI, param_node->result_reg, NULL, base_register, imediate);
+    stack_push(store_ai, head->tac_stack);
+    stack_push_all_tacs(head->tac_stack, body->tac_stack);
+    params = params->first;
+  }
+
+  free(imediate); free(base_register); free(reg_identifier);
+}
 void iloc_to_stdout(stack_t *tac_stack) {
   stack_t* inv_stack = reversed_tac_stack(tac_stack);
 

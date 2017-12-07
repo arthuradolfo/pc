@@ -1326,7 +1326,7 @@ iteration_command: start_foreach TK_IDENTIFICADOR ':' foreach_expression_sequenc
 	free($2);
 
 	//gera codigo
-	generate_code_foreach($$->value, st_identificador, $4->value, $6->value);
+	generate_code_foreach($$->value, st_identificador, $4, $6->value);
 }
 
 start_for: TK_PR_FOR '('
@@ -1427,10 +1427,6 @@ foreach_expression_sequence: expression {
 foreach_expression_sequence: expression ',' foreach_expression_sequence {
 	$$ = $1;
 	tree_insert_node($$,$3);
-	//concatenar codigo
-	ast_node_value_t* head = $$->value;
-	ast_node_value_t* cmd_list = $3->value;
-	stack_push_all_tacs(head->tac_stack, cmd_list->tac_stack);
 }
 
 action_command: TK_PR_RETURN expression
@@ -1623,109 +1619,6 @@ base_expression: function_call
 	$$ = $1;
 	((ast_node_value_t*) $$->value)->outputable = is_arit_expression($$->value);
 }
-
-//
-
-// expression: sub_expression_chain { $$ = $1; }
-//
-// sub_expression_chain: sub_expression_1 { $$ = $1; }
-// sub_expression_chain: sub_expression_1 logic_operator sub_expression_1
-// {
-// 	ast_node_value_t* ast_node_value_sub_expression = $1->value;
-// 	ast_node_value_t* ast_node_value_sub_expression_chain = $3->value;
-//
-// 	//operador sobe
-// 	$$ = $2;
-// 	ast_node_value_t* ast_node_value_head = $$->value;
-//
-// 	//pendura operandos
-// 	tree_insert_node($$, $1);
-// 	tree_insert_node($$, $3);
-//
-// 	//infere tipo semantico baseado nos operandos
-// 	ast_node_value_head->semantic_type = infere_type(ast_node_value_sub_expression->semantic_type, ast_node_value_sub_expression_chain->semantic_type);
-// 	mark_coercion_where_needed(ast_node_value_sub_expression, ast_node_value_sub_expression_chain);
-//
-// 	((ast_node_value_t*) $$->value)->outputable = is_arit_expression(ast_node_value_head);
-//
-// 	generate_code_expression($$->value, $1->value, $2->value, $3->value);
-// }
-//
-// sub_expression_1: sub_expression operator sub_expression_1
-// {
-// 	ast_node_value_t* ast_node_value_sub_expression = $1->value;
-// 	ast_node_value_t* ast_node_value_sub_expression_chain = $3->value;
-//
-// 	//operador sobe
-// 	$$ = $2;
-// 	ast_node_value_t* ast_node_value_head = $$->value;
-//
-// 	//pendura operandos
-// 	tree_insert_node($$, $1);
-// 	tree_insert_node($$, $3);
-//
-// 	//infere tipo semantico baseado nos operandos
-// 	ast_node_value_head->semantic_type = infere_type(ast_node_value_sub_expression->semantic_type, ast_node_value_sub_expression_chain->semantic_type);
-// 	mark_coercion_where_needed(ast_node_value_sub_expression, ast_node_value_sub_expression_chain);
-//
-// 	((ast_node_value_t*) $$->value)->outputable = is_arit_expression(ast_node_value_head);
-//
-// 	generate_code_expression($$->value, $1->value, $2->value, $3->value);
-// }
-//
-// sub_expression_1: sub_expression { $$ = $1; }
-//
-// sub_expression: unary_operator sub_expression
-// {
-// 	ast_node_value_t* value_sub_expression = $2->value;
-// 	ast_node_value_t* value_head = $$->value;
-//
-// 	if ($1) {
-// 		$$ = $1;
-// 		tree_insert_node($$, $2);
-// 	} else {
-// 		$$ = $2;
-// 	}
-// 	//infere tipo semantico baseado no operando
-// 	value_head->semantic_type = value_sub_expression->semantic_type;
-// 	generate_code_unary_op($$->value, $1->value, $2->value);
-// }
-// sub_expression: '(' expression ')' { $$ = $2; }
-// sub_expression: literal {	$$ = $1; }
-// sub_expression: TK_IDENTIFICADOR
-// {
-// 	st_value_t* st_identificador = ensure_variable_declared($1);
-//
-// 	$$ = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, st_identificador));
-//
-// 	((ast_node_value_t*) $$->value)->outputable = is_arit_expression($$->value);
-// 	((ast_node_value_t*) $$->value)->inputable = true;
-//
-// 	free($1);
-//
-// 	generate_code_load_var($$->value);
-// }
-// sub_expression: TK_IDENTIFICADOR attribution_vector
-// {
-//
-// 	st_value_t* st_identificador = ensure_vector_declared($1);
-//
-// 	ast_node_value_t* ast_vector = $2->value;
-// 	ensure_vector_dimension(ast_vector->vector_dimension, st_identificador->vector_dimension, st_identificador->value.s);
-//
-// 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, st_identificador));
-// 	$$ = tree_make_binary_node(new_ast_node_value(AST_VETOR_INDEXADO, st_identificador->semantic_type, st_identificador->semantic_user_type, NULL), node_identificador, $2);
-//
-// 	((ast_node_value_t*) $$->value)->outputable = is_arit_expression($$->value);
-//
-// 	free($1);
-// }
-// sub_expression: function_call
-// {
-// 	$$ = $1;
-// 	((ast_node_value_t*) $$->value)->outputable = is_arit_expression($$->value);
-// }
-
 
 literal: TK_LIT_INT {
 	$$ = tree_make_node(new_ast_node_value(AST_LITERAL, SMTC_INT, NULL, $1));

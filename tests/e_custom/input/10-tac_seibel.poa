@@ -1,5 +1,9 @@
 int a;
 int vetor[10][9][8];
 int main() {
-    bool b <= 1+2 / 4 ;
+    int fora_foreach;
+    foreach(fora_foreach : 1, 2)
+    {
+      int dentro_do_foreach <= 42 + fora_foreach;
+    };
 }

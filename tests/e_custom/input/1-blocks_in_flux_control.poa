@@ -58,9 +58,9 @@ tipo2_t main(int a0, int a1, int a2)
     int dentro_do_switch;
   };
 
-  for (char d_var <= 'd' : true : d_var = 'e')
+  for (int d_var <= 1 : true : d_var = d_var + 1)
   {
-    int dentro_do_for;
+    int dentro_do_for <= d_var;
   };
 
   int fora_foreach;
