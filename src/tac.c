@@ -2643,7 +2643,7 @@ void iloc_to_stdout(stack_t *tac_stack) {
   while (item) {
     if (item->value) {
       char* code = tac_to_string(item->value);
-      fprintf(stdout, "%s;\r\n", code);
+      fprintf(stdout, "%s;\n", code);
       free(code);
     }
     item = item->next;
@@ -2739,6 +2739,11 @@ void generate_code_atrib_vector(ast_node_value_t* head, stack_t* indices /*lista
   tac_t* mult = new_tac_ssed(false, NULL, OP_MULT_I, reg_acumulador, imed_prim_size, reg_acumulador);
   stack_push(mult, head->tac_stack);
 
+  //add acumulador, st_vector->offset => acumulador
+  char* imed_offset_adr = new_imediate(st_vector->offset_address);
+  tac_t* add_offset = new_tac_ssed(false, NULL, OP_ADD, reg_acumulador, imed_offset_adr, reg_acumulador);
+  stack_push(add_offset, head->tac_stack);
+
   //store expression->result_reg => st_vector->adress_base, acumulador
   char* base_reg = base_register_name(st_vector->address_base);
   tac_t* store = new_tac_sedd(false, NULL, OP_STORE_A0, expression->result_reg, base_reg, reg_acumulador);
@@ -2746,4 +2751,72 @@ void generate_code_atrib_vector(ast_node_value_t* head, stack_t* indices /*lista
 
   free(imed_0); free(reg_acumulador); free(reg_aux);
   free(imed_prim_size); free(base_reg);
+}
+
+void generate_code_exp_vector(ast_node_value_t* head, stack_t* indices /*lista de ast_nodes dos indices de acesso*/, st_value_t* st_vector) {
+
+  head->result_reg = new_register();
+  char* reg_acumulador = new_register();
+  char* reg_aux = new_register();
+
+  //concatenar codigo dos indices
+  stack_item_t* index = indices->data;
+  while (index) {
+    ast_node_value_t* ast_access_index = index->value;
+    stack_push_all_tacs(head->tac_stack, ast_access_index->tac_stack);
+    index = index->next;
+  }
+
+  //loadi 0 => acumulador
+  char* imed_0 = new_imediate(0);
+  tac_t* loadi_ac = new_tac_sed(false, NULL, OP_LOAD_I, imed_0, reg_acumulador);
+  stack_push(loadi_ac, head->tac_stack);
+  //load 0 => reg_aux
+  tac_t* loadi_aux = new_tac_sed(false, NULL, OP_LOAD_I, imed_0, reg_aux);
+  stack_push(loadi_aux, head->tac_stack);
+
+  int dimension = 0;
+  stack_item_t* item = indices->data;
+
+  //ai pro fim da pilha
+  while (item->next) {
+    item = item->next;
+  }
+
+  //percorre pilha do fim pro inicio
+  while (item) {
+    ast_node_value_t* ast_access_index = item->value;
+
+    int* sizes = stack_to_vector(st_vector->vector_sizes);
+    int fator = calculate_factor(dimension, sizes);
+    //multi item->result_reg, fator => reg_aux
+    char* imed_fator = new_imediate(fator);
+    tac_t* mult = new_tac_ssed(false, NULL, OP_MULT_I, ast_access_index->result_reg, imed_fator, reg_aux);
+    stack_push(mult, head->tac_stack);
+    //add reg_acumulador, reg_aux => acumulador
+    tac_t* add = new_tac_ssed(false, NULL, OP_ADD, reg_acumulador, reg_aux, reg_acumulador);
+    stack_push(add, head->tac_stack);
+
+    free(sizes);
+    free(imed_fator);
+    item = item->prev;
+    dimension++;
+  }
+  //mult acumulador, get_primitive_size(st_vector->semantic_type) => acumulador
+  char* imed_prim_size = new_imediate(get_type_size(st_vector->semantic_type));
+  tac_t* mult = new_tac_ssed(false, NULL, OP_MULT_I, reg_acumulador, imed_prim_size, reg_acumulador);
+  stack_push(mult, head->tac_stack);
+
+  //add acumulador, st_vector->offset => acumulador
+  char* imed_offset_adr = new_imediate(st_vector->offset_address);
+  tac_t* add_offset = new_tac_ssed(false, NULL, OP_ADD, reg_acumulador, imed_offset_adr, reg_acumulador);
+  stack_push(add_offset, head->tac_stack);
+
+  //load st_vector->adress_base, acumulador => head->result_reg
+  char* base_reg = base_register_name(st_vector->address_base);
+  tac_t* load = new_tac_ssed(false, NULL, OP_LOAD_A0, base_reg, reg_acumulador, head->result_reg);
+  stack_push(load, head->tac_stack);
+
+  free(reg_acumulador); free(reg_aux); free(base_reg);
+  free(imed_0); free(imed_prim_size); free(imed_offset_adr);
 }

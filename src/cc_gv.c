@@ -159,7 +159,8 @@ void gv_declare (const int tipo, const void *pointer, char *name)
   __gv_test_valid_fp (__FUNCTION__);
   __gv_test_valid_ast_pointer (__FUNCTION__, pointer);
 
-  char *description = NULL;  switch (tipo){
+  char *description = NULL;
+  switch (tipo){
   case AST_FUNCAO:
   case AST_IDENTIFICADOR:
   case AST_LITERAL:

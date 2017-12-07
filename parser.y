@@ -1627,6 +1627,17 @@ sub_expression: TK_IDENTIFICADOR attribution_vector
 	((ast_node_value_t*) $$->value)->outputable = is_arit_expression($$->value);
 
 	free($1);
+
+	generate_code_exp_vector($$->value, current_vector_stack, st_identificador);
+
+	//reseta a pilha
+	stack_item_t* item;
+	do {
+		stack_pop(&item, &current_vector_stack);
+		free(item);
+	} while (item);
+	free_stack(current_vector_stack);
+	current_vector_stack = new_stack();
 }
 sub_expression: function_call
 {
