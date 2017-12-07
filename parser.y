@@ -1531,7 +1531,7 @@ sub_expression_chain: sub_expression_1 logic_operator sub_expression_1
 	generate_code_expression($$->value, $1->value, $2->value, $3->value);
 }
 
-sub_expression_1: sub_expression operator sub_expression
+sub_expression_1: sub_expression operator sub_expression_1
 {
 	ast_node_value_t* ast_node_value_sub_expression = $1->value;
 	ast_node_value_t* ast_node_value_sub_expression_chain = $3->value;
