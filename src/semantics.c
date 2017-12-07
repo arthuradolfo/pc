@@ -546,7 +546,6 @@ st_value_t* putToCurrentST(char* key, int line, int token_type)
   concatTokenType(key_aux, token_type);
 
   st_value_t* entryValue = new_st_value();
-
   entryValue->line = line;
   entryValue->token_type = token_type;
 
@@ -861,6 +860,17 @@ st_value_t* ensure_variable_declared(char* variable_name)
     printf("[ERRO SEMANTICO] [Linha %d] ~%s~ não é uma variável, deve ser usado como %s\n",
         comp_get_line_number(), variable_name, var_vec_or_fun_to_string(st_var));
     exit(get_semantic_error_var_vec_or_fun(st_var));
+  }
+  return st_var;
+}
+
+st_value_t* ensure_variable_declared_foreach(char* variable_name)
+{
+  st_value_t* st_var = search_id_in_stack_sts(variable_name);
+  if (!st_var)
+  {
+    printf("[ERRO SEMANTICO] [Linha %d] Variável ~%s~ não declarada\n", comp_get_line_number(), variable_name);
+    exit(SMTC_ERROR_UNDECLARED);
   }
   return st_var;
 }

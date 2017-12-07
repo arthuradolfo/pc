@@ -1068,7 +1068,7 @@ char* tac_to_string(tac_t* tac)
                 1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "%smp_LT %s, %s -> %s", label, tac->src_1, tac->src_2, tac->dst_1);
+      sprintf(code, "%scmp_LT %s, %s -> %s", label, tac->src_1, tac->src_2, tac->dst_1);
       break;
 
     case OP_CMP_LE:
@@ -1984,7 +1984,7 @@ void stack_push_all_tacs(stack_t* dst, stack_t* pushed)
   free_stack(reversed);
 }
 
-void stack_push_all_tacs_and(stack_t* dst, stack_t* pushed, stack_t* t_holes, stack_t* f_holes, bool op1)
+void stack_push_all_tacs_not(stack_t* dst, stack_t* pushed, stack_t* t_holes, stack_t* f_holes)
 {
   stack_t* reversed = reversed_tac_stack(pushed);
   stack_item_t* item = reversed->data;
@@ -1992,12 +1992,30 @@ void stack_push_all_tacs_and(stack_t* dst, stack_t* pushed, stack_t* t_holes, st
   while (item) {
     stack_push(copy_tac(item->value), dst);
     if(((tac_t*)dst->data->value)->opcode == OP_CBR) {
-      if(op1) {
-        stack_push(&(((tac_t*)dst->data->value)->dst_2), f_holes);
+      if(strcmp((((tac_t*)dst->data->value)->dst_1), "BURACO") == 0) stack_push(&(((tac_t*)dst->data->value)->dst_1), f_holes);
+      if(strcmp((((tac_t*)dst->data->value)->dst_2), "BURACO") == 0) stack_push(&(((tac_t*)dst->data->value)->dst_2), t_holes);
+    }
+    item = item->next;
+  }
+  clear_tac_stack(&reversed);
+  free_stack(reversed);
+}
+
+void stack_push_all_tacs_and(stack_t* dst, stack_t* pushed, stack_t* t_holes, stack_t* f_holes, bool op1, int syntatic_type)
+{
+  stack_t* reversed = reversed_tac_stack(pushed);
+  stack_item_t* item = reversed->data;
+  int count = 0;
+  while (item) {
+    stack_push(copy_tac(item->value), dst);
+    if(((tac_t*)dst->data->value)->opcode == OP_CBR) {
+      if(syntatic_type == AST_LOGICO_COMP_NEGACAO) {
+        if(strcmp((((tac_t*)dst->data->value)->dst_1), "BURACO") == 0) stack_push(&(((tac_t*)dst->data->value)->dst_1), f_holes);
+        if(strcmp((((tac_t*)dst->data->value)->dst_2), "BURACO") == 0) stack_push(&(((tac_t*)dst->data->value)->dst_2), t_holes);
       }
       else {
-        stack_push(&(((tac_t*)dst->data->value)->dst_1), t_holes);
-        stack_push(&(((tac_t*)dst->data->value)->dst_2), f_holes);
+        if(strcmp((((tac_t*)dst->data->value)->dst_1), "BURACO") == 0) stack_push(&(((tac_t*)dst->data->value)->dst_1), t_holes);
+        if(strcmp((((tac_t*)dst->data->value)->dst_2), "BURACO") == 0) stack_push(&(((tac_t*)dst->data->value)->dst_2), f_holes);
       }
     }
     item = item->next;
@@ -2006,7 +2024,7 @@ void stack_push_all_tacs_and(stack_t* dst, stack_t* pushed, stack_t* t_holes, st
   free_stack(reversed);
 }
 
-void stack_push_all_tacs_or(stack_t* dst, stack_t* pushed, stack_t* t_holes, stack_t* f_holes, bool op1)
+void stack_push_all_tacs_or(stack_t* dst, stack_t* pushed, stack_t* t_holes, stack_t* f_holes, bool op1, int syntatic_type)
 {
   stack_t* reversed = reversed_tac_stack(pushed);
   stack_item_t* item = reversed->data;
@@ -2014,14 +2032,32 @@ void stack_push_all_tacs_or(stack_t* dst, stack_t* pushed, stack_t* t_holes, sta
   while (item) {
     stack_push(copy_tac(item->value), dst);
     if(((tac_t*)dst->data->value)->opcode == OP_CBR) {
-      if(op1) {
-        stack_push(&(((tac_t*)dst->data->value)->dst_1), t_holes);
+      if(syntatic_type == AST_LOGICO_COMP_NEGACAO) {
+        if(strcmp((((tac_t*)dst->data->value)->dst_1), "BURACO") == 0) stack_push(&(((tac_t*)dst->data->value)->dst_1), f_holes);
+        if(strcmp((((tac_t*)dst->data->value)->dst_2), "BURACO") == 0) stack_push(&(((tac_t*)dst->data->value)->dst_2), t_holes);
       }
       else {
-        stack_push(&(((tac_t*)dst->data->value)->dst_1), t_holes);
-        stack_push(&(((tac_t*)dst->data->value)->dst_2), f_holes);
+        if(strcmp((((tac_t*)dst->data->value)->dst_1), "BURACO") == 0) stack_push(&(((tac_t*)dst->data->value)->dst_1), t_holes);
+        if(strcmp((((tac_t*)dst->data->value)->dst_2), "BURACO") == 0) stack_push(&(((tac_t*)dst->data->value)->dst_2), f_holes);
       }
     }
+    item = item->next;
+  }
+  clear_tac_stack(&reversed);
+  free_stack(reversed);
+}
+
+void stack_push_all_tacs_foreach(stack_t* dst, stack_t* pushed, stack_t* t_holes, stack_t* f_holes)
+{
+  stack_t* reversed = reversed_tac_stack(pushed);
+  stack_item_t* item = reversed->data;
+  int count = 0;
+  while (item) {
+    stack_push(copy_tac(item->value), dst);
+    if(((tac_t*)dst->data->value)->dst_1) if(strcmp((((tac_t*)dst->data->value)->dst_1), "BURACO") == 0) stack_push(&(((tac_t*)dst->data->value)->dst_1), t_holes);
+    if(((tac_t*)dst->data->value)->dst_2) if(strcmp((((tac_t*)dst->data->value)->dst_2), "BURACO") == 0) stack_push(&(((tac_t*)dst->data->value)->dst_2), t_holes);
+    if(((tac_t*)dst->data->value)->src_1) if(strcmp((((tac_t*)dst->data->value)->src_1), "BURACO") == 0) stack_push(&(((tac_t*)dst->data->value)->src_1), t_holes);
+    if(((tac_t*)dst->data->value)->src_2) if(strcmp((((tac_t*)dst->data->value)->src_2), "BURACO") == 0) stack_push(&(((tac_t*)dst->data->value)->src_2), t_holes);
     item = item->next;
   }
   clear_tac_stack(&reversed);
@@ -2091,6 +2127,8 @@ int opcode_from_operator(ast_node_value_t* operator) {
   switch (operator->syntactic_type) {
     case AST_LOGICO_COMP_LE: return OP_CMP_LE;
     case AST_LOGICO_COMP_GE: return OP_CMP_GE;
+    case AST_LOGICO_COMP_L: return OP_CMP_LT;
+    case AST_LOGICO_COMP_G: return OP_CMP_GT;
     case AST_LOGICO_COMP_IGUAL: return OP_CMP_EQ;
     case AST_LOGICO_COMP_DIF: return OP_CMP_NE;
     case AST_LOGICO_E: return OP_AND;
@@ -2111,6 +2149,8 @@ bool is_relop(int opcode) {
     case OP_CMP_GE: return true;
     case OP_CMP_EQ: return true;
     case OP_CMP_NE: return true;
+    case OP_CMP_LT: return true;
+    case OP_CMP_GT: return true;
     default: return false;
   }
 }
@@ -2188,7 +2228,7 @@ void generate_code_load_literal_bool(ast_node_value_t *literal) {
 
 void generate_code_unary_op(ast_node_value_t *cabeca, ast_node_value_t *unary_op, ast_node_value_t *expressao) {
   cabeca->result_reg = new_register();
-  if(unary_op->semantic_type == AST_ARIM_INVERSAO) {
+  if(unary_op->syntactic_type == AST_ARIM_INVERSAO) {
     char* imediate = new_imediate(0);
 
     stack_push_all_tacs(cabeca->tac_stack, expressao->tac_stack);
@@ -2198,8 +2238,8 @@ void generate_code_unary_op(ast_node_value_t *cabeca, ast_node_value_t *unary_op
     free(imediate);
   }
     //TODO simplificar esses branches de if abaixo e "implementar de fato"
-  else if(unary_op->semantic_type == AST_LOGICO_COMP_NEGACAO) {
-    stack_push_all_tacs(cabeca->tac_stack, expressao->tac_stack);
+  else if(unary_op->syntactic_type == AST_LOGICO_COMP_NEGACAO) {
+    stack_push_all_tacs_not(cabeca->tac_stack, expressao->tac_stack, cabeca->t_holes, cabeca->f_holes);
   }
   else {
     stack_push_all_tacs(cabeca->tac_stack, expressao->tac_stack);
@@ -2235,38 +2275,24 @@ void generate_code_expression(ast_node_value_t* expression, ast_node_value_t* op
       //TODO colocar um cbrs com result regs de operandos se eles nao forem bools
 
       remenda(&(operand_1->t_holes), label_check_B2);
-      //print_stack_holes(operand_1->t_holes);
-      //printf("OPERANDO 1 LOGIC:\n");
-      //print_tac_stack(&operand_1->tac_stack);
-      //printf("OPERANDO 2 LOGIC:\n");
-      //print_tac_stack(&operand_2->tac_stack);
 
-      stack_push_all_tacs_and(expression->tac_stack, operand_1->tac_stack, expression->t_holes, expression->f_holes, true);
-      stack_push(new_tac_nop(true, label_check_B2), expression->tac_stack);
-      stack_push_all_tacs_and(expression->tac_stack, operand_2->tac_stack, expression->t_holes, expression->f_holes, false);
       //guarda referencias para buracos a serem remendados
-      //printf("HOLES TO PASS:\n");
-      //print_stack_holes(expression->f_holes);
-      //print_tac_stack(&operand_1->tac_stack);
+      stack_push_all_tacs_and(expression->tac_stack, operand_1->tac_stack, expression->t_holes, expression->f_holes, true, operand_1->syntactic_type);
+      stack_push(new_tac_nop(true, label_check_B2), expression->tac_stack);
+      stack_push_all_tacs_and(expression->tac_stack, operand_2->tac_stack, expression->t_holes, expression->f_holes, false, operand_2->syntactic_type);
+
       free(label_check_B2);
     }
     else {
       char* label_check_B2 = new_label();
 
       remenda(&(operand_1->f_holes), label_check_B2);
-      //print_stack_holes(operand_1->t_holes);
-      //printf("OPERANDO 1 LOGIC:\n");
-      //print_tac_stack(&operand_1->tac_stack);
-      //printf("OPERANDO 2 LOGIC:\n");
-      //print_tac_stack(&operand_2->tac_stack);
 
-      stack_push_all_tacs_or(expression->tac_stack, operand_1->tac_stack, expression->t_holes, expression->f_holes, true);
-      stack_push(new_tac_nop(true, label_check_B2), expression->tac_stack);
-      stack_push_all_tacs_or(expression->tac_stack, operand_2->tac_stack, expression->t_holes, expression->f_holes, false);
       //guarda referencias para buracos a serem remendados
-      //printf("HOLES TO PASS:\n");
-      //print_stack_holes(expression->f_holes);
-      //print_tac_stack(&operand_1->tac_stack);
+      stack_push_all_tacs_or(expression->tac_stack, operand_1->tac_stack, expression->t_holes, expression->f_holes, true, operand_1->syntactic_type);
+      stack_push(new_tac_nop(true, label_check_B2), expression->tac_stack);
+      stack_push_all_tacs_or(expression->tac_stack, operand_2->tac_stack, expression->t_holes, expression->f_holes, false, operand_2->syntactic_type);
+
       free(label_check_B2);
     }
   }
@@ -2538,6 +2564,76 @@ void generate_code_for(ast_node_value_t* head, ast_node_value_t* first_cmds, ast
 
   //libera alocacoes nao mais necessarias
   free(label_body); free(label_break); free(label_condition);
+}
+
+void generate_code_identificador_foreach(ast_node_value_t* head, st_value_t* identifier, ast_node_value_t* params) {
+  char* hole = new_hole();
+  char* imediate = new_imediate(identifier->offset_address);
+  char* imediate_increment = new_imediate(get_type_size(identifier->semantic_type));
+  char* base_register = base_register_name(identifier->address_base);
+
+  if(params) {
+    stack_push_all_tacs_foreach(head->tac_stack, params->tac_stack, head->t_holes, head->f_holes);
+    tac_t* add_i = new_tac_ssed(false, NULL, OP_ADD_I, hole, imediate_increment, hole);
+    stack_push(add_i, head->tac_stack);
+    char** x_address = &add_i->dst_1;
+    char** y_address = &add_i->src_1;
+    stack_push(x_address, head->t_holes);
+    stack_push(y_address, head->t_holes);
+  }
+  tac_t* store_ai = new_tac_sedd(false, NULL, OP_STORE_AI, hole, base_register, imediate);
+  stack_push(store_ai, head->tac_stack);
+
+  char** z_address = &store_ai->src_1;
+  stack_push(z_address, head->t_holes);
+
+  free(imediate);
+  free(imediate_increment);
+  free(base_register);
+}
+
+void generate_code_foreach(ast_node_value_t* head, st_value_t* identifier, ast_node_value_t* params, ast_node_value_t* body) {
+  char* imediate = new_imediate(identifier->offset_address);
+  char* imed_zero = new_imediate(0);
+  char* size = new_imediate(identifier->size);
+  char* imediate_increment = new_imediate(get_type_size(identifier->semantic_type));
+
+  char* base_register = base_register_name(identifier->address_base);
+  char* register_aux = new_register();
+  char* begin_var = new_register();
+  char* comp_reg = new_register();
+  char* final_var = begin_var;
+
+  char* label_iteration = new_label();
+  char* label_false = new_label();
+
+  remenda(&params->t_holes, register_aux);
+  remenda(&params->f_holes, register_aux);
+
+  tac_t* load_i = new_tac_sed(false, NULL, OP_LOAD_I, imed_zero, begin_var);
+  stack_push(load_i, head->tac_stack);
+  tac_t* add_i = new_tac_ssed(false, NULL, OP_ADD_I, base_register, imediate, begin_var);
+  stack_push(add_i, head->tac_stack);
+  tac_t* i2i = new_tac_sed(false, NULL, OP_I2I, begin_var, register_aux);
+  stack_push(i2i, head->tac_stack);
+  tac_t* add_i_1 = new_tac_ssed(false, NULL, OP_ADD_I, begin_var, size, final_var);
+  stack_push(add_i_1, head->tac_stack);
+  tac_t* nop_label_iteration = new_tac_nop(true, label_iteration);
+  stack_push(nop_label_iteration, head->tac_stack);
+  stack_push_all_tacs(head->tac_stack, params->tac_stack);
+  stack_push_all_tacs(head->tac_stack, body->tac_stack);
+  tac_t* add_i_2 = new_tac_ssed(false, NULL, OP_ADD_I, register_aux, imediate_increment, register_aux);
+  stack_push(add_i_2, head->tac_stack);
+  tac_t* cmp_LT = new_tac_ssed(false, NULL, OP_CMP_LT, register_aux, final_var, comp_reg);
+  stack_push(cmp_LT, head->tac_stack);
+  tac_t* cbr = new_tac_sedd(false, NULL, OP_CBR, comp_reg, label_iteration, label_false);
+  stack_push(cbr, head->tac_stack);
+  tac_t* label_false_nop = new_tac_nop(true, label_false);
+  stack_push(label_false_nop, head->tac_stack);
+
+  free(imediate); free(imed_zero); free(size); free(imediate_increment);
+  free(base_register); free(register_aux); free(begin_var); free(comp_reg);
+  free(label_iteration); free(label_false);
 }
 
 void iloc_to_stdout(stack_t *tac_stack) {

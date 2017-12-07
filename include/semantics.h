@@ -325,4 +325,6 @@ st_value_t* search_id_in_stack_sts(char* key);
 
 void ensure_vector_dimension(int vector_dimension_call, int vector_dimension_var, char *name);
 
+st_value_t* ensure_variable_declared_foreach(char* variable_name);
+
 #endif

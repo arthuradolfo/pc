@@ -48,6 +48,7 @@ st_value_t* putToSymbolsTable(char* key, int line, int token_type)
 
   st_value_t* getEntry = dict_get(symbolsTable, key_aux);
   if(getEntry) {
+    free_stack(entryValue->vector_sizes);
     free(key_aux);
     if(token_type == POA_IDENT || token_type == POA_LIT_STRING) {
       free(entryValue->value.s);

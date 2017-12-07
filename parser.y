@@ -106,12 +106,12 @@
 %type<tree> expression_sequence
 %type<tree> unary_operator
 %type<tree> operator
+%type<tree> logic_operator
 %type<tree> literal
 %type<tree> block
 %type<semantic_type> primitive_type
 %type<size> type_fields
 %type<size> type_field
-
 
 %%
 /* Regras (e ações) da gramática */
@@ -1299,8 +1299,14 @@ start_foreach: TK_PR_FOREACH '('
 }
 iteration_command: start_foreach TK_IDENTIFICADOR ':' foreach_expression_sequence ')' body
 {
-	st_value_t* st_identificador = ensure_variable_declared($2);
-	$$ = $6;
+	st_value_t* st_identificador = ensure_variable_declared_foreach($2);
+	$$ = tree_make_node(new_ast_node_value(AST_FOREACH, SMTC_VOID, NULL, NULL));
+	char* user_type_1 = (st_identificador->semantic_user_type != NULL) ? strdup(st_identificador->semantic_user_type) : NULL;
+
+	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, user_type_1, st_identificador));
+	tree_insert_node($$, node_identificador);
+	tree_insert_node($$, $4);
+	tree_insert_node($$, $6);
 
 	//associa tabela de simbolos ao nodo AST
 	((ast_node_value_t*)$$->value)->symbols_table = getCurrentST();
@@ -1308,11 +1314,13 @@ iteration_command: start_foreach TK_IDENTIFICADOR ':' foreach_expression_sequenc
 		print_st(((ast_node_value_t*)$$->value)->symbols_table);
 	#endif
 
-	free($2);
-
 	//desempilha bloco e libera sua tabela de simbolos, ja que nao vai ser pendurada
 	//em ast nenhuma (ast do foreach nao foi implementada)
 	pop_and_free_scope();
+	free($2);
+
+	//gera codigo
+	generate_code_foreach($$->value, st_identificador, $4->value, $6->value);
 }
 
 start_for: TK_PR_FOR '('
@@ -1407,8 +1415,47 @@ for_command_sequence: simple_command ',' for_command_sequence {
 	stack_push_all_tacs(head->tac_stack, cmd_list->tac_stack);
 }
 
-foreach_expression_sequence: expression { destroyAST($1); }
-foreach_expression_sequence: expression ',' foreach_expression_sequence { destroyAST($1); }
+foreach_expression_sequence: primitive_type TK_IDENTIFICADOR {
+	char* id_name = $2;
+	ensure_identifier_not_declared(id_name);
+
+	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
+	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
+	set_st_semantic_type_and_size_primitive($1, st_identificador);
+
+	//Calcula endereço da variável local
+	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
+	//printf("local offset: %d\n", st_identificador->offset_address);
+	//seta base do endereco da variavel
+	st_identificador->address_base = RBSS;
+
+	$$ = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, st_identificador));
+	generate_code_identificador_foreach($$->value, st_identificador, NULL);
+
+	free(id_name);
+}
+foreach_expression_sequence: primitive_type TK_IDENTIFICADOR ',' foreach_expression_sequence {
+	char* id_name = $2;
+	ensure_identifier_not_declared(id_name);
+
+	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
+	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
+	set_st_semantic_type_and_size_primitive($1, st_identificador);
+
+	//Calcula endereço da variável local
+	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
+	//printf("local offset: %d\n", st_identificador->offset_address);
+	//seta base do endereco da variavel
+	st_identificador->address_base = RBSS;
+
+	$$ = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, st_identificador));
+
+	tree_insert_node($$,$4);
+	//concatenar codigo
+	generate_code_identificador_foreach($$->value, st_identificador, $4->value);
+
+	free(id_name);
+}
 
 action_command: TK_PR_RETURN expression
 {
@@ -1489,8 +1536,32 @@ primitive_type: TK_PR_STRING { $$ = SMTC_STRING; }
 //expressions e expressions sequences
 
 expression: sub_expression_chain { $$ = $1; }
+
 sub_expression_chain: sub_expression { $$ = $1; }
-sub_expression_chain: sub_expression operator sub_expression_chain
+sub_expression_chain: sub_expression logic_operator sub_expression_chain
+{
+	ast_node_value_t* ast_node_value_sub_expression = $1->value;
+	ast_node_value_t* ast_node_value_sub_expression_chain = $3->value;
+
+	//operador sobe
+	$$ = $2;
+	ast_node_value_t* ast_node_value_head = $$->value;
+
+	//pendura operandos
+	tree_insert_node($$, $1);
+	tree_insert_node($$, $3);
+
+	//infere tipo semantico baseado nos operandos
+	ast_node_value_head->semantic_type = infere_type(ast_node_value_sub_expression->semantic_type, ast_node_value_sub_expression_chain->semantic_type);
+	mark_coercion_where_needed(ast_node_value_sub_expression, ast_node_value_sub_expression_chain);
+
+	((ast_node_value_t*) $$->value)->outputable = is_arit_expression(ast_node_value_head);
+
+	generate_code_expression($$->value, $1->value, $2->value, $3->value);
+}
+
+
+sub_expression: sub_expression operator sub_expression
 {
 	ast_node_value_t* ast_node_value_sub_expression = $1->value;
 	ast_node_value_t* ast_node_value_sub_expression_chain = $3->value;
@@ -1590,9 +1661,11 @@ operator: TK_OC_LE { $$ = tree_make_node(new_ast_node_value(AST_LOGICO_COMP_LE, 
 operator: TK_OC_GE { $$ = tree_make_node(new_ast_node_value(AST_LOGICO_COMP_GE, SMTC_VOID, NULL, NULL)); }
 operator: TK_OC_EQ { $$ = tree_make_node(new_ast_node_value(AST_LOGICO_COMP_IGUAL, SMTC_VOID, NULL, NULL)); }
 operator: TK_OC_NE { $$ = tree_make_node(new_ast_node_value(AST_LOGICO_COMP_DIF, SMTC_VOID, NULL, NULL)); }
-operator: TK_OC_AND{ $$ = tree_make_node(new_ast_node_value(AST_LOGICO_E, SMTC_VOID, NULL, NULL)); }
-operator: TK_OC_OR { $$ = tree_make_node(new_ast_node_value(AST_LOGICO_OU, SMTC_VOID, NULL, NULL)); }
+logic_operator: TK_OC_AND{ $$ = tree_make_node(new_ast_node_value(AST_LOGICO_E, SMTC_VOID, NULL, NULL)); }
+logic_operator: TK_OC_OR { $$ = tree_make_node(new_ast_node_value(AST_LOGICO_OU, SMTC_VOID, NULL, NULL)); }
 operator: '+' { $$ = tree_make_node(new_ast_node_value(AST_ARIM_SOMA, SMTC_VOID, NULL, NULL)); }
+operator: '<' { $$ = tree_make_node(new_ast_node_value(AST_LOGICO_COMP_L, SMTC_VOID, NULL, NULL)); }
+operator: '>' { $$ = tree_make_node(new_ast_node_value(AST_LOGICO_COMP_G, SMTC_VOID, NULL, NULL)); }
 operator: '-' { $$ = tree_make_node(new_ast_node_value(AST_ARIM_SUBTRACAO, SMTC_VOID, NULL, NULL)); }
 operator: '/' { $$ = tree_make_node(new_ast_node_value(AST_ARIM_DIVISAO, SMTC_VOID, NULL, NULL)); }
 operator: '*' { $$ = tree_make_node(new_ast_node_value(AST_ARIM_MULTIPLICACAO, SMTC_VOID, NULL, NULL)); }
