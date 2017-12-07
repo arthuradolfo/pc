@@ -1,7 +1,4 @@
+int vetor[10][9][8];
 int main() {
-   int a;
-   int b;
-   for (a = 1, b = 0 : true : a = a + 1, b = b - 1) {
-        b = a;
-   };
+    vetor[7][6][5] = 1;
 }

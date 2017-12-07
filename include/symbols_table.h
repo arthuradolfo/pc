@@ -2,6 +2,7 @@
 #define SYMBOLS_TABLE_H
 
 #include <stdbool.h>
+#include "cc_list.h"
 #include "cc_dict.h"
 
 union Value {
@@ -62,6 +63,11 @@ typedef struct symbolsTable_value {
      * Define quantas dimensões um vetor possui
      */
     int vector_dimension;
+
+		/**
+		 * Pilha de dimensoes dos vetores multidimensionais
+		 */
+		stack_t* vector_sizes;
 
     union Value value;
 } st_value_t;

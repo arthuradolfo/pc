@@ -6,6 +6,7 @@
 #include "tac.h"
 #include <math.h>
 #include <cc_ast.h>
+#include <semantics.h>
 
 tac_t* new_tac(char* label, int opcode, char* src_1, char* src_2, char* dst_1, char* dst_2)
 {
@@ -2554,4 +2555,99 @@ void iloc_to_stdout(stack_t *tac_stack) {
 
   clear_tac_stack(&inv_stack);
   free_stack(inv_stack);
+}
+
+int calculate_factor(int dimension, int* sizes) {
+  if (dimension == 0) {
+    return 1;
+  }
+  else {
+    return sizes[dimension-1]* calculate_factor(dimension-1, sizes);
+  }
+}
+
+int* stack_to_vector(stack_t* stack) {
+  int size = 0;
+  stack_item_t* item = stack->data;
+  while (item) {
+    size++;
+    item = item->next;
+  }
+
+  int* vector = (int*) malloc(sizeof(int)*size);
+  int count = 0;
+  item = stack->data;
+  while (item) {
+    vector[count] = *((int*) item->value);
+    count++;
+    item = item->next;
+  }
+
+  return vector;
+}
+
+void generate_code_atrib_vector(ast_node_value_t* head, stack_t* indices /*lista de ast_nodes dos indices de acesso*/,
+                                st_value_t* st_vector, ast_node_value_t* expression) {
+
+  char* reg_acumulador = new_register();
+  char* reg_aux = new_register();
+
+  //concatenar codigo da expression
+  stack_push_all_tacs(head->tac_stack, expression->tac_stack);
+
+  //concatenar codigo dos indices
+  stack_item_t* index = indices->data;
+  while (index) {
+    ast_node_value_t* ast_access_index = index->value;
+    stack_push_all_tacs(head->tac_stack, ast_access_index->tac_stack);
+    index = index->next;
+  }
+
+  //loadi 0 => acumulador
+  char* imed_0 = new_imediate(0);
+  tac_t* loadi_ac = new_tac_sed(false, NULL, OP_LOAD_I, imed_0, reg_acumulador);
+  stack_push(loadi_ac, head->tac_stack);
+  //load 0 => reg_aux
+  tac_t* loadi_aux = new_tac_sed(false, NULL, OP_LOAD_I, imed_0, reg_aux);
+  stack_push(loadi_aux, head->tac_stack);
+
+  int dimension = 0;
+  stack_item_t* item = indices->data;
+
+  //ai pro fim da pilha
+  while (item->next) {
+    item = item->next;
+  }
+
+  //percorre pilha do fim pro inicio
+  while (item) {
+    ast_node_value_t* ast_access_index = item->value;
+
+    int* sizes = stack_to_vector(st_vector->vector_sizes);
+    int fator = calculate_factor(dimension, sizes);
+    //multi item->result_reg, fator => reg_aux
+    char* imed_fator = new_imediate(fator);
+    tac_t* mult = new_tac_ssed(false, NULL, OP_MULT_I, ast_access_index->result_reg, imed_fator, reg_aux);
+    stack_push(mult, head->tac_stack);
+    //add reg_acumulador, reg_aux => acumulador
+    tac_t* add = new_tac_ssed(false, NULL, OP_ADD, reg_acumulador, reg_aux, reg_acumulador);
+    stack_push(add, head->tac_stack);
+
+    free(sizes);
+    free(imed_fator);
+    item = item->prev;
+    dimension++;
+  }
+  //mult acumulador, get_primitive_size(st_vector->semantic_type) => acumulador
+  char* imed_prim_size = new_imediate(get_type_size(st_vector->semantic_type));
+  tac_t* mult = new_tac_ssed(false, NULL, OP_MULT_I, reg_acumulador, imed_prim_size, reg_acumulador);
+  stack_push(mult, head->tac_stack);
+
+  //store expression->result_reg => st_vector->adress_base, acumulador
+  char* base_reg = base_register_name(st_vector->address_base);
+  tac_t* store = new_tac_sedd(false, NULL, OP_STORE_A0, expression->result_reg, base_reg, reg_acumulador);
+  stack_push(store, head->tac_stack);
+
+  free(imed_0); free(reg_acumulador); free(reg_aux);
+  free(imed_prim_size); free(base_reg);
 }

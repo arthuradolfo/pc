@@ -168,6 +168,8 @@ vector_declaration: '[' TK_LIT_INT ']' vector_declaration_loop
 	vector_size->vector_dimension = $4->vector_dimension+1;
 	free($4);
 	$$ = vector_size;
+
+	stack_push(&st_entry_lit_int->value.i ,current_vector_stack);
 }
 
 
@@ -179,6 +181,8 @@ vector_declaration_loop: '[' TK_LIT_INT ']' vector_declaration_loop
 	vector_size->vector_dimension = $4->vector_dimension+1;
 	free($4);
 	$$ = vector_size;
+
+	stack_push(&st_entry_lit_int->value.i ,current_vector_stack);
 }
 vector_declaration_loop: %empty
 {
@@ -230,6 +234,11 @@ def_global_var: primitive_type TK_IDENTIFICADOR vector_declaration ';'
 
 	//setar base register
 	st_identificador->address_base = RBSS;
+
+	//setar tamanho de cada dimensao do vetor
+	stack_push_stacks(NULL, current_vector_stack, st_identificador->vector_sizes);
+	free_stack(current_vector_stack);
+	current_vector_stack = new_stack();
 }
 def_global_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR ';'
 {
@@ -273,6 +282,11 @@ def_global_var: TK_PR_STATIC primitive_type TK_IDENTIFICADOR vector_declaration 
 
 	//setar base register
 	st_identificador->address_base = RBSS;
+
+	//setar tamanho de cada dimensao do vetor
+	stack_push_stacks(NULL, current_vector_stack, st_identificador->vector_sizes);
+	free_stack(current_vector_stack);
+	current_vector_stack = new_stack();
 }
 
 def_global_var: TK_IDENTIFICADOR TK_IDENTIFICADOR ';'
@@ -324,6 +338,11 @@ def_global_var: TK_IDENTIFICADOR TK_IDENTIFICADOR vector_declaration ';'
 
 	//setar base register
 	st_identificador->address_base = RBSS;
+
+	//setar tamanho de cada dimensao do vetor
+	stack_push_stacks(NULL, current_vector_stack, st_identificador->vector_sizes);
+	free_stack(current_vector_stack);
+	current_vector_stack = new_stack();
 }
 def_global_var: TK_PR_STATIC TK_IDENTIFICADOR TK_IDENTIFICADOR ';'
 {
@@ -374,6 +393,11 @@ def_global_var: TK_PR_STATIC TK_IDENTIFICADOR TK_IDENTIFICADOR vector_declaratio
 
 	//setar base register
 	st_identificador->address_base = RBSS;
+
+	//setar tamanho de cada dimensao do vetor
+	stack_push_stacks(NULL, current_vector_stack, st_identificador->vector_sizes);
+	free_stack(current_vector_stack);
+	current_vector_stack = new_stack();
 }
 
 
@@ -1028,6 +1052,9 @@ attribution_vector: '[' expression ']' attribution_vector_loop
 		ast_index->vector_dimension = 1;
 		$$ = $2;
 	}
+
+	//colocar registradore de resultado na pilha
+	stack_push(ast_index, current_vector_stack);
 }
 
 attribution_vector_loop: '[' expression ']' attribution_vector_loop
@@ -1047,12 +1074,12 @@ attribution_vector_loop: '[' expression ']' attribution_vector_loop
 		ast_index->vector_dimension = 1;
 		$$ = $2;
 	}
+
+	//colocar registradore de resultado na pilha
+	stack_push(ast_index, current_vector_stack);
 }
 
-attribution_vector_loop: %empty
-{
-	$$ = NULL;
-}
+attribution_vector_loop: %empty {	$$ = NULL; }
 
 attribution_command: TK_IDENTIFICADOR '=' expression
 {
@@ -1106,6 +1133,17 @@ attribution_command: TK_IDENTIFICADOR attribution_vector '=' expression
 	$$ = tree_make_binary_node(new_ast_node_value(AST_ATRIBUICAO, SMTC_VOID, NULL, NULL), node_vetor_indexado, $4);
 
 	free($1);
+
+	generate_code_atrib_vector($$->value, current_vector_stack, st_identificador, $4->value);
+
+	//reseta a pilha
+	stack_item_t* item;
+	do {
+		stack_pop(&item, &current_vector_stack);
+		free(item);
+	} while (item);
+	free_stack(current_vector_stack);
+	current_vector_stack = new_stack();
 }
 attribution_command: TK_IDENTIFICADOR '$' TK_IDENTIFICADOR '=' expression
 {

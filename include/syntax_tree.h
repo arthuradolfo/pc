@@ -10,6 +10,8 @@
 
 comp_tree_t* abstractSyntaxTree;
 
+stack_t* current_vector_stack;
+
 /**
  * Tipos de valores de nodos de ast
  */

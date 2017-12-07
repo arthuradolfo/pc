@@ -118,6 +118,7 @@ void clearSymbolsTable()
           free(entrada->value.s);
         }
         if (entrada->semantic_user_type) free(entrada->semantic_user_type);
+        if (entrada->vector_sizes) free_stack(entrada->vector_sizes);
         free(symbolsTable->data[i]->value);
         dict_remove(symbolsTable, symbolsTable->data[i]->key);
       }
@@ -242,6 +243,7 @@ void remove_collisions(comp_dict_item_t * item)
       free(entrada->value.s);
     }
     if (entrada->semantic_user_type) free(entrada->semantic_user_type);
+    if (entrada->vector_sizes) free_stack(entrada->vector_sizes);
     free(ptaux->value);
     item = item->next;
     dict_remove(symbolsTable, ptaux->key);
@@ -298,6 +300,7 @@ void clearGeneralST(comp_dict_t *st)
           free(entrada->value.s);
         }
         if (entrada->semantic_user_type) free(entrada->semantic_user_type);
+        if (entrada->vector_sizes) free_stack(entrada->vector_sizes);
         free(st->data[i]->value);
         dict_remove(st, st->data[i]->key);
       }
@@ -320,6 +323,7 @@ void remove_collisions_general_st(comp_dict_t *st, comp_dict_item_t * item)
       free(entrada->value.s);
     }
     if (entrada->semantic_user_type) free(entrada->semantic_user_type);
+    if (entrada->vector_sizes) free_stack(entrada->vector_sizes);
     free(ptaux->value);
     item = item->next;
     dict_remove(st, ptaux->key);
@@ -379,6 +383,7 @@ st_value_t* new_st_value()
   st_value->size = 0;
   st_value->vector_dimension = 0;
   st_value->value.i = 0;
+  st_value->vector_sizes = new_stack();
 }
 
 void clear_st_value(st_value_t* st_value)

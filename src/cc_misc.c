@@ -69,6 +69,8 @@ void main_init (int argc, char **argv)
   label_counter = 1;
   register_counter = 1;
 
+  current_vector_stack = new_stack();
+
   //inicializacao do graphviz (inicializacao da ast está no parser.y - programa:)
   gv_init(GRAPHVIZ_FILENAME);
 }
@@ -91,4 +93,6 @@ void main_finalize (void)
 
   free(get_current_type_decl());
   free(get_current_func_decl());
+
+  free_stack(current_vector_stack);
 }
