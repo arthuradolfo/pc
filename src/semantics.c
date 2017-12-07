@@ -562,6 +562,7 @@ st_value_t* putToCurrentST(char* key, int line, int token_type)
   st_value_t* getEntry = dict_get(currentST, key_aux);
   if(getEntry) {
     free(key_aux);
+    free_stack(entryValue->vector_sizes);
     if(token_type == POA_IDENT || token_type == POA_LIT_STRING) {
      free(entryValue->value.s);
     }

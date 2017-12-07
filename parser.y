@@ -102,6 +102,7 @@
 %type<tree> attribution_vector_loop
 %type<tree> expression
 %type<tree> sub_expression
+%type<tree> sub_expression_1
 %type<tree> sub_expression_chain
 %type<tree> expression_sequence
 %type<tree> unary_operator
@@ -1415,46 +1416,16 @@ for_command_sequence: simple_command ',' for_command_sequence {
 	stack_push_all_tacs(head->tac_stack, cmd_list->tac_stack);
 }
 
-foreach_expression_sequence: primitive_type TK_IDENTIFICADOR {
-	char* id_name = $2;
-	ensure_identifier_not_declared(id_name);
-
-	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
-	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
-	set_st_semantic_type_and_size_primitive($1, st_identificador);
-
-	//Calcula endereço da variável local
-	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
-	//printf("local offset: %d\n", st_identificador->offset_address);
-	//seta base do endereco da variavel
-	st_identificador->address_base = RBSS;
-
-	$$ = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, st_identificador));
-	generate_code_identificador_foreach($$->value, st_identificador, NULL);
-
-	free(id_name);
+foreach_expression_sequence: expression {
+	$$ = $1;
 }
-foreach_expression_sequence: primitive_type TK_IDENTIFICADOR ',' foreach_expression_sequence {
-	char* id_name = $2;
-	ensure_identifier_not_declared(id_name);
-
-	//insere identificador declarado na tabela de simbolos atual (topo da pilha)
-	st_value_t* st_identificador = putToCurrentST(id_name, comp_get_line_number(), POA_IDENT);
-	set_st_semantic_type_and_size_primitive($1, st_identificador);
-
-	//Calcula endereço da variável local
-	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
-	//printf("local offset: %d\n", st_identificador->offset_address);
-	//seta base do endereco da variavel
-	st_identificador->address_base = RBSS;
-
-	$$ = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, st_identificador->semantic_user_type, st_identificador));
-
-	tree_insert_node($$,$4);
+foreach_expression_sequence: expression ',' foreach_expression_sequence {
+	$$ = $1;
+	tree_insert_node($$,$3);
 	//concatenar codigo
-	generate_code_identificador_foreach($$->value, st_identificador, $4->value);
-
-	free(id_name);
+	ast_node_value_t* head = $$->value;
+	ast_node_value_t* cmd_list = $3->value;
+	stack_push_all_tacs(head->tac_stack, cmd_list->tac_stack);
 }
 
 action_command: TK_PR_RETURN expression
@@ -1537,8 +1508,8 @@ primitive_type: TK_PR_STRING { $$ = SMTC_STRING; }
 
 expression: sub_expression_chain { $$ = $1; }
 
-sub_expression_chain: sub_expression { $$ = $1; }
-sub_expression_chain: sub_expression logic_operator sub_expression_chain
+sub_expression_chain: sub_expression_1 { $$ = $1; }
+sub_expression_chain: sub_expression_1 logic_operator sub_expression_1
 {
 	ast_node_value_t* ast_node_value_sub_expression = $1->value;
 	ast_node_value_t* ast_node_value_sub_expression_chain = $3->value;
@@ -1560,8 +1531,7 @@ sub_expression_chain: sub_expression logic_operator sub_expression_chain
 	generate_code_expression($$->value, $1->value, $2->value, $3->value);
 }
 
-
-sub_expression: sub_expression operator sub_expression
+sub_expression_1: sub_expression operator sub_expression
 {
 	ast_node_value_t* ast_node_value_sub_expression = $1->value;
 	ast_node_value_t* ast_node_value_sub_expression_chain = $3->value;
@@ -1582,6 +1552,8 @@ sub_expression: sub_expression operator sub_expression
 
 	generate_code_expression($$->value, $1->value, $2->value, $3->value);
 }
+
+sub_expression_1: sub_expression { $$ = $1; }
 
 sub_expression: unary_operator sub_expression
 {
@@ -1627,24 +1599,12 @@ sub_expression: TK_IDENTIFICADOR attribution_vector
 	((ast_node_value_t*) $$->value)->outputable = is_arit_expression($$->value);
 
 	free($1);
-
-	generate_code_exp_vector($$->value, current_vector_stack, st_identificador);
-
-	//reseta a pilha
-	stack_item_t* item;
-	do {
-		stack_pop(&item, &current_vector_stack);
-		free(item);
-	} while (item);
-	free_stack(current_vector_stack);
-	current_vector_stack = new_stack();
 }
 sub_expression: function_call
 {
 	$$ = $1;
 	((ast_node_value_t*) $$->value)->outputable = is_arit_expression($$->value);
 }
-
 
 
 literal: TK_LIT_INT {
