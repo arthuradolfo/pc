@@ -1,10 +1,5 @@
 int a;
 int vetor[10][9][8];
 int main() {
-    vetor[7][6][5] = 1;
-    if (vetor[7][6][5] > 1) then {
-        a = true;
-    } else {
-        a = false;
-    };
+    bool b <= 1+2 / 4 ;
 }
