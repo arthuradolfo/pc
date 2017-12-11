@@ -2574,7 +2574,7 @@ void iloc_to_stdout(stack_t *tac_stack) {
   while (item) {
     if (item->value) {
       char* code = tac_to_string(item->value);
-      fprintf(stdout, "%s;\n", code);
+      fprintf(stdout, "%s\n", code);
       free(code);
     }
     item = item->next;
