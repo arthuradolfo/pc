@@ -844,7 +844,7 @@ char* tac_to_string(tac_t* tac)
     case OP_LOAD_A0:
       code_size_in_bytes =
               (label_size +
-               strlen("loadA0 ") +
+               strlen("loadAO ") +
                strlen(tac->src_1) +
                strlen(", ") +
                strlen(tac->src_2) +
@@ -853,7 +853,7 @@ char* tac_to_string(tac_t* tac)
                1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "%sloadA0 %s, %s => %s", label, tac->src_1, tac->src_2, tac->dst_1);
+      sprintf(code, "%sloadAO %s, %s => %s", label, tac->src_1, tac->src_2, tac->dst_1);
       break;
 
     case OP_CLOAD:
@@ -887,7 +887,7 @@ char* tac_to_string(tac_t* tac)
      case OP_CLOAD_A0:
        code_size_in_bytes =
                (label_size +
-                strlen("cloadA0 ") +
+                strlen("cloadAO ") +
                 strlen(tac->src_1) +
                 strlen(", ") +
                 strlen(tac->src_2) +
@@ -896,7 +896,7 @@ char* tac_to_string(tac_t* tac)
                 1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "%scloadA0 %s, %s => %s", label, tac->src_1, tac->src_2, tac->dst_1);
+      sprintf(code, "%scloadAO %s, %s => %s", label, tac->src_1, tac->src_2, tac->dst_1);
       break;
 
     case OP_LOAD_I:
@@ -945,7 +945,7 @@ char* tac_to_string(tac_t* tac)
     case OP_STORE_A0:
       code_size_in_bytes =
               (label_size +
-               strlen("storeA0 ") +
+               strlen("storeAO ") +
                strlen(tac->src_1) +
                strlen(" => ") +
                strlen(tac->dst_1) +
@@ -954,7 +954,7 @@ char* tac_to_string(tac_t* tac)
                1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "%sstoreA0 %s => %s, %s", label, tac->src_1, tac->dst_1, tac->dst_2);
+      sprintf(code, "%sstoreAO %s => %s, %s", label, tac->src_1, tac->dst_1, tac->dst_2);
       break;
 
     case OP_CSTORE:
@@ -988,7 +988,7 @@ char* tac_to_string(tac_t* tac)
     case OP_CSTORE_A0:
       code_size_in_bytes =
               (label_size +
-               strlen("cstoreA0 ") +
+               strlen("cstoreAO ") +
                strlen(tac->src_1) +
                strlen(" => ") +
                strlen(tac->dst_1) +
@@ -997,7 +997,7 @@ char* tac_to_string(tac_t* tac)
                1 /*para o \0*/) * sizeof(char);
 
       code = malloc(code_size_in_bytes);
-      sprintf(code, "%scstoreA0 %s => %s, %s", label, tac->src_1, tac->dst_1, tac->dst_2);
+      sprintf(code, "%scstoreAO %s => %s, %s", label, tac->src_1, tac->dst_1, tac->dst_2);
       break;
 
 
@@ -2667,12 +2667,12 @@ void generate_code_atrib_vector(ast_node_value_t* head, stack_t* indices /*lista
   }
   //mult acumulador, get_primitive_size(st_vector->semantic_type) => acumulador
   char* imed_prim_size = new_imediate(get_type_size(st_vector->semantic_type));
-  tac_t* mult = new_tac_ssed(false, NULL, OP_MULT_I, reg_acumulador, imed_prim_size, reg_acumulador);
-  stack_push(mult, head->tac_stack);
+  tac_t* multi = new_tac_ssed(false, NULL, OP_MULT_I, reg_acumulador, imed_prim_size, reg_acumulador);
+  stack_push(multi, head->tac_stack);
 
   //add acumulador, st_vector->offset => acumulador
   char* imed_offset_adr = new_imediate(st_vector->offset_address);
-  tac_t* add_offset = new_tac_ssed(false, NULL, OP_ADD, reg_acumulador, imed_offset_adr, reg_acumulador);
+  tac_t* add_offset = new_tac_ssed(false, NULL, OP_ADD_I, reg_acumulador, imed_offset_adr, reg_acumulador);
   stack_push(add_offset, head->tac_stack);
 
   //store expression->result_reg => st_vector->adress_base, acumulador
@@ -2740,7 +2740,7 @@ void generate_code_exp_vector(ast_node_value_t* head, stack_t* indices /*lista d
 
   //add acumulador, st_vector->offset => acumulador
   char* imed_offset_adr = new_imediate(st_vector->offset_address);
-  tac_t* add_offset = new_tac_ssed(false, NULL, OP_ADD, reg_acumulador, imed_offset_adr, reg_acumulador);
+  tac_t* add_offset = new_tac_ssed(false, NULL, OP_ADD_I, reg_acumulador, imed_offset_adr, reg_acumulador);
   stack_push(add_offset, head->tac_stack);
 
   //load st_vector->adress_base, acumulador => head->result_reg
