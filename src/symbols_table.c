@@ -1,8 +1,6 @@
 #include "symbols_table.h"
+#include "semantics.h"
 #include "main.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 comp_dict_t* get_symbols_table()
 {
@@ -120,6 +118,7 @@ void clearSymbolsTable()
         }
         if (entrada->semantic_user_type) free(entrada->semantic_user_type);
         if (entrada->vector_sizes) free_stack(entrada->vector_sizes);
+        if (entrada->func_def) free(entrada->func_def);
         free(symbolsTable->data[i]->value);
         dict_remove(symbolsTable, symbolsTable->data[i]->key);
       }
@@ -245,6 +244,7 @@ void remove_collisions(comp_dict_item_t * item)
     }
     if (entrada->semantic_user_type) free(entrada->semantic_user_type);
     if (entrada->vector_sizes) free_stack(entrada->vector_sizes);
+    if (entrada->func_def) free(entrada->func_def);
     free(ptaux->value);
     item = item->next;
     dict_remove(symbolsTable, ptaux->key);
@@ -302,6 +302,7 @@ void clearGeneralST(comp_dict_t *st)
         }
         if (entrada->semantic_user_type) free(entrada->semantic_user_type);
         if (entrada->vector_sizes) free_stack(entrada->vector_sizes);
+        if (entrada->func_def) free(entrada->func_def);
         free(st->data[i]->value);
         dict_remove(st, st->data[i]->key);
       }
@@ -325,6 +326,7 @@ void remove_collisions_general_st(comp_dict_t *st, comp_dict_item_t * item)
     }
     if (entrada->semantic_user_type) free(entrada->semantic_user_type);
     if (entrada->vector_sizes) free_stack(entrada->vector_sizes);
+    if (entrada->func_def) free(entrada->func_def);
     free(ptaux->value);
     item = item->next;
     dict_remove(st, ptaux->key);
@@ -385,8 +387,10 @@ st_value_t* new_st_value()
   st_value->vector_dimension = 0;
   st_value->value.i = 0;
   st_value->vector_sizes = new_stack();
+  st_value->func_def = NULL;
 }
 
+//aparentemente em desuso
 void clear_st_value(st_value_t* st_value)
 {
   if (st_value->semantic_user_type)

@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include "cc_list.h"
 #include "cc_dict.h"
+#include "execution.h"
 
 union Value {
 	int i;
@@ -64,10 +65,15 @@ typedef struct symbolsTable_value {
      */
     int vector_dimension;
 
-		/**
-		 * Pilha de dimensoes dos vetores multidimensionais
-		 */
-		stack_t* vector_sizes;
+	/**
+	 * Pilha de dimensoes dos vetores multidimensionais
+	 */
+	stack_t* vector_sizes;
+
+	/**
+	 * Eventuais dados sobre definicao de funcao
+	 */
+	func_def_t* func_def;
 
     union Value value;
 } st_value_t;

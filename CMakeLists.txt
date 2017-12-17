@@ -21,6 +21,7 @@ ADD_EXECUTABLE(main
   src/syntax_tree.c
   src/semantics.c
   src/tac.c
+  src/execution.c
 )
 TARGET_LINK_LIBRARIES(main ${FLEX_LIBRARIES} m)
 
@@ -44,8 +45,8 @@ OPTION(ETAPA_1 "The Etapa 1 compilation" OFF)
 OPTION(ETAPA_2 "The Etapa 2 compilation" OFF)
 OPTION(ETAPA_3 "The Etapa 3 compilation" OFF)
 OPTION(ETAPA_4 "The Etapa 4 compilation" OFF)
-OPTION(ETAPA_5 "The Etapa 5 compilation" ON)
-OPTION(ETAPA_6 "The Etapa 6 compilation" OFF)
+OPTION(ETAPA_5 "The Etapa 5 compilation" OFF)
+OPTION(ETAPA_6 "The Etapa 6 compilation" ON)
 OPTION(ETAPA_7 "The Etapa 7 compilation" OFF)
 OPTION(DEBUG "Enables debug-logging" OFF)
 

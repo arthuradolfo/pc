@@ -1,6 +1,6 @@
 #include "cc_misc.h"
 #include "tac.h"
-
+#include "semantics.h"
 
 /**
   * @var int lineNumber Gerencia o numero de linhas do arquivo processado
@@ -68,8 +68,10 @@ void main_init (int argc, char **argv)
   //inicializacao das variaveis de tac
   label_counter = 1;
   register_counter = 1;
-
   current_vector_stack = new_stack();
+
+  //inicializacao das variaveis de suporte a execução
+  current_func_def_sizes = new_func_def();
 
   //inicializacao do graphviz (inicializacao da ast está no parser.y - programa:)
   gv_init(GRAPHVIZ_FILENAME);
@@ -95,4 +97,6 @@ void main_finalize (void)
   free(get_current_func_decl());
 
   free_stack(current_vector_stack);
+
+  free(current_func_def_sizes);
 }

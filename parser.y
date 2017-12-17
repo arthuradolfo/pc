@@ -10,6 +10,7 @@
 #include "symbols_table.h"
 #include "semantics.h"
 #include "tac.h"
+#include "execution.h"
 #include "cc_misc.h" //arquivo com funcoes de auto incremento
 }
 
@@ -426,6 +427,9 @@ func_name: primitive_type TK_IDENTIFICADOR
 	set_st_semantic_type_and_size_primitive_function($1, st_identificador);
 	set_current_func_decl(id_name);
 
+	//setar tamanho do retorno da funcao
+	current_func_def_sizes->return_size = get_type_size($1);
+
 	free(id_name);
 }
 
@@ -445,6 +449,9 @@ func_name_user: TK_IDENTIFICADOR TK_IDENTIFICADOR
 	set_st_semantic_type_and_size_user_type_function($1, st_identificador);
 	set_current_func_decl(id_name);
 
+	//setar tamanho do retorno da funcao
+	current_func_def_sizes->return_size = st_identificador->size;
+
 	free($1);
 	free(id_name);
 }
@@ -455,7 +462,6 @@ def_function: func_name push_func_stack '(' parameters ')' body
 	$$ = $1;
 
 	ast_node_value_t* head = $$->value;
-
 	if ($6) {
 		tree_insert_node($$,$6);
 		//concatena codigo
@@ -464,9 +470,9 @@ def_function: func_name push_func_stack '(' parameters ')' body
 	}
 
 	//associa tabela de simbolos ao nodo AST
-	((ast_node_value_t*)$$->value)->symbols_table = getCurrentST();
+	head->symbols_table = getCurrentST();
 	#ifdef DEBUG
-		print_st(((ast_node_value_t*)$$->value)->symbols_table);
+		print_st(head->symbols_table);
 	#endif
 
 	//ao sair da declaracao de funcao, da pop na pilha de declaracoes
@@ -478,6 +484,14 @@ def_function: func_name push_func_stack '(' parameters ')' body
 			print_tac_stack(&head->tac_stack);
 		}
 	#endif
+
+	//TODO remove
+	print_func_def(current_func_def_sizes);
+
+	//salva tamanhos de definicao de funcao na tabela de simbolos
+	head->symbols_table_entry->func_def = current_func_def_sizes;
+	//reinicia var de tamanhos de definicao de funcao atual
+	current_func_def_sizes = new_func_def();
 }
 def_function: TK_PR_STATIC func_name push_func_stack '(' parameters ')' body
 {
@@ -493,18 +507,21 @@ def_function: TK_PR_STATIC func_name push_func_stack '(' parameters ')' body
 	}
 
 	//associa tabela de simbolos ao nodo AST
-	((ast_node_value_t*)$$->value)->symbols_table = getCurrentST();
+	head->symbols_table = getCurrentST();
 	#ifdef DEBUG
-		print_st(((ast_node_value_t*)$$->value)->symbols_table);
+		print_st(head->symbols_table);
 	#endif
 
 	//ao sair da declaracao de funcao, da pop na pilha de declaracoes
 	pop_and_free_scope();
 
-	// if (!head->tac_stack->empty) {
-	// 	printf("\n\n_____ CÓDIGO FUNÇÃO [linha %d]_____", comp_get_line_number());
-	// 	print_tac_stack(&head->tac_stack);
-	// }
+	//TODO remove
+	print_func_def(current_func_def_sizes);
+
+	//salva tamanhos de definicao de funcao na tabela de simbolos
+	head->symbols_table_entry->func_def = current_func_def_sizes;
+	//reinicia var de tamanhos de definicao de funcao atual
+	current_func_def_sizes = new_func_def();
 }
 
 def_function: func_name_user push_func_stack '(' parameters ')' body
@@ -521,19 +538,21 @@ def_function: func_name_user push_func_stack '(' parameters ')' body
 	}
 
 	//associa tabela de simbolos ao nodo AST
-	((ast_node_value_t*)$$->value)->symbols_table = getCurrentST();
+	head->symbols_table = getCurrentST();
 	#ifdef DEBUG
-		print_st(((ast_node_value_t*)$$->value)->symbols_table);
+		print_st(head->symbols_table);
 	#endif
 
 	//ao sair da declaracao de funcao, da pop na pilha de declaracoes
 	pop_and_free_scope();
 
-	// if (!head->tac_stack->empty) {
-	// 	printf("\n\n_____ CÓDIGO FUNÇÃO [linha %d]_____", comp_get_line_number());
-	// 	print_tac_stack(&head->tac_stack);
-	// }
+	//TODO remove
+	print_func_def(current_func_def_sizes);
 
+	//salva tamanhos de definicao de funcao na tabela de simbolos
+	head->symbols_table_entry->func_def = current_func_def_sizes;
+	//reinicia var de tamanhos de definicao de funcao atual
+	current_func_def_sizes = new_func_def();
 }
 def_function: TK_PR_STATIC func_name_user push_func_stack '(' parameters ')' body
 {
@@ -549,18 +568,21 @@ def_function: TK_PR_STATIC func_name_user push_func_stack '(' parameters ')' bod
 	}
 
 	//associa tabela de simbolos ao nodo AST
-	((ast_node_value_t*)$$->value)->symbols_table = getCurrentST();
+	head->symbols_table = getCurrentST();
 	#ifdef DEBUG
-		print_st(((ast_node_value_t*)$$->value)->symbols_table);
+		print_st(head->symbols_table);
 	#endif
 
 	//ao sair da declaracao de funcao, da pop na pilha de declaracoes
 	pop_and_free_scope();
 
-	// if (!head->tac_stack->empty) {
-	// 	printf("\n\n_____ CÓDIGO FUNÇÃO [linha %d]_____", comp_get_line_number());
-	// 	print_tac_stack(&head->tac_stack);
-	// }
+	//TODO remove
+	print_func_def(current_func_def_sizes);
+
+	//salva tamanhos de definicao de funcao na tabela de simbolos
+	head->symbols_table_entry->func_def = current_func_def_sizes;
+	//reinicia var de tamanhos de definicao de funcao atual
+	current_func_def_sizes = new_func_def();
 }
 
 body: '{' command_sequence '}'
@@ -600,9 +622,13 @@ parameter: primitive_type TK_IDENTIFICADOR
 
     putToFuncsParams(get_current_func_decl(), st_identificador);
 
-	//Calcula endereço da variável global
+	//Calcula endereço da variável local
 	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
-	//printf("local offset: %d\n", st_identificador->offset_address);
+	//seta base do endereco da variavel
+	st_identificador->address_base = RARP;
+
+	//incrementar tamanho dos parametros formais
+	current_func_def_sizes->formal_params_size += get_type_size($1);
 
 	free(id_name);
 }
@@ -617,9 +643,13 @@ parameter: TK_PR_CONST primitive_type TK_IDENTIFICADOR
 	set_st_semantic_type_and_size_primitive($2, st_identificador);
 	putToFuncsParams(get_current_func_decl(), st_identificador);
 
-	//Calcula endereço da variável global
+	//Calcula endereço da variável local
 	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
-	//printf("local offset: %d\n", st_identificador->offset_address);
+	//seta base do endereco da variavel
+	st_identificador->address_base = RARP;
+
+	//incrementar tamanho dos parametros formais
+	current_func_def_sizes->formal_params_size += get_type_size($2);
 
 	free(id_name);
 }
@@ -637,9 +667,13 @@ parameter: TK_IDENTIFICADOR TK_IDENTIFICADOR
 	set_st_semantic_type_and_size_user_type($1, st_identificador);
 	putToFuncsParams(get_current_func_decl(), st_identificador);
 
-	//Calcula endereço da variável global
+	//Calcula endereço da variável local
 	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
-	//printf("local offset: %d\n", st_identificador->offset_address);
+	//seta base do endereco da variavel
+	st_identificador->address_base = RARP;
+
+	//incrementar tamanho dos parametros formais
+	current_func_def_sizes->formal_params_size += st_identificador->size;
 
 	free($1);
 	free(id_name);
@@ -658,9 +692,13 @@ parameter: TK_PR_CONST TK_IDENTIFICADOR TK_IDENTIFICADOR
 	set_st_semantic_type_and_size_user_type($2, st_identificador);
 	putToFuncsParams(get_current_func_decl(), st_identificador);
 
-	//Calcula endereço da variável global
+	//Calcula endereço da variável local
 	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
-	//printf("local offset: %d\n", st_identificador->offset_address);
+	//seta base do endereco da variavel
+	st_identificador->address_base = RARP;
+
+	//incrementar tamanho dos parametros formais
+	current_func_def_sizes->formal_params_size += st_identificador->size;
 
 	free($2);
 	free(id_name);
@@ -751,9 +789,11 @@ def_local_var: TK_IDENTIFICADOR TK_IDENTIFICADOR
 
 	//Calcula endereço da variável local
 	st_identificador->offset_address = calculateLocalAddress(st_identificador->size);
-	//printf("local offset: %d\n", st_identificador->offset_address);
 	//seta base do endereco da variavel
 	st_identificador->address_base = RARP;
+
+	//incrementa tamanho reservado para variaveis locais para a funcao atual
+	current_func_def_sizes->local_vars_size += st_identificador->size;
 
 	free($1);
 	free(id_name);
@@ -774,6 +814,9 @@ def_local_var: primitive_type TK_IDENTIFICADOR
 	//printf("local offset: %d\n", st_identificador->offset_address);
 	//seta base do endereco da variavel
 	st_identificador->address_base = RARP;
+
+	//incrementa tamanho reservado para variaveis locais para a funcao atual
+	current_func_def_sizes->local_vars_size += get_type_size($1);
 
 	free(id_name);
 
@@ -805,6 +848,9 @@ def_local_var: primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 	//printf("local offset: %d\n", st_identificador->offset_address);
 	//seta base do endereco da variavel
 	st_identificador->address_base = RARP;
+
+	//incrementa tamanho reservado para variaveis locais para a funcao atual
+	current_func_def_sizes->local_vars_size += get_type_size($1);
 
 	free(id_name);
 
@@ -907,6 +953,9 @@ def_local_var: TK_PR_CONST TK_IDENTIFICADOR TK_IDENTIFICADOR
 	//seta base do endereco da variavel
 	st_identificador->address_base = RARP;
 
+	//incrementa tamanho reservado para variaveis locais para a funcao atual
+	current_func_def_sizes->local_vars_size += st_identificador->size;
+
 	$$ = NULL;
 
 	free($2);
@@ -926,6 +975,9 @@ def_local_var: TK_PR_CONST primitive_type TK_IDENTIFICADOR
 	//printf("local offset: %d\n", st_identificador->offset_address);
 	//seta base do endereco da variavel
 	st_identificador->address_base = RARP;
+
+	//incrementa tamanho reservado para variaveis locais para a funcao atual
+	current_func_def_sizes->local_vars_size += get_type_size($2);
 
 	$$ = NULL;
 
@@ -957,6 +1009,9 @@ def_local_var: TK_PR_CONST primitive_type TK_IDENTIFICADOR TK_OC_LE expression
 	//printf("local offset: %d\n", st_identificador->offset_address);
 	//seta base do endereco da variavel
 	st_identificador->address_base = RARP;
+
+	//incrementa tamanho reservado para variaveis locais para a funcao atual
+	current_func_def_sizes->local_vars_size += get_type_size($2);
 
 	free(id_name);
 
