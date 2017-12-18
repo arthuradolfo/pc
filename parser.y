@@ -462,6 +462,9 @@ def_function: func_name push_func_stack '(' parameters ')' body
 	$$ = $1;
 
 	ast_node_value_t* head = $$->value;
+
+	generate_code_function_label(head);
+
 	if ($6) {
 		tree_insert_node($$,$6);
 		//concatena codigo
@@ -499,6 +502,8 @@ def_function: TK_PR_STATIC func_name push_func_stack '(' parameters ')' body
 
 	ast_node_value_t* head = $$->value;
 
+	generate_code_function_label(head);
+
 	if ($7) {
 		tree_insert_node($$,$7);
 		//concatena codigo
@@ -530,6 +535,8 @@ def_function: func_name_user push_func_stack '(' parameters ')' body
 
 	ast_node_value_t* head = $$->value;
 
+	generate_code_function_label(head);
+
 	if ($6) {
 		tree_insert_node($$,$6);
 		//concatena codigo
@@ -559,6 +566,8 @@ def_function: TK_PR_STATIC func_name_user push_func_stack '(' parameters ')' bod
 	$$ = $2;
 
 	ast_node_value_t* head = $$->value;
+
+	generate_code_function_label(head);
 
 	if ($7) {
 		tree_insert_node($$,$7);

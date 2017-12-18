@@ -2567,6 +2567,20 @@ void generate_code_foreach(ast_node_value_t* head, st_value_t* identifier, comp_
 
   free(imediate); free(base_register); free(reg_identifier);
 }
+
+void generate_code_function_label(ast_node_value_t* function) {
+  //gerar label da funcao
+  char* function_name = function->symbols_table_entry->value.s;
+  char* function_label = malloc((strlen(function_name) + 2)*sizeof(char));
+  sprintf(function_label, "l%s", function_name);
+
+  //colocar label antes do código da função
+  tac_t* nop_func_label = new_tac_nop(true, function_label);
+  stack_push(nop_func_label, function->tac_stack);
+
+  free(function_label);
+}
+
 void iloc_to_stdout(stack_t *tac_stack) {
   stack_t* inv_stack = reversed_tac_stack(tac_stack);
 

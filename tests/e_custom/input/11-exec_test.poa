@@ -1,3 +1,5 @@
+class type_t [ private int field1 : public int field2 ];
+
 int main(int a, const int b) {
     a = 1;
     b = 2;
@@ -32,4 +34,6 @@ int func(int a, const int b) {
     //local vars size deve ser 16
 }
 
-bool func_void() {}
+static bool func_void() {}
+
+type_t user_typed(type_t user_typed) {}
