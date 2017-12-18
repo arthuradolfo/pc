@@ -1266,6 +1266,8 @@ function_call: TK_IDENTIFICADOR '(' expression_sequence ')'
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, function_user_type_1, st_identificador));
 	$$ = tree_make_binary_node(new_ast_node_value(AST_CHAMADA_DE_FUNCAO, st_identificador->semantic_type, function_user_type_2, NULL), node_identificador, $3);
 
+	generate_code_call(st_identificador, $3);
+
 	free($1);
 }
 function_call: TK_IDENTIFICADOR '(' ')'
@@ -1279,6 +1281,8 @@ function_call: TK_IDENTIFICADOR '(' ')'
 
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, function_user_type_1, st_identificador));
 	$$ = tree_make_unary_node(new_ast_node_value(AST_CHAMADA_DE_FUNCAO, st_identificador->semantic_type, function_user_type_2, NULL), node_identificador);
+
+	generate_code_call(st_identificador, NULL);
 
 	free($1);
 }

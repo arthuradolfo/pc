@@ -2581,6 +2581,37 @@ void generate_code_function_label(ast_node_value_t* function) {
   free(function_label);
 }
 
+void generate_code_call_invoked_side(ast_node_value_t* function) {
+
+
+  //TODO
+
+  //TODO { copiar cada parametro real salvo na stack para o seu correspondente formal no frame
+  //TODO   (usar rarp +- offsets) e dict_get(func_params, func_name) }
+
+
+}
+
+void generate_code_return(ast_node_value_t* function) {
+  //TODO
+}
+
+void generate_code_call_caller_side(st_value_t* function, comp_tree_t* real_parameters) {
+  //o novo frame é a partir do rsp atual
+  //TODO salvar estado da maquina (rsp) [store rsp => rsp, 0]
+  //TODO salvar endereço de retorno (pegar do rpc) [store (rpc + ...) => rsp, 4]
+  //TODO salvar ve (0) [store 0 => rsp, 8]
+  //TODO salvar vd (rarp) [store rarp => rsp, 12]
+
+  if (real_parameters != NULL) {
+    //TODO push cada um para a stack de controle (stores a partir de [rsp+16])
+  }
+
+  //TODO jump para label da funcao chamada
+
+  //o end de retorno deve ser para a linha seguinte. calcular pós push de parametros?
+}
+
 void iloc_to_stdout(stack_t *tac_stack) {
   stack_t* inv_stack = reversed_tac_stack(tac_stack);
 

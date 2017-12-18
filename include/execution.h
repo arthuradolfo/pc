@@ -3,16 +3,17 @@
 
 /*
     Ordem dos campos em um registro de ativação:
-    Parâmetros formais (argumentos)
-    Variáveis locais
-    ======== Campos de tamanho fixo     ========
-    Estado da máquina
-    Vínculo estático
-    Vínculo dinâmico
-    Endereço de retorno
-    ======== Campos de tamanho variável ========
-    Valor retornado
-    Temporários (caso necessário)
+
+    [rarp] ======== Campos de tamanho fixo (4*4=16) ========
+      Estado da máquina (rsp anterior) [size 4]
+      Endereço de retorno (relacionado a rpc) [size 4]
+      Vínculo estático (0 sempre) [size 4]
+      Vínculo dinâmico (rarp anterior) [size 4]
+
+    [rarp+16] ===== Campos de tamanho variável ===
+      [DEFINIDO NA DECLARACAO] Valor retornado
+      [DEFINIDO NA DECLARACAO] Parâmetros formais (argumentos)
+      Variáveis locais
 */
 
 typedef struct {
