@@ -496,6 +496,7 @@ def_function: func_name push_func_stack '(' parameters ')' body
 
 	//remenda buracos de comandos relacionados a func_def (que nao estava definido até agora)
 	remenda_func_def(&head->func_def_holes, head->symbols_table_entry->func_def);
+	generate_halt_if_main(head);
 }
 def_function: TK_PR_STATIC func_name push_func_stack '(' parameters ')' body
 {
@@ -529,6 +530,7 @@ def_function: TK_PR_STATIC func_name push_func_stack '(' parameters ')' body
 
 	//remenda buracos de comandos relacionados a func_def (que nao estava definido até agora)
 	remenda_func_def(&head->func_def_holes, head->symbols_table_entry->func_def);
+	generate_halt_if_main(head);
 }
 
 def_function: func_name_user push_func_stack '(' parameters ')' body
@@ -563,6 +565,7 @@ def_function: func_name_user push_func_stack '(' parameters ')' body
 
 	//remenda buracos de comandos relacionados a func_def (que nao estava definido até agora)
 	remenda_func_def(&head->func_def_holes, head->symbols_table_entry->func_def);
+	generate_halt_if_main(head);
 }
 def_function: TK_PR_STATIC func_name_user push_func_stack '(' parameters ')' body
 {
@@ -596,6 +599,7 @@ def_function: TK_PR_STATIC func_name_user push_func_stack '(' parameters ')' bod
 
 	//remenda buracos de comandos relacionados a func_def (que nao estava definido até agora)
 	remenda_func_def(&head->func_def_holes, head->symbols_table_entry->func_def);
+	generate_halt_if_main(head);
 }
 
 body: '{' command_sequence '}'

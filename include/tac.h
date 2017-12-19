@@ -307,6 +307,7 @@ void generate_code_initialize_program(ast_node_value_t *head, ast_node_value_t *
 void generate_code_return(ast_node_value_t* ast_return, ast_node_value_t* expression);
 void stack_push_all_tacs_remenda_func_def(stack_t* dst, stack_t* pushed, stack_t* func_def_holes);
 void remenda_func_def(stack_t** holes, func_def_t* func_def);
+void generate_halt_if_main(ast_node_value_t *function);
 /**
  * Imprime uma pilha de tacs (invertida) na saida padrao
  */

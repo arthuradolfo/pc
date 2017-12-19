@@ -352,7 +352,7 @@ tac_t* new_tac_jump(bool use_label, char* label, char* dst_reg) {
   //se dst_reg é NULL, chamador da funcao quer que crie novo registrador
   char* d_reg = dst_reg ? dst_reg : new_register();
 
-  tac_t* tac = new_tac(lbl, OP_JUMP_I, NULL, NULL, d_reg, NULL);
+  tac_t* tac = new_tac(lbl, OP_JUMP, NULL, NULL, d_reg, NULL);
 
   //depois de construtor coletar dados, pode liberar memoria alocada
   if (!dst_reg) free(d_reg);
@@ -2653,20 +2653,33 @@ void generate_code_foreach(ast_node_value_t* head, st_value_t* identifier, comp_
 }
 
 void generate_code_initialize_program(ast_node_value_t *head, ast_node_value_t *program) {
-    char* rarp = base_register_name(RARP);
-    char* rsp = base_register_name(RSP);
-    char* rbss = base_register_name(RBSS);
-    char* imed0 = new_imediate(0);
-    tac_t* set_rarp = new_tac_sed(false, NULL, OP_LOAD_I, imed0, rarp);
-    stack_push(set_rarp, head->tac_stack);
-    tac_t* set_rsp = new_tac_sed(false, NULL, OP_LOAD_I, imed0, rsp);
-    stack_push(set_rsp, head->tac_stack);
-    tac_t* set_rbss = new_tac_sed(false, NULL, OP_LOAD_I, imed0, rbss);
-    stack_push(set_rbss, head->tac_stack);
-    tac_t* jump_main = new_tac_jump_i(false, NULL, "lmain");
-    stack_push(jump_main, head->tac_stack);
+  char* rarp = base_register_name(RARP);
+  char* rsp = base_register_name(RSP);
+  char* rbss = base_register_name(RBSS);
+  char* imed0 = new_imediate(0);
+  tac_t* set_rarp = new_tac_sed(false, NULL, OP_LOAD_I, imed0, rarp);
+  stack_push(set_rarp, head->tac_stack);
+  tac_t* set_rsp = new_tac_sed(false, NULL, OP_LOAD_I, imed0, rsp);
+  stack_push(set_rsp, head->tac_stack);
+  tac_t* set_rbss = new_tac_sed(false, NULL, OP_LOAD_I, imed0, rbss);
+  stack_push(set_rbss, head->tac_stack);
+  tac_t* jump_main = new_tac_jump_i(false, NULL, "lmain");
+  stack_push(jump_main, head->tac_stack);
 
-    stack_push_all_tacs(head->tac_stack, program->tac_stack);
+  stack_push_all_tacs(head->tac_stack, program->tac_stack);
+
+  tac_t* nop_func_label = new_tac_nop(true, "l203halt");
+  stack_push(nop_func_label, head->tac_stack);
+}
+
+void generate_halt_if_main(ast_node_value_t *function) {
+
+  //gerar label da funcao
+  char* function_name = function->symbols_table_entry->value.s;
+  if(strcmp("main", function_name) == 0) {
+    tac_t* jump_fim = new_tac_jump_i(false, NULL, "l203halt");
+    stack_push(jump_fim, function->tac_stack);
+  }
 }
 
 void generate_code_function_start(ast_node_value_t *function) {
