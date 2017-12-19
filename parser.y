@@ -464,8 +464,6 @@ def_function: func_name push_func_stack '(' parameters ')' body
 
 	//salva tamanhos de definicao de funcao na tabela de simbolos
 	head->symbols_table_entry->func_def = current_func_def_sizes;
-	//TODO remove
-	print_func_def(current_func_def_sizes);
 
 	generate_code_function_start(head);
 
@@ -523,8 +521,6 @@ def_function: TK_PR_STATIC func_name push_func_stack '(' parameters ')' body
 	//ao sair da declaracao de funcao, da pop na pilha de declaracoes
 	pop_and_free_scope();
 
-	//TODO remove
-	print_func_def(current_func_def_sizes);
 
 	//salva tamanhos de definicao de funcao na tabela de simbolos
 	head->symbols_table_entry->func_def = current_func_def_sizes;
@@ -559,8 +555,6 @@ def_function: func_name_user push_func_stack '(' parameters ')' body
 	//ao sair da declaracao de funcao, da pop na pilha de declaracoes
 	pop_and_free_scope();
 
-	//TODO remove
-	print_func_def(current_func_def_sizes);
 
 	//salva tamanhos de definicao de funcao na tabela de simbolos
 	head->symbols_table_entry->func_def = current_func_def_sizes;
@@ -594,8 +588,6 @@ def_function: TK_PR_STATIC func_name_user push_func_stack '(' parameters ')' bod
 	//ao sair da declaracao de funcao, da pop na pilha de declaracoes
 	pop_and_free_scope();
 
-	//TODO remove
-	print_func_def(current_func_def_sizes);
 
 	//salva tamanhos de definicao de funcao na tabela de simbolos
 	head->symbols_table_entry->func_def = current_func_def_sizes;
