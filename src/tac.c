@@ -2851,7 +2851,7 @@ void generate_code_call_caller_side(ast_node_value_t* call, st_value_t* function
   char* imed_ret = new_imediate(6);
 
   //o novo frame será a partir do rsp atual + func_def->formal_params_size
-  tac_t* loadAI = new_tac_ssed(false, NULL, OP_LOAD_AI, rsp, formal_params_size, r_new_frame);
+  tac_t* loadAI = new_tac_ssed(false, NULL, OP_ADD_I, rsp, formal_params_size, r_new_frame);
   stack_push(loadAI, call->tac_stack);
 
   //salvar estado da maquina (rsp) [store rsp => r_new_frame, 0]
