@@ -2798,7 +2798,9 @@ void generate_code_return(ast_node_value_t* ast_return, ast_node_value_t* expres
   stack_push(pop_rarp, ast_return->tac_stack);
 
   //pular para endereço de retorno (registrado anteriormente em r_end_ret)
-  tac_t* jump_ret = new_tac_jump(false, NULL, r_end_ret);
+  tac_t* jump_ret;
+  if(strcmp("main", get_current_func_decl()) == 0) jump_ret = new_tac_jump_i(false, NULL, "l203halt");
+  else  jump_ret = new_tac_jump(false, NULL, r_end_ret);
   stack_push(jump_ret, ast_return->tac_stack);
 
   free(rarp);   free(rsp);    free(r_end_ret);          free(reg_aux);      free(imed0);  free(imed4);
