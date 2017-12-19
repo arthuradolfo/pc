@@ -7,6 +7,7 @@
 #include <math.h>
 #include <cc_ast.h>
 #include <semantics.h>
+#include <execution.h>
 
 #define ACT_REC_VARS 16
 
@@ -2047,6 +2048,83 @@ void stack_push_all_tacs_or(stack_t* dst, stack_t* pushed, stack_t* t_holes, sta
   }
   clear_tac_stack(&reversed);
   free_stack(reversed);
+}
+
+char* new_hole_formal_params_size() {
+  return "FORMAL_PARAMS_SIZE";
+}
+char* new_hole_local_vars_size() {
+  return "LOCAL_VARS_SIZE";
+}
+char* new_hole_return_size() {
+  return "RETURN_SIZE";
+}
+char* new_hole_func_def_size() {
+  return "FUNC_DEF_SIZE";
+}
+
+void stack_push_all_tacs_remenda_func_def(stack_t* dst, stack_t* pushed, stack_t* func_def_holes) {
+  stack_t* reversed = reversed_tac_stack(pushed);
+  stack_item_t* item = reversed->data;
+  while (item) {
+    stack_push(copy_tac(item->value), dst);
+
+    int i;
+    for (i = 0; i < 4 ; i++) {
+      char* tac_field;
+      switch (i) {
+        default:
+        case 0: tac_field = ((tac_t*)dst->data->value)->src_1; break;
+        case 1: tac_field = ((tac_t*)dst->data->value)->src_2; break;
+        case 2: tac_field = ((tac_t*)dst->data->value)->dst_1; break;
+        case 3: tac_field = ((tac_t*)dst->data->value)->dst_2; break;
+      }
+      if (strcmp(tac_field, new_hole_formal_params_size()) == 0 ||
+          strcmp(tac_field, new_hole_local_vars_size()) == 0 ||
+          strcmp(tac_field, new_hole_return_size()) == 0 ||
+          strcmp(tac_field, new_hole_func_def_size()) == 0) {
+
+        switch (i) {
+          default:
+          case 0: stack_push(&(((tac_t*)dst->data->value)->src_1), func_def_holes); break;
+          case 1: stack_push(&(((tac_t*)dst->data->value)->src_2), func_def_holes); break;
+          case 2: stack_push(&(((tac_t*)dst->data->value)->dst_1), func_def_holes); break;
+          case 3: stack_push(&(((tac_t*)dst->data->value)->dst_2), func_def_holes); break;
+        }
+      }
+    }
+    item = item->next;
+  }
+  clear_tac_stack(&reversed);
+  free_stack(reversed);
+}
+
+void remenda_func_def(stack_t** holes, func_def_t* func_def) {
+  char** hole;
+  stack_item_t* item = (*holes)->data;
+  while (item) {
+    hole = item->value;
+    if (hole) {
+
+      if (strcmp(new_hole_formal_params_size(), *hole) == 0) {
+        free(*hole);
+        *hole = new_imediate(func_def->formal_params_size);
+      }
+      if (strcmp(new_hole_local_vars_size(), *hole) == 0) {
+        free(*hole);
+        *hole = new_imediate(func_def->local_vars_size);
+      }
+      if (strcmp(new_hole_return_size(), *hole) == 0) {
+        free(*hole);
+        *hole = new_imediate(func_def->return_size);
+      }
+      if (strcmp(new_hole_func_def_size(), *hole) == 0) {
+        free(*hole);
+        *hole = new_imediate(func_def_size(func_def));
+      }
+    }
+    item = item->next;
+  }
 }
 
 char* new_hole()

@@ -469,7 +469,7 @@ def_function: func_name push_func_stack '(' parameters ')' body
 		tree_insert_node($$,$6);
 		//concatena codigo
 		ast_node_value_t* cmd_seq = $6->value;
-		stack_push_all_tacs(head->tac_stack, cmd_seq->tac_stack);
+		stack_push_all_tacs_remenda_func_def(head->tac_stack, cmd_seq->tac_stack, head->func_def_holes);
 	}
 
 	//associa tabela de simbolos ao nodo AST
@@ -495,6 +495,9 @@ def_function: func_name push_func_stack '(' parameters ')' body
 	head->symbols_table_entry->func_def = current_func_def_sizes;
 	//reinicia var de tamanhos de definicao de funcao atual
 	current_func_def_sizes = new_func_def();
+
+	//remenda buracos de comandos relacionados a func_def (que nao estava definido até agora)
+	remenda_func_def(&head->func_def_holes, head->symbols_table_entry->func_def);
 }
 def_function: TK_PR_STATIC func_name push_func_stack '(' parameters ')' body
 {
@@ -508,7 +511,7 @@ def_function: TK_PR_STATIC func_name push_func_stack '(' parameters ')' body
 		tree_insert_node($$,$7);
 		//concatena codigo
 		ast_node_value_t* cmd_seq = $7->value;
-		stack_push_all_tacs(head->tac_stack, cmd_seq->tac_stack);
+		stack_push_all_tacs_remenda_func_def(head->tac_stack, cmd_seq->tac_stack, head->func_def_holes);
 	}
 
 	//associa tabela de simbolos ao nodo AST
@@ -527,6 +530,9 @@ def_function: TK_PR_STATIC func_name push_func_stack '(' parameters ')' body
 	head->symbols_table_entry->func_def = current_func_def_sizes;
 	//reinicia var de tamanhos de definicao de funcao atual
 	current_func_def_sizes = new_func_def();
+
+	//remenda buracos de comandos relacionados a func_def (que nao estava definido até agora)
+	remenda_func_def(&head->func_def_holes, head->symbols_table_entry->func_def);
 }
 
 def_function: func_name_user push_func_stack '(' parameters ')' body
@@ -541,7 +547,7 @@ def_function: func_name_user push_func_stack '(' parameters ')' body
 		tree_insert_node($$,$6);
 		//concatena codigo
 		ast_node_value_t* cmd_seq = $6->value;
-		stack_push_all_tacs(head->tac_stack, cmd_seq->tac_stack);
+		stack_push_all_tacs_remenda_func_def(head->tac_stack, cmd_seq->tac_stack, head->func_def_holes);
 	}
 
 	//associa tabela de simbolos ao nodo AST
@@ -560,6 +566,9 @@ def_function: func_name_user push_func_stack '(' parameters ')' body
 	head->symbols_table_entry->func_def = current_func_def_sizes;
 	//reinicia var de tamanhos de definicao de funcao atual
 	current_func_def_sizes = new_func_def();
+
+	//remenda buracos de comandos relacionados a func_def (que nao estava definido até agora)
+	remenda_func_def(&head->func_def_holes, head->symbols_table_entry->func_def);
 }
 def_function: TK_PR_STATIC func_name_user push_func_stack '(' parameters ')' body
 {
@@ -573,7 +582,7 @@ def_function: TK_PR_STATIC func_name_user push_func_stack '(' parameters ')' bod
 		tree_insert_node($$,$7);
 		//concatena codigo
 		ast_node_value_t* cmd_seq = $7->value;
-		stack_push_all_tacs(head->tac_stack, cmd_seq->tac_stack);
+		stack_push_all_tacs_remenda_func_def(head->tac_stack, cmd_seq->tac_stack, head->func_def_holes);
 	}
 
 	//associa tabela de simbolos ao nodo AST
@@ -592,6 +601,9 @@ def_function: TK_PR_STATIC func_name_user push_func_stack '(' parameters ')' bod
 	head->symbols_table_entry->func_def = current_func_def_sizes;
 	//reinicia var de tamanhos de definicao de funcao atual
 	current_func_def_sizes = new_func_def();
+
+	//remenda buracos de comandos relacionados a func_def (que nao estava definido até agora)
+	remenda_func_def(&head->func_def_holes, head->symbols_table_entry->func_def);
 }
 
 body: '{' command_sequence '}'
@@ -603,7 +615,7 @@ body: '{' command_sequence '}'
 		tree_insert_node($$,$2);
 		//concatena codigo
 		ast_node_value_t* cmd_seq = $2->value;
-		stack_push_all_tacs(head->tac_stack, cmd_seq->tac_stack);
+		stack_push_all_tacs_remenda_func_def(head->tac_stack, cmd_seq->tac_stack, head->func_def_holes);
 	}
 
 	// if (!head->tac_stack->empty) {
@@ -723,7 +735,7 @@ command_sequence: command_in_block ';' command_sequence
 			//concatenar codigo
 			ast_node_value_t* head = $$->value;
 			ast_node_value_t* cmd_list = $3->value;
-  		stack_push_all_tacs(head->tac_stack, cmd_list->tac_stack);
+  		stack_push_all_tacs_remenda_func_def(head->tac_stack, cmd_list->tac_stack, head->func_def_holes);
 		}
 	} else {
 		$$ = $3;
@@ -763,7 +775,7 @@ block: push_block_stack command_sequence '}'
 		tree_insert_node($$,$2);
 		//concatenar de codigo
 		ast_node_value_t* cmd_seq = $2->value;
-		stack_push_all_tacs(head->tac_stack, cmd_seq->tac_stack);
+		stack_push_all_tacs_remenda_func_def(head->tac_stack, cmd_seq->tac_stack, head->func_def_holes);
 	}
 
 	// if (!head->tac_stack->empty) {

@@ -85,6 +85,11 @@ typedef struct ast_node_value {
      */
     char* result_reg;
 
+    /**
+     * Pilha de ponteiros para ponteiros de char (buracos) a serem remendados com imediatos relacionados a um func_def
+     */
+    stack_t* func_def_holes;
+
 } ast_node_value_t;
 
 /**

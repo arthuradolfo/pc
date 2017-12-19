@@ -33,6 +33,7 @@ ast_node_value_t* new_ast_node_value(int syntactic_type, int semantic_type, char
   node->f_holes = new_stack();
   node->result_reg = NULL;
 
+  node->func_def_holes = new_stack();
   return node;
 }
 
@@ -294,17 +295,19 @@ void clear_ast_node_value(ast_node_value_t* value)
   }
 
   if (value->t_holes != NULL) {
-    //TODO limpar ponteiros da pilha? provavelmente double free, analisar melhor
     free_stack(value->t_holes);
   }
 
   if (value->f_holes != NULL) {
-    //TODO limpar ponteiros da pilha? provavelmente double free, analisar melhor
     free_stack(value->f_holes);
   }
 
   if (value->result_reg != NULL)
     free(value->result_reg);
+
+  if (value->func_def_holes != NULL) {
+    free_stack(value->func_def_holes);
+  }
 }
 
 void clear_ast_node_value_skip_st(ast_node_value_t* value)
@@ -318,15 +321,17 @@ void clear_ast_node_value_skip_st(ast_node_value_t* value)
   }
 
   if (value->t_holes != NULL) {
-    //TODO limpar ponteiros da pilha? provavelmente double free, analisar melhor
     free_stack(value->t_holes);
   }
 
   if (value->f_holes != NULL) {
-    //TODO limpar ponteiros da pilha? provavelmente double free, analisar melhor
     free_stack(value->f_holes);
   }
 
   if (value->result_reg != NULL)
     free(value->result_reg);
+
+  if (value->func_def_holes != NULL) {
+    free_stack(value->func_def_holes);
+  }
 }
