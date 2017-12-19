@@ -49,6 +49,7 @@ OPTION(ETAPA_5 "The Etapa 5 compilation" OFF)
 OPTION(ETAPA_6 "The Etapa 6 compilation" ON)
 OPTION(ETAPA_7 "The Etapa 7 compilation" OFF)
 OPTION(DEBUG "Enables debug-logging" OFF)
+OPTION(RBSS_INIT "Custom init for rbss" OFF)
 
 IF(ETAPA_1)
   add_definitions(-DAVALIACAO_ETAPA_1=1)
@@ -69,6 +70,10 @@ ENDIF(ETAPA_1)
 IF(DEBUG)
  add_definitions(-DDEBUG=1)
 ENDIF(DEBUG)
+
+IF(RBSS_INIT)
+  add_definitions(-DRBSS_INIT=1)
+ENDIF(RBSS_INIT)
 
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
    message(STATUS "Setting build type to 'Debug' as none was specified.")

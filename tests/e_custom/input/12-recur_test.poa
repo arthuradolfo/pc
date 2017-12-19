@@ -1,0 +1,12 @@
+int grow_plant(int plant, int max_height) {
+    if (plant == max_height) then {
+      return 1;
+    }
+    else {
+      return grow_plant(plant + 1, max_height);
+    };
+}
+int main() {
+    int grew;
+    grew = grow_plant(0, 10);
+}
