@@ -13,6 +13,8 @@ int register_counter;
 /* Registradores de base */
 #define RBSS 0
 #define RARP 1
+#define RSP 2
+#define RPC 3
 
 /* Opcodes */
 
@@ -262,6 +264,10 @@ stack_t* reversed_tac_stack(stack_t* stack);
 void stack_push_all_tacs(stack_t* dst, stack_t* pushed);
 void stack_push_all_tacs_holes(stack_t* dst, stack_t* pushed, stack_t* t_holes, stack_t* f_holes);
 char* new_hole();
+char* new_hole_formal_params_size();
+char* new_hole_local_vars_size();
+char* new_hole_func_def_size();
+char* new_hole_return_size();
 
 /**
  * Remenda os buracos com o label fornecido

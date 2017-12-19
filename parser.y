@@ -456,12 +456,16 @@ func_name_user: TK_IDENTIFICADOR TK_IDENTIFICADOR
 	free(id_name);
 }
 
-
 def_function: func_name push_func_stack '(' parameters ')' body
 {
 	$$ = $1;
 
 	ast_node_value_t* head = $$->value;
+
+	//salva tamanhos de definicao de funcao na tabela de simbolos
+	head->symbols_table_entry->func_def = current_func_def_sizes;
+	//TODO remove
+	print_func_def(current_func_def_sizes);
 
 	generate_code_function_start(head);
 
@@ -488,11 +492,7 @@ def_function: func_name push_func_stack '(' parameters ')' body
 		}
 	#endif
 
-	//TODO remove
-	print_func_def(current_func_def_sizes);
 
-	//salva tamanhos de definicao de funcao na tabela de simbolos
-	head->symbols_table_entry->func_def = current_func_def_sizes;
 	//reinicia var de tamanhos de definicao de funcao atual
 	current_func_def_sizes = new_func_def();
 
@@ -1515,6 +1515,8 @@ action_command: TK_PR_RETURN expression
 	if(ast_node_value_expression->semantic_type != SMTC_USER_TYPE_VAR) ensure_return_type_is_correct(ast_node_value_expression);
 	else ensure_return_type_user_is_correct(ast_node_value_expression);
 	$$ = tree_make_unary_node(new_ast_node_value(AST_RETURN, ast_node_value_expression->semantic_type, ast_node_value_expression->semantic_user_type, NULL), $2);
+
+	generate_code_return($$->value, ast_node_value_expression);
 }
 action_command: TK_PR_CONTINUE { $$ = NULL; }
 action_command: TK_PR_BREAK { $$ = NULL; }

@@ -628,7 +628,7 @@ stack_t* ensure_number_of_parameters(char *func_name, comp_tree_t *tree)
   while(tree) {
     node_aux = tree->value;
     printf("syntatic type: %d\n", node_aux->syntactic_type);
-    if(node_aux->syntactic_type != AST_IDENTIFICADOR || node_aux->syntactic_type != AST_LITERAL) {
+    if(node_aux->syntactic_type != AST_IDENTIFICADOR && node_aux->syntactic_type != AST_LITERAL) {
       if(tree->childnodes < 3) {
         count_tree++;
         tree = NULL;
