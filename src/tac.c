@@ -2667,8 +2667,8 @@ void generate_code_initialize_program(ast_node_value_t *head, ast_node_value_t *
   stack_push(set_rarp, head->tac_stack);
   tac_t* set_rsp = new_tac_sed(false, NULL, OP_LOAD_I, imed0, rsp);
   stack_push(set_rsp, head->tac_stack);
-  tac_t* set_rbss = new_tac_sed(false, NULL, OP_LOAD_I, imed0, rbss);
-  stack_push(set_rbss, head->tac_stack);
+  //tac_t* set_rbss = new_tac_sed(false, NULL, OP_LOAD_I, imed0, rbss);
+  //stack_push(set_rbss, head->tac_stack);
   tac_t* jump_main = new_tac_jump_i(false, NULL, "lmain");
   stack_push(jump_main, head->tac_stack);
 
