@@ -303,6 +303,10 @@ void generate_code_foreach(ast_node_value_t* head, st_value_t* identifier, comp_
 void generate_code_function_start(ast_node_value_t *function);
 void generate_code_call_caller_side(ast_node_value_t* call, st_value_t* function, comp_tree_t* real_parameters);
 void generate_code_call_invoked_side(ast_node_value_t* function);
+void generate_code_initialize_program(ast_node_value_t *head, ast_node_value_t *program);
+void generate_code_return(ast_node_value_t* ast_return, ast_node_value_t* expression);
+void stack_push_all_tacs_remenda_func_def(stack_t* dst, stack_t* pushed, stack_t* func_def_holes);
+void remenda_func_def(stack_t** holes, func_def_t* func_def);
 /**
  * Imprime uma pilha de tacs (invertida) na saida padrao
  */

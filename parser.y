@@ -136,7 +136,7 @@ prime_programa: programa
 		//concatena codigo
 		ast_node_value_t* program = $1->value;
 		ast_node_value_t* head = $$->value;
-		stack_push_all_tacs(head->tac_stack, program->tac_stack);
+		generate_code_initialize_program(head, program);
 	}
 
 	gv_declare(AST_PROGRAMA, $$, NULL);

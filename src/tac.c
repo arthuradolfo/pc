@@ -2652,6 +2652,23 @@ void generate_code_foreach(ast_node_value_t* head, st_value_t* identifier, comp_
   free(imediate); free(base_register); free(reg_identifier);
 }
 
+void generate_code_initialize_program(ast_node_value_t *head, ast_node_value_t *program) {
+    char* rarp = base_register_name(RARP);
+    char* rsp = base_register_name(RSP);
+    char* rbss = base_register_name(RBSS);
+    char* imed0 = new_imediate(0);
+    tac_t* set_rarp = new_tac_sed(false, NULL, OP_LOAD_I, imed0, rarp);
+    stack_push(set_rarp, head->tac_stack);
+    tac_t* set_rsp = new_tac_sed(false, NULL, OP_LOAD_I, imed0, rsp);
+    stack_push(set_rsp, head->tac_stack);
+    tac_t* set_rbss = new_tac_sed(false, NULL, OP_LOAD_I, imed0, rbss);
+    stack_push(set_rbss, head->tac_stack);
+    tac_t* jump_main = new_tac_jump_i(false, NULL, "lmain");
+    stack_push(jump_main, head->tac_stack);
+
+    stack_push_all_tacs(head->tac_stack, program->tac_stack);
+}
+
 void generate_code_function_start(ast_node_value_t *function) {
 
   //gerar label da funcao
