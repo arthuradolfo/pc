@@ -7,6 +7,7 @@
 #include <math.h>
 #include <cc_ast.h>
 #include <semantics.h>
+#include "execution.h"
 
 #define ACT_REC_VARS 16
 
@@ -400,6 +401,8 @@ char* base_register_name(int base_register)
 {
   if (base_register == RBSS) return strdup("rbss");
   else if (base_register == RARP) return strdup("rarp");
+  else if (base_register == RSP) return strdup("rsp");
+  else if (base_register == RPC) return strdup("rpc");
 }
 
 void base_register_test()
@@ -2571,7 +2574,6 @@ void generate_code_foreach(ast_node_value_t* head, st_value_t* identifier, comp_
 }
 
 void generate_code_function_start(ast_node_value_t *function) {
-  generate_code_call_invoked_side(function);
 
   //gerar label da funcao
   char* function_name = function->symbols_table_entry->value.s;
@@ -2582,23 +2584,73 @@ void generate_code_function_start(ast_node_value_t *function) {
   tac_t* nop_func_label = new_tac_nop(true, function_label);
   stack_push(nop_func_label, function->tac_stack);
 
+  generate_code_call_invoked_side(function);
+
   free(function_label);
 }
 
 void generate_code_call_invoked_side(ast_node_value_t* function) {
-  //TODO "criação" de um registro de ativação
-  //TODO fazer rarp = rsp + func_def->formal_params_size
-  //TODO atualizar rsp (rsp = rarp + 16 + func_def_size(func_def))
-  //TODO mais precisamente {
-  //TODO    addi rsp, func_def->formal_params_size => rarp   # rarp recebe rsp anterior+tamanho dos params formais
-  //TODO
-  //TODO    addi rarp, 16 => rsp
-  //TODO    addi rsp, func_def_size(func_def) => rsp         #faz rsp apontar para depois do frame
-  //TODO }
+  char* function_name = ((st_value_t*)function->symbols_table_entry)->value.s;
+  bool is_recursion = !strcmp(function_name, get_current_func_decl());
+
+  char* rarp = base_register_name(RARP);
+  char* rsp = base_register_name(RSP);
+  char* reg_rarp_def_size = new_register();
+  char* formal_params_size;
+  char* func_def_size_var;
+  char* imed16 = new_imediate(16);
+
+  st_value_t* node_entry = function->symbols_table_entry;
+  func_def_t* func_def = node_entry->func_def;
+  if(is_recursion) {
+    formal_params_size = new_hole_formal_params_size();
+    func_def_size_var = new_hole_func_def_size();
+  }
+  else {
+    formal_params_size = new_imediate(func_def->formal_params_size);
+    func_def_size_var = new_imediate(func_def_size(func_def));
+  }
+
+  //"criação" de um registro de ativação
+  //fazer rarp = rsp + func_def->formal_params_size
+  tac_t* update_rarp = new_tac_ssed(false, NULL, OP_ADD_I, rsp, formal_params_size, rarp);
+  stack_push(update_rarp, function->tac_stack);
+
+  //atualizar rsp (rsp = rarp + 16 + func_def_size(func_def))
+  tac_t* update_rsp_1 = new_tac_ssed(false, NULL, OP_ADD_I, rarp, func_def_size_var, reg_rarp_def_size);
+  stack_push(update_rsp_1, function->tac_stack);
+  tac_t* update_rsp_2 = new_tac_ssed(false, NULL, OP_ADD_I, reg_rarp_def_size, imed16, rsp);
+  stack_push(update_rsp_2, function->tac_stack);
 
 
   //TODO { copiar cada parametro real salvo na stack para o seu correspondente formal no frame
   //TODO   (de rarp-offsets para rarp+16+offsets) e dict_get(func_params, func_name) }
+
+  stack_t* stack = dict_get(funcs_params, function_name);
+  stack_item_t* aux_item;
+  st_value_t* entry;
+  if(stack) {
+    if(!stack->empty) {
+      aux_item = stack->data;
+      int count = 0;
+      while(aux_item) {
+        entry = aux_item->value;
+        count-=entry->size;
+        char* reg_aux = new_register();
+        char* imed = new_imediate(count);
+        char* imed1 = new_imediate(entry->offset_address+16);
+        tac_t* load_param = new_tac_ssed(false, NULL, OP_LOAD_AI, rarp, imed, reg_aux);
+        stack_push(load_param, function->tac_stack);
+        tac_t* store_param = new_tac_sedd(false, NULL, OP_STORE_AI, reg_aux, rarp, imed1);
+        stack_push(store_param, function->tac_stack);
+        aux_item = aux_item->next;
+        free(imed);
+        free(imed1);
+        free(reg_aux);
+      }
+    }
+  }
+  free(rarp);  free(rsp);  free(formal_params_size); free(func_def_size_var); free(imed16); free(reg_rarp_def_size);
 }
 
 void generate_code_return(ast_node_value_t* ast_return, st_value_t* function) {
@@ -2618,29 +2670,114 @@ void generate_code_return(ast_node_value_t* ast_return, st_value_t* function) {
 }
 
 void generate_code_call_caller_side(ast_node_value_t* call, st_value_t* function, comp_tree_t* real_parameters) {
+  char* function_name = function->value.s;
+  bool is_recursion = !strcmp(function_name, get_current_func_decl());
+
+  int sp_counter = 0;
+  call->result_reg = new_register();
+  char* base_register = base_register_name(RARP);
+  char* rsp = base_register_name(RSP);
+  char* rpc = base_register_name(RPC);
+  char* r_ret_val_place = new_register();
+  char* reg_aux = new_register();
+  char* formal_params_size;
+  char* local_vars_size;
+
   if (real_parameters != NULL) {
     //TODO push cada um para a stack de controle, a partir de rsp
+    ast_node_value_t *node_aux;
+    while(real_parameters) {
+      
+      node_aux = real_parameters->value;
+      stack_push_all_tacs(call->tac_stack, node_aux->tac_stack);
+      
+      char *imed = new_imediate(sp_counter);
+
+      tac_t* storeAI = new_tac_sedd(false, NULL, OP_STORE_AI, node_aux->result_reg, rsp, imed);
+      stack_push(storeAI, call->tac_stack);
+      
+      sp_counter+=get_type_size(node_aux->semantic_type);
+      real_parameters = real_parameters->last;
+      free(imed);
+    }
   }
 
+  func_def_t *func_def = function->func_def;
+  if(is_recursion) {
+    formal_params_size = new_hole_formal_params_size();
+    local_vars_size = new_hole_local_vars_size();
+  }
+  else {
+    formal_params_size = new_imediate(func_def->formal_params_size);
+    local_vars_size = new_imediate(func_def->local_vars_size);
+  }
+  char* r_new_frame = new_register();
+  char* reg_ve = new_register();
+  char* imed0 = new_imediate(0);
+  char* imed4 = new_imediate(4);
+  char* imed8 = new_imediate(8);
+  char* imed12 = new_imediate(12);
+  char* imed16 = new_imediate(16);
+  char* imed_ret = new_imediate(6);
+
   //o novo frame será a partir do rsp atual + func_def->formal_params_size
-  //TODO load rsp + func_def->formal_params_size => r_new_frame
+  tac_t* loadAI = new_tac_ssed(false, NULL, OP_LOAD_AI, rsp, formal_params_size, r_new_frame);
+  stack_push(loadAI, call->tac_stack);
 
-  //TODO salvar estado da maquina (rsp) [store rsp => r_new_frame, 0]
-  //TODO salvar endereço de retorno (pegar do rpc) [store (rpc + ...) => r_new_frame, 4]
-  //TODO salvar ve (0) [store 0 => r_new_frame, 8]
-  //TODO salvar vd (rarp) [store rarp => r_new_frame, 12]
+  //salvar estado da maquina (rsp) [store rsp => r_new_frame, 0]
+  tac_t* store_state = new_tac_sedd(false, NULL, OP_STORE_AI, rsp, r_new_frame, imed0);
+  stack_push(store_state, call->tac_stack);
 
-  //TODO jump para label da funcao chamada
+  //salvar endereço de retorno (pegar do rpc) [store (rpc + ...) => r_new_frame, 4]
+  tac_t* addI = new_tac_ssed(false, NULL, OP_ADD_I, rpc, imed_ret, reg_aux);
+  stack_push(addI, call->tac_stack);
+  tac_t* store_return_addres = new_tac_sedd(false, NULL, OP_STORE_AI, reg_aux, r_new_frame, imed4);
+  stack_push(store_return_addres, call->tac_stack);
+
+  //salvar ve (0) [store 0 => r_new_frame, 8]
+  tac_t* loadi = new_tac_sed(false, NULL, OP_LOAD_I, imed0, reg_ve);
+  stack_push(loadi, call->tac_stack);
+  tac_t* store_ve = new_tac_sedd(false, NULL, OP_STORE_AI, reg_ve, r_new_frame, imed8);
+  stack_push(store_ve, call->tac_stack);
+
+  //salvar vd (rarp) [store rarp => r_new_frame, 12]
+  tac_t* store_vd = new_tac_sedd(false, NULL, OP_STORE_AI, base_register, r_new_frame, imed12);
+  stack_push(store_vd, call->tac_stack);
+
+  //jump para label da funcao chamada
+
+  //gerar label da funcao
+  char* function_label = malloc((strlen(function_name) + 2)*sizeof(char));
+  sprintf(function_label, "l%s", function_name);
+
+  tac_t* jump_i = new_tac_jump_i(false, NULL, function_label);
+  stack_push(jump_i, call->tac_stack);
 
   //end de retorno:
-  //TODO obter valor de retorno em r_new_frame + 16 + func_def->formal_params_size + func_def->local_vars_size
-  //TODO colocar valor de retorno no result_reg de call
-  //TODO mais precisamente {
-  //TODO    addi r_new_frame, 16 => r_ret_val_place
-  //TODO    addi r_ret_val_place, func_def->formal_params_size => r_ret_val_place
-  //TODO    addi r_ret_val_place, func_def->local_vars_size => r_ret_val_place
-  //TODO    load r_ret_val_place, 0 => call->result_reg
-  //TODO }
+  //obter valor de retorno em r_new_frame + 16 + func_def->formal_params_size + func_def->local_vars_size
+  tac_t* add_formal_params = new_tac_ssed(false, NULL, OP_ADD_I, r_new_frame, formal_params_size, r_ret_val_place);
+  stack_push(add_formal_params, call->tac_stack);
+  tac_t* add_vars_size = new_tac_ssed(false, NULL, OP_ADD_I, r_ret_val_place, local_vars_size, r_ret_val_place);
+  stack_push(add_vars_size, call->tac_stack);
+  tac_t* load_ret_val = new_tac_ssed(false, NULL, OP_LOAD_AI, r_ret_val_place, imed16, call->result_reg);
+  stack_push(load_ret_val, call->tac_stack);
+   
+  free(function_label);   
+  free(formal_params_size); 
+  free(r_new_frame);  
+  free(imed_ret); 
+  free(reg_ve);           
+  free(imed0);            
+  free(imed4);              
+  free(imed8);        
+  free(imed12); 
+  free(r_ret_val_place);  
+  free(rsp);              
+  free(reg_aux);            
+  free(rpc);          
+  free(imed16);
+  free(local_vars_size);         
+  free(base_register);
 }
 
 void iloc_to_stdout(stack_t *tac_stack) {

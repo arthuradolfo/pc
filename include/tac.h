@@ -13,6 +13,8 @@ int register_counter;
 /* Registradores de base */
 #define RBSS 0
 #define RARP 1
+#define RSP 2
+#define RPC 3
 
 /* Opcodes */
 
