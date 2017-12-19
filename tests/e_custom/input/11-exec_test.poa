@@ -1,39 +1,19 @@
-class type_t [ private int field1 : public int field2 ];
-
-int main(int a, const int b) {
+int main(int a) {
     a = 1;
-    b = 2;
 
-    int c; //+4 local vars size
-    int d <= 43; //+4 local vars size
-    static int e; //nao conta no local vars size
-    static int f <= 44; //nao conta no local vars size
-    const int g; //+4 local vars size
-    const int h <= 45; //+4 local vars size
-    static const int i; //nao conta no local vars size
-    static const int j <= 46; //nao conta no local vars size
+    int c <= 2; //+4 local vars size
+    int d <= 3; //+4 local vars size
 
-    //formal params size deve ser 8
-    //local vars size deve ser 16
+    //formal params size deve ser 4
+    //local vars size deve ser 8
 }
 
 int func(int a, const int b) {
     a = 3;
     b = 4;
 
-    int c; //+4 local vars size
-    int d <= 87; //+4 local vars size
-    static int e; //nao conta no local vars size
-    static int f <= 88; //nao conta no local vars size
-    const int g; //+4 local vars size
-    const int h <= 89; //+4 local vars size
-    static const int i; //nao conta no local vars size
-    static const int j <= 90; //nao conta no local vars size
+    int c <= 5; //+4 local vars size
 
     //formal params size deve ser 8
-    //local vars size deve ser 16
+    //local vars size deve ser 4
 }
-
-static bool func_void() {}
-
-type_t user_typed(type_t user_typed) {}

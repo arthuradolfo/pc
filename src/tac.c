@@ -2727,7 +2727,10 @@ void generate_code_call_invoked_side(ast_node_value_t* function) {
       }
     }
   }
-  free(rarp);  free(rsp);  free(formal_params_size); free(func_def_size_var); free(imed16); free(reg_rarp_def_size);
+  free(rarp);  free(rsp); free(imed16); free(reg_rarp_def_size);
+  if (!is_recursion) {
+    free(formal_params_size); free(func_def_size_var);
+  }
 }
 
 void generate_code_return(ast_node_value_t* ast_return, ast_node_value_t* expression) {
@@ -2769,7 +2772,7 @@ void generate_code_return(ast_node_value_t* ast_return, ast_node_value_t* expres
   stack_push(jump_ret, ast_return->tac_stack);
 
   free(rarp);   free(rsp);    free(r_end_ret);          free(reg_aux);      free(imed0);  free(imed4);
-  free(imed12); free(imed16); free(func_def_size_var);  free(return_size);
+  free(imed12); free(imed16);
 }
 
 void generate_code_call_caller_side(ast_node_value_t* call, st_value_t* function, comp_tree_t* real_parameters) {
@@ -2866,7 +2869,6 @@ void generate_code_call_caller_side(ast_node_value_t* call, st_value_t* function
   stack_push(load_ret_val, call->tac_stack);
 
   free(function_label);
-  free(formal_params_size);
   free(r_new_frame);
   free(imed_ret);
   free(reg_ve);
@@ -2879,8 +2881,12 @@ void generate_code_call_caller_side(ast_node_value_t* call, st_value_t* function
   free(reg_aux);
   free(rpc);
   free(imed16);
-  free(local_vars_size);
   free(base_register);
+
+  if(!is_recursion) {
+    free(formal_params_size);
+    free(local_vars_size);
+  }
 }
 
 void iloc_to_stdout(stack_t *tac_stack) {
