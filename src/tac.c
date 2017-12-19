@@ -2653,20 +2653,62 @@ void generate_code_call_invoked_side(ast_node_value_t* function) {
   free(rarp);  free(rsp);  free(formal_params_size); free(func_def_size_var); free(imed16); free(reg_rarp_def_size);
 }
 
-void generate_code_return(ast_node_value_t* ast_return, st_value_t* function) {
-  //TODO registrar endereço de retorno em r_end_ret (será usado depois)
-  //TODO load rarp, 4 => r_end_ret
+void generate_code_return(ast_node_value_t* ast_return, ast_node_value_t* expression) {
+  st_value_t* function = dict_get(symbolsTable, get_current_func_decl());
 
-  //TODO colocar valor retornado em rarp + 16 + func_def_size(func_def) - func_def->return_size
+  char* rarp = base_register_name(RARP);
+  char* rsp = base_register_name(RSP);
+  char* r_end_ret = new_register();
+  char* reg_aux = new_register();
+  char* imed0 = new_imediate(0);
+  char* imed4 = new_imediate(4);
+  char* imed12 = new_imediate(12);
+  char* imed16 = new_imediate(16);
+  char* func_def_size_var = new_hole_func_def_size();
+  char* return_size = new_hole_return_size();
 
-  //TODO desempilhar registro usando vd (rarp anterior) e estado da maquina (rsp anterior) salvos
-  //TODO mais precisamente {
-  //TODO    load rarp, 0 => rsp     # retoma rsp anterior
-  //TODO    load rarp, 12 => rarp   # retoma rarp anterior
-  //TODO }
+  stack_push_all_tacs(ast_return->tac_stack, expression->tac_stack);
 
-  //TODO pular para endereço de retorno (registrado anteriormente em r_end_ret)
-  //TODO jump => r_end_ret
+  //colocar valor retornado em rarp + 16 + func_def_size(func_def) - func_def->return_size
+  tac_t* sub_rarp_return_size = new_tac_ssed(false, NULL, OP_SUB_I, rarp, return_size, reg_aux);
+  stack_push(sub_rarp_return_size, ast_return->tac_stack);
+  tac_t* add_rarp_func_def_size = new_tac_ssed(false, NULL, OP_ADD_I, reg_aux, func_def_size_var, reg_aux);
+  stack_push(add_rarp_func_def_size, ast_return->tac_stack);
+  tac_t* store_ret_val = new_tac_sedd(false, NULL, OP_STORE_AI, expression->result_reg, reg_aux, imed16);
+  stack_push(store_ret_val, ast_return->tac_stack);
+
+  //registrar endereço de retorno em r_end_ret (será usado depois)
+  tac_t* load_r_end = new_tac_ssed(false, NULL, OP_LOAD_AI, rarp, imed4, r_end_ret);
+  stack_push(load_r_end, ast_return->tac_stack);
+
+  //desempilhar registro usando vd (rarp anterior) e estado da maquina (rsp anterior) salvos
+  tac_t* pop_rsp = new_tac_ssed(false, NULL, OP_LOAD_AI, rarp, imed0, rsp);
+  stack_push(pop_rsp, ast_return->tac_stack);
+  tac_t* pop_rarp = new_tac_ssed(false, NULL, OP_LOAD_AI, rarp, imed12, rarp);
+  stack_push(pop_rarp, ast_return->tac_stack);
+
+  //pular para endereço de retorno (registrado anteriormente em r_end_ret)
+  tac_t* jump_ret = new_tac_jump(false, NULL, r_end_ret);
+  stack_push(jump_ret, ast_return->tac_stack);
+
+  free(rarp);   free(rsp);    free(r_end_ret);          free(reg_aux);      free(imed0);  free(imed4);
+  free(imed12); free(imed16); free(func_def_size_var);  free(return_size);
+}
+
+char* new_hole_formal_params_size() {
+  return strdup("FORMAL");
+}
+
+char* new_hole_return_size() {
+  return strdup("RETURN");
+}
+
+char* new_hole_local_vars_size() {
+  return strdup("VARS");
+}
+
+char* new_hole_func_def_size() {
+  return strdup("DEF");
 }
 
 void generate_code_call_caller_side(ast_node_value_t* call, st_value_t* function, comp_tree_t* real_parameters) {

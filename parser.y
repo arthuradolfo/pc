@@ -1503,6 +1503,8 @@ action_command: TK_PR_RETURN expression
 	if(ast_node_value_expression->semantic_type != SMTC_USER_TYPE_VAR) ensure_return_type_is_correct(ast_node_value_expression);
 	else ensure_return_type_user_is_correct(ast_node_value_expression);
 	$$ = tree_make_unary_node(new_ast_node_value(AST_RETURN, ast_node_value_expression->semantic_type, ast_node_value_expression->semantic_user_type, NULL), $2);
+
+	generate_code_return($$->value, ast_node_value_expression);
 }
 action_command: TK_PR_CONTINUE { $$ = NULL; }
 action_command: TK_PR_BREAK { $$ = NULL; }
