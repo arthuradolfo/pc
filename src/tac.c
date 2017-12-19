@@ -2250,7 +2250,9 @@ bool has_holes_to_patch(ast_node_value_t* ast_node) {
 void generate_code_load_var(ast_node_value_t *variable) {
   variable->result_reg = new_register();
   st_value_t* st_entry = variable->symbols_table_entry;
-  char* imediate = new_imediate(st_entry->offset_address + ACT_REC_VARS);
+  char* imediate;
+  if(st_entry->address_base == RBSS) imediate = new_imediate(st_entry->offset_address);
+  else imediate = new_imediate(st_entry->offset_address + ACT_REC_VARS);
   char* base_register = base_register_name(st_entry->address_base);
 
   tac_t* loadai = new_tac_ssed(false, NULL, OP_LOAD_AI, base_register, imediate, variable->result_reg);
@@ -2593,7 +2595,9 @@ void generate_code_attribution_var(ast_node_value_t* var, ast_node_value_t* expr
   }
 
   st_value_t* var_st_entry = var->symbols_table_entry;
-  char* imediate = new_imediate(var_st_entry->offset_address + ACT_REC_VARS);
+  char* imediate;
+  if(var_st_entry->address_base == RBSS) imediate = new_imediate(var_st_entry->offset_address);
+  else imediate = new_imediate(var_st_entry->offset_address + ACT_REC_VARS);
   char* base_register = base_register_name(var_st_entry->address_base);
   tac_t* store_ai = new_tac(NULL, OP_STORE_AI, expression->result_reg, NULL, base_register, imediate);
   stack_push(store_ai, var->tac_stack);
@@ -2636,7 +2640,9 @@ void generate_code_for(ast_node_value_t* head, ast_node_value_t* first_cmds, ast
 void generate_code_foreach(ast_node_value_t* head, st_value_t* identifier, comp_tree_t* params, ast_node_value_t* body) {
   ast_node_value_t *param_node;
 
-  char* imediate = new_imediate(identifier->offset_address + ACT_REC_VARS);
+  char* imediate;
+  if(identifier->address_base == RBSS) imediate = new_imediate(identifier->offset_address);
+  else imediate = new_imediate(identifier->offset_address + ACT_REC_VARS);
   char* base_register = base_register_name(identifier->address_base);
   char* reg_identifier = new_register();
 
@@ -3017,7 +3023,9 @@ void generate_code_atrib_vector(ast_node_value_t* head, stack_t* indices /*lista
   stack_push(multi, head->tac_stack);
 
   //add acumulador, st_vector->offset => acumulador
-  char* imed_offset_adr = new_imediate(st_vector->offset_address + ACT_REC_VARS);
+  char* imed_offset_adr;
+  if(st_vector->address_base == RBSS) imed_offset_adr = new_imediate(st_vector->offset_address);
+  else imed_offset_adr = new_imediate(st_vector->offset_address + ACT_REC_VARS);
   tac_t* add_offset = new_tac_ssed(false, NULL, OP_ADD_I, reg_acumulador, imed_offset_adr, reg_acumulador);
   stack_push(add_offset, head->tac_stack);
 
@@ -3085,7 +3093,9 @@ void generate_code_exp_vector(ast_node_value_t* head, stack_t* indices /*lista d
   stack_push(mult, head->tac_stack);
 
   //add acumulador, st_vector->offset => acumulador
-  char* imed_offset_adr = new_imediate(st_vector->offset_address + ACT_REC_VARS);
+  char* imed_offset_adr;
+  if(st_vector->address_base == RBSS) imed_offset_adr = new_imediate(st_vector->offset_address);
+  else imed_offset_adr = new_imediate(st_vector->offset_address + ACT_REC_VARS);
   tac_t* add_offset = new_tac_ssed(false, NULL, OP_ADD_I, reg_acumulador, imed_offset_adr, reg_acumulador);
   stack_push(add_offset, head->tac_stack);
 
