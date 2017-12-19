@@ -2081,17 +2081,19 @@ void stack_push_all_tacs_remenda_func_def(stack_t* dst, stack_t* pushed, stack_t
         case 2: tac_field = ((tac_t*)dst->data->value)->dst_1; break;
         case 3: tac_field = ((tac_t*)dst->data->value)->dst_2; break;
       }
-      if (strcmp(tac_field, new_hole_formal_params_size()) == 0 ||
+      if(tac_field) {
+        if (strcmp(tac_field, new_hole_formal_params_size()) == 0 ||
           strcmp(tac_field, new_hole_local_vars_size()) == 0 ||
           strcmp(tac_field, new_hole_return_size()) == 0 ||
           strcmp(tac_field, new_hole_func_def_size()) == 0) {
 
-        switch (i) {
-          default:
-          case 0: stack_push(&(((tac_t*)dst->data->value)->src_1), func_def_holes); break;
-          case 1: stack_push(&(((tac_t*)dst->data->value)->src_2), func_def_holes); break;
-          case 2: stack_push(&(((tac_t*)dst->data->value)->dst_1), func_def_holes); break;
-          case 3: stack_push(&(((tac_t*)dst->data->value)->dst_2), func_def_holes); break;
+          switch (i) {
+            default:
+            case 0: stack_push(&(((tac_t*)dst->data->value)->src_1), func_def_holes); break;
+            case 1: stack_push(&(((tac_t*)dst->data->value)->src_2), func_def_holes); break;
+            case 2: stack_push(&(((tac_t*)dst->data->value)->dst_1), func_def_holes); break;
+            case 3: stack_push(&(((tac_t*)dst->data->value)->dst_2), func_def_holes); break;
+          }
         }
       }
     }
@@ -2679,14 +2681,8 @@ void generate_code_call_invoked_side(ast_node_value_t* function) {
 
   st_value_t* node_entry = function->symbols_table_entry;
   func_def_t* func_def = node_entry->func_def;
-  if(is_recursion) {
-    formal_params_size = new_hole_formal_params_size();
-    func_def_size_var = new_hole_func_def_size();
-  }
-  else {
-    formal_params_size = new_imediate(func_def->formal_params_size);
-    func_def_size_var = new_imediate(func_def_size(func_def));
-  }
+  formal_params_size = new_imediate(func_def->formal_params_size);
+  func_def_size_var = new_imediate(func_def_size(func_def));
 
   //"criação" de um registro de ativação
   //fazer rarp = rsp + func_def->formal_params_size
@@ -2727,10 +2723,8 @@ void generate_code_call_invoked_side(ast_node_value_t* function) {
       }
     }
   }
-  free(rarp);  free(rsp); free(imed16); free(reg_rarp_def_size);
-  if (!is_recursion) {
-    free(formal_params_size); free(func_def_size_var);
-  }
+  free(rarp);               free(rsp);                free(imed16); free(reg_rarp_def_size);
+  free(formal_params_size); free(func_def_size_var);
 }
 
 void generate_code_return(ast_node_value_t* ast_return, ast_node_value_t* expression) {
