@@ -2403,7 +2403,7 @@ void generate_code_expression(ast_node_value_t* expression, ast_node_value_t* op
         tac_t* loadi_true = new_tac_sed(true, label_true, OP_LOAD_I, imed_true, operand->result_reg);
         stack_push(loadi_true, cache_stack);
         //colocamos um jump para a label de continue, para pular a atribuicao do 0 (false)
-        tac_t* skip_false = new_tac_jump(false, NULL, label_continue);
+        tac_t* skip_false = new_tac_jump_i(false, NULL, label_continue);
         stack_push(skip_false, cache_stack);
 
         //colocamos a label false e a atribuicao do 0 (false)
@@ -2486,7 +2486,7 @@ void generate_code_while(ast_node_value_t *cabeca, ast_node_value_t *condicao, a
   stack_push_all_tacs(cabeca->tac_stack, condicao->tac_stack);
   stack_push(new_tac_nop(true, label_true), cabeca->tac_stack);
   stack_push_all_tacs(cabeca->tac_stack, codigo->tac_stack);
-  stack_push(new_tac_jump(false, NULL, label_begin), cabeca->tac_stack);
+  stack_push(new_tac_jump_i(false, NULL, label_begin), cabeca->tac_stack);
   stack_push(new_tac_nop(true, label_end), cabeca->tac_stack);
 
   free(label_begin);
@@ -2528,7 +2528,7 @@ void generate_code_if_else(ast_node_value_t *cabeca, ast_node_value_t *condicao,
   stack_push_all_tacs(cabeca->tac_stack, condicao->tac_stack);
   stack_push(new_tac_nop(true, label_true), cabeca->tac_stack);
   stack_push_all_tacs(cabeca->tac_stack, codigo_true->tac_stack);
-  stack_push(new_tac_jump(false, NULL, label_end), cabeca->tac_stack);
+  stack_push(new_tac_jump_i(false, NULL, label_end), cabeca->tac_stack);
   stack_push(new_tac_nop(true, label_false), cabeca->tac_stack);
   stack_push_all_tacs(cabeca->tac_stack, codigo_false->tac_stack);
   stack_push(new_tac_nop(true, label_end), cabeca->tac_stack);
@@ -2566,7 +2566,7 @@ void generate_code_attribution_var(ast_node_value_t* var, ast_node_value_t* expr
     tac_t* loadi_true = new_tac_sed(true, label_true, OP_LOAD_I, imed_true, expression->result_reg);
     stack_push(loadi_true, cache_stack);
     //colocamos um jump para a label de continue, para pular a atribuicao do 0 (false)
-    tac_t* skip_false = new_tac_jump(false, NULL, label_continue);
+    tac_t* skip_false = new_tac_jump_i(false, NULL, label_continue);
     stack_push(skip_false, cache_stack);
 
     //colocamos a label false e a atribuicao do 0 (false)
@@ -2627,7 +2627,7 @@ void generate_code_for(ast_node_value_t* head, ast_node_value_t* first_cmds, ast
   //codigo dos comandos finais do laço
   stack_push_all_tacs(head->tac_stack, scnd_cmds->tac_stack);
   //salto para recomeço do loop
-  tac_t* jump_condition = new_tac_jump(false, NULL, label_condition);
+  tac_t* jump_condition = new_tac_jump_i(false, NULL, label_condition);
   stack_push(jump_condition, head->tac_stack);
   //label de final de loop, para salto de break/saida do for
   tac_t* nop_label_break = new_tac_nop(true, label_break);
