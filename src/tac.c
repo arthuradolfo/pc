@@ -8,6 +8,8 @@
 #include <cc_ast.h>
 #include <semantics.h>
 
+#define ACT_REC_VARS 16
+
 tac_t* new_tac(char* label, int opcode, char* src_1, char* src_2, char* dst_1, char* dst_2)
 {
   tac_t* tac = (tac_t*) malloc(sizeof(tac_t));
@@ -2166,7 +2168,7 @@ bool has_holes_to_patch(ast_node_value_t* ast_node) {
 void generate_code_load_var(ast_node_value_t *variable) {
   variable->result_reg = new_register();
   st_value_t* st_entry = variable->symbols_table_entry;
-  char* imediate = new_imediate(st_entry->offset_address);
+  char* imediate = new_imediate(st_entry->offset_address + ACT_REC_VARS);
   char* base_register = base_register_name(st_entry->address_base);
 
   tac_t* loadai = new_tac_ssed(false, NULL, OP_LOAD_AI, base_register, imediate, variable->result_reg);
@@ -2509,7 +2511,7 @@ void generate_code_attribution_var(ast_node_value_t* var, ast_node_value_t* expr
   }
 
   st_value_t* var_st_entry = var->symbols_table_entry;
-  char* imediate = new_imediate(var_st_entry->offset_address);
+  char* imediate = new_imediate(var_st_entry->offset_address + ACT_REC_VARS);
   char* base_register = base_register_name(var_st_entry->address_base);
   tac_t* store_ai = new_tac(NULL, OP_STORE_AI, expression->result_reg, NULL, base_register, imediate);
   stack_push(store_ai, var->tac_stack);
@@ -2552,7 +2554,7 @@ void generate_code_for(ast_node_value_t* head, ast_node_value_t* first_cmds, ast
 void generate_code_foreach(ast_node_value_t* head, st_value_t* identifier, comp_tree_t* params, ast_node_value_t* body) {
   ast_node_value_t *param_node;
 
-  char* imediate = new_imediate(identifier->offset_address);
+  char* imediate = new_imediate(identifier->offset_address + ACT_REC_VARS);
   char* base_register = base_register_name(identifier->address_base);
   char* reg_identifier = new_register();
 
@@ -2568,7 +2570,9 @@ void generate_code_foreach(ast_node_value_t* head, st_value_t* identifier, comp_
   free(imediate); free(base_register); free(reg_identifier);
 }
 
-void generate_code_function_label(ast_node_value_t* function) {
+void generate_code_function_start(ast_node_value_t *function) {
+  generate_code_call_invoked_side(function);
+
   //gerar label da funcao
   char* function_name = function->symbols_table_entry->value.s;
   char* function_label = malloc((strlen(function_name) + 2)*sizeof(char));
@@ -2582,34 +2586,61 @@ void generate_code_function_label(ast_node_value_t* function) {
 }
 
 void generate_code_call_invoked_side(ast_node_value_t* function) {
-
-
+  //TODO "criação" de um registro de ativação
+  //TODO fazer rarp = rsp + func_def->formal_params_size
+  //TODO atualizar rsp (rsp = rarp + 16 + func_def_size(func_def))
+  //TODO mais precisamente {
+  //TODO    addi rsp, func_def->formal_params_size => rarp   # rarp recebe rsp anterior+tamanho dos params formais
   //TODO
+  //TODO    addi rarp, 16 => rsp
+  //TODO    addi rsp, func_def_size(func_def) => rsp         #faz rsp apontar para depois do frame
+  //TODO }
+
 
   //TODO { copiar cada parametro real salvo na stack para o seu correspondente formal no frame
-  //TODO   (usar rarp +- offsets) e dict_get(func_params, func_name) }
-
-
+  //TODO   (de rarp-offsets para rarp+16+offsets) e dict_get(func_params, func_name) }
 }
 
-void generate_code_return(ast_node_value_t* function) {
-  //TODO
+void generate_code_return(ast_node_value_t* ast_return, st_value_t* function) {
+  //TODO registrar endereço de retorno em r_end_ret (será usado depois)
+  //TODO load rarp, 4 => r_end_ret
+
+  //TODO colocar valor retornado em rarp + 16 + func_def_size(func_def) - func_def->return_size
+
+  //TODO desempilhar registro usando vd (rarp anterior) e estado da maquina (rsp anterior) salvos
+  //TODO mais precisamente {
+  //TODO    load rarp, 0 => rsp     # retoma rsp anterior
+  //TODO    load rarp, 12 => rarp   # retoma rarp anterior
+  //TODO }
+
+  //TODO pular para endereço de retorno (registrado anteriormente em r_end_ret)
+  //TODO jump => r_end_ret
 }
 
-void generate_code_call_caller_side(st_value_t* function, comp_tree_t* real_parameters) {
-  //o novo frame é a partir do rsp atual
-  //TODO salvar estado da maquina (rsp) [store rsp => rsp, 0]
-  //TODO salvar endereço de retorno (pegar do rpc) [store (rpc + ...) => rsp, 4]
-  //TODO salvar ve (0) [store 0 => rsp, 8]
-  //TODO salvar vd (rarp) [store rarp => rsp, 12]
-
+void generate_code_call_caller_side(ast_node_value_t* call, st_value_t* function, comp_tree_t* real_parameters) {
   if (real_parameters != NULL) {
-    //TODO push cada um para a stack de controle (stores a partir de [rsp+16])
+    //TODO push cada um para a stack de controle, a partir de rsp
   }
+
+  //o novo frame será a partir do rsp atual + func_def->formal_params_size
+  //TODO load rsp + func_def->formal_params_size => r_new_frame
+
+  //TODO salvar estado da maquina (rsp) [store rsp => r_new_frame, 0]
+  //TODO salvar endereço de retorno (pegar do rpc) [store (rpc + ...) => r_new_frame, 4]
+  //TODO salvar ve (0) [store 0 => r_new_frame, 8]
+  //TODO salvar vd (rarp) [store rarp => r_new_frame, 12]
 
   //TODO jump para label da funcao chamada
 
-  //o end de retorno deve ser para a linha seguinte. calcular pós push de parametros?
+  //end de retorno:
+  //TODO obter valor de retorno em r_new_frame + 16 + func_def->formal_params_size + func_def->local_vars_size
+  //TODO colocar valor de retorno no result_reg de call
+  //TODO mais precisamente {
+  //TODO    addi r_new_frame, 16 => r_ret_val_place
+  //TODO    addi r_ret_val_place, func_def->formal_params_size => r_ret_val_place
+  //TODO    addi r_ret_val_place, func_def->local_vars_size => r_ret_val_place
+  //TODO    load r_ret_val_place, 0 => call->result_reg
+  //TODO }
 }
 
 void iloc_to_stdout(stack_t *tac_stack) {
@@ -2716,7 +2747,7 @@ void generate_code_atrib_vector(ast_node_value_t* head, stack_t* indices /*lista
   stack_push(multi, head->tac_stack);
 
   //add acumulador, st_vector->offset => acumulador
-  char* imed_offset_adr = new_imediate(st_vector->offset_address);
+  char* imed_offset_adr = new_imediate(st_vector->offset_address + ACT_REC_VARS);
   tac_t* add_offset = new_tac_ssed(false, NULL, OP_ADD_I, reg_acumulador, imed_offset_adr, reg_acumulador);
   stack_push(add_offset, head->tac_stack);
 
@@ -2784,7 +2815,7 @@ void generate_code_exp_vector(ast_node_value_t* head, stack_t* indices /*lista d
   stack_push(mult, head->tac_stack);
 
   //add acumulador, st_vector->offset => acumulador
-  char* imed_offset_adr = new_imediate(st_vector->offset_address);
+  char* imed_offset_adr = new_imediate(st_vector->offset_address + ACT_REC_VARS);
   tac_t* add_offset = new_tac_ssed(false, NULL, OP_ADD_I, reg_acumulador, imed_offset_adr, reg_acumulador);
   stack_push(add_offset, head->tac_stack);
 

@@ -294,8 +294,9 @@ void generate_code_for(ast_node_value_t* head, ast_node_value_t* first_cmds, ast
 void generate_code_atrib_vector(ast_node_value_t* head, stack_t* indices, st_value_t* st_vector, ast_node_value_t* expression);
 void generate_code_exp_vector(ast_node_value_t* head, stack_t* indices, st_value_t* st_vector);
 void generate_code_foreach(ast_node_value_t* head, st_value_t* identifier, comp_tree_t* params, ast_node_value_t* body);
-void generate_code_function_label(ast_node_value_t* function);
-
+void generate_code_function_start(ast_node_value_t *function);
+void generate_code_call_caller_side(ast_node_value_t* call, st_value_t* function, comp_tree_t* real_parameters);
+void generate_code_call_invoked_side(ast_node_value_t* function);
 /**
  * Imprime uma pilha de tacs (invertida) na saida padrao
  */

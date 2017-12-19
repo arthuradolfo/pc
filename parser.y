@@ -463,7 +463,7 @@ def_function: func_name push_func_stack '(' parameters ')' body
 
 	ast_node_value_t* head = $$->value;
 
-	generate_code_function_label(head);
+	generate_code_function_start(head);
 
 	if ($6) {
 		tree_insert_node($$,$6);
@@ -502,7 +502,7 @@ def_function: TK_PR_STATIC func_name push_func_stack '(' parameters ')' body
 
 	ast_node_value_t* head = $$->value;
 
-	generate_code_function_label(head);
+	generate_code_function_start(head);
 
 	if ($7) {
 		tree_insert_node($$,$7);
@@ -535,7 +535,7 @@ def_function: func_name_user push_func_stack '(' parameters ')' body
 
 	ast_node_value_t* head = $$->value;
 
-	generate_code_function_label(head);
+	generate_code_function_start(head);
 
 	if ($6) {
 		tree_insert_node($$,$6);
@@ -567,7 +567,7 @@ def_function: TK_PR_STATIC func_name_user push_func_stack '(' parameters ')' bod
 
 	ast_node_value_t* head = $$->value;
 
-	generate_code_function_label(head);
+	generate_code_function_start(head);
 
 	if ($7) {
 		tree_insert_node($$,$7);
@@ -1266,7 +1266,7 @@ function_call: TK_IDENTIFICADOR '(' expression_sequence ')'
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, function_user_type_1, st_identificador));
 	$$ = tree_make_binary_node(new_ast_node_value(AST_CHAMADA_DE_FUNCAO, st_identificador->semantic_type, function_user_type_2, NULL), node_identificador, $3);
 
-	generate_code_call(st_identificador, $3);
+	generate_code_call_caller_side($$->value, st_identificador, $3);
 
 	free($1);
 }
@@ -1282,7 +1282,7 @@ function_call: TK_IDENTIFICADOR '(' ')'
 	comp_tree_t* node_identificador = tree_make_node(new_ast_node_value(AST_IDENTIFICADOR, st_identificador->semantic_type, function_user_type_1, st_identificador));
 	$$ = tree_make_unary_node(new_ast_node_value(AST_CHAMADA_DE_FUNCAO, st_identificador->semantic_type, function_user_type_2, NULL), node_identificador);
 
-	generate_code_call(st_identificador, NULL);
+	generate_code_call_caller_side($$->value, st_identificador, NULL);
 
 	free($1);
 }

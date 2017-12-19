@@ -11,9 +11,9 @@
       Vínculo dinâmico (rarp anterior) [size 4]
 
     [rarp+16] ===== Campos de tamanho variável ===
-      [DEFINIDO NA DECLARACAO] Valor retornado
       [DEFINIDO NA DECLARACAO] Parâmetros formais (argumentos)
       Variáveis locais
+      [DEFINIDO NA DECLARACAO] Valor retornado
 */
 
 typedef struct {
@@ -28,7 +28,7 @@ typedef struct {
 func_def_t* current_func_def_sizes;
 
 func_def_t* new_func_def();
-int proto_actv_rec_size(func_def_t* func_def);
+int func_def_size(func_def_t* func_def);
 void print_func_def(func_def_t* func_def);
 
 //TODO move to tac.h
