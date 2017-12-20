@@ -2895,7 +2895,9 @@ void generate_code_call_caller_side(ast_node_value_t* call, st_value_t* function
   tac_t* jump_i = new_tac_jump_i(false, NULL, function_label);
   stack_push(jump_i, call->tac_stack);
 
-  //end de retorno:
+  //o novo frame será a partir do rsp atual + func_def->formal_params_size (É IMPORTANTE REFAZER ESSE CALCULO AQUI)
+  tac_t* loadAI_rnf = new_tac_ssed(false, NULL, OP_ADD_I, rsp, formal_params_size, r_new_frame);
+  stack_push(loadAI_rnf, call->tac_stack);
   //obter valor de retorno em r_new_frame + 16 + func_def->formal_params_size + func_def->local_vars_size
   tac_t* add_formal_params = new_tac_ssed(false, NULL, OP_ADD_I, r_new_frame, formal_params_size, r_ret_val_place);
   stack_push(add_formal_params, call->tac_stack);
