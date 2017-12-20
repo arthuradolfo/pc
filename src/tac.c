@@ -2839,7 +2839,13 @@ void generate_code_call_caller_side(ast_node_value_t* call, st_value_t* function
       stack_push(storeAI, call->tac_stack);
 
       sp_counter+=get_type_size(node_aux->semantic_type);
-      real_parameters = real_parameters->last;
+      if(node_aux->syntactic_type != AST_IDENTIFICADOR && node_aux->syntactic_type != AST_LITERAL) {
+        if(real_parameters->childnodes < 3) real_parameters = NULL;
+        else real_parameters = real_parameters->last;
+      }
+      else {
+        real_parameters = real_parameters->last;
+      }
       free(imed);
     }
   }
