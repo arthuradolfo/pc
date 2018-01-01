@@ -2250,7 +2250,9 @@ bool has_holes_to_patch(ast_node_value_t* ast_node) {
 void generate_code_load_var(ast_node_value_t *variable) {
   variable->result_reg = new_register();
   st_value_t* st_entry = variable->symbols_table_entry;
-  char* imediate = new_imediate(st_entry->offset_address + ACT_REC_VARS);
+  char* imediate;
+  if(st_entry->address_base == RBSS) imediate = new_imediate(st_entry->offset_address);
+  else imediate = new_imediate(st_entry->offset_address + ACT_REC_VARS);
   char* base_register = base_register_name(st_entry->address_base);
 
   tac_t* loadai = new_tac_ssed(false, NULL, OP_LOAD_AI, base_register, imediate, variable->result_reg);
@@ -2401,7 +2403,7 @@ void generate_code_expression(ast_node_value_t* expression, ast_node_value_t* op
         tac_t* loadi_true = new_tac_sed(true, label_true, OP_LOAD_I, imed_true, operand->result_reg);
         stack_push(loadi_true, cache_stack);
         //colocamos um jump para a label de continue, para pular a atribuicao do 0 (false)
-        tac_t* skip_false = new_tac_jump(false, NULL, label_continue);
+        tac_t* skip_false = new_tac_jump_i(false, NULL, label_continue);
         stack_push(skip_false, cache_stack);
 
         //colocamos a label false e a atribuicao do 0 (false)
@@ -2484,7 +2486,7 @@ void generate_code_while(ast_node_value_t *cabeca, ast_node_value_t *condicao, a
   stack_push_all_tacs(cabeca->tac_stack, condicao->tac_stack);
   stack_push(new_tac_nop(true, label_true), cabeca->tac_stack);
   stack_push_all_tacs(cabeca->tac_stack, codigo->tac_stack);
-  stack_push(new_tac_jump(false, NULL, label_begin), cabeca->tac_stack);
+  stack_push(new_tac_jump_i(false, NULL, label_begin), cabeca->tac_stack);
   stack_push(new_tac_nop(true, label_end), cabeca->tac_stack);
 
   free(label_begin);
@@ -2526,7 +2528,7 @@ void generate_code_if_else(ast_node_value_t *cabeca, ast_node_value_t *condicao,
   stack_push_all_tacs(cabeca->tac_stack, condicao->tac_stack);
   stack_push(new_tac_nop(true, label_true), cabeca->tac_stack);
   stack_push_all_tacs(cabeca->tac_stack, codigo_true->tac_stack);
-  stack_push(new_tac_jump(false, NULL, label_end), cabeca->tac_stack);
+  stack_push(new_tac_jump_i(false, NULL, label_end), cabeca->tac_stack);
   stack_push(new_tac_nop(true, label_false), cabeca->tac_stack);
   stack_push_all_tacs(cabeca->tac_stack, codigo_false->tac_stack);
   stack_push(new_tac_nop(true, label_end), cabeca->tac_stack);
@@ -2564,7 +2566,7 @@ void generate_code_attribution_var(ast_node_value_t* var, ast_node_value_t* expr
     tac_t* loadi_true = new_tac_sed(true, label_true, OP_LOAD_I, imed_true, expression->result_reg);
     stack_push(loadi_true, cache_stack);
     //colocamos um jump para a label de continue, para pular a atribuicao do 0 (false)
-    tac_t* skip_false = new_tac_jump(false, NULL, label_continue);
+    tac_t* skip_false = new_tac_jump_i(false, NULL, label_continue);
     stack_push(skip_false, cache_stack);
 
     //colocamos a label false e a atribuicao do 0 (false)
@@ -2593,7 +2595,9 @@ void generate_code_attribution_var(ast_node_value_t* var, ast_node_value_t* expr
   }
 
   st_value_t* var_st_entry = var->symbols_table_entry;
-  char* imediate = new_imediate(var_st_entry->offset_address + ACT_REC_VARS);
+  char* imediate;
+  if(var_st_entry->address_base == RBSS) imediate = new_imediate(var_st_entry->offset_address);
+  else imediate = new_imediate(var_st_entry->offset_address + ACT_REC_VARS);
   char* base_register = base_register_name(var_st_entry->address_base);
   tac_t* store_ai = new_tac(NULL, OP_STORE_AI, expression->result_reg, NULL, base_register, imediate);
   stack_push(store_ai, var->tac_stack);
@@ -2623,7 +2627,7 @@ void generate_code_for(ast_node_value_t* head, ast_node_value_t* first_cmds, ast
   //codigo dos comandos finais do laço
   stack_push_all_tacs(head->tac_stack, scnd_cmds->tac_stack);
   //salto para recomeço do loop
-  tac_t* jump_condition = new_tac_jump(false, NULL, label_condition);
+  tac_t* jump_condition = new_tac_jump_i(false, NULL, label_condition);
   stack_push(jump_condition, head->tac_stack);
   //label de final de loop, para salto de break/saida do for
   tac_t* nop_label_break = new_tac_nop(true, label_break);
@@ -2636,7 +2640,9 @@ void generate_code_for(ast_node_value_t* head, ast_node_value_t* first_cmds, ast
 void generate_code_foreach(ast_node_value_t* head, st_value_t* identifier, comp_tree_t* params, ast_node_value_t* body) {
   ast_node_value_t *param_node;
 
-  char* imediate = new_imediate(identifier->offset_address + ACT_REC_VARS);
+  char* imediate;
+  if(identifier->address_base == RBSS) imediate = new_imediate(identifier->offset_address);
+  else imediate = new_imediate(identifier->offset_address + ACT_REC_VARS);
   char* base_register = base_register_name(identifier->address_base);
   char* reg_identifier = new_register();
 
@@ -2661,8 +2667,12 @@ void generate_code_initialize_program(ast_node_value_t *head, ast_node_value_t *
   stack_push(set_rarp, head->tac_stack);
   tac_t* set_rsp = new_tac_sed(false, NULL, OP_LOAD_I, imed0, rsp);
   stack_push(set_rsp, head->tac_stack);
-  tac_t* set_rbss = new_tac_sed(false, NULL, OP_LOAD_I, imed0, rbss);
-  stack_push(set_rbss, head->tac_stack);
+
+  #ifdef RBSS_INIT
+    tac_t* set_rbss = new_tac_sed(false, NULL, OP_LOAD_I, imed0, rbss);
+    stack_push(set_rbss, head->tac_stack);
+  #endif
+
   tac_t* jump_main = new_tac_jump_i(false, NULL, "lmain");
   stack_push(jump_main, head->tac_stack);
 
@@ -2792,7 +2802,9 @@ void generate_code_return(ast_node_value_t* ast_return, ast_node_value_t* expres
   stack_push(pop_rarp, ast_return->tac_stack);
 
   //pular para endereço de retorno (registrado anteriormente em r_end_ret)
-  tac_t* jump_ret = new_tac_jump(false, NULL, r_end_ret);
+  tac_t* jump_ret;
+  if(strcmp("main", get_current_func_decl()) == 0) jump_ret = new_tac_jump_i(false, NULL, "l203halt");
+  else  jump_ret = new_tac_jump(false, NULL, r_end_ret);
   stack_push(jump_ret, ast_return->tac_stack);
 
   free(rarp);   free(rsp);    free(r_end_ret);          free(reg_aux);      free(imed0);  free(imed4);
@@ -2827,7 +2839,13 @@ void generate_code_call_caller_side(ast_node_value_t* call, st_value_t* function
       stack_push(storeAI, call->tac_stack);
 
       sp_counter+=get_type_size(node_aux->semantic_type);
-      real_parameters = real_parameters->last;
+      if(node_aux->syntactic_type != AST_IDENTIFICADOR && node_aux->syntactic_type != AST_LITERAL) {
+        if(real_parameters->childnodes < 3) real_parameters = NULL;
+        else real_parameters = real_parameters->last;
+      }
+      else {
+        real_parameters = real_parameters->last;
+      }
       free(imed);
     }
   }
@@ -2851,7 +2869,7 @@ void generate_code_call_caller_side(ast_node_value_t* call, st_value_t* function
   char* imed_ret = new_imediate(6);
 
   //o novo frame será a partir do rsp atual + func_def->formal_params_size
-  tac_t* loadAI = new_tac_ssed(false, NULL, OP_LOAD_AI, rsp, formal_params_size, r_new_frame);
+  tac_t* loadAI = new_tac_ssed(false, NULL, OP_ADD_I, rsp, formal_params_size, r_new_frame);
   stack_push(loadAI, call->tac_stack);
 
   //salvar estado da maquina (rsp) [store rsp => r_new_frame, 0]
@@ -2883,7 +2901,9 @@ void generate_code_call_caller_side(ast_node_value_t* call, st_value_t* function
   tac_t* jump_i = new_tac_jump_i(false, NULL, function_label);
   stack_push(jump_i, call->tac_stack);
 
-  //end de retorno:
+  //o novo frame será a partir do rsp atual + func_def->formal_params_size (É IMPORTANTE REFAZER ESSE CALCULO AQUI)
+  tac_t* loadAI_rnf = new_tac_ssed(false, NULL, OP_ADD_I, rsp, formal_params_size, r_new_frame);
+  stack_push(loadAI_rnf, call->tac_stack);
   //obter valor de retorno em r_new_frame + 16 + func_def->formal_params_size + func_def->local_vars_size
   tac_t* add_formal_params = new_tac_ssed(false, NULL, OP_ADD_I, r_new_frame, formal_params_size, r_ret_val_place);
   stack_push(add_formal_params, call->tac_stack);
@@ -3017,7 +3037,9 @@ void generate_code_atrib_vector(ast_node_value_t* head, stack_t* indices /*lista
   stack_push(multi, head->tac_stack);
 
   //add acumulador, st_vector->offset => acumulador
-  char* imed_offset_adr = new_imediate(st_vector->offset_address + ACT_REC_VARS);
+  char* imed_offset_adr;
+  if(st_vector->address_base == RBSS) imed_offset_adr = new_imediate(st_vector->offset_address);
+  else imed_offset_adr = new_imediate(st_vector->offset_address + ACT_REC_VARS);
   tac_t* add_offset = new_tac_ssed(false, NULL, OP_ADD_I, reg_acumulador, imed_offset_adr, reg_acumulador);
   stack_push(add_offset, head->tac_stack);
 
@@ -3085,7 +3107,9 @@ void generate_code_exp_vector(ast_node_value_t* head, stack_t* indices /*lista d
   stack_push(mult, head->tac_stack);
 
   //add acumulador, st_vector->offset => acumulador
-  char* imed_offset_adr = new_imediate(st_vector->offset_address + ACT_REC_VARS);
+  char* imed_offset_adr;
+  if(st_vector->address_base == RBSS) imed_offset_adr = new_imediate(st_vector->offset_address);
+  else imed_offset_adr = new_imediate(st_vector->offset_address + ACT_REC_VARS);
   tac_t* add_offset = new_tac_ssed(false, NULL, OP_ADD_I, reg_acumulador, imed_offset_adr, reg_acumulador);
   stack_push(add_offset, head->tac_stack);
 

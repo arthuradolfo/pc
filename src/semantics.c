@@ -633,6 +633,7 @@ stack_t* ensure_number_of_parameters(char *func_name, comp_tree_t *tree)
         tree = NULL;
       }
       else  {
+        count_tree++;
         tree = tree->last;
       }
     }
