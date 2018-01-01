@@ -22,7 +22,7 @@ ADD_EXECUTABLE(main
   src/semantics.c
   src/tac.c
   src/execution.c
-)
+        src/optimization.c include/optimization.h)
 TARGET_LINK_LIBRARIES(main ${FLEX_LIBRARIES} m)
 
 ADD_EXECUTABLE(cc_dict_main_example src/cc_dict.c src/cc_dict_main_example.c)
@@ -46,9 +46,12 @@ OPTION(ETAPA_2 "The Etapa 2 compilation" OFF)
 OPTION(ETAPA_3 "The Etapa 3 compilation" OFF)
 OPTION(ETAPA_4 "The Etapa 4 compilation" OFF)
 OPTION(ETAPA_5 "The Etapa 5 compilation" OFF)
-OPTION(ETAPA_6 "The Etapa 6 compilation" ON)
-OPTION(ETAPA_7 "The Etapa 7 compilation" OFF)
+OPTION(ETAPA_6 "The Etapa 6 compilation" OFF)
+OPTION(ETAPA_7 "The Etapa 7 compilation" ON)
 OPTION(DEBUG "Enables debug-logging" OFF)
+OPTION(O0 "No optimization" ON)
+OPTION(01 "Optimization level 1" OFF)
+OPTION(02 "Optimization level 2" OFF)
 
 IF(ETAPA_1)
   add_definitions(-DAVALIACAO_ETAPA_1=1)
@@ -69,6 +72,14 @@ ENDIF(ETAPA_1)
 IF(DEBUG)
  add_definitions(-DDEBUG=1)
 ENDIF(DEBUG)
+
+IF(O2)
+  add_definitions(-DO2=1)
+ELSEIF(O1)
+  add_definitions(-DO1=1)
+ELSE()
+  add_definitions(-DO0=1)
+ENDIF(O2)
 
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
    message(STATUS "Setting build type to 'Debug' as none was specified.")

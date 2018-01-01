@@ -1,4 +1,5 @@
 #include "cc_misc.h"
+#include "optimization.h"
 #include "tac.h"
 #include "semantics.h"
 
@@ -36,17 +37,6 @@ void yyerror (char const *mensagem)
   fprintf (stderr, "%s in line %d\n", mensagem, lineNumber);
 }
 
-void print_final_iloc()
-{
-  printf("\n\n_____ CÓDIGO ILOC _____\n\n");
-  ast_node_value_t* ast_root = abstractSyntaxTree->value;
-  stack_t* printable_tacs = reversed_tac_stack(ast_root->tac_stack);
-  print_tac_stack_clean(&printable_tacs);
-  clear_tac_stack(&printable_tacs);
-  free_stack(printable_tacs);
-  printf("_______________________\n\n");
-}
-
 void main_init (int argc, char **argv)
 {
   lineNumber = 1;
@@ -80,8 +70,10 @@ void main_init (int argc, char **argv)
 void main_finalize (void)
 {
   #ifdef DEBUG
-    printf("\nFim da Análise.\n\n");
+    printf("\nFim da Análise -");
+    print_optimization_mode(); printf("\n");
   #endif
+
   iloc_to_stdout(((ast_node_value_t*) abstractSyntaxTree->value)->tac_stack);
 
   gv_close();

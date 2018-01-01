@@ -1,13 +1,3 @@
-int main(int a) {
-    a = 1;
-
-    int c <= 2; //+4 local vars size
-    int d <= 3; //+4 local vars size
-
-    //formal params size deve ser 4
-    //local vars size deve ser 8
-}
-
 int func(int a, const int b) {
     a = 3;
     b = 4;
@@ -16,4 +6,13 @@ int func(int a, const int b) {
 
     //formal params size deve ser 8
     //local vars size deve ser 4
+}
+int main(int a) {
+    int c <= 2; //+4 local vars size
+    int d <= 3; //+4 local vars size
+
+    //formal params size deve ser 4
+    //local vars size deve ser 8
+
+    a = func(c,d);
 }
