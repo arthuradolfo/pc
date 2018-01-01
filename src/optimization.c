@@ -1,6 +1,9 @@
 /*
  * Módulo de otimização
- * Modos: //TODO explicar
+ * Modos: //TODO definir e explicar decisão
+ *
+ * Compilação: (onde X é o modo de otimização)
+ * pc/build$ cd .. && rm -R build && mkdir build && cd build && cmake .. -DOX=1 && make
  */
 
 #include <stdio.h>
