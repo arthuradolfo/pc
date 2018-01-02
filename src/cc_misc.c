@@ -39,6 +39,11 @@ void yyerror (char const *mensagem)
 
 void main_init (int argc, char **argv)
 {
+  #ifdef OPTM_TST
+    run_optimization_tests();
+    exit(EXIT_SUCCESS);
+  #endif
+
   lineNumber = 1;
 
   //inicializacao da estrutura de limpeza
@@ -69,9 +74,10 @@ void main_init (int argc, char **argv)
 
 void main_finalize (void)
 {
+  //TODO chamar módulo de otimização se necessário
+
   #ifdef DEBUG
-    printf("\nFim da Análise -");
-    print_optimization_mode(); printf("\n");
+    printf("\nFim da Análise -"); print_optimization_mode(); printf("\n\n");
   #endif
 
   iloc_to_stdout(((ast_node_value_t*) abstractSyntaxTree->value)->tac_stack);

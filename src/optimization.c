@@ -1,8 +1,11 @@
 /*
  * Módulo de otimização
- * Modos: //TODO definir e explicar decisão
+ * Modos: //TODO definir e explicar
  *
- * Compilação: (onde X é o modo de otimização)
+ * Compilação para TESTES EXEMPLO: (onde X é o modo de otimização)
+ * pc/build$ cd .. && rm -R build && mkdir build && cd build && cmake .. -DOX=1 -DOPTM_TST=1 && make
+ *
+ * Compilação normal usando otimização: (onde X é o modo de otimização)
  * pc/build$ cd .. && rm -R build && mkdir build && cd build && cmake .. -DOX=1 && make
  */
 
@@ -10,13 +13,30 @@
 #include "optimization.h"
 
 void print_optimization_mode() {
+  printf("%s", optimization_mode_to_string());
+}
+
+char* optimization_mode_to_string() {
   #ifdef O0
-    printf("O0\n");
+    return "O0";
   #endif
   #ifdef O1
-    printf("O1\n");
+    return "O1";
   #endif
   #ifdef O2
-    printf("O2\n");
+    return "O2";
   #endif
 }
+
+void run_optimization_tests() {
+  printf("******** Optimization Tests %s ********\n\n", optimization_mode_to_string());
+  //TODO chamar métodos de teste
+}
+
+/*
+ * void template_feature_test() {
+ *    print código input
+ *    otimizar (chamar metodo da feature)
+ *    print código output
+ * }
+ */

@@ -51,9 +51,12 @@ OPTION(ETAPA_6 "The Etapa 6 compilation" OFF)
 OPTION(ETAPA_7 "The Etapa 7 compilation" ON)
 OPTION(DEBUG "Enables debug-logging" OFF)
 OPTION(RBSS_INIT "Custom init for rbss" OFF)
+
 OPTION(O0 "No optimization" ON)
 OPTION(01 "Optimization level 1" OFF)
 OPTION(02 "Optimization level 2" OFF)
+
+OPTION(OPTM_TST "Testa otimizações em ilocs de exemplo" OFF)
 
 IF(ETAPA_1)
   add_definitions(-DAVALIACAO_ETAPA_1=1)
@@ -86,6 +89,10 @@ ELSEIF(O1)
 ELSE()
     add_definitions(-DO0=1)
 ENDIF(O2)
+
+IF(OPTM_TST)
+    add_definitions(-DOPTM_TST=1)
+ENDIF(OPTM_TST)
 
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
    message(STATUS "Setting build type to 'Debug' as none was specified.")
