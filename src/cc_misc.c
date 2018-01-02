@@ -39,6 +39,8 @@ void yyerror (char const *mensagem)
 
 void main_init (int argc, char **argv)
 {
+  optimization_module_init(argc, argv);
+
   #ifdef OPTM_TST
     run_optimization_tests();
     exit(EXIT_SUCCESS);
