@@ -42,6 +42,10 @@ void main_init (int argc, char **argv)
   optimization_module_init(argc, argv);
 
   #ifdef OPTM_TST
+    //inicializacao das variaveis de tac
+    label_counter = 1;
+    register_counter = 1;
+
     run_optimization_tests();
     exit(EXIT_SUCCESS);
   #endif
