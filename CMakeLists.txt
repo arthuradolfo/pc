@@ -52,12 +52,6 @@ OPTION(ETAPA_7 "The Etapa 7 compilation" ON)
 OPTION(DEBUG "Enables debug-logging" OFF)
 OPTION(RBSS_INIT "Custom init for rbss" OFF)
 
-OPTION(O0 "No optimization" ON)
-OPTION(01 "Optimization level 1" OFF)
-OPTION(02 "Optimization level 2" OFF)
-
-OPTION(OPTM_TST "Testa otimizações em ilocs de exemplo" OFF)
-
 IF(ETAPA_1)
   add_definitions(-DAVALIACAO_ETAPA_1=1)
 ELSEIF(ETAPA_2)

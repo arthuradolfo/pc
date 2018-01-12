@@ -1,9 +1,9 @@
 int a;
-int vetor[10][9][8];
+int b;
+int c;
 int main() {
-    int fora_foreach;
-    foreach(fora_foreach : 1, 2)
-    {
-      int dentro_do_foreach <= 42 + fora_foreach;
-    };
+	a = a*2;
+	a = a+0;
+	b = a;
+	c = b*2;
 }

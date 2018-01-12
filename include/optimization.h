@@ -13,8 +13,8 @@
 int window_size;
 
 typedef struct {
-    tac_t* top;
-    tac_t* bottom;
+    stack_item_t* top;
+    stack_item_t* bottom;
 } window_t;
 
 typedef struct {
@@ -22,7 +22,7 @@ typedef struct {
     stack_t* tac_stack;
 } optimizer_t;
 
-window_t* new_window(tac_t* top, tac_t* bottom);
+window_t* new_window(stack_item_t* top, stack_item_t* bottom);
 optimizer_t* new_optimizer(stack_t* tac_stack);
 void clear_and_free_optimizer(optimizer_t* opt);
 
